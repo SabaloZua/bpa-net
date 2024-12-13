@@ -32,12 +32,12 @@ const MobileNav = () => {
         <SheetContent side="left" className="border-none bg-white">
           <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/logo_favicon.svg"
               width={34}
               height={34}
               alt="Horizon logo"
             />
-            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Banco BPA</h1>
+            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">BPA <span className="text-sm">NET</span></h1>
           </Link>
           <div className="mobilenav-sheet">
             <SheetClose asChild>

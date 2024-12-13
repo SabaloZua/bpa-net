@@ -29,7 +29,7 @@ export default function Sidebar() {
                 <nav className="flex flex-col gap-3 ">
                     <Link href={'/'} className=" flex mb-4 cursor-pointer items-center gap-2">
                         <Image
-                            src={`/icons/img_logo.svg`}
+                            src={`/icons/logo_favicon.svg`}
                             width={40}
                             height={40}
                             alt="Logo horizontal"
