@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Footersibar from "./Footersibar"
 //import Footer from "./Footer"
 
 const MobileNav = () => {
@@ -30,7 +31,7 @@ const MobileNav = () => {
         </SheetTrigger>
 
         <SheetContent side="left" className="border-none bg-white">
-          <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
+          <Link href="/inicio" className="cursor-pointer flex items-center gap-1 px-4">
             <Image
               src="/icons/logo_favicon.svg"
               width={34}
@@ -67,11 +68,12 @@ const MobileNav = () => {
                   )
                 })}
 
-                USER
+                
               </nav>
             </SheetClose>
 
             {/* <Footer user={user} type="mobile" /> */}
+            <Footersibar tipo={"mobile"} />
           </div>
         </SheetContent>
       </Sheet>

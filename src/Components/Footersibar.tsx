@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface FooterProps {
   tipo: string;
@@ -21,7 +22,9 @@ const Footersibar = ({ tipo = "desktop" }: FooterProps) => {
       </div>
 
       <div className="footer_image">
-        <Image src="icons/logout.svg" fill alt="jsm" />
+        <Link  href={'/login'}>
+          <Image src="icons/logout.svg" fill alt="jsm" />
+        </Link> 
       </div>
     </footer>
   );

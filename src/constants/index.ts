@@ -2,12 +2,12 @@
 export const sidebarLinks = [
   {
     imgURL: "/icons/home.svg",
-    route: "/",
+    route: "/inicio",
     label: "Principal",
   },
   {
     imgURL: "/icons/dollar-circle.svg",
-    route: "/my-banks",
+    route: "/pagamentos",
     label: "Pagamentos",
   },
   {
@@ -17,7 +17,11 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/icons/money-send.svg",
-    route: "/payment-transfer",
+    route: "/transferencias",
     label: "Transferências",
   },
 ];
+
+export const theme = {
+  primary: '#1A82FF'
+}
