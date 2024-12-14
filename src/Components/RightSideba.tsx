@@ -13,7 +13,7 @@ export default function RightSideba() {
                 <div className="profile">
                     <Image
                         className=" profile-img "
-                        src={'/images/perfil.jpeg'} width={90} height={90} alt="S" />
+                        src={'/icons/perfil.jpeg'} width={90} height={90} alt="S" />
 
                     <div className="profile-details">
                         <h1 className="profile-name">

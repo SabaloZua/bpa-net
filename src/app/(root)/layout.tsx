@@ -1,6 +1,10 @@
 import Sidebar from "@/Components/Sidebar";
 import Image from "next/image";
 import NavMoblie from '@/Components/NavMoblie'
+
+/**
+ * Mudei também a Logo, converti para png, depois recortei, converti para svg e mudei a cor
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

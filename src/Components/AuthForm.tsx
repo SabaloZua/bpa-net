@@ -6,6 +6,15 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
+/**
+ * Formulário de Login
+ * 
+ * Estava a ver aquele vídeo, praticamente tirei muito do que aquele tio estava a falar
+ * Não difere muito do código dele, só temos que entender o zod e o react-hook-form
+ * 
+ * Ambos são bibliotecas para a validação de forms
+ */
+
 import {
 
     Form,
@@ -20,9 +29,13 @@ import {
 import { z } from "zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string().min(2, {
+    message: "O campo deve ter no mínimo 2 caracteres",
+  }),
+  codigo: z.string().min(2, {
     message: "O campo deve ter no mínimo 2 caracteres",
   }),
 });
@@ -107,7 +120,7 @@ export default function AuthForm({ type }: { type: string }) {
 
             <FormField
                 control={form.control}
-                name="username"
+                name="codigo"
                 render={({ field }) => (
                   <div className="form-item">
                     <FormLabel className="form-label">
@@ -124,7 +137,7 @@ export default function AuthForm({ type }: { type: string }) {
                   </div>
                 )}
               />
-              <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-500">Entrar</Button>
+              <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-500" onClick={()=> redirect('/inicio')}>Entrar</Button>
             </form>
           </Form>
         </>
