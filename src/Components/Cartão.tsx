@@ -6,8 +6,15 @@ export default function Cartao() {
         <div className="flex flex-col">
           
             <Link href={'/'} className="bank-card">
+       
                 <div className="bank-card_content">
-                    
+                <Image
+                        src={'/icons/lines.png'}
+                        width={500}
+                        height={290}
+                        alt="line"
+                        className="absolute top-6 left-0  "
+                    />
                     <div>
                         <p className="font-ibm-plex-serif font-black text-white">
                             Banco BPA
@@ -28,7 +35,7 @@ export default function Cartao() {
                         </p>
                         <div className=" flex justify-between">
                             <h1 className="text-12 font-semibold text-white">Astronauta SZ</h1>
-                            <h2 className="text-12 font-semibold text-white">**/**</h2>
+                            <h2 className="text-12 font-semibold text-white">**/****</h2>
                         </div>
                       
                        
@@ -44,13 +51,7 @@ export default function Cartao() {
                         className="ml-5"
                     />
                     <p className="text-white text-12 ml-5">Dérbito</p>
-                    <Image
-                        src={'/icons/lines.png'}
-                        width={316}
-                        height={190}
-                        alt="line"
-                        className="absolute top-0 left-0"
-                    />
+              
                 </div>
             </Link>
         </div>
