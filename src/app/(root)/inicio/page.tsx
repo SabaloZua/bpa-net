@@ -13,7 +13,7 @@ export default function Home() {
                         <Cabecalho
                             tipo='saudacao'
                             nomeUser='Astronauta'
-                            subtext='Acesse e gere a sua conta e transações de forma eficiente'
+                            subtext='Acesse e gira a sua conta e transações de forma eficiente'
                             titulo='Seja Bem Vindo,'
                         />
 

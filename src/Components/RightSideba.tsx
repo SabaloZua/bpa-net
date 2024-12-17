@@ -19,7 +19,7 @@ export default function RightSideba() {
                         <h1 className="profile-name">
                             Astronauta SZ
                         </h1>
-                        <p className="profile-email">Sabalovieira@gmail.com</p>
+                        <p className="profile-email">Astronauta42@outlook.pt</p>
                     </div>
 
                 </div>

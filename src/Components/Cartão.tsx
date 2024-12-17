@@ -15,30 +15,35 @@ export default function Cartao() {
                     </div>
 
                     <article className="flex flex-col gap-2" >
+                    <Image
+                        src={'/icons/chip.svg'}
+                        width={55}
+                        height={40}
+                        alt="logo banco"
+                        className="mb-2"  
+                    />
+
+                     <p className="text-14 font-semibold tracking-[1.1px] text-white mb-2">
+                            **** **** **** <span className="text-16">4393</span>
+                        </p>
                         <div className=" flex justify-between">
                             <h1 className="text-12 font-semibold text-white">Astronauta SZ</h1>
                             <h2 className="text-12 font-semibold text-white">**/**</h2>
                         </div>
-                        <p className="text-14 font-semibold tracking-[1.1px] text-white">
-                            **** **** **** <span className="text-16">4393</span>
-                        </p>
+                      
+                       
                     </article>
                 </div>
 
                 <div className=" bank-card_icon">
                     <Image
-                        src='/icons/paypass.svg'
-                        width={20}
-                        height={24}
+                        src='/icons/multi.svg'
+                        width={80}
+                        height={50}
                         alt="pay"
-                    />
-                    <Image
-                        src={'/icons/mastercard.svg'}
-                        width={45}
-                        height={32}
-                        alt="logo banco"
                         className="ml-5"
                     />
+                    <p className="text-white text-12 ml-5">Dérbito</p>
                     <Image
                         src={'/icons/lines.png'}
                         width={316}

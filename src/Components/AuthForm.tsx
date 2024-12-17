@@ -64,7 +64,7 @@ export default function AuthForm({ type }: { type: string }) {
 
   return (
     <section className="auth-form">
-      <header className="flex flex-col gap-5 md:gap-8">
+      <header className="flex flex-col gap-5 md:gap-6">
         <Link
           href={"/"}
           className=" flex mb-4 cursor-pointer items-center gap-1"

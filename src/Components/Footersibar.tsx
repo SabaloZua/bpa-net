@@ -17,7 +17,7 @@ const Footersibar = ({ tipo = "desktop" }: FooterProps) => {
       >
         <h1 className="text-14 truncate text-gray-700 font-semibold">Astro</h1>
         <p className="text-14 truncate font-normal text-gray-600">
-          Sabalovieira@gmail.com
+        Astronauta42@outlook.pt
         </p>
       </div>
 
