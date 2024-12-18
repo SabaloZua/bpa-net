@@ -8,57 +8,40 @@ import { useForm } from "react-hook-form";
 
 /**
  * Formulário de Login
- * 
+ *
  * Estava a ver aquele vídeo, praticamente tirei muito do que aquele tio estava a falar
  * Não difere muito do código dele, só temos que entender o zod e o react-hook-form
- * 
+ *
  * Ambos são bibliotecas para a validação de forms
  */
 
 import {
-
-    Form,
-  FormControl,
-
-  FormField,
-  FormLabel,
-  FormMessage,
+  Form,
+ 
 } from "@/Components/ui/form";
-
 
 import { z } from "zod";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { redirect } from "next/navigation";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "O campo deve ter no mínimo 2 caracteres",
-  }),
-  codigo: z.string().min(2, {
-    message: "O campo deve ter no mínimo 2 caracteres",
-  }),
-});
+import CustomInput from "./CustomInput";
+import { authFormSchema } from "@/lib/utils";
 
 export default function AuthForm({ type }: { type: string }) {
   const [user, setUser] = useState(null);
 
-  if(type == ""){
-    setUser(null)
-
+  if (type == "") {
+    setUser(null);
   }
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof authFormSchema>>({
+    resolver: zodResolver(authFormSchema),
     defaultValues: {
       username: "",
+      codigo: "",
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  function onSubmit(values: z.infer<typeof authFormSchema>) {
     console.log(values);
   }
 
@@ -83,7 +66,6 @@ export default function AuthForm({ type }: { type: string }) {
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-26 lg:text-36 font-semibold text-gray-800">
             Faça login na sua conta
-
             <p className="text-16 font-normal text-gray-600">
               {user
                 ? "Link your Account to get started"
@@ -98,46 +80,27 @@ export default function AuthForm({ type }: { type: string }) {
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
+
+              <CustomInput
                 control={form.control}
                 name="username"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">
-                        Nº de Adesão ou Email
-                    </FormLabel>
-                    <div className="flex w-full flex-col">
-                        <FormControl>
-                            <Input placeholder="Insira o Nº de Adesão ou Email" className="input-class" {...field}/>
-                        </FormControl>
-                        <FormMessage className="form-message">
-
-                        </FormMessage>
-                    </div>
-                  </div>
-                )}
+                label="Nº de Adesão ou Email"
+                placeholder="Insira o Nº de Adesão ou Email"
               />
 
-            <FormField
+              <CustomInput
                 control={form.control}
                 name="codigo"
-                render={({ field }) => (
-                  <div className="form-item">
-                    <FormLabel className="form-label">
-                        Código de Acesso
-                    </FormLabel>
-                    <div className="flex w-full flex-col">
-                        <FormControl>
-                            <Input placeholder="Insira o seu código de acesso" className="input-class" {...field}/>
-                        </FormControl>
-                        <FormMessage className="form-message">
-
-                        </FormMessage>
-                    </div>
-                  </div>
-                )}
+                label="Código de Acesso"
+                placeholder="Insira o seu código de acesso"
               />
-              <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-500" onClick={()=> redirect('/inicio')}>Entrar</Button>
+
+              <Button
+                type="submit"
+                className="bg-blue-400 w-full hover:bg-blue-500 form-btn"
+              >
+                Entrar 
+              </Button>
             </form>
           </Form>
         </>

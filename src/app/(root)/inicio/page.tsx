@@ -17,7 +17,6 @@ export default function Home() {
                             titulo='Seja Bem Vindo,'
                         />
 
-                        
 
                         <TotalConta saldoDisponivel={20000} />
                     </header>
