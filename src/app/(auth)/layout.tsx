@@ -12,10 +12,10 @@ export default function RootLayout({
         <div>
           <Image 
             src="/icons/b4_grande.jpg"
-            alt="Auth image"
+            alt=""
             width={1000}
-            height={10000}
-            className="rounded-l-xl object-contain"
+            height={1000}
+            className=""
           />
         </div>
       </div>

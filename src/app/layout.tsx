@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Inter,IBM_Plex_Serif} from "next/font/google"
+import { Inter , IBM_Plex_Serif } from "next/font/google"
 
 const inter=Inter({subsets:["latin"], variable:'--font-inter'})
 
