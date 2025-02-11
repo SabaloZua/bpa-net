@@ -3,7 +3,7 @@
 import { Input } from './ui/input';
 import { Eye, EyeClosed } from 'lucide-react';
 import { useState } from 'react';
-
+import sytles from '@/styles/aderir_login.module.css'
 
 
 interface CustomInput {
@@ -20,12 +20,12 @@ const CustomInput = ({  name, label, placeholder }:CustomInput) => {
     return (
       <div className="form-item text-gray-700 focus-within:text-bankGradient">
           <label 
-            className='text-14 w-full max-w-[280px] font-medium '>{label}</label>
+            className={`${sytles.lableinputs} w-full max-w-[280px] font-medium `}>{label}</label>
       
         <div className=" w-full items-center relative">
           <Input
             placeholder={placeholder}
-            className="input-class"
+            className={`input-class ` }
             type={name === 'codigo' ? mostrarSenha ? 'password' : 'text': 'text'}
             maxLength={name === 'codigo' ? 20 : 40}
             

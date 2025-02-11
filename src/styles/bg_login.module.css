@@ -1,0 +1,49 @@
+.bg{
+    position: relative;  
+    background: rgba(0, 0, 0, 0.1) url('/icons/b7.jpg');
+        background-blend-mode: darken;
+       
+        background-size: cover;
+        gap:8px;
+        padding: 20px;
+        display: flex;
+        color: white;
+        justify-content: flex-end;
+}
+
+.titulo{
+    font-size: 43px;
+    font-weight: 600;
+    z-index: 2;
+}
+.descricao{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    z-index: 2;
+}
+.particulares{
+    width: fit-content;
+    height: 24px;
+    padding: 0 8px;
+    position: relative;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 4px;
+    border: 1px solid #dedede;
+    z-index: 2;
+    
+}
+.botao{
+    margin-top: 8px;
+    position: relative;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0 8px;
+    flex-shrink:0;
+    height: 40px;
+    width: 100px;
+   
+}

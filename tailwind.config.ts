@@ -1,16 +1,18 @@
 import type { Config } from "tailwindcss";
-
+import {nextui} from  "@nextui-org/react";
 const config = {
-  darkMode: ["class"],
+ 
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./constants/**/*.{ts,tsx}",
+	"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
+	
   	container: {
   		center: true,
   		padding: '2rem',
@@ -19,6 +21,12 @@ const config = {
   		}
   	},
   	extend: {
+		screens: {
+			'tablet': '640px',
+			'laptop': '1024px',
+			'desktop': '1280px',
+		},
+	
   		colors: {
   			fill: {
   				'1': 'rgba(255, 255, 255, 0.10)'
@@ -28,14 +36,7 @@ const config = {
   				'500': '#6172F3',
   				'700': '#3538CD'
   			},
-  			success: {
-  				'25': '#F6FEF9',
-  				'50': '#ECFDF3',
-  				'100': '#D1FADF',
-  				'600': '#039855',
-  				'700': '#027A48',
-  				'900': '#054F31'
-  			},
+  		
   			pink: {
   				'25': '#FEF6FB',
   				'100': '#FCE7F6',
@@ -78,10 +79,7 @@ const config = {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
+  		
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
@@ -117,7 +115,7 @@ const config = {
 		  },
   		boxShadow: {
   			form: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
-  			chart: '0px 1px 3px 0px rgba(16, 24, 40, 0.10), 0px 1px 2px 0px rgba(16, 24, 40, 0.06)',
+  			chart: '0px 1px 3px 0px rgba(16, 24, 40, 0.15), 0px 1px 2px 0px rgba(16, 24, 40, 0.06)',
   			profile: '0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03)',
   			creditCard: '8px 10px 16px 0px rgba(0, 0, 0, 0.05)'
   		},
@@ -154,7 +152,8 @@ const config = {
   		}
   	}
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 } satisfies Config;
 
 export default config;

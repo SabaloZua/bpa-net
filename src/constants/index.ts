@@ -20,6 +20,12 @@ export const sidebarLinks = [
     route: "/transferencias",
     label: "Transferências",
   },
+  {
+    imgURL: "/icons/connect-bank.svg",
+    route: "/transferencias",
+    label: "Conta",
+  },
+  
 ];
 
 export const theme = {

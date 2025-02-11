@@ -1,25 +1,20 @@
+import styles from '@/styles/dasbodrd.module.css'
 interface cabecalhoProps{
-    tipo?:"titulo" | "saudacao", 
     titulo:string,
     subtext:string,
-    nomeUser?:string
+   
 }
 
-export default  function cabecalho({tipo,titulo,subtext,nomeUser}:cabecalhoProps){
+export default  function cabecalho({titulo,subtext}:cabecalhoProps){
     return(
         <>
             <div className="header-box">
                 <div></div>
                 <div>
-                    <h1 className="header-box-title">
+                    <h1 className={`${styles.dastitle}`}>
                         {titulo}
-                        {tipo==="saudacao" &&
-                          <span className="text-sky-500">
-                            &nbsp;{nomeUser}
-                            </span>
-                        }
                     </h1>
-                    <p className="header-box-subtext">{subtext}</p>
+                    <p className="header-box-subtext font-extralight">{subtext}</p>
                 </div>
                 
             </div>

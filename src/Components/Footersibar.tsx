@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import style from '@/styles/footernav.module.css'
 
 interface FooterProps {
   tipo: string;
@@ -7,7 +8,7 @@ interface FooterProps {
 
 const Footersibar = ({ tipo = "desktop" }: FooterProps) => {
   return (
-    <footer className="footer">
+    <footer className={`footer ${style.footer}`}>
       <div className={`${tipo === "mobile" ? "footer_name-mobile" : "footer_name"} bg-[url('/icons/perfil.jpeg')] bg-cover`}>
         
       </div>

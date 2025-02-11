@@ -5,6 +5,7 @@ import { sidebarLinks } from "@/constants"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import Footersibar from "./Footersibar"
+import styles from '@/styles/sidebar.module.css'
 
     /*
         Notas importantes para compreenção 
@@ -44,7 +45,7 @@ export default function Sidebar() {
                         
                         return (
                             <Link href={item.route} key={item.label}
-                                className={cn('sidebar-link ', {
+                                className={cn(`sidebar-link  `, {
                                     'bg-bank-gradient': isActive
                                 })}
                             >
