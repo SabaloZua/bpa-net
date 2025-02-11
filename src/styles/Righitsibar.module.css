@@ -1,0 +1,19 @@
+.profilenome{
+    color: rgb(59, 61, 78);
+    font-weight: 600;
+}
+
+.titlesec{
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--font-small-titles);
+
+}
+.titlecont{
+    font-size: var(--font-small);
+    font-weight: 300;
+}
+.infocont{
+    font-size: var(--font-small);
+    font-weight: 300;
+}

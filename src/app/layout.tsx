@@ -1,21 +1,16 @@
-import type { Metadata } from "next";
+'use client';
 import "./globals.css";
 import { Inter , IBM_Plex_Serif } from "next/font/google"
+import {NextUIProvider} from "@nextui-org/react";
 
-const inter=Inter({subsets:["latin"], variable:'--font-inter'})
+// const inter=Inter({subsets:["latin"], variable:'--font-inter'})
 
-const ibmPlexSerif=IBM_Plex_Serif({
-  subsets:['latin'],
-  weight:["400","700"],
-  variable:"--font-ibm-plex-serif"
-})
-export const metadata: Metadata = {
-  title: "BPA NET",
-  description: "Banco de Poupança Angolano",
-  icons:{
-    icon:"/icons/logo_favicon.svg"
-  }
-};
+// const ibmPlexSerif=IBM_Plex_Serif({
+//   subsets:['latin'],
+//   weight:["400","700"],
+//   variable:"--font-ibm-plex-serif"
+// })
+
 
 export default function RootLayout({
   children,
@@ -24,10 +19,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body
-        className={`${inter.variable} ${ibmPlexSerif} `}
-      >
+        <head>
+			
+      <meta name="description" content="Internet Banking Plataform" />
+      <title>BPA NET</title>
+      <meta name="theme-color" content="#fff" />
+      <link rel="shortcut icon" href="/icons/logo_favicon.svg" type="image/x-icon" />
+				<link rel="apple-touch-icon" href="/icons/logo_favicon.svg" />
+        
+    </head>
+      <body>
+        <NextUIProvider>
         {children}
+        </NextUIProvider>
       </body>
     </html>
   );

@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
+import styles from "@/styles/aderir_login.module.css";
+import {Checkbox} from "@nextui-org/react";
 import CustomInput from "./CustomInput";
 import { ArrowRight} from "lucide-react";
 
@@ -15,23 +16,23 @@ export default function AuthForm() {
   return (
     <section className="auth-form">
       <header className="flex flex-col gap-5 md:gap-6">
-        <div className=" flex mb-4 items-center gap-1">
+        <div className=" flex mb-3 items-center gap-2 justify-center">
           <Image
             src={`/icons/logo_favicon.svg`}
-            width={32}
-            height={32}
+            width={36}
+            height={36}
             alt="BPA Logo"
           />
-          <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
+          <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
             BPA <span className="text-sm">NET</span>
           </h1>
         </div>
 
         <div className="flex flex-col gap-1 md:gap-3">
-          <h1 className="text-26 lg:text-36 font-semibold text-gray-800">
+          <h1 className={`${styles.titulo} font-semibold text-gray-600`}  >
             Faça login na sua conta
-            <p className="text-16 font-normal text-gray-600">
-              Ainda não tem uma conta? <span className="text-[#0179FE] underline cursor-pointer">Criar conta</span>
+            <p className={`${styles.subtitulo} font-normal text-gray-600 mt-[9px] `}>
+              Ainda não tem uma conta? <span className={`${styles.corlink} underline cursor-pointer`}>Criar conta</span>
             </p>
           </h1>
         </div>
@@ -51,13 +52,26 @@ export default function AuthForm() {
           label="Código de Acesso"
           placeholder="Insira o seu código de acesso"
         />
+ 
 
-        <Link href={'/inicio'} className="bg-blue-400 w-full py-2 hover:bg-blue-500 form-btn justify-center items-center gap-2 flex hover:gap-3 transition-all">
-          Entrar  <ArrowRight strokeWidth={2} size={24} />
+
+        <Link href={'/inicio'} className={` ${styles.botalogin} bg-blue-400 w-full py-2 hover:bg-blue-500  gap-1 flex hover:gap-2 transition-all`}>
+          Entrar  <ArrowRight strokeWidth={3} size={16} className="relative top-[1px]" />
         </Link>
-      </form>
-      
         
+      </form> 
+      <p className="text-14 text-center   text-gray-600"> <span className={`${styles.corlink} underline cursor-pointer`}>Politicas de Privacidade</span> são aplicaveis</p> 
+      <p className=" text-gray-400 text-14 absolute bottom-5  right-[210px]  ">&copy; 2025 Banco de Poupança Angolano</p>      
+{/*       
+      <div className={`${styles.aderirCard} bg-gray-300`}>
+      <div className={`${styles.textoCard}`}>
+            <span className={`${styles.tituloCard}`}>Ja aderiu ao BPA NET?</span>
+            <span className={`${styles.mesagemcard}`}>
+            Com o BPA NET poderá realizar todas as suas operações em qualquer lugar.
+            </span>
+          </div>
+          <ArrowRight strokeWidth={2} size={20} />
+      </div> */}
     </section>
   );
 }

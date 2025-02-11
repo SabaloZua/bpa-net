@@ -21,7 +21,7 @@ export default function Cartao() {
                         </p>
                     </div>
 
-                    <article className="flex flex-col gap-2" >
+                    <article className="flex flex-col gap-3" >
                     <Image
                         src={'/icons/chip.svg'}
                         width={55}
@@ -30,9 +30,10 @@ export default function Cartao() {
                         className="mb-2"  
                     />
 
-                     <p className="text-14 font-semibold tracking-[1.1px] text-white mb-2">
-                            **** **** **** <span className="text-16">4393</span>
+                     <p className="text-14 tracking-[1.1px] text-white mb-2 w-full ">
+                        5056 4789 3456 4393
                         </p>
+
                         <div className=" flex justify-between">
                             <h1 className="text-12 font-semibold text-white">Astronauta SZ</h1>
                             <h2 className="text-12 font-semibold text-white">**/****</h2>

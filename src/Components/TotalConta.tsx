@@ -1,46 +1,19 @@
 import AnimacaoSaldo from '../Components/AnimacaoSaldo'
-
+import styles from '@/styles/dasbodrd.module.css'
 interface TotalConta {
-    saldoDisponivel: number
+    saldoDisponivel: number,
+    legenda: string
 }
 
-export default function TotalConta({ saldoDisponivel }: TotalConta) {
+export default function TotalConta({ legenda, saldoDisponivel }: TotalConta) {
     return (
         <>
-            <section className="total-balance">
-
-
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2">
-                        <p className="total-balance-label" >Saldo contabilistico </p>
-                        <p className="total-balance-amount flex-center gap-2 ">
-                            <AnimacaoSaldo amount={saldoDisponivel} />
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2">
-                        <p className="total-balance-label" >Saldo Toltal disponivel </p>
-                        <p className="total-balance-amount flex-center gap-2 ">
-                            <AnimacaoSaldo amount={saldoDisponivel} />
-
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2">
-                        <p className="total-balance-label" >Saldo Toltal disponivel </p>
-                        <p className="total-balance-amount flex-center gap-2 ">
-                            <AnimacaoSaldo amount={saldoDisponivel} />
-
-                        </p>
-                    </div>
-                </div>
-
-
-            </section>
+            <div className={styles.balaco}>
+                <h1 className={`${styles.balacotitle}`} >{legenda} </h1>
+                <p className={`${styles.balacovalor}`}>
+                    <AnimacaoSaldo amount={saldoDisponivel} />
+                </p>
+            </div>
         </>
     )
 }
