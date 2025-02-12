@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/aderir_login.module.css";
-import {Checkbox} from "@nextui-org/react";
+
 import CustomInput from "./CustomInput";
 import { ArrowRight} from "lucide-react";
 

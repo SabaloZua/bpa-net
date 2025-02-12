@@ -1,5 +1,4 @@
-import Image from "next/image"
-import Link from "next/link"
+
 import Cartao from "./Cartão"
 import styles from '@/styles/Righitsibar.module.css'
 

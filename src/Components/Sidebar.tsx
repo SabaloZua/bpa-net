@@ -5,7 +5,7 @@ import { sidebarLinks } from "@/constants"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import Footersibar from "./Footersibar"
-import styles from '@/styles/sidebar.module.css'
+
 
     /*
         Notas importantes para compreenção 
