@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import styles from "@/styles/aderir_login.module.css";
+
 import CustomInput from "./CustomInput";
 import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
