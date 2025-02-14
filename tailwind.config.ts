@@ -1,14 +1,15 @@
+import {heroui} from '@heroui/theme';
 import type { Config } from "tailwindcss";
 import {nextui} from  "@nextui-org/react";
 const config = {
- 
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./constants/**/*.{ts,tsx}",
-	"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   prefix: "",
   theme: {
@@ -153,7 +154,7 @@ const config = {
   	}
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(),heroui()],
 } satisfies Config;
 
 export default config;

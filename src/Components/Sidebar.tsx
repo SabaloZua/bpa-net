@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import Footersibar from "./Footersibar"
 
+import Logo from "./Logo"
+
 
     /*
         Notas importantes para compreenção 
@@ -28,16 +30,7 @@ export default function Sidebar() {
         <>
             <section className="sidebar">
                 <nav className="flex flex-col gap-3 ">
-                    <Link href={'/inicio'} className=" flex mb-4 cursor-pointer items-center gap-2">
-                        <Image
-                            src={`/icons/logo_favicon.svg`}
-                            width={40}
-                            height={40}
-                            alt="Logo horizontal"
-                            className="size-[36px] max-md:size-14"
-                        />
-                        <h1 className="sidebar-logo">BPA <span className="text-sm">NET</span></h1>
-                    </Link>
+                    <Logo size={40}/>
                     {sidebarLinks.map((item) => {
                         
                         // busca o da pagina link activo o clicado 

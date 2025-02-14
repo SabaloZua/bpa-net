@@ -2,7 +2,7 @@ import AnimacaoSaldo from '../Components/AnimacaoSaldo'
 import styles from '@/styles/dasbodrd.module.css'
 interface TotalConta {
     saldoDisponivel: number,
-    legenda: string
+    legenda?: string
 }
 
 export default function TotalConta({ legenda, saldoDisponivel }: TotalConta) {

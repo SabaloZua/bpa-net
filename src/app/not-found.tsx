@@ -35,7 +35,7 @@ export default function Home() {
                          <h1 className="sidebar-logo">BPA <span className="text-sm">NET</span></h1>
 	 				</NavbarBrand>
 	 				<NavbarItem>
-	 					<Link className="text-color-text"   href="/login">
+	 					<Link className="text-color-text" href="/login">
 	 						Entrar
 	 					</Link>
 	 				</NavbarItem>
@@ -43,7 +43,6 @@ export default function Home() {
 	 					<Link
 	 						href="/email"
 	 						className="text-color-text"
-	 						 
 	 						aria-current="page"
 	 					>
 	 						Aderir
@@ -52,14 +51,13 @@ export default function Home() {
 	 				<NavbarItem>
 	 					<Link
 	 						className="text-color-text"
-						 
 	 						href="/privacy-policies"
 	 					>
 	 						Políticas de Privacidade
 	 					</Link>
 	 				</NavbarItem>
 	 				<NavbarItem>
-	 					<Link className="text-color-text"   href="/forgot-password">
+	 					<Link className="text-color-text"  href="/forgot-password">
 	 						Recuperar Credenciais
 	 					</Link>
 	 				</NavbarItem>
@@ -71,7 +69,7 @@ export default function Home() {
 
 	 			<NavbarMenu>
 	 				<NavbarItem>
-	 					<Link className="text-color-text"   href="/login">
+	 					<Link className="text-color-text" href="/login">
 	 						Entrar
 	 					</Link>
 	 				</NavbarItem>
@@ -79,7 +77,6 @@ export default function Home() {
 	 					<Link
 	 						href="/email"
 	 						className="text-color-text"
-	 						 
 	 						aria-current="page"
 	 					>
 	 						Aderir
@@ -88,14 +85,13 @@ export default function Home() {
 	 				<NavbarItem>
 	 					<Link
 	 						className="text-color-text"
-	 						 
 	 						href="/privacy-policies"
 	 					>
 	 						Políticas de Privacidade
 	 					</Link>
 	 				</NavbarItem>
 	 				<NavbarItem>
-	 					<Link className="text-color-text"   href="/forgot-password">
+	 					<Link className="text-color-text"  href="/forgot-password">
 	 						Recuperar Credenciais
 	 					</Link>
 	 				</NavbarItem>
