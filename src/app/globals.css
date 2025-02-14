@@ -410,6 +410,24 @@
   .sidebar-label {
     @apply text-16 font-semibold text-black-2 max-xl:hidden font-normal;
   }
+
+  /* Menu adesao */
+
+  .cartaoAdesao{
+    @apply w-full md:w-1/2 border h-52 rounded shadow cursor-pointer hover:bg-gray-200 transition-background p-3 
+  }
+
+  .tituloCartaoAdesao{
+    @apply text-2xl
+  }
+
+  .bg-azul{
+    @apply bg-[#1A82FF]
+  }
+
+  .text-azul{
+    @apply text-[#1A82FF]
+  }
 }
 
 @layer base {

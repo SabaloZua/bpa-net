@@ -2,10 +2,12 @@ import styles from '@/styles/dasbodrd.module.css'
 interface cabecalhoProps{
     titulo:string,
     subtext:string,
+    tipo?: string,
+    nomeUser?:string
    
 }
 
-export default  function cabecalho({titulo,subtext}:cabecalhoProps){
+export default  function cabecalho({titulo,subtext,}:cabecalhoProps){
     return(
         <>
             <div className="header-box">

@@ -5,10 +5,14 @@ import styles from '@/styles/dasbodrd.module.css'
 
 import { Badge } from "@nextui-org/react";
 
-/**
- * Mudei também a Logo, converti para png, depois recortei, converti para svg e mudei a cor
- */
-export const NotificationIcon = ({size, height, width, ...props}) => {
+interface NotificationIconProps{
+  size:number;
+  height:number | undefined;
+  width:number | undefined;
+  className: string;
+}
+
+export const NotificationIcon = ({size, height, width, className}:NotificationIconProps) => {
   return (
     <svg
       fill="none"
@@ -16,7 +20,7 @@ export const NotificationIcon = ({size, height, width, ...props}) => {
       viewBox="0 0 24 24"
       width={size || width || 24}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      className={`${className}`}
     >
       <path
         clipRule="evenodd"
@@ -44,13 +48,13 @@ export default function RootLayout({
           </div>
         </div>
         
-          <div className={`${styles.headdas} `}>
-            Dasbodrd 
-            <p>Internet Banking</p>
-            <Badge color="danger" content={5}  shape="circle">
-           <NotificationIcon className="fill-current" size={24} height={undefined} width={undefined} />
-        </Badge>
-          </div>
+        <div className={`${styles.headdas} `}>
+          Dasbodrd 
+          <p>Internet Banking</p>
+          <Badge color="danger" content={5}  shape="circle">
+            <NotificationIcon className="fill-current" size={24} height={undefined} width={undefined} />
+          </Badge>
+        </div>
 
         <div className={`${styles.contdas}`}> 
         {children}

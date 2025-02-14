@@ -2,7 +2,6 @@
 import Image from "next/image";
 import style from "@/styles/not_found.module.css"
 import Link from "next/link";
-import { div } from "framer-motion/client";
 import { Navbar, NavbarContent, NavbarBrand, NavbarItem, NavbarMenuToggle, NavbarMenu } from "@nextui-org/react";
 export default function Home() {
 
@@ -35,7 +34,7 @@ export default function Home() {
                          <h1 className="sidebar-logo">BPA <span className="text-sm">NET</span></h1>
 	 				</NavbarBrand>
 	 				<NavbarItem>
-	 					<Link className="text-color-text" size="md" href="/login">
+	 					<Link className="text-color-text" href="/login">
 	 						Entrar
 	 					</Link>
 	 				</NavbarItem>
@@ -43,7 +42,6 @@ export default function Home() {
 	 					<Link
 	 						href="/email"
 	 						className="text-color-text"
-	 						size="md"
 	 						aria-current="page"
 	 					>
 	 						Aderir
@@ -52,14 +50,13 @@ export default function Home() {
 	 				<NavbarItem>
 	 					<Link
 	 						className="text-color-text"
-						size="md"
 	 						href="/privacy-policies"
 	 					>
 	 						Políticas de Privacidade
 	 					</Link>
 	 				</NavbarItem>
 	 				<NavbarItem>
-	 					<Link className="text-color-text" size="md" href="/forgot-password">
+	 					<Link className="text-color-text"  href="/forgot-password">
 	 						Recuperar Credenciais
 	 					</Link>
 	 				</NavbarItem>
@@ -71,7 +68,7 @@ export default function Home() {
 
 	 			<NavbarMenu>
 	 				<NavbarItem>
-	 					<Link className="text-color-text" size="md" href="/login">
+	 					<Link className="text-color-text" href="/login">
 	 						Entrar
 	 					</Link>
 	 				</NavbarItem>
@@ -79,7 +76,7 @@ export default function Home() {
 	 					<Link
 	 						href="/email"
 	 						className="text-color-text"
-	 						size="md"
+	 						
 	 						aria-current="page"
 	 					>
 	 						Aderir
@@ -88,14 +85,14 @@ export default function Home() {
 	 				<NavbarItem>
 	 					<Link
 	 						className="text-color-text"
-	 						size="md"
+	 						
 	 						href="/privacy-policies"
 	 					>
 	 						Políticas de Privacidade
 	 					</Link>
 	 				</NavbarItem>
 	 				<NavbarItem>
-	 					<Link className="text-color-text" size="md" href="/forgot-password">
+	 					<Link className="text-color-text"  href="/forgot-password">
 	 						Recuperar Credenciais
 	 					</Link>
 	 				</NavbarItem>

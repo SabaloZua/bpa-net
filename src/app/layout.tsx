@@ -1,6 +1,5 @@
 'use client';
 import "./globals.css";
-import { Inter , IBM_Plex_Serif } from "next/font/google"
 import {NextUIProvider} from "@nextui-org/react";
 
 // const inter=Inter({subsets:["latin"], variable:'--font-inter'})
