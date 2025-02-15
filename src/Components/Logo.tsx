@@ -21,13 +21,13 @@ const Logo = ({ position }: LogoProps) => {
         alt="Logo horizontal"
         className="size-[20px]  md:size-[36px] max-md:size-8"
       />
-      {/* <h1 className="sidebar-logo">
+      <h1 className="sidebar-logo">
+        BPA <span className="text-sm">NET</span>
+      </h1> 
+
+      {/* <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
         BPA <span className="text-sm">NET</span>
       </h1> */}
-
-      <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
-        BPA <span className="text-sm">NET</span>
-      </h1>
     </div>
   );
 };

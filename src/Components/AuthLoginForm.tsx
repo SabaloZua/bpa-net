@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "@/styles/aderir_login.module.css";
 import CustomInput from "./CustomInput";
 import { ArrowRight } from "lucide-react";
-import Logo from "./Logo";
+import Image from "next/image";
 
 export default function AuthForm() {
   return (
@@ -17,14 +17,31 @@ export default function AuthForm() {
           </h1>
         </div> */}
 
-        <Logo size={36} position="center"/>
+        <div
+          className={` flex cursor-pointer items-center gap-1 
+            justify-center`}
+        >
+          <Image
+            src={`/icons/logo_favicon.svg`}
+            width={10}
+            height={10}
+            alt="Logo horizontal"
+            className="size-[20px]  md:size-[36px] max-md:size-8"
+          />
+
+          <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
+            BPA <span className="text-sm">NET</span>
+          </h1>
+        </div>
 
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className={`${styles.titulo} font-semibold text-gray-600`}>
             Faça login na sua conta
             <p className={`${styles.subtitulo} font-normal text-gray-600 mt-[9px]`}>
               Ainda não tem uma conta?{" "}
-              <Link href={'/aderir'} className={`${styles.corlink} underline cursor-pointer`}>Criar conta</Link>
+              <Link href={"/aderir"} className={`${styles.corlink} underline cursor-pointer`}>
+                Criar conta
+              </Link>
             </p>
           </h1>
         </div>

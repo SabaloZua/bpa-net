@@ -400,7 +400,7 @@
   }
 
   .sidebar-logo {
-    @apply 2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-black-2 max-xl:hidden;
+    @apply 2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-black-2 max-md:hidden ;
   }
 
   .sidebar-link {
@@ -428,7 +428,29 @@
   .text-azul{
     @apply text-[#1A82FF]
   }
+
+
+  .goToLogin{
+    @apply w-full md:w-[130px] h-[40px] text-sm font-semibold rounded-[10px] text-center flex justify-center items-center bg-transparent transition-all text-azul border border-[#1a81ffe0]
+  }
 }
+
+/* // width: 130px;
+    // height: 40px;
+    // font-size: var(--font-small);
+    // font-weight: 600;
+    // font-family: Rubik;
+    // border-radius: 10px;
+    // text-decoration: none;
+    // text-align: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // gap: 10px;
+    // transition: .3s;
+    // background-color: transparent;
+    // color: var(--color-link);
+    // border: 1px solid var(--color-link); */
 
 @layer base {
   :root {
