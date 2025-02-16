@@ -3,7 +3,8 @@ import Image from "next/image";
 import NavMoblie from '@/Components/NavMoblie'
 import styles from '@/styles/dasbodrd.module.css'
 
-import { Badge } from "@nextui-org/react";
+
+
 
 interface NotificationIconProps{
   size:number;
@@ -31,6 +32,7 @@ export const NotificationIcon = ({size, height, width, className}:NotificationIc
     </svg>
   );
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,11 +51,11 @@ export default function RootLayout({
         </div>
         
         <div className={`${styles.headdas} `}>
-          Dasbodrd 
+          Dashboard 
           <p>Internet Banking</p>
-          <Badge color="danger" content={5}  shape="circle">
+          {/*<Badge color="danger" content={5}  shape="circle">
             <NotificationIcon className="fill-current" size={24} height={undefined} width={undefined} />
-          </Badge>
+          </Badge>*/}
         </div>
 
         <div className={`${styles.contdas}`}> 

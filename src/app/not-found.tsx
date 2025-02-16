@@ -2,6 +2,7 @@
 import Image from "next/image";
 import style from "@/styles/not_found.module.css"
 import Link from "next/link";
+
 import { Navbar, NavbarContent, NavbarBrand, NavbarItem, NavbarMenuToggle, NavbarMenu } from "@nextui-org/react";
 export default function Home() {
 
@@ -76,7 +77,6 @@ export default function Home() {
 	 					<Link
 	 						href="/email"
 	 						className="text-color-text"
-	 						
 	 						aria-current="page"
 	 					>
 	 						Aderir
@@ -85,7 +85,6 @@ export default function Home() {
 	 				<NavbarItem>
 	 					<Link
 	 						className="text-color-text"
-	 						
 	 						href="/privacy-policies"
 	 					>
 	 						Políticas de Privacidade
