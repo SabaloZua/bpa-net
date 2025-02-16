@@ -10,6 +10,7 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
 } from "@nextui-org/react";
+import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -73,7 +74,7 @@ export const Header = () => {
       <Navbar isBordered isBlurred>
         <NavbarContent className="sm:hidden pr-1" justify="start">
           <NavbarBrand>
-            {/* <Image
+            <Image
               src={`/icons/logo_favicon.svg`}
               width={44}
               height={44}
@@ -82,14 +83,13 @@ export const Header = () => {
             />
             <h1 className="sidebar-logo">
               BPA <span className="text-sm">NET</span>
-            </h1> */}
-            <Logo size={22} />
+            </h1>
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent className="hidden sm:flex gap-6" justify="start">
           <NavbarBrand>
             {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
-            {/* <Image
+            <Image
               src={`/icons/logo_favicon.svg`}
               width={35}
               height={35}
@@ -98,9 +98,7 @@ export const Header = () => {
             />
             <h1 className="sidebar-logo">
               BPA <span className="text-sm">NET</span>
-            </h1> */}
-
-            <Logo size={22} />
+            </h1>
           </NavbarBrand>
           <NavbarItem>
             <Link className="text-color-text" href="/login">

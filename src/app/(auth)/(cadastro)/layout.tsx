@@ -58,14 +58,14 @@ export default function CadastroLayout({ children }: CadastroLayoutProps) {
 
         <NavbarContent className="hidden sm:flex gap-6" justify="end">
           <NavbarBrand>
-            {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
+           
             <Logo size={22}/>
           </NavbarBrand>
           <NavbarItem>
             <p>Já tem uma conta?</p>
           </NavbarItem>
           <NavbarItem>
-            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            
             <button
               className="goToLogin"
               onClick={(event) => {

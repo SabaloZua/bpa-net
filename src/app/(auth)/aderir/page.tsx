@@ -15,7 +15,7 @@ const AderirPage = () => {
           <div></div>
         </Link>
 
-        <Link href='/novaAdesao' className="cartaoAdesao">
+        <Link href='/adesao-email' className="cartaoAdesao">
           <div className="flex flex-col gap-2">
             <h1 className="tituloCartaoAdesao text-azul font-bold">Aderir ao BPA Net</h1>
             <p className="text-sm">Se já é cliente BPA pode aderir ao BPA Net sem ir ao balcão</p>
