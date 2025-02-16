@@ -3,7 +3,7 @@ import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

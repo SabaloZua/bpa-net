@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/input-otp": "^2.1.9",
+    "@heroui/modal": "^2.2.8",
     "@heroui/react": "^2.6.14",
     "@hookform/resolvers": "^3.9.1",
     "@keyvaluesystems/react-stepper": "^1.0.4",

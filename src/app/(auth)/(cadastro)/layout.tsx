@@ -14,6 +14,7 @@ import "react-step-progress/dist/index.css";
 import "./register.css"
 import useStepsStore from "@/contexts/stepStore";
 import Logo from "@/Components/Logo";
+import { useRouter } from "next/navigation";
 
 
 interface CadastroLayoutProps {
@@ -46,6 +47,8 @@ export default function CadastroLayout({ children }: CadastroLayoutProps) {
     }),
   };
 
+  const router = useRouter()
+
   return (
     <div className="flex flex-col h-full">
       {/* NAVBAR */}
@@ -70,6 +73,7 @@ export default function CadastroLayout({ children }: CadastroLayoutProps) {
               className="goToLogin"
               onClick={(event) => {
                 event.preventDefault();
+                router.replace('/login')
               }}
             >
               Fazer login
@@ -91,6 +95,7 @@ export default function CadastroLayout({ children }: CadastroLayoutProps) {
               className="goToLogin"
               onClick={(event) => {
                 event.preventDefault();
+                router.replace('/login')
               }}
             >
               Fazer login

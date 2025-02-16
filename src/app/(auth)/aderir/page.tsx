@@ -1,4 +1,5 @@
 import { Header } from "@/Components/Header";
+import Image from "next/image";
 import Link from "next/link";
 
 const AderirPage = () => {
@@ -12,7 +13,9 @@ const AderirPage = () => {
             <p className="text-sm text-gray-600">O seu banco na palma da sua mao</p>
           </div>
 
-          <div></div>
+          <div className="flex justify-end">
+            <Image src={'/icons/b1.svg'} alt="" width={140} height={140}/>
+          </div>
         </Link>
 
         <Link href='/adesao-email' className="cartaoAdesao">
@@ -21,7 +24,9 @@ const AderirPage = () => {
             <p className="text-sm">Se já é cliente BPA pode aderir ao BPA Net sem ir ao balcão</p>
           </div>
 
-          <div></div>
+          <div className="flex justify-end">
+            <Image src={'/icons/b1.svg'} alt="" width={140} height={140}/>
+          </div>
         </Link>
       </div>
     </div>
