@@ -190,3 +190,22 @@ ul.verticalStepper {
 .stepper.horizontalStepper {
     display: none;
 }
+
+.login-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: var(--color-blue-50);
+}
+

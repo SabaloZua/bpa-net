@@ -64,7 +64,9 @@
     --color-border: #d2d2d2;
     --color-border2: #293746;
     --color-border3: #cdd7f4;
-  --font-small: clamp(0.8rem, 0.875rem, 0.9rem);
+    --color-gray: #4B5563; 
+    --color-primary:#1A82FF;
+    --font-small: clamp(0.8rem, 0.875rem, 0.9rem);
     --font-small-titles: clamp(0.95rem, 1rem, 1.2rem);
     --font-small-info: clamp(0.7rem, 0.725rem, 1rem);
     --font-page-titles: clamp(1.8rem, 1.9rem, 2rem);
@@ -413,13 +415,7 @@
 
   /* Menu adesao */
 
-  .cartaoAdesao{
-    @apply w-full md:w-1/2 border h-52 rounded shadow cursor-pointer hover:bg-gray-200 transition-background p-3 
-  }
 
-  .tituloCartaoAdesao{
-    @apply text-2xl
-  }
 
   .bg-azul{
     @apply bg-[#1A82FF]
