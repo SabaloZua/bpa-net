@@ -7,18 +7,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button as Btn,
-  useDisclosure,
-} from "@heroui/react";
-
-import { InputOtp } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Mail } from "lucide-react";
 
@@ -29,15 +17,12 @@ const verifyEmailSchema = z.object({
 type verifyEmailSchema = z.infer<typeof verifyEmailSchema>;
 
 const NovaAdesaoPag = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [value, setValue] = useState("");
-
   const { register, handleSubmit } = useForm<verifyEmailSchema>({
     resolver: zodResolver(verifyEmailSchema),
   });
 
   function handleVerifyEmail() {
-    onOpen();
+    router.replace("/adesao/dados");
   }
 
   const router = useRouter();
@@ -70,40 +55,6 @@ const NovaAdesaoPag = () => {
         Continuar
         <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
       </Button>
-      <Modal isOpen={isOpen} placement="center" onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Digite o código de verificação
-              </ModalHeader>
-              <ModalBody>
-                <p>
-                  Enviamos um código de verificação para seu e-mail. Digite-o abaixo para continuar.
-                </p>
-                <div className="flex gap-10 justify-center ">
-                  <InputOtp
-                    length={4}
-                    value={value}
-                    onValueChange={setValue}
-                    size="lg"
-                    variant="faded"
-                    color="primary"
-                  />
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Btn color="danger" variant="light" onPress={onClose}>
-                  Cancelar
-                </Btn>
-                <Button color="primary" onClick={() => router.replace("/adesao/dados")}>
-                  Avançar
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
     </form>
   );
 };

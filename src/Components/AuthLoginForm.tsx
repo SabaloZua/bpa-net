@@ -30,20 +30,18 @@ export default function AuthForm() {
             className="size-[20px]  md:size-[36px] max-md:size-8"
           />
 
-          <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
-            BPA <span className="text-sm">NET</span>
-          </h1>
+          <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">BPA</h1>
         </div>
 
-        <div className="flex flex-col gap-1 md:gap-3">
+        <div className="flex flex-col gap-1 md:gap-3 text-center">
           <h1 className={`${styles.titulo} font-semibold text-gray-600`}>
-            Faça login na sua conta
-            <p className={`${styles.subtitulo} font-normal text-gray-600 mt-[9px]`}>
+            Entre no BPA Net
+            {/* <p className={`${styles.subtitulo} font-normal text-gray-600 mt-[9px]`}>
               Ainda não tem uma conta?{" "}
               <Link href={"/aderir"} className={`${styles.corlink} underline cursor-pointer`}>
                 Criar conta
               </Link>
-            </p>
+            </p> */}
           </h1>
         </div>
       </header>
@@ -69,7 +67,7 @@ export default function AuthForm() {
         </Link>
       </form>
 
-      <div className="">
+      {/* <div className="">
         <p className="text-14 text-center   text-gray-600">
           {" "}
           <span className={`${styles.corlink} underline cursor-pointer`}>
@@ -80,17 +78,17 @@ export default function AuthForm() {
         <p className=" text-gray-400 text-14 absolute bottom-5  right-[200px]  ">
           &copy; 2025 Banco de Poupança
         </p>
-      </div>
+      </div> */}
 
-      {/* <div className={`${styles.aderirCard} bg-gray-300`}>
-      <div className={`${styles.textoCard}`}>
-            <span className={`${styles.tituloCard}`}>Ja aderiu ao BPA NET?</span>
-            <span className={`${styles.mesagemcard}`}>
+      <Link href={"/aderir"} className={`${styles.aderirCard} bg-gray-200`}>
+        <div className={`${styles.textoCard}`}>
+          <span className={`${styles.tituloCard}`}>Ainda não aderiu ao BPA NET?</span>
+          <span className={`${styles.mesagemcard}`}>
             Com o BPA NET poderá realizar todas as suas operações em qualquer lugar.
-            </span>
-          </div>
-          <ArrowRight strokeWidth={2} size={20} />
-      </div>  */}
+          </span>
+        </div>
+        <ArrowRight strokeWidth={2} size={20} className=""/>
+      </Link>
     </section>
   );
 }

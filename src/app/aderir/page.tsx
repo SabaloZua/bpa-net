@@ -8,7 +8,7 @@ const AderirPage = () => {
       <Header />
       <div className="bg-gradient-to-br from-blue-200 to-blue-100 min-h-screen">
         <div className="max-w-[1000px] mx-auto px-6 flex flex-col items-center md:flex-row gap-4 py-6 min-h-96  ">
-          <Link href="/novaConta" className={styles.cartao}>
+          <Link href="/criarConta" className={styles.cartao}>
             <div className={styles.informacaoCartao}>
               <h1>Abrir Conta Bancária</h1>
               <p>O seu banco na palma da sua mão.</p>

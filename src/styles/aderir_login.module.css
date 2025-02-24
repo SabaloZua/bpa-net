@@ -36,3 +36,43 @@
     justify-content: center;
     display: flex;
 }
+
+.aderirCard{
+    width: 100%;
+    height: 72px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.aderirCard:hover{
+    background-color: #d0d5dd;
+}
+
+.textoCard{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.tituloCard{
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 16px;
+    color: var(--color-primary);
+    text-align: left;
+
+}
+
+.mesagemcard{
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 13px;
+    color: var(--secondary-dark-3);
+}
+
+
+

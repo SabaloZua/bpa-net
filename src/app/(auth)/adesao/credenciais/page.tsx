@@ -1,36 +1,28 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ChevronRight, Download, FileText } from "lucide-react";
+import { ChevronRight, Download, KeyRound } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { useStepperStore } from "@/contexts/stepsStore";
 
 import styles from "@/styles/contrato.module.css";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
-const ContratoPage = () => {
+const CredenciaisPage = () => {
   const [accepted, setAccepted] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
-  const router = useRouter();
-
 
   useEffect(() => {
-    setCurrentStep(3);
+    setCurrentStep(4);
   }, [currentStep]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router.push("/adesao/credenciais");  
-  };
-
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
+    <form className="w-full">
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
-          <FileText className="w-6 h-6 text-blue-600" />
+          <KeyRound  className="w-6 h-6 text-blue-600" />
         </div>
-        <h2 className="text-2xl font-semibold">Contrato de Adesão</h2>
+        <h2 className="text-2xl font-semibold">Suas credenciais</h2>
       </div>
 
       <div className=" h-fit overflow-y-auto pr-6 scrollbar-thin mb-4">
@@ -75,7 +67,6 @@ const ContratoPage = () => {
                           : "bg-gray-100 text-gray-400 cursor-not-allowed"
                       }`}
           disabled={!accepted}
-          type="submit"
         >
           Continuar
           <ChevronRight className="w-5 h-5" />
@@ -85,4 +76,4 @@ const ContratoPage = () => {
   );
 };
 
-export default ContratoPage;
+export default CredenciaisPage;

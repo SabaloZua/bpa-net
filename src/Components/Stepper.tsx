@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, User, FileText, KeyRound } from "lucide-react";
+import { Mail, User, FileText, KeyRound, Check } from "lucide-react";
 
 interface StepperProps {
   currentStep: number;
@@ -28,7 +28,9 @@ export function Stepper({ currentStep }: StepperProps) {
                       : "bg-gray-200 text-gray-600"
                   }`}
                 >
-                  <span className="text-lg font-semibold">{step.number}</span>
+                  <span className="text-lg font-semibold">
+                    {step.number < currentStep ? <Check className="w-4 h-4" /> : step.number}
+                  </span>
                 </div>
                 <div className="absolute top-0 -right-8 h-10 flex items-center">
                   <step.icon
@@ -69,7 +71,9 @@ export function Stepper({ currentStep }: StepperProps) {
                     : "bg-gray-200 text-gray-600"
                 }`}
               >
-                <span className="text-base font-semibold">{step.number}</span>
+                <span className="text-base font-semibold">
+                  {step.number < currentStep ? <Check className="w-4 h-4" /> : step.number}
+                </span>
               </div>
               <step.icon
                 className={`w-4 h-4 mb-1 ${
