@@ -78,7 +78,7 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
         </NavbarMenu>
       </Navbar>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row ">
         {/* Stepper */}
         <Stepper currentStep={currentStep} />
 
