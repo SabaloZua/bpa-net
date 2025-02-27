@@ -402,7 +402,7 @@
   }
 
   .sidebar-logo {
-    @apply 2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-black-2 max-md:hidden ;
+    @apply 2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-white max-md:hidden ;
   }
 
   .sidebar-link {
