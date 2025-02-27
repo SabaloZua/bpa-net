@@ -24,31 +24,40 @@ export const users = [
   {
     id: 1,
     Descricao: "Transferência interbancaria",
-    data: '23 Apr 2024 - 23:55',
-    avatar: "/icons/trans9.png",
+    data: '23-04-2024',
     valor: '3000 kz'
   },
   {
     id: 2,
     Descricao: "Levantamento sem cartão",
-    data: '23 Apr 2024 - 23:55',
-    avatar: "/icons/levan3.png",
+    data: '23-04-2024',
    valor: '3000 kz'
   },
   {
     id: 3,
     Descricao: "pagamentos de serviços",
-    data: '23 Apr 2024 - 23:55',
+    data: '23-04-2024',
     valor: '3000 kz',
-    avatar: "icons/pagame3.png",
   },
   {
     id: 4,
-    Descricao: "transferência interbancaria",
-    data: '23 Apr 2024 - 23:55',
-    avatar: "/icons/trans9.png",
+    Descricao: "Transferência interbancaria",
+    data: '23-04-2024',
    valor: '3000 kz'
   },
+  {
+    id: 5,
+    Descricao: "Transferência interbancaria",
+    data: '23-04-2024',
+   valor: '3000 kz'
+  },
+  {
+    id: 6,
+    Descricao: "Transferência interbancaria",
+    data: '23-04-2024',
+   valor: '3000 kz'
+  },
+
 
   
 ];
@@ -72,22 +81,21 @@ export default function App() {
             img:' w-[20px] h-[20px]'
           }}
           icon={<AvatarIcon />}
-          radius="sm" src={user.avatar} />
+          radius="sm" src={user.Descricao === 'Transferência interbancaria' ? '/icons/trans9.png' : user.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : 'icons/pagame3.png'} />
         );
       case "Descricao":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-small capitalize text-default-700">{cellValue}</p>
-            {/* <p className="text-bold text-tiny capitalize text-default-500">{user.team}</p> */}
+            <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
           </div>
         );
       case "data":
         return (
-          <p className="text-bold text-small capitalize text-default-700">{cellValue}</p>
+          <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
         );
       case "valor":
         return (
-          <p className="text-bold text-small capitalize text-default-700">{cellValue}</p>
+          <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
         );
       default:
         return cellValue;
@@ -103,7 +111,7 @@ export default function App() {
     )
 
   return (
-    <Table removeWrapper hideHeader classNames={classNames}   topContentPlacement="outside" >
+    <Table removeWrapper hideHeader classNames={classNames} topContentPlacement="outside" >
       <TableHeader contentEditable columns={columns}>
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>

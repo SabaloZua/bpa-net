@@ -15,13 +15,13 @@ const Logo = ({ position }: LogoProps) => {
     ${position ? `justify-${position}` : ""}`}
     >
       <Image
-        src={`/icons/logo_favicon.svg`}
-        width={10}
-        height={10}
+        src={`/icons/logow.svg`}
+        width={30}
+        height={55}
         alt="Logo horizontal"
-        className="size-[20px]  md:size-[36px] max-md:size-8"
+        className="size-[20px]  w-[45px] h-[60px] max-md:size-8"
       />
-      <h1 className="sidebar-logo">
+      <h1 className="sidebar-logo ">
         BPA <span className="text-sm">NET</span>
       </h1> 
 
