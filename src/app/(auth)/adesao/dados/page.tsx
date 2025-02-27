@@ -3,31 +3,72 @@
 import { Button } from "@/Components/ui/button";
 import { Input } from "@/Components/ui/input";
 
-import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useStepperStore } from "@/contexts/stepsStore";
-import { User } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import api from "@/utils/axios";
+import { AxiosError } from "axios";
+import { TailSpin } from "react-loader-spinner";
+import { toast } from "sonner";
+import { useAdesaoStore } from "@/contexts/adesaoStore";
+const personalDataSchema = z.object({
+  numeroBI: z.string()
+});
 
-const NovaContaPage = () => {
+type personalDataSchema = z.infer<typeof personalDataSchema>;
+
+const EtapaDadosPage = () => {
+  const { register, handleSubmit } = useForm<personalDataSchema>({
+    resolver: zodResolver(personalDataSchema),
+  });
+
+  
+
+  const adesaoStore = useAdesaoStore();
+  const [isLoading, setIsLoading] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
+  
   const router = useRouter();
+
+  let email = "";
+	if (typeof window !== "undefined") {
+		email = localStorage.getItem("email") ?? adesaoStore.email;
+	}
 
   useEffect(() => {
     setCurrentStep(2);
-  }, [currentStep]);
+  }, [currentStep, setCurrentStep]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    router.push("/adesao/contrato");
+  async function handleVerifyPersonalData(data: personalDataSchema) {
+
+    try {
+      setIsLoading(true);
+      await api.post(`/adesao/findAccounts/${data.numeroBI}/${email}`);
+      router.push("/adesao/contrato");
+      toast.success("Dados verificados com sucesso");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("Sem conexão com o servidor");
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }
-
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit(handleVerifyPersonalData)} className="w-full">
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
           <User className="w-6 h-6 text-blue-600" />
         </div>
-        <h2 className="text-2xl font-semibold">Dados Pessoais</h2>
+        <h2 className="text-2xl font-semibold">Dados Pessoais {email}</h2>
       </div>
 
       <p className="text-gray-600 mb-8">
@@ -35,28 +76,45 @@ const NovaContaPage = () => {
       </p>
 
       <div className="space-y-6 w-full">
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-          <Input type="text" placeholder="Digite seu nome completo" />
-        </div>
+          <Input type="text" placeholder="Digite seu nome completo" {...register("nomeCompleto")} />
+        </div> */}
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número do BI</label>
-          <Input type="text" placeholder="Digite o número do seu BI" />
+          <Input type="text" placeholder="Digite o número do seu BI" {...register("numeroBI")} required/>
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número da Conta</label>
-          <Input type="text" placeholder="Digite o número da sua conta" />
+          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroConta")} />
+        </div> */}
+
+        <div className="w-full">
+         
         </div>
       </div>
 
-      <div className="w-full mt-4">
-        <Button type="submit">Continuar</Button>
-      </div>
+      <Button type="submit" disabled={isLoading} className="w-full">
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                visible={true}
+              />
+            ) : (
+              <>
+                Continuar
+                <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
+              </>
+            )}
+          </Button>
     </form>
-
   );
 };
 
-export default NovaContaPage;
+export default EtapaDadosPage;

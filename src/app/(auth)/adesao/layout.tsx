@@ -17,11 +17,11 @@ import { useRouter } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { Stepper } from "@/Components/Stepper";
 
-interface CadastroLayoutProps {
+interface AdesaoLayoutProps {
   children: React.ReactNode;
 }
 
-const AdesaoTemplate = ({ children }: CadastroLayoutProps) => {
+const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
   const { currentStep } = useStepperStore();
 
   const router = useRouter();
@@ -70,6 +70,10 @@ const AdesaoTemplate = ({ children }: CadastroLayoutProps) => {
             >
               Fazer login
             </button>
+            <button className="login-button" onClick={() => router.replace("/login")}>
+              <LogIn style={{ width: "1rem", height: "1rem" }} />
+              <span>Fazer login</span>
+            </button>
           </NavbarItem>
         </NavbarMenu>
       </Navbar>
@@ -87,4 +91,4 @@ const AdesaoTemplate = ({ children }: CadastroLayoutProps) => {
   );
 };
 
-export default AdesaoTemplate;
+export default AdesaoLayout;

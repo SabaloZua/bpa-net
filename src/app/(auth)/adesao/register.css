@@ -161,6 +161,10 @@
     .goToLogin {
         width: 100%;
     }
+
+    .login-button{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 500px) {
     form.login_form {
@@ -208,4 +212,21 @@ ul.verticalStepper {
 .login-button:hover {
     background-color: var(--color-blue-50);
 }
-
+.goToLogin {
+    width: 130px;
+    height: 40px;
+    font-size: var(--font-small);
+    font-weight: 600;
+    font-family: Rubik;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: .3s;
+    background-color: transparent;
+    color: var(--color-link);
+    border: 1px solid var(--color-link);
+}

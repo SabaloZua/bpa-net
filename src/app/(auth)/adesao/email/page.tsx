@@ -6,56 +6,123 @@ import { Input } from "@/Components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useRouter } from "next/navigation";
-import { ArrowRight, Mail } from "lucide-react";
-
+import { useState } from "react";
+import { toast } from "sonner";
+import { ArrowRight, Mail, MailOpen } from "lucide-react";
+import api from "@/utils/axios";
+import { TailSpin } from "react-loader-spinner";
+import { AxiosError } from "axios";
+import Image from "next/image";
+import { useAdesaoStore } from "@/contexts/adesaoStore";
 const verifyEmailSchema = z.object({
   email: z.string(),
 });
 
 type verifyEmailSchema = z.infer<typeof verifyEmailSchema>;
 
-const NovaAdesaoPag = () => {
+const EtapaEmailPage = () => {
   const { register, handleSubmit } = useForm<verifyEmailSchema>({
     resolver: zodResolver(verifyEmailSchema),
   });
 
-  function handleVerifyEmail() {
-    router.replace("/adesao/dados");
+  const {  setEmail } = useAdesaoStore();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [sucessEmail, setSucessEmail] = useState(false);
+
+  async function handleVerifyEmail(data: verifyEmailSchema) {
+    setIsLoading(true);
+
+    try {
+      await api.post("/adesao/emailvalidate", data);
+      setSucessEmail(true);
+      setEmail(data.email);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("email", data.email);
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("Sem conexão com o servidor");
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  const router = useRouter();
-
   return (
-    <form onSubmit={handleSubmit(handleVerifyEmail)} className="flex flex-col gap-3">
-      <div className="flex items-center space-x-3 mb-6">
-        <div className="p-2 bg-blue-100 rounded-lg">
-          <Mail className="w-6 h-6 text-blue-600" />
+    <>
+      {!sucessEmail ? (
+        <form onSubmit={handleSubmit(handleVerifyEmail)} className="flex flex-col gap-3">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <Mail className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-2xl font-semibold">Email</h2>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <p className="text-sm text-gray-600">
+              Bem-vindo ao nosso Internet Banking! Vamos configurar sua conta em poucos passos
+            </p>
+            <p className="text-sm text-gray-900">
+              Para começar sua adesão, informe o e-mail vinculado à sua conta BPA
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Input {...register("email")} type="email" required />
+            </div>
+          </div>
+
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                visible={true}
+              />
+            ) : (
+              <>
+                Continuar
+                <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
+              </>
+            )}
+          </Button>
+        </form>
+      ) : (
+        <div className="flex flex-col gap-3 md:min-w-[35rem]">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <MailOpen className="w-6 h-6 text-blue-600" />
+            </div>
+            <h2 className="text-2xl font-semibold"> Um email de verificação foi enviado</h2>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <p className="text-sm text-gray-800">
+              Verifique a sua caixa de entrada e clique no link de verificação para continuar
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-2 mx-auto">
+            <Image
+              src="/banners/sendEmail.svg"
+              alt="Email de Verificação enviado"
+              width={400}
+              height={100}
+            />
+          </div>
         </div>
-        <h2 className="text-2xl font-semibold">Email</h2>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <p className="text-sm text-gray-600">
-          Bem-vindo ao nosso Internet Banking! Vamos configurar sua conta em poucos passos
-        </p>
-        <p className="text-sm text-gray-900">
-          Para começar sua adesão, informe o e-mail vinculado à sua conta BPA
-        </p>
-      </div>
-
-      <div className="space-y-4">
-        <div>
-          <Input {...register("email")} />
-        </div>
-      </div>
-
-      <Button type="submit">
-        Continuar
-        <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
-      </Button>
-    </form>
+      )}
+    </>
   );
 };
 
@@ -87,4 +154,4 @@ const NovaAdesaoPag = () => {
     </div> */
 }
 
-export default NovaAdesaoPag;
+export default EtapaEmailPage;

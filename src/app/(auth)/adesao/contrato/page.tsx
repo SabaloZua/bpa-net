@@ -1,27 +1,61 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { ChevronRight, Download, FileText } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowRight, Download, FileText } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { useStepperStore } from "@/contexts/stepsStore";
 
-import styles from "@/styles/contrato.module.css";
+
+import { Checkbox } from "@nextui-org/react";
+
+//import styles from "@/styles/contrato.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { TailSpin } from "react-loader-spinner";
+import api from "@/utils/axios";
+import { useAdesaoStore } from "@/contexts/adesaoStore";
+import { AxiosError } from "axios";
+import { toast } from "sonner";
+
 const ContratoPage = () => {
   const [accepted, setAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
   const router = useRouter();
 
+  const adesaoStore = useAdesaoStore();
+
+  let email = "";
+	if (typeof window !== "undefined") {
+		email = localStorage.getItem("email") ?? adesaoStore.email;
+	}
 
   useEffect(() => {
     setCurrentStep(3);
-  }, [currentStep]);
+  }, [currentStep, setCurrentStep]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("/adesao/credenciais");  
+    setIsLoading(true);
+    try {
+      await api.post("/adesao/sendcredential", {
+        email: email,
+        navegador: "Chrome",
+        sistemaoperativo: "Windows",
+      });
+      router.push("/adesao/credenciais");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("Sem conexão com o servidor");
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    } 
   };
 
   return (
@@ -40,45 +74,63 @@ const ContratoPage = () => {
           <div className="flex">
             <p>
               O BPA NET é a plataforma de internet banking do Banco BPA, oferecendo acesso seguro e
-              conveniente a serviços bancários online. Através dela, o cliente pode consultar saldos,
-              efetuar pagamentos, transferências e outras operações de forma rápida e prática.
-              Disponível 24 horas por dia, o BPA NET garante total segurança e eficiência para a sua
-              experiência bancária digital.
+              conveniente a serviços bancários online. Através dela, o cliente pode consultar
+              saldos, efetuar pagamentos, transferências e outras operações de forma rápida e
+              prática. Disponível 24 horas por dia, o BPA NET garante total segurança e eficiência
+              para a sua experiência bancária digital.
             </p>
-            <Image src={"/banners/contrato.svg"} alt="BPA NET" width={300} height={50}  className="hidden lg:flex"/>
+            <Image
+              src={"/banners/contrato.svg"}
+              alt="BPA NET"
+              width={300}
+              height={50}
+              className="hidden lg:flex"
+            />
           </div>
         </div>
       </div>
 
       <p className="text-gray-600 flex items-center gap-2 mb-4 cursor-pointer">
-        <Download  className="w-6 h-6" strokeWidth={2.5} /> Baixar contrato de adesão
+        <Download className="w-6 h-6" strokeWidth={2.5} /> Baixar contrato de adesão
       </p>
 
       <div className="bg-white rounded-xlp-6">
         <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={accepted}
-            onChange={(e) => setAccepted(e.target.checked)}
-            className={styles.customCheckbox}
-          />
-          <span className="text-gray-700">
+          <Checkbox
+            classNames={{
+              label: "text-small",
+            }}
+            onChange={() => setAccepted(!accepted)}
+          >
             Li e aceito todos os{" "}
             <span className="text-blue-600">termos e condições do contrato</span>
-          </span>
+          </Checkbox>
         </label>
         <Button
           className={`mt-6 w-full py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-medium transition-all
                       ${
                         accepted
                           ? "bg-blue-600 text-white hover:bg-blue-700"
-                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-blue-500 text-white cursor-not-allowed"
                       }`}
           disabled={!accepted}
           type="submit"
         >
-          Continuar
-          <ChevronRight className="w-5 h-5" />
+          {isLoading ? (
+            <TailSpin
+              height="25"
+              width="25"
+              color="#fff"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              visible={true}
+            />
+          ) : (
+            <>
+              Continuar
+              <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
+            </>
+          )}  
         </Button>
       </div>
     </form>

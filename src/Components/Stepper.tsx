@@ -16,7 +16,7 @@ export function Stepper({ currentStep }: StepperProps) {
   return (
     <div className="w-full md:w-64 md:flex-shrink-0">
       {/* Desktop Stepper */}
-      <div className="hidden md:flex flex-col space-y-6 p-6">
+      <div className="hidden md:flex flex-col space-y-6 p-8">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
             <div className="flex items-center">
@@ -63,7 +63,7 @@ export function Stepper({ currentStep }: StepperProps) {
       <div className="md:hidden flex items-center justify-between px-4 py-6 bg-white shadow-sm">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center flex-wrap">
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
                   step.number <= currentStep

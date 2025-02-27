@@ -1,4 +1,5 @@
 'use client';
+import { Toaster } from "sonner";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 
@@ -22,6 +23,16 @@ export default function RootLayout({
         <NextUIProvider>
         {children}
         </NextUIProvider>
+        <Toaster
+					toastOptions={{
+						className: "toaster_error",
+					}}
+					position="top-right"
+					closeButton
+					duration={5000}
+					richColors
+					expand={false}
+				/>
       </body>
     </html>
   );
