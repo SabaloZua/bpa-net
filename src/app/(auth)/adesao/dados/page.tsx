@@ -16,7 +16,8 @@ import { TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
 import { useAdesaoStore } from "@/contexts/adesaoStore";
 const personalDataSchema = z.object({
-  numeroBI: z.string()
+  bi: z.string(),
+  numeroconta:z.string(),
 });
 
 type personalDataSchema = z.infer<typeof personalDataSchema>;
@@ -47,7 +48,7 @@ const EtapaDadosPage = () => {
 
     try {
       setIsLoading(true);
-      await api.post(`/adesao/findAccounts/${data.numeroBI}/${email}`);
+      await api.post(`/adesao/findAccounts/${email}`,data);
       router.push("/adesao/contrato");
       toast.success("Dados verificados com sucesso");
     } catch (error) {
@@ -76,20 +77,20 @@ const EtapaDadosPage = () => {
       </p>
 
       <div className="space-y-6 w-full">
-        {/* <div>
+        <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-          <Input type="text" placeholder="Digite seu nome completo" {...register("nomeCompleto")} />
-        </div> */}
+          <Input type="text" placeholder="Digite seu nome completo" />
+        </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número do BI</label>
-          <Input type="text" placeholder="Digite o número do seu BI" {...register("numeroBI")} required/>
+          <Input type="text" placeholder="Digite o número do seu BI" {...register("bi")} required/>
         </div>
 
-        {/* <div>
+        <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número da Conta</label>
-          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroConta")} />
-        </div> */}
+          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroconta")} />
+        </div>
 
         <div className="w-full">
          

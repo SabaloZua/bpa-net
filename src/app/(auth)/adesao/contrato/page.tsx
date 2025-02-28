@@ -17,11 +17,17 @@ import api from "@/utils/axios";
 import { useAdesaoStore } from "@/contexts/adesaoStore";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import Browser from 'bowser'
+
 
 const ContratoPage = () => {
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
+  const [id,setid]=useState<string>();
+  const [navegador,setnavegador]=useState<string>();
+  const [sistemaoperativo,setsistemaoperativo]=useState<string>();
   const router = useRouter();
 
   const adesaoStore = useAdesaoStore();
@@ -35,15 +41,30 @@ const ContratoPage = () => {
     setCurrentStep(3);
   }, [currentStep, setCurrentStep]);
 
+  useEffect(()=>{
+
+    const collectFingerprint = async () => {
+      const fp = await FingerprintJS.load(); 
+      const result = await fp.get();
+      setid(result.visitorId);
+      const browserInfo = Browser.getParser(navigator.userAgent);
+      setnavegador(browserInfo.getBrowserName());
+      setsistemaoperativo(browserInfo.getOS().name);
+    }
+    collectFingerprint();
+  }, [])
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await api.post("/adesao/sendcredential", {
+      await api.post("/adesao/Sendcredential", {
         email: email,
-        navegador: "Chrome",
-        sistemaoperativo: "Windows",
+        navegador: navegador,
+        sistemaoperativo: sistemaoperativo,
+        idDispositivo:id
       });
+      
       router.push("/adesao/credenciais");
     } catch (error) {
       if (error instanceof AxiosError) {
