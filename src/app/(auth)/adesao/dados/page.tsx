@@ -48,7 +48,10 @@ const EtapaDadosPage = () => {
 
     try {
       setIsLoading(true);
-      await api.post(`/adesao/findAccounts/${email}`,data);
+     const response= await api.post(`/adesao/findaccounts/${email}`,data);
+     if (typeof window !== "undefined") {
+      localStorage.setItem("idconta", response.data.idconta);
+    }
       router.push("/adesao/contrato");
       toast.success("Dados verificados com sucesso");
     } catch (error) {

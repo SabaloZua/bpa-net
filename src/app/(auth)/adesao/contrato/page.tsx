@@ -17,8 +17,8 @@ import api from "@/utils/axios";
 import { useAdesaoStore } from "@/contexts/adesaoStore";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import Browser from 'bowser'
+import FingerprintJS from '@fingerprintjs/fingerprintjs';// lib que cria um id unico do navegador/dispositivo do usuario
+import Browser from 'bowser' // lib para pegar o sitema operativo e o navegador do usuario
 
 
 const ContratoPage = () => {
@@ -33,24 +33,35 @@ const ContratoPage = () => {
   const adesaoStore = useAdesaoStore();
 
   let email = "";
+  let idconta = "";
 	if (typeof window !== "undefined") {
 		email = localStorage.getItem("email") ?? adesaoStore.email;
+    idconta = localStorage.getItem("idconta") || "";
 	}
+ 
+
 
   useEffect(() => {
     setCurrentStep(3);
   }, [currentStep, setCurrentStep]);
 
   useEffect(()=>{
-
+    // função que coleta os dados do usuario
     const collectFingerprint = async () => {
       const fp = await FingerprintJS.load(); 
+      // result recebe os dados coletados  do dispositivo/usuario
       const result = await fp.get();
+      // pegando o Id unico
       setid(result.visitorId);
+      
       const browserInfo = Browser.getParser(navigator.userAgent);
+      // getBrowserName retorna o nome do navegador do usuario
       setnavegador(browserInfo.getBrowserName());
+      //// getOS retorna o nome do sistema operativo  do usuario
       setsistemaoperativo(browserInfo.getOS().name);
     }
+    
+    //chamada da função
     collectFingerprint();
   }, [])
   
@@ -58,11 +69,12 @@ const ContratoPage = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await api.post("/adesao/Sendcredential", {
+      await api.post("/adesao/sendcredential", {
         email: email,
         navegador: navegador,
         sistemaoperativo: sistemaoperativo,
-        idDispositivo:id
+        iddispositivo:id,
+        idconta:idconta
       });
       
       router.push("/adesao/credenciais");
