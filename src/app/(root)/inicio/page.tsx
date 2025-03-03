@@ -12,6 +12,7 @@ export default function Home() {
   const mudarIcon = mostrarSaldo === true ? false : true;
     return (
         <>
+       
         <div className="flex items-center mb-6">
             <div className="bg-gray-200 p-2 rounded-full mr-4">
               <span 

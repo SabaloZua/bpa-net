@@ -26,12 +26,12 @@ export default function Sidebar() {
     return(
         <>
          {/* Sidebar */}
-      <div className="lg:col-span-1 flex flex-col bg-blue-500 text-white">
+      <div className="lg:col-span-1 max-xl:hidden flex flex-col bg-blue-500 text-white">
         <div className="p-4 border-teal-700">
           <Logo size={40} />
         </div>
 
-        <div className="p-2 text-sm font-medium">
+        <div className="p-2 text-sm font-medium  ">
           <span>Menu</span>
         </div>
 

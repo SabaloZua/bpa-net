@@ -25,37 +25,43 @@ export const users = [
     id: 1,
     Descricao: "Transferência interbancaria",
     data: '23-04-2024',
-    valor: '3000 kz'
+    debito:'2000kz',
+    credtio:""
   },
   {
     id: 2,
     Descricao: "Levantamento sem cartão",
     data: '23-04-2024',
-   valor: '3000 kz'
+    debito:'5000kz',
+    credtio:""
   },
   {
     id: 3,
     Descricao: "pagamentos de serviços",
     data: '23-04-2024',
-    valor: '3000 kz',
+    debito:'2000kz',
+    credtio:""
   },
   {
     id: 4,
     Descricao: "Transferência interbancaria",
     data: '23-04-2024',
-   valor: '3000 kz'
+   debito:'',
+    credtio:"1500kz"
   },
   {
     id: 5,
     Descricao: "Transferência interbancaria",
     data: '23-04-2024',
-   valor: '3000 kz'
+   debito:'',
+    credtio:"2000kz"
   },
   {
     id: 6,
     Descricao: "Transferência interbancaria",
     data: '23-04-2024',
-   valor: '3000 kz'
+    debito:'',
+    credtio:"3000kz"
   },
 
 
@@ -95,7 +101,11 @@ export default function App() {
         );
       case "valor":
         return (
-          <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
+          <p className="text-bold text-12 capitalize text-default-700">
+            {
+              user.debito==""?  <span className="text-green-500">+ {user.credtio}</span>: <span className="text-red-600">-{user.debito}</span>
+            }
+          </p>
         );
       default:
         return cellValue;
