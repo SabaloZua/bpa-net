@@ -16,33 +16,66 @@ import api from "@/utils/axios";
 import { useUserStore } from "@/contexts/userStore";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import FingerprintJS from '@fingerprintjs/fingerprintjs';// lib que cria um id unico do navegador/dispositivo do usuario
+import Browser from 'browser' // lib para pegar o sitema operativo e o navegador do usuario
+
 
 const ContratoPage = () => {
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
+  const [id,setid]=useState<string>();
+  const [navegador,setnavegador]=useState<string>();
+  const [sistemaoperativo,setsistemaoperativo]=useState<string>();
   const router = useRouter();
 
   const userStore = useUserStore();
 
   let email = "";
-  if (typeof window !== "undefined") {
-    email = localStorage.getItem("email") ?? userStore.email;
-  }
+  let idconta = "";
+	if (typeof window !== "undefined") {
+		email = localStorage.getItem("email") ?? userStore.email;
+    idconta = localStorage.getItem("idconta") || "";
+	}
+ 
+
 
   useEffect(() => {
     setCurrentStep(3);
   }, [currentStep, setCurrentStep]);
 
+  useEffect(()=>{
+    // função que coleta os dados do usuario
+    const collectFingerprint = async () => {
+      const fp = await FingerprintJS.load(); 
+      // result recebe os dados coletados  do dispositivo/usuario
+      const result = await fp.get();
+      // pegando o Id unico
+      setid(result.visitorId);
+      
+      const browserInfo = Browser.getParser(navigator.userAgent);
+      // getBrowserName retorna o nome do navegador do usuario
+      setnavegador(browserInfo.getBrowserName());
+      //// getOS retorna o nome do sistema operativo  do usuario
+      setsistemaoperativo(browserInfo.getOS().name);
+    }
+    
+    //chamada da função
+    collectFingerprint();
+  }, [])
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       await api.post("/adesao/sendcredential", {
         email: email,
-        navegador: "brave",
-        sistemaoperativo: "Window",
+        navegador: navegador,
+        sistemaoperativo: sistemaoperativo,
+        iddispositivo:id,
+        idconta:idconta
       });
+      
       router.push("/adesao/credenciais");
     } catch (error) {
       if (error instanceof AxiosError) {

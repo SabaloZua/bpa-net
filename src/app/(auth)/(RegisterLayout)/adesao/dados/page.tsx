@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { useUserStore } from "@/contexts/userStore";
 const personalDataSchema = z.object({
   bi: z.string(),
+  numeroconta:z.string(),
 });
 
 type personalDataSchema = z.infer<typeof personalDataSchema>;
@@ -44,10 +45,10 @@ const EtapaDadosPage = () => {
   async function handleVerifyPersonalData(data: personalDataSchema) {
     try {
       setIsLoading(true);
-      await api.post(`/adesao/verifyData`, {
-        bi: data.bi,
-        email: email,
-      });
+     const response= await api.post(`/adesao/findaccounts/${email}`,data);
+     if (typeof window !== "undefined") {
+      localStorage.setItem("idconta", response.data.idconta);
+    }
       router.push("/adesao/contrato");
       toast.success("Dados verificados com sucesso");
     } catch (error) {
@@ -76,15 +77,15 @@ const EtapaDadosPage = () => {
       </p>
 
       <div className="space-y-6 w-full">
-        {/* <div>
+        <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-          <Input type="text" placeholder="Digite seu nome completo" {...register("nomeCompleto")} />
-        </div> */}
+          <Input type="text" placeholder="Digite seu nome completo" />
+        </div>
 
-        {/* <div>
+        <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número da Conta</label>
-          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroConta")} />
-        </div>  */}
+          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroconta")} />
+        </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número do BI</label>
