@@ -3,16 +3,24 @@ import { Mail, User, FileText, KeyRound, Check } from "lucide-react";
 
 interface StepperProps {
   currentStep: number;
+  type: "adesao" | "registo";
 }
 
-const steps = [
-  { number: 1, title: "Email", icon: Mail },
-  { number: 2, title: "Dados", icon: User },
-  { number: 3, title: "Contrato", icon: FileText },
-  { number: 4, title: "Gerar credenciais", icon: KeyRound },
-];
+export function Stepper({ currentStep, type }: StepperProps) {
 
-export function Stepper({ currentStep }: StepperProps) {
+  const steps = type === "adesao" ? [
+    { number: 1, title: "Email", icon: Mail },
+    { number: 2, title: "Dados", icon: User },
+    { number: 3, title: "Contrato", icon: FileText },
+    { number: 4, title: "Credenciais", icon: KeyRound },
+  ] : [
+    { number: 1, title: "Tipo de conta", icon: Mail },
+    { number: 2, title: "Dados", icon: User },
+    { number: 3, title: "Documentação", icon: FileText },
+    { number: 4, title: "Credenciais", icon: KeyRound },
+  ];
+
+
   return (
     <div className="w-full md:w-64 md:flex-shrink-0">
       {/* Desktop Stepper */}

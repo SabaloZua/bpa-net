@@ -1,0 +1,12 @@
+.sidebarLogo {
+  font-family: "Rubik", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #187CEF;
+}
+
+@media not all and (min-width: 768px) {
+    .sidebarLogo {
+        display: none;
+    }
+}

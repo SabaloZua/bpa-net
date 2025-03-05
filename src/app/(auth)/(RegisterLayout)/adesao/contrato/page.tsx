@@ -5,7 +5,6 @@ import { ArrowRight, Download, FileText } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { useStepperStore } from "@/contexts/stepsStore";
 
-
 import { Checkbox } from "@nextui-org/react";
 
 //import styles from "@/styles/contrato.module.css";
@@ -14,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 import { TailSpin } from "react-loader-spinner";
 import api from "@/utils/axios";
-import { useAdesaoStore } from "@/contexts/adesaoStore";
+import { useUserStore } from "@/contexts/userStore";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
@@ -24,12 +23,12 @@ const ContratoPage = () => {
   const { currentStep, setCurrentStep } = useStepperStore();
   const router = useRouter();
 
-  const adesaoStore = useAdesaoStore();
+  const userStore = useUserStore();
 
   let email = "";
-	if (typeof window !== "undefined") {
-		email = localStorage.getItem("email") ?? adesaoStore.email;
-	}
+  if (typeof window !== "undefined") {
+    email = localStorage.getItem("email") ?? userStore.email;
+  }
 
   useEffect(() => {
     setCurrentStep(3);
@@ -41,8 +40,8 @@ const ContratoPage = () => {
     try {
       await api.post("/adesao/sendcredential", {
         email: email,
-        navegador: "Chrome",
-        sistemaoperativo: "Windows",
+        navegador: "brave",
+        sistemaoperativo: "Window",
       });
       router.push("/adesao/credenciais");
     } catch (error) {
@@ -55,7 +54,7 @@ const ContratoPage = () => {
       }
     } finally {
       setIsLoading(false);
-    } 
+    }
   };
 
   return (
@@ -130,7 +129,7 @@ const ContratoPage = () => {
               Continuar
               <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
             </>
-          )}  
+          )}
         </Button>
       </div>
     </form>

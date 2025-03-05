@@ -12,8 +12,9 @@ import {
 import "react-step-progress/dist/index.css";
 import "./register.css";
 import { useStepperStore } from "@/contexts/stepsStore";
+import { useStepperRegistoStore } from "@/contexts/stepsStore";
 import Logo from "@/Components/Logo";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { Stepper } from "@/Components/Stepper";
 
@@ -23,8 +24,10 @@ interface AdesaoLayoutProps {
 
 const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
   const { currentStep } = useStepperStore();
+  const { currentStepRegisto } = useStepperRegistoStore();
 
   const router = useRouter();
+  const path = usePathname();
 
   return (
     <div className="flex flex-col min-h-dvh bg-[#EBF5FF]">
@@ -78,12 +81,15 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
         </NavbarMenu>
       </Navbar>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row ">
+      <div className="max-w-[90rem] flex flex-col md:flex-row gap-4 md:pl-8">
         {/* Stepper */}
-        <Stepper currentStep={currentStep} />
-
+        {path.includes("registo") ? (
+          <Stepper currentStep={currentStepRegisto} type="registo" />
+        ) : (
+          <Stepper currentStep={currentStep} type="adesao" />
+        )}
         {/* Content */}
-        <main className="flex-1 px-4 py-8">
+        <main className="flex-1 px-4 py-8 md:max-w-[40rem] md:mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">{children}</div>
         </main>
       </div>

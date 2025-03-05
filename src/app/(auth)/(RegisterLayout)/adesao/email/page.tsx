@@ -13,7 +13,7 @@ import api from "@/utils/axios";
 import { TailSpin } from "react-loader-spinner";
 import { AxiosError } from "axios";
 import Image from "next/image";
-import { useAdesaoStore } from "@/contexts/adesaoStore";
+import { useUserStore } from "@/contexts/userStore";
 const verifyEmailSchema = z.object({
   email: z.string(),
 });
@@ -25,7 +25,7 @@ const EtapaEmailPage = () => {
     resolver: zodResolver(verifyEmailSchema),
   });
 
-  const {  setEmail } = useAdesaoStore();
+  const { setEmail } = useUserStore();
 
   const [isLoading, setIsLoading] = useState(false);
   const [sucessEmail, setSucessEmail] = useState(false);

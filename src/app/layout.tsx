@@ -1,6 +1,6 @@
 "use client";
 import { Toaster } from "sonner";
-import "./globals.css";
+import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import NextTopLoader from "nextjs-toploader";
 

@@ -27,7 +27,7 @@ export default function Home() {
             <div>
               <h1 className="text-2xl font-semibold text-gray-900">
 
-                Saldo: Kz <span>{mostrarSaldo?"****":"20000"}</span>,00
+                Saldo: Kz <span>{mostrarSaldo?"****":"20.000.000"}</span>,00
                 </h1>
             </div>
           </div>

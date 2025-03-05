@@ -14,9 +14,9 @@ import api from "@/utils/axios";
 import { AxiosError } from "axios";
 import { TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
-import { useAdesaoStore } from "@/contexts/adesaoStore";
+import { useUserStore } from "@/contexts/userStore";
 const personalDataSchema = z.object({
-  numeroBI: z.string()
+  bi: z.string(),
 });
 
 type personalDataSchema = z.infer<typeof personalDataSchema>;
@@ -26,28 +26,28 @@ const EtapaDadosPage = () => {
     resolver: zodResolver(personalDataSchema),
   });
 
-  
-
-  const adesaoStore = useAdesaoStore();
+  const userStore = useUserStore();
   const [isLoading, setIsLoading] = useState(false);
   const { currentStep, setCurrentStep } = useStepperStore();
-  
+
   const router = useRouter();
 
   let email = "";
-	if (typeof window !== "undefined") {
-		email = localStorage.getItem("email") ?? adesaoStore.email;
-	}
+  if (typeof window !== "undefined") {
+    email = localStorage.getItem("email") ?? userStore.email;
+  }
 
   useEffect(() => {
     setCurrentStep(2);
   }, [currentStep, setCurrentStep]);
 
   async function handleVerifyPersonalData(data: personalDataSchema) {
-
     try {
       setIsLoading(true);
-      await api.post(`/adesao/findAccounts/${data.numeroBI}/${email}`);
+      await api.post(`/adesao/verifyData`, {
+        bi: data.bi,
+        email: email,
+      });
       router.push("/adesao/contrato");
       toast.success("Dados verificados com sucesso");
     } catch (error) {
@@ -68,7 +68,7 @@ const EtapaDadosPage = () => {
         <div className="p-2 bg-blue-100 rounded-lg">
           <User className="w-6 h-6 text-blue-600" />
         </div>
-        <h2 className="text-2xl font-semibold">Dados Pessoais {email}</h2>
+        <h2 className="text-2xl font-semibold">Dados Pessoais</h2>
       </div>
 
       <p className="text-gray-600 mb-8">
@@ -81,38 +81,36 @@ const EtapaDadosPage = () => {
           <Input type="text" placeholder="Digite seu nome completo" {...register("nomeCompleto")} />
         </div> */}
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Número do BI</label>
-          <Input type="text" placeholder="Digite o número do seu BI" {...register("numeroBI")} required/>
-        </div>
-
         {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número da Conta</label>
           <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroConta")} />
-        </div> */}
+        </div>  */}
 
-        <div className="w-full">
-         
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Número do BI</label>
+          <Input type="text" placeholder="Digite o número do seu BI" {...register("bi")} required />
         </div>
+
+        <div className="w-full"></div>
       </div>
 
       <Button type="submit" disabled={isLoading} className="w-full">
-            {isLoading ? (
-              <TailSpin
-                height="25"
-                width="25"
-                color="#fff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                visible={true}
-              />
-            ) : (
-              <>
-                Continuar
-                <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
-              </>
-            )}
-          </Button>
+        {isLoading ? (
+          <TailSpin
+            height="25"
+            width="25"
+            color="#fff"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            visible={true}
+          />
+        ) : (
+          <>
+            Continuar
+            <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
+          </>
+        )}
+      </Button>
     </form>
   );
 };

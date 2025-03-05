@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-interface AdesaoStore {
+interface UserStore {
   email: string;
   setEmail: (email: string) => void;
 }
 
-export const useAdesaoStore = create<AdesaoStore>((set) => ({
+export const useUserStore = create<UserStore>((set) => ({
   email: "",
   setEmail: (email) => set({ email }),
 }));

@@ -230,3 +230,72 @@ ul.verticalStepper {
     color: var(--color-link);
     border: 1px solid var(--color-link);
 }
+
+
+
+
+.accountTypes {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   margin-bottom: 30px;
+   gap: 15px;
+}
+
+.cardType {
+    width: 220px;
+    height: 260px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border3);
+    padding: 8px;
+    transition: .3s;
+}
+
+.cardType > .image {
+    background-image: url(../../../assets/images/ordem1.png);
+    border-radius: 7px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 78%;
+}
+
+.cardType:nth-child(2) > .image {
+    background-image: url(../../../assets/images/simplific2.jpg);
+    border-radius: 7px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 78%;
+}
+
+.cardType > .text {
+    margin-top: 0px;
+    height: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cardType .text .info > a {
+    color: var(--color-focus);
+    text-decoration: underline;
+}
+
+.cardType > .text > h2 {
+    font-size: var(--font-small-titles);
+    font-family: Rubik;
+}
+
+.cardType:hover {
+    box-shadow:  0 2.8px 2.2px rgba(0, 0, 0, 0.034);
+    transform: translateY(-5px);
+}
+
+.cardType[data-active="true"] {
+    border-color: var(--color-focus);
+    background-color: var(--color-focus3);   
+}
