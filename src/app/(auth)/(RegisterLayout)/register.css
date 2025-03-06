@@ -114,6 +114,144 @@
     border: 1px solid var(--color-link);
 }
 
+
+ul.verticalStepper {
+    height: max-content;
+}
+.stepper.horizontalStepper {
+    display: none;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: var(--color-blue-50);
+}
+.goToLogin {
+    width: 130px;
+    height: 40px;
+    font-size: var(--font-small);
+    font-weight: 600;
+    font-family: Rubik;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: .3s;
+    background-color: transparent;
+    color: var(--color-link);
+    border: 1px solid var(--color-link);
+}
+
+.header_form {
+    width: 100%;
+    height: max-content;
+    color: var(--color-text);
+    font-family: Rubik;
+}
+.header_form > h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+.header_form > p {
+    font-size: var(--font-small);
+}
+.header_form > p > a {
+    text-decoration: underline;
+    color: var(--color-link);
+    font-family: Rubik;
+}
+
+.body_form {
+    width: 100%;
+    height: max-content;
+    margin-top: 25px;
+}
+
+
+
+
+.accountTypes {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   margin-bottom: 30px;
+   gap: 15px;
+}
+
+.cardType {
+    width: 220px;
+    height: 260px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border3);
+    padding: 8px;
+    transition: .3s;
+}
+
+.cardType > .image {
+    background-image: url(../../../assets/images/ordem1.png);
+    border-radius: 7px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 78%;
+}
+
+.cardType:nth-child(2) > .image {
+    background-image: url(../../../assets/images/simplific2.jpg);
+    border-radius: 7px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 78%;
+}
+
+.cardType > .text {
+    margin-top: 0px;
+    height: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cardType .text .info > a {
+    color: var(--color-focus);
+    text-decoration: underline;
+}
+
+.cardType > .text > h2 {
+    font-size: var(--font-small-titles);
+    font-family: Rubik;
+}
+
+.cardType:hover {
+    box-shadow:  0 2.8px 2.2px rgba(0, 0, 0, 0.034);
+    transform: translateY(-5px);
+}
+
+.cardType[data-active="true"] {
+    border-color: var(--color-focus);
+    background-color: var(--color-focus3);   
+}
+
 @media screen and (max-width: 1130px) {
     .last{
         display: none;
@@ -186,116 +324,4 @@
     .stepper.horizontalStepper {
         min-width: calc(100% + 25px) !important;
     }
-}
-
-ul.verticalStepper {
-    height: max-content;
-}
-.stepper.horizontalStepper {
-    display: none;
-}
-
-.login-button {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    background: none;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.login-button:hover {
-    background-color: var(--color-blue-50);
-}
-.goToLogin {
-    width: 130px;
-    height: 40px;
-    font-size: var(--font-small);
-    font-weight: 600;
-    font-family: Rubik;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: .3s;
-    background-color: transparent;
-    color: var(--color-link);
-    border: 1px solid var(--color-link);
-}
-
-
-
-
-.accountTypes {
-    width: 100%;
-    height: max-content;
-    display: flex;
-    align-items: center;
-   justify-content: center;
-   margin-bottom: 30px;
-   gap: 15px;
-}
-
-.cardType {
-    width: 220px;
-    height: 260px;
-    border-radius: 12px;
-    border: 1px solid var(--color-border3);
-    padding: 8px;
-    transition: .3s;
-}
-
-.cardType > .image {
-    background-image: url(../../../assets/images/ordem1.png);
-    border-radius: 7px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 78%;
-}
-
-.cardType:nth-child(2) > .image {
-    background-image: url(../../../assets/images/simplific2.jpg);
-    border-radius: 7px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 78%;
-}
-
-.cardType > .text {
-    margin-top: 0px;
-    height: 22%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.cardType .text .info > a {
-    color: var(--color-focus);
-    text-decoration: underline;
-}
-
-.cardType > .text > h2 {
-    font-size: var(--font-small-titles);
-    font-family: Rubik;
-}
-
-.cardType:hover {
-    box-shadow:  0 2.8px 2.2px rgba(0, 0, 0, 0.034);
-    transform: translateY(-5px);
-}
-
-.cardType[data-active="true"] {
-    border-color: var(--color-focus);
-    background-color: var(--color-focus3);   
 }

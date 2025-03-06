@@ -18,6 +18,7 @@ import { TailSpin } from 'react-loader-spinner'
 import api from "@/utils/axios";
 import { useUserStore } from "@/contexts/userStore";
 import { useRouter } from "next/navigation";
+import { Input } from "@/Components/ui/input";
 
 const FormSchema = z.object({
     email: z.string().min(1, "O email é obrigatório!").email("Email inválido! Corrija o email").transform((email) => {
@@ -29,29 +30,26 @@ type FormType = z.infer<typeof FormSchema>;
 
 export default function Register() {
     const router = useRouter();
-    const [place, setPlace] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { setEmail } = useUserStore();
 
-    const {register, formState: { errors }, handleSubmit, setValue} = useForm<FormType>({
+    const {register, formState: { errors }, handleSubmit} = useForm<FormType>({
         resolver: zodResolver(FormSchema),
-    });
+  });
 
-    async function submitForm(data: FormType) {
-        APICall(data)
-    }
 
-	async function APICall(data: FormType){
-		setLoading(true)
+
+	const submitForm = async (data:FormType) => {
+		setIsLoading(true)
         try {
             await api.post("/openacount/emailvalidete", data);
             setEmail(data.email);
             if (typeof window !== "undefined") {
               localStorage.setItem("email", data.email);
             }
-            //router.push("/email-verification");
-            router.push("/registo/tipo-conta");
+            router.push("/email-verification");
+            //router.push("/registo/tipo-conta");
           } catch (error) {
             if (error instanceof AxiosError) {
               if (error.response?.status === 400) {
@@ -61,8 +59,8 @@ export default function Register() {
               }
             }
           } finally {
-            setLoading(false)
-        }
+            setIsLoading(false);
+          }
     }
 
     useEffect(() => onOpen(), [onOpen]);
@@ -86,34 +84,20 @@ export default function Register() {
                         <div className="body_form">
                             <div className="input_field">
                                 <label id="LRE" htmlFor="email">Endereço de email *</label>
-                                <input
+                                <Input
                                     type="email"
                                     placeholder="Insira o seu endereço de email "
-                                    {...register("email")}
-                                    onChange={(event)=>{
-                                        setPlace(event.target.value)
-                                        setValue("email", event.target.value)
-                                    }}
-                                    onFocus={()=>{
-                                        const label = document.querySelector('#LRE') as HTMLLabelElement
-                                        label.style.transition = ".3s"
-                                        label.style.color = "var(--color-focus)"
-                                    }}
-                                    onBlur={()=>{
-                                        const label = document.querySelector('#LRE') as HTMLLabelElement
-                                        label.style.transition = ".3s"
-                                        label.style.color = "var(--color-text)"
-                                    }}
+                                    {...register("email")}   
                                 />
                                 {errors.email && <InfoError message={errors.email.message} />}
                             </div>
-                            <button type="submit" disabled={loading || !place} className="button_auth">
-                            {loading ? (
-                                <TailSpin
-                                    height="25"
-                                    width="25"
-                                    color="#fff"
-                                    ariaLabel="tail-spin-loading"
+                            <button type="submit" disabled={isLoading} className="button_auth">
+                                {isLoading ? (
+                                    <TailSpin
+                                        height="25"
+                                        width="25"
+                                        color="#fff"
+                                        ariaLabel="tail-spin-loading"
                                     radius="1"
                                     visible={true}
                                 />

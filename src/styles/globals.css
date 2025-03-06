@@ -65,13 +65,15 @@
     --shadow-cards: hsla(210, 8%, 62%, .2) 0px 8px;
     /* --color-focus3: #e5553c1e; */
     --color-focus3: #D6E9FF;
+    --color-focus: #318cfc;
     --color-placeholder: #545454;
     --border-input: 1px solid #d8d8d8;
     --color-border: #d2d2d2;
     --color-border2: #293746;
-    --color-border3: #cdd7f4;
+    --color-border3: rgb(205, 213, 244);
     --color-gray: #4B5563; 
     --color-primary:#1A82FF;
+    --color-text: #565656;
     --font-small: clamp(0.8rem, 0.875rem, 0.9rem);
     --font-small-titles: clamp(0.95rem, 1rem, 1.2rem);
     --font-small-info: clamp(0.7rem, 0.725rem, 1rem);

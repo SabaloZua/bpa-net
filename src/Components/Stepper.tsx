@@ -49,7 +49,7 @@ export function Stepper({ currentStep, type }: StepperProps) {
                 </div>
               </div>
               <span
-                className={`ml-12 text-sm font-medium ${
+                className={`ml-12 text-sm font-bold ${
                   step.number <= currentStep ? "text-blue-600" : "text-gray-600"
                 }`}
               >

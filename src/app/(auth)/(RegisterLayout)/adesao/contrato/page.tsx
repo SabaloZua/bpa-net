@@ -17,7 +17,7 @@ import { useUserStore } from "@/contexts/userStore";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';// lib que cria um id unico do navegador/dispositivo do usuario
-import Browser from 'browser' // lib para pegar o sitema operativo e o navegador do usuario
+import Browser from 'bowser' // lib para pegar o sitema operativo e o navegador do usuario
 
 
 const ContratoPage = () => {

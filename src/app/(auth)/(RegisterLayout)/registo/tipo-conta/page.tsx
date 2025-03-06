@@ -1,6 +1,5 @@
 "use client";
 
-
 import {
   Button,
   Checkbox,
@@ -16,12 +15,10 @@ import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { Button as ButtonUI } from "@/Components/ui/button";
 
-
-
 export default function TipoContaPage() {
   const [account, setAccount] = useState("");
   const [isCheckbox1Checked, setIsCheckbox1Checked] = useState(false);
-  const [isCheckbox2Checked , setIsCheckbox2Checked] = useState(false);
+  const [isCheckbox2Checked, setIsCheckbox2Checked] = useState(false);
   const [isCheckbox3Checked, setIsCheckbox3Checked] = useState(false);
   const [isCheckbox4Checked, setIsCheckbox4Checked] = useState(false);
   const [isCheckbox5Checked, setIsCheckbox5Checked] = useState(false);
@@ -39,10 +36,13 @@ export default function TipoContaPage() {
     const cards = document.querySelectorAll(".cardType") as NodeListOf<HTMLDivElement>;
     for (const card of cards) {
       card.addEventListener("click", () => {
+        // Primeiro, define todos os cartões como não ativos
         for (const carddd of cards) {
           carddd.dataset.active = "false";
         }
+        // Depois, define o cartão clicado como ativo
         card.dataset.active = "true";
+        // Atualiza o estado com o ID do cartão selecionado
         setAccount(card.id);
       });
     }
@@ -64,7 +64,7 @@ export default function TipoContaPage() {
               <h2>Pessoal</h2>
               <div className="info">
                 <a
-                  href={`https://www.bfa.ao/media/2954/fti-conta-a-ordem-bfa_21042021.pdf`}
+                  href={`https://www.BPA.ao/media/2954/fti-conta-a-ordem-BPA_21042021.pdf`}
                   rel={"external"}
                   target="_blank"
                 >
@@ -79,7 +79,7 @@ export default function TipoContaPage() {
               <h2>Comércio</h2>
               <div className="info">
                 <a
-                  href={`https://www.bfa.ao/media/2711/afh_bfa_fti_contasimplicada_dez20.pdf`}
+                  href={`https://www.BPA.ao/media/2711/afh_BPA_fti_contasimplicada_dez20.pdf`}
                   rel={"external"}
                   target="_blank"
                 >
@@ -136,7 +136,7 @@ export default function TipoContaPage() {
                   }
                   onClose();
                   onClose2();
-                  router.push("/register/personal-data");
+                  router.push("/registo/dados-pessoais");
                 }}
               >
                 <ModalHeader className="flex flex-col gap-1">
@@ -184,7 +184,7 @@ export default function TipoContaPage() {
                           Lí e aceito as condições do{" "}
                           <a
                             style={{ color: "var(--color-focus)", textDecoration: "underline" }}
-                            href="https://bfa.ao/media/1586/ficha-de-adesao-de-produtos-e-servicos_conta-a-ordem.pdf"
+                            href="https://BPA.ao/media/1586/ficha-de-adesao-de-produtos-e-servicos_conta-a-ordem.pdf"
                             target="_blank"
                             rel="external"
                           >
@@ -203,7 +203,7 @@ export default function TipoContaPage() {
                           Lí e aceito as condições do{" "}
                           <a
                             style={{ color: "var(--color-focus)", textDecoration: "underline" }}
-                            href="https://bfa.ao/media/1311/contrato-tpa.pdf"
+                            href="https://BPA.ao/media/1311/contrato-tpa.pdf"
                             rel="external"
                             target="_blank"
                           >
@@ -220,11 +220,11 @@ export default function TipoContaPage() {
                           Lí e aceito as condições do{" "}
                           <a
                             style={{ color: "var(--color-focus)", textDecoration: "underline" }}
-                            href="https://www.bfa.ao/media/4295/contrato-de-adesao-cartao-de-debito-multicaixa-particulares.pdf"
+                            href="https://www.BPA.ao/media/4295/contrato-de-adesao-cartao-de-debito-multicaixa-particulares.pdf"
                             rel="external"
                             target="_blank"
                           >
-                            Contrato de Adesão ao Cartão de Débito Multicaixa BFA.
+                            Contrato de Adesão ao Cartão de Débito Multicaixa BPA.
                           </a>
                         </Checkbox>
                       </p>
@@ -283,7 +283,7 @@ export default function TipoContaPage() {
                   }
                   onClose();
                   onClose2();
-                  router.push("/register/personal-data");
+                  router.push("/registo/dados-pessoais");
                 }}
               >
                 <ModalHeader className="flex flex-col gap-1">
@@ -329,7 +329,7 @@ export default function TipoContaPage() {
                           Lí e aceito as condições do{" "}
                           <a
                             style={{ color: "var(--color-focus)", textDecoration: "underline" }}
-                            href="https://bfa.ao/media/1586/ficha-de-adesao-de-produtos-e-servicos_conta-a-ordem.pdf"
+                            href="https://BPA.ao/media/1586/ficha-de-adesao-de-produtos-e-servicos_conta-a-ordem.pdf"
                             target="_blank"
                             rel="external"
                           >
@@ -347,11 +347,11 @@ export default function TipoContaPage() {
                           Lí e aceito as condições do{" "}
                           <a
                             style={{ color: "var(--color-focus)", textDecoration: "underline" }}
-                            href="https://www.bfa.ao/media/4295/contrato-de-adesao-cartao-de-debito-multicaixa-particulares.pdf"
+                            href="https://www.BPA.ao/media/4295/contrato-de-adesao-cartao-de-debito-multicaixa-particulares.pdf"
                             rel="external"
                             target="_blank"
                           >
-                            Contrato de Adesão ao Cartão de Débito Multicaixa BFA.
+                            Contrato de Adesão ao Cartão de Débito Multicaixa BPA.
                           </a>
                         </Checkbox>
                       </p>
