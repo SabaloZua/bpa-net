@@ -61,7 +61,7 @@ export default function AuthForm() {
 
         <Link
           href={"/inicio"}
-          className={` ${styles.botalogin} bg-blue-400 w-full py-2 hover:bg-blue-500  gap-1 flex hover:gap-2 transition-all`}
+          className={`button_auth`}
         >
           Entrar <ArrowRight strokeWidth={3} size={16} className="relative top-[1px]" />
         </Link>

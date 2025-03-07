@@ -58,6 +58,237 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #7878a3;
 }
+
+.input_field {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+.input_field > label {
+  color: var(--color-text);
+  font-family: Rubik;
+  font-size: var(--font-small);
+}
+
+.input_error {
+  font-size: var(--font-small);
+  font-family: Rubik;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.input_field > input {
+  width: 100%;
+  height: 45px;
+  padding: 0px 20px;
+  outline: none;
+  border: var(--border-input);
+  border-radius: 7px;
+  font-family: Rubik;
+  font-size: var(--font-small-titles);
+  transition: .3s;
+}
+
+.input_error > svg {
+  width: 17px;
+  height: 17px;
+}
+.input_field > input:focus {
+  border-color: var(--color-focus);
+}
+
+.button_auth {
+  width: 100%;
+  height: 45px;
+  font-family: Rubik;
+  font-size: var(--font-small);
+  color: var(--color-cards);
+  background-color: var(--color-focus);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button_auth:hover {
+  background-color: var(--color-focus2);
+}
+.button_auth.register {
+  border: var(--border-input);
+  background-color: var(--color-cards);
+  color: var(--color-text);
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;  
+}
+.button_auth.register:hover {
+  border-color: var(--color-focus3);
+  background-color: var(--color-focus3);
+  color: var(--color-focus);
+  transition: .3s;
+}
+.button_next {
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-focus);
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 20px;
+}
+.button_next > svg {
+  fill: var(--color-cards);
+  width: 14px;
+  height: 14px;
+}
+.button_next > p{
+  font-family: Rubik;
+  font-weight: 200px;
+  font-size: 0.9rem;
+  color: var(--color-cards);
+  width: max-content;
+}
+
+.button_home {
+  width: max-content;
+  height: 35px;
+  background-color: var(--color-focus2);
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.button_home > svg {
+  fill: var(--color-cards);
+  width: 14px;
+  height: 14px;
+}
+.button_home > p{
+  font-family: Rubik;
+  font-weight: 200px;
+  font-size: 0.9rem;
+  color: var(--color-cards);
+  width: max-content;
+}
+
+.uploader {
+  width: 100%;
+  height: max-content;
+  border-radius: 15px;
+  padding: 15px 15px;
+  transition: .3s;
+  border: var(--border-input);
+  background-color: var(--color-body);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.uploader .top {
+  width: 100%;
+  height: max-content;
+}
+.uploader .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.uploader .top .text > img {
+  width: 60px;
+}
+.uploader .top .text {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: flex-start;
+  height: 100%;
+  width: max-content;
+}
+.uploader .top .text > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.uploader .top .text > div > p:nth-child(1) {
+  font-family: Rubik;
+  font-size: var(--font-small);
+  max-height: 20px;
+  max-width: 150px;
+  overflow: hidden;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+.uploader .top .text > div > p:nth-child(2) {
+  font-family: Rubik;
+  font-size: var(--font-small);
+}
+.uploader .top .end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.uploader .top .end > button {
+  border: none;
+  border-radius: 7px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: var(--border-input);
+}
+.uploader .top .end > button > svg {
+  fill: var(--color-placeholder);
+  width: 10px;
+  height: 10px;
+}
+.uploader .top .end > p {
+  font-size: var(--font-small);
+  font-family: Rubik;
+}
+
+.uploader .bottom {
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+
+input:-webkit-autofill {
+  background-color: transparent;
+}
+
+
 :root{
     --color-link: #478099;
     --color-body: #f7f7f7;
@@ -65,6 +296,7 @@
     --shadow-cards: hsla(210, 8%, 62%, .2) 0px 8px;
     /* --color-focus3: #e5553c1e; */
     --color-focus3: #D6E9FF;
+    --color-focus2: #2985f5;
     --color-focus: #318cfc;
     --color-placeholder: #545454;
     --border-input: 1px solid #d8d8d8;

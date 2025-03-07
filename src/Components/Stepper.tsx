@@ -15,7 +15,7 @@ export function Stepper({ currentStep, type }: StepperProps) {
     { number: 4, title: "Credenciais", icon: KeyRound },
   ] : [
     { number: 1, title: "Tipo de conta", icon: Mail },
-    { number: 2, title: "Dados", icon: User },
+    { number: 2, title: "Dados Pessoais", icon: User },
     { number: 3, title: "Documentação", icon: FileText },
     { number: 4, title: "Credenciais", icon: KeyRound },
   ];

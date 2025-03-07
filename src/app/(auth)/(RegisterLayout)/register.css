@@ -139,23 +139,15 @@ ul.verticalStepper {
 .login-button:hover {
     background-color: var(--color-blue-50);
 }
-.goToLogin {
-    width: 130px;
-    height: 40px;
-    font-size: var(--font-small);
-    font-weight: 600;
-    font-family: Rubik;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
+
+
+.login_form {
+    width: 450px;
+    height: max-content;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: .3s;
-    background-color: transparent;
-    color: var(--color-link);
-    border: 1px solid var(--color-link);
+    justify-content: flex-start;
 }
 
 .header_form {
