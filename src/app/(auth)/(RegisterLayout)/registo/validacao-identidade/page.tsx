@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import axios from "axios";
+//import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import * as faceapi from "face-api.js";
 import Tesseract from "tesseract.js";
-import {useUserStore} from "@/contexts/userStore";
+//import {useUserStore} from "@/contexts/userStore";
 import {useStepperRegistoStore} from "@/contexts/stepsStore";
 import UploadCard from "@/Components/Cards/UploadCard"; 
 import UploadCard2 from "@/Components/Cards/UploadCard2";
@@ -34,13 +34,13 @@ interface FileState {
 
 export default function IdentityValidation() {
 
-	const useStore = useUserStore();
+	//const useStore = useUserStore();
 	const router = useRouter();
 	const stepsStore = useStepperRegistoStore();
 	const [loading, setLoading] = useState(false);
 	const idCardRef = useRef<HTMLImageElement>(null);
 	const selfieRef = useRef<HTMLImageElement>(null);
-	const [success, setSuccess] = useState(false);
+	//const [success, setSuccess] = useState(false);
 	const [frontFile, setFrontFile] = useState<FileState>({
 		haveFile: false,
 		type: "",
@@ -56,10 +56,10 @@ export default function IdentityValidation() {
 		file: null,
 	});
 
-	let email = "";
-	if (typeof window !== "undefined") {
-		email = localStorage.getItem("email") ?? useStore.email
-	}
+	//let email = "";
+	// if (typeof window !== "undefined") {
+	// 	email = localStorage.getItem("email") ?? useStore.email
+	// }
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -93,33 +93,33 @@ export default function IdentityValidation() {
 	}, [frontFile.haveFile]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		if (success) {
-			toast.promise(uploadFront(), {
-				loading: "Armazenando a imagem do BI...",
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				success: (data: any) => {
-					return data;
-				},
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				error: (data: any) => {
-					return data;
-				},
-			});
-			toast.promise(uploadBack(), {
-				loading: "Armazenando a selfie...",
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				success: (data: any) => {
-					router.push("/register/credentials");
-					return data;
-				},
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-				error: (data: any) => {
-					return data;
-				},
-			});
-		}
-	}, [success]);
+	// useEffect(() => {
+	// 	if (success) {
+	// 		toast.promise(uploadFront(), {
+	// 			loading: "Armazenando a imagem do BI...",
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 			success: (data: any) => {
+	// 				return data;
+	// 			},
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 			error: (data: any) => {
+	// 				return data;
+	// 			},
+	// 		});
+	// 		toast.promise(uploadBack(), {
+	// 			loading: "Armazenando a selfie...",
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 			success: (data: any) => {
+					
+	// 				return data;
+	// 			},
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 			error: (data: any) => {
+	// 				return data;
+	// 			},
+	// 		});
+	// 	}
+	// }, [success]);
 
 	function compareBI(bi1: string, bi2: string) {
 		if (bi1.toLocaleUpperCase() === bi2.toLocaleUpperCase()) {
@@ -128,15 +128,15 @@ export default function IdentityValidation() {
 		return false;
 	}
 
-	async function getBI() {
-		const response = await axios.get(
-			`https://civic-rivy-franco07-c3b34b79.koyeb.app/getBI/${email || useStore.email}`,
-		);
-		if (response.data.biNumber) {
-			return response.data.biNumber;
-		}
-		return null;
-	}
+	// async function getBI() {
+	// 	const response = await axios.get(
+	// 		`https://civic-rivy-franco07-c3b34b79.koyeb.app/getBI/${email || useStore.email}`,
+	// 	);
+	// 	if (response.data.biNumber) {
+	// 		return response.data.biNumber;
+	// 	}
+	// 	return null;
+	// }
 
 	function testRegex() {
 		setLoading(true);
@@ -174,7 +174,7 @@ export default function IdentityValidation() {
 			}
 
 			if (scanned) {
-				const response = await getBI();
+				const response = localStorage.getItem("numeroBi")
 				if (response) {
 					const isSame = compareBI(response, biNumber);
 					if (isSame) {
@@ -193,12 +193,14 @@ export default function IdentityValidation() {
 	}
 
 	async function validateFaces() {
+		  const MODEL_URL = '/models'
 		setLoading(true);
-		await faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
-		await faceapi.nets.tinyFaceDetector.loadFromUri("/models");
-		await faceapi.nets.faceLandmark68Net.loadFromUri("/models");
-		await faceapi.nets.faceRecognitionNet.loadFromUri("/models");
-		await faceapi.nets.faceExpressionNet.loadFromUri("/models");
+	   await Promise.all([
+			faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL), // Atualize conforme necessário
+			faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL), // Atualize conforme necessário
+			faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL) // Atualiz
+		]);
+
 		// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
 		let idCard;
 		// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
@@ -206,10 +208,7 @@ export default function IdentityValidation() {
 
 		if (idCardRef.current) {
 			const idCardFacedetection = await faceapi
-				.detectSingleFace(
-					idCardRef.current,
-					new faceapi.TinyFaceDetectorOptions(),
-				)
+				.detectSingleFace(idCardRef.current,)
 				.withFaceLandmarks()
 				.withFaceDescriptor();
 			idCard = idCardFacedetection;
@@ -221,10 +220,7 @@ export default function IdentityValidation() {
 
 		if (selfieRef.current) {
 			const selfieFacedetection = await faceapi
-				.detectSingleFace(
-					selfieRef.current,
-					new faceapi.TinyFaceDetectorOptions(),
-				)
+				.detectSingleFace(selfieRef.current,)
 				.withFaceLandmarks()
 				.withFaceDescriptor();
 			idSelfie = selfieFacedetection;
@@ -240,10 +236,11 @@ export default function IdentityValidation() {
 				idSelfie.descriptor,
 			);
 			if (distance < 0.5) {
-				toast.success("Validação facial concluida!");
-				verify();
+				toast.success("Validação facial pessoas iguais!"+distance);
+				router.push("/registo/credenciais");
+				
 			} else {
-				toast.warning("Não foi possivel validar as imagens enviadas.");
+				toast.warning("Pessoas diferentes."+distance);
 				setLoading(false);
 			}
 		}
@@ -254,7 +251,8 @@ export default function IdentityValidation() {
 			loading: "Analisando o Bilhete de Identidade...",
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			success: (data: any) => {
-				setSuccess(true);
+			//setSuccess(true);
+				validateFaces();
 				return data;
 			},
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -279,73 +277,76 @@ export default function IdentityValidation() {
 		}
 		return true;
 	}
+	
 
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	function uploadFront(): Promise<any> {
-		setLoading(true);
-		const formData = new FormData();
-		if (frontFile.file) {
-			formData.append("image", frontFile.file);
-		}
-		// biome-ignore lint/suspicious/noAsyncPromiseExecutor: <explanation>
-		return new Promise(async (resolve, reject) => {
-			try {
-				const response = await axios.post(
-					`https://civic-rivy-franco07-c3b34b79.koyeb.app/upload/${email ?? useStore.email}/1`,
-					formData,
-					{ headers: { "Content-Type": "multipart/form-data" } },
-				);
-				if (response.status === 200) {
-					resolve(response.data.message);
-				}
-				else {
-					reject(response.data.message)
-					setLoading(false);
-				}
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-			} catch (error: any) {
-				reject(error.response?.data.message);
-				setLoading(false);
-			} 
-		});
-	}
+	// function uploadFront(): Promise<any> {
+	// 	setLoading(true);
+	// 	const formData = new FormData();
+	// 	if (frontFile.file) {
+	// 		formData.append("image", frontFile.file);
+			
+	// 	}
+	// 	// biome-ignore lint/suspicious/noAsyncPromiseExecutor: <explanation>
+	// 	return new Promise(async (resolve, reject) => {
+	// 		try {
+	// 			const response = await axios.post(
+	// 				`https://civic-rivy-franco07-c3b34b79.koyeb.app/upload/${email ?? useStore.email}/1`,
+	// 				formData,
+	// 				{ headers: { "Content-Type": "multipart/form-data" } },
+	// 			);
+	// 			if (response.status === 200) {
+	// 				resolve(response.data.message);
+	// 			}
+	// 			else {
+	// 				reject(response.data.message)
+	// 				setLoading(false);
+	// 			}
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 		} catch (error: any) {
+	// 			reject(error.response?.data.message);
+	// 			setLoading(false);
+	// 		} 
+	// 	});
+	// }
 
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	function uploadBack(): Promise<any> {
-		setLoading(true);
-		const formData = new FormData();
-		if (backFile.file) {
-			formData.append("image", backFile.file);
-		}
-		// biome-ignore lint/suspicious/noAsyncPromiseExecutor: <explanation>
-		return new Promise(async (resolve, reject) => {
-			try {
-				const response = await axios.post(
-					`https://civic-rivy-franco07-c3b34b79.koyeb.app/upload/${email ?? useStore.email}/5`,
-					formData,
-					{ headers: { "Content-Type": "multipart/form-data" } },
-				);
-				if (response.status === 200) {
-					resolve(response.data.message);
-				}
-				else {
-					reject(response.data.message);
-					setLoading(false);
-				}
-				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-			} catch (error: any) {
-				reject(error.response?.data.message);
-				setLoading(false);
-			}
-		});
-	}
+	// function uploadBack(): Promise<any> {
+	// 	setLoading(true);
+	// 	const formData = new FormData();
+	// 	if (backFile.file) {
+	// 		formData.append("image", backFile.file);
+	// 	}
+	// 	// biome-ignore lint/suspicious/noAsyncPromiseExecutor: <explanation>
+	// 	return new Promise(async (resolve, reject) => {
+	// 		try {
+	// 			const response = await axios.post(
+	// 				`https://civic-rivy-franco07-c3b34b79.koyeb.app/upload/${email ?? useStore.email}/5`,
+	// 				formData,
+	// 				{ headers: { "Content-Type": "multipart/form-data" } },
+	// 			);
+	// 			if (response.status === 200) {
+	// 				resolve(response.data.message);
+	// 			}
+	// 			else {
+	// 				reject(response.data.message);
+	// 				setLoading(false);
+	// 			}
+	// 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 		} catch (error: any) {
+	// 			reject(error.response?.data.message);
+	// 			setLoading(false);
+	// 		}
+	// 	});
+	// }
 
 	async function formSubmit() {
 		if (validateForm()) {
-			await validateFaces();
+			await verify();
 		} else {
 		}
 	}
+	console.log(idCardRef.current);
 
 	return (
 		<form className="login_form identity_verification">

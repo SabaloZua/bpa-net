@@ -56,6 +56,12 @@ const FormSchemaPessoal = z.object({
     .transform((phone) => {
       return phone.trim().toUpperCase();
     }),
+  
+    municipio: z.string({
+      required_error: "A seu municípoi é obrigatório!",
+    }),
+
+    bairro: z.string()
 });
 
 const FormSchemaComercial = z.object({
@@ -143,6 +149,17 @@ export default function PersonalData() {
       console.log(data)
       await api.post(`/openacount/verificarDadosPessoais`, data);
       
+      if (typeof window !== "undefined") {
+        localStorage.setItem("nomeCliente", data.nomeCliente)
+        localStorage.setItem("dataNascimento", data.dataNascimento.toDateString())
+        localStorage.setItem("numeroBi", data.numeroBi)
+        localStorage.setItem("telefone", data.telefone)
+        localStorage.setItem("areaActividade", data.areaActividade || "")
+        localStorage.setItem("local", data.local || "")
+        localStorage.setItem("municipio", data.municipio || "")
+      }
+
+
       router.push("/registo/validacao-identidade");
       toast.success("Dados verificados com sucesso");
     } catch (error) {
@@ -160,25 +177,28 @@ export default function PersonalData() {
 
   async function submitForm(data: FormTypePessoal) {
     const parseddataNascimento = new Date(data.dataNascimento);
-    const formatedData = JSON.stringify({
+    const formatedData = {
       nomeCliente: data.nomeCliente,
       numeroBi: data.numeroBi,
       dataNascimento: parseddataNascimento,
-    });
+      telefone: data.telefone,
+    };
 
     APICall(formatedData);
   }
 
   async function submitForm2(data: FormTypeComercial) {
-    console.log("exemplo")
     const parseddataNascimento = new Date(data.dataNascimento);
-    console.log(parseddataNascimento);
+  
     
-    const formatedData = JSON.stringify({
+    const formatedData = {
       nomeCliente: data.nomeCliente,
       numeroBi: data.numeroBi,
       dataNascimento: parseddataNascimento,
-    });
+      telefone: data.telefone,
+      areaActividade: data.areaActividade,
+      local: data.local
+    }
     if (typeof window !== "undefined") {
       localStorage.setItem("local", data.local);
       localStorage.setItem("area", data.areaActividade);
@@ -222,6 +242,19 @@ export default function PersonalData() {
           <input type="text" placeholder="Insira o número do BI" {...register("numeroBi")} maxLength={14} />
           {errors.numeroBi && <InfoError message={errors.numeroBi.message} />}
         </div>
+
+        <div className="input_field">
+          <label htmlFor="name">Município</label>
+          <input type="text" placeholder="Insira o seu nome completo" {...register("municipio")} />
+          {errors.municipio && <InfoError message={errors.municipio.message} />}
+        </div>
+
+        <div className="input_field">
+          <label htmlFor="name">Bairro</label>
+          <input type="text" placeholder="Insira o seu nome completo" {...register("bairro")} />
+          {errors.bairro && <InfoError message={errors.bairro.message} />}
+        </div>
+
         <Button type="submit" disabled={isLoading} className="button_auth">
           {isLoading ? (
             <TailSpin

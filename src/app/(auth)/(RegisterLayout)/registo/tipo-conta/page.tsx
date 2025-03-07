@@ -132,7 +132,7 @@ export default function TipoContaPage() {
                   event.preventDefault();
                   setLoading(true);
                   if (typeof window !== "undefined") {
-                    localStorage.setItem("accountType", account);
+                    localStorage.setItem("tipoConta", account);
                   }
                   onClose();
                   onClose2();
@@ -279,7 +279,7 @@ export default function TipoContaPage() {
                   event.preventDefault();
                   setLoading(true);
                   if (typeof window !== "undefined") {
-                    localStorage.setItem("accountType", account);
+                    localStorage.setItem("tipoConta", account);
                   }
                   onClose();
                   onClose2();

@@ -23,7 +23,7 @@ import Browser from 'bowser' // lib para pegar o sitema operativo e o navegador 
 const ContratoPage = () => {
   const [accepted, setAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { currentStep, setCurrentStep } = useStepperStore();
+  const { currentStep, setCurrentStep } = useStepperStore();                  
   const [id,setid]=useState<string>();
   const [navegador,setnavegador]=useState<string>();
   const [sistemaoperativo,setsistemaoperativo]=useState<string>();

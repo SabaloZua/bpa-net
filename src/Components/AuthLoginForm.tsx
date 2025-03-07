@@ -2,12 +2,61 @@
 
 import Link from "next/link";
 import styles from "@/styles/aderir_login.module.css";
-
+// import { AxiosError } from "axios";
+// import { z } from "zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
 import CustomInput from "./CustomInput";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+// import api from "@/utils/axios";
+// import { TailSpin } from 'react-loader-spinner'
+// import { useRouter } from "next/navigation";
+// import { useState } from "react";
+
+// const FormSchema = z.object({
+//   numeroadessao: z.string(),
+//   accessCode: z.string(),
+// });
+
+// type FormType = z.infer<typeof FormSchema>;
 
 export default function AuthForm() {
+
+  // const router = useRouter();
+  // const [isLoading, setIsLoading] = useState(false)
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  //   handleSubmit,
+  // } = useForm<FormType>({
+  //   resolver: zodResolver(FormSchema),
+  // });
+
+  // const submitForm = async (data: FormType) => {
+  //   setIsLoading(true);
+  //   try {
+  //     await api.post("/openacount/emailvalidete", data);
+  //     setEmail(data.email);
+  //     if (typeof window !== "undefined") {
+  //       localStorage.setItem("email", data.email);
+  //     }
+  //     router.push("/email-verification");
+  //     //router.push("/registo/tipo-conta");
+  //   } catch (error) {
+  //     if (error instanceof AxiosError) {
+  //       if (error.response?.status === 400) {
+  //         toast.error(error.response?.data.message);
+  //       } else {
+  //         toast.error("Sem conexão com o servidor");
+  //       }
+  //     }
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   return (
     <section className="auth-form">
       <header className="flex flex-col gap-5 md:gap-6">
@@ -59,10 +108,7 @@ export default function AuthForm() {
           placeholder="Insira o seu código de acesso"
         />
 
-        <Link
-          href={"/inicio"}
-          className={`button_auth`}
-        >
+        <Link href={"/inicio"} className={`button_auth`}>
           Entrar <ArrowRight strokeWidth={3} size={16} className="relative top-[1px]" />
         </Link>
       </form>
@@ -87,7 +133,7 @@ export default function AuthForm() {
             Com o BPA NET poderá realizar todas as suas operações em qualquer lugar.
           </span>
         </div>
-        <ArrowRight strokeWidth={2} size={20} className=""/>
+        <ArrowRight strokeWidth={2} size={20} className="" />
       </Link>
     </section>
   );

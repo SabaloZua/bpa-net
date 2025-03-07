@@ -12,7 +12,7 @@ interface IProps {
 	imageAlt: string;
 	fileName: string;
 	fileSize: string;
-	imageRef: RefObject<HTMLImageElement>;
+	imageRef: RefObject<HTMLImageElement | null >;
 	file: File;
 	handleClick: () => void;
 }
