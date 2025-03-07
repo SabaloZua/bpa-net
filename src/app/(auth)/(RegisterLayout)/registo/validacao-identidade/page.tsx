@@ -138,7 +138,7 @@ export default function IdentityValidation() {
 		return null;
 	}
 
-	function testRegex(regex: RegExp) {
+	function testRegex() {
 		setLoading(true);
 		let biNumber = "";
 		let scanned = false;
@@ -147,16 +147,27 @@ export default function IdentityValidation() {
 			const response = await Tesseract.recognize(
 				URL.createObjectURL(frontFile.file || new File([], "")),
 			);
-			const words = response.data.words;
+			//const words = response.data.words;
+			const text = response.data.text;  // Tesseract retorna o texto completo
+
+			// Dividir o texto em palavras e procurar pelo BI
+			const words = text.split(/\s+/);
 
 			if (words) {
 				// biome-ignore lint/complexity/noForEach: <explanation>
-				words.forEach(async (word) => {
-					if (regexBI.test(word.text)) {
-						biNumber = word.text;
-						scanned = true;
-					}
-				});
+				// words.forEach(async (word) => {
+				// 	if (regexBI.test(word.text)) {
+				// 		biNumber = word.text;
+				// 		scanned = true;
+				// 	}
+				// });
+				for (const word of words) {
+                    if (regexBI.test(word)) {
+                        biNumber = word;
+                        scanned = true;
+                        break;
+                    }
+                }
 			} else {
 				toast.error("Envie uma imagem do seu BI");
 				setLoading(false);
@@ -239,7 +250,7 @@ export default function IdentityValidation() {
 	}
 
 	async function verify() {
-		toast.promise(testRegex(regexBI), {
+		toast.promise(testRegex(), {
 			loading: "Analisando o Bilhete de Identidade...",
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			success: (data: any) => {
