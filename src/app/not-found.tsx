@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "@/styles/not_found.module.css";
 import Link from "next/link";
 
-import { Header } from "@/Components/Header";
+import { Header } from "@/components/Header";
 export default function Home() {
   return (
     <div className="flex flex-col">

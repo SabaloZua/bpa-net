@@ -1,4 +1,4 @@
-import { Header } from "@/Components/Header";
+import { Header } from "@/components/Header";
 import Link from "next/link";
 import styles from "@/styles/escolher_adesao.module.css";
 
@@ -58,7 +58,7 @@ const AderirPage = () => {
               <p>Se já é cliente BPA pode aderir ao BPA Net sem ir ao balcão.</p>
             </div>
             <div className={styles.iconeContainer}>
-            <svg data-v-3dbd7524="" fill="none" viewBox="0 0 115 118" className={styles.icone}>
+              <svg data-v-3dbd7524="" fill="none" viewBox="0 0 115 118" className={styles.icone}>
                 <path
                   fill="var(--color-primary)"
                   d="M56.832.844a1.2 1.2 0 1 1 1.437 1.923L56.832.844ZM2.672 42.837l.72.961a1.2 1.2 0 0 1-.72.24v-1.2Zm-.172 0H1.3a1.2 1.2 0 0 1 1.2-1.2v1.2Zm0 7.727v1.2a1.2 1.2 0 0 1-1.2-1.2h1.2Zm15.213 0v-1.2a1.2 1.2 0 0 1 1.2 1.2h-1.2Zm0 54.838h1.2a1.2 1.2 0 0 1-1.2 1.2v-1.2Zm-15.713 0H.8a1.2 1.2 0 0 1 1.2-1.2v1.2Zm0 11.274v1.2a1.2 1.2 0 0 1-1.2-1.2H2Zm55.55-1.2a1.2 1.2 0 0 1 0 2.4v-2.4Zm-8.787-64.912v-1.2a1.2 1.2 0 0 1 1.2 1.2h-1.2Zm0 54.838h1.2a1.2 1.2 0 0 1-1.2 1.2v-1.2Zm-13.476 0v1.2a1.2 1.2 0 0 1-1.2-1.2h1.2Zm0-54.838h-1.2a1.2 1.2 0 0 1 1.2-1.2v1.2ZM58.269 2.767 3.39 43.798l-1.437-1.922L56.832.844l1.437 1.923ZM2.673 44.037H2.5v-2.4h.173v2.4Zm1.027-1.2v7.727H1.3v-7.727h2.4Zm-1.2 6.527h15.213v2.4H2.5v-2.4Zm16.413 1.2v54.838h-2.4V50.564h2.4Zm-1.2 56.038H2v-2.4h15.713v2.4Zm-14.513-1.2v11.274H.8v-11.274h2.4ZM2 115.476h55.55v2.4H2v-2.4Zm47.963-64.912v54.838h-2.4V50.564h2.4Zm-1.2 56.038H35.287v-2.4h13.476v2.4Zm-14.676-1.2V50.564h2.4v54.838h-2.4Zm1.2-56.038h13.476v2.4H35.287v-2.4Z"
@@ -93,9 +93,8 @@ const AderirPage = () => {
   );
 };
 
-
-
-{/* <div>
+{
+  /* <div>
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
           <Mail className="w-6 h-6 text-blue-600" />
@@ -119,6 +118,7 @@ const AderirPage = () => {
           />
         </div>
       </div>
-    </div> */}
+    </div> */
+}
 
 export default AderirPage;

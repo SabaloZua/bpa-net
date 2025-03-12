@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import NextTopLoader from "nextjs-toploader";
+import NextAuthSessionProvider from "@/providers/sessionProvider";
 
 export default function RootLayout({
   children,
@@ -30,7 +31,13 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #1A82FF,0 0 5px #1A82FF"
         />
-        <NextUIProvider>{children}</NextUIProvider>
+        <NextUIProvider>
+          
+          <NextAuthSessionProvider>
+            {children}
+          </NextAuthSessionProvider>
+         
+        </NextUIProvider>
         <Toaster
           toastOptions={{
             className: "toaster_error",

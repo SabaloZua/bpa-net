@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/Components/ui/button";
-import { Input } from "@/Components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { useUserStore } from "@/contexts/userStore";
 const personalDataSchema = z.object({
   bi: z.string(),
-  numeroconta:z.string(),
+  numeroconta: z.string(),
 });
 
 type personalDataSchema = z.infer<typeof personalDataSchema>;
@@ -45,10 +45,10 @@ const EtapaDadosPage = () => {
   async function handleVerifyPersonalData(data: personalDataSchema) {
     try {
       setIsLoading(true);
-     const response= await api.post(`/adesao/findaccounts/${email}`,data);
-     if (typeof window !== "undefined") {
-      localStorage.setItem("idconta", response.data.idconta);
-    }
+      const response = await api.post(`/adesao/findaccounts/${email}`, data);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("idconta", response.data.idconta);
+      }
       router.push("/adesao/contrato");
       toast.success("Dados verificados com sucesso");
     } catch (error) {
@@ -84,7 +84,11 @@ const EtapaDadosPage = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Número da Conta</label>
-          <Input type="text" placeholder="Digite o número da sua conta" {...register("numeroconta")} />
+          <Input
+            type="text"
+            placeholder="Digite o número da sua conta"
+            {...register("numeroconta")}
+          />
         </div>
 
         <div>

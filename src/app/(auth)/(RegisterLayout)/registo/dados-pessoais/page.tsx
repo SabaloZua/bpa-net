@@ -5,23 +5,20 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import InfoError from "@/Components/InfoError";
+import InfoError from "@/components/InfoError";
 import { TailSpin } from "react-loader-spinner";
 import { useStepperRegistoStore } from "@/contexts/stepsStore";
 import api from "@/utils/axios";
 import { AxiosError } from "axios";
-import { Button } from "@/Components/ui/button";
-
+import { Button } from "@/components/ui/button";
 
 const FormSchemaPessoal = z.object({
   nomeCliente: z
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!")
     .transform((nomeCliente) => {
-      return nomeCliente
-        .trim()
-        .toUpperCase()
-        /*.split(" ")
+      return nomeCliente.trim().toUpperCase();
+      /*.split(" ")
         .map((word) => {
           return word[0].toLocaleUpperCase().concat(word.substring(1));
         });*/
@@ -43,9 +40,8 @@ const FormSchemaPessoal = z.object({
     }),
 
   telefone: z
-  .string({ required_error: "O campo não pode estar vazio!" })
-  .min(9, "Formato de telefone inválido"),
-
+    .string({ required_error: "O campo não pode estar vazio!" })
+    .min(9, "Formato de telefone inválido"),
 
   numeroBi: z
     .string({
@@ -56,12 +52,12 @@ const FormSchemaPessoal = z.object({
     .transform((phone) => {
       return phone.trim().toUpperCase();
     }),
-  
-    municipio: z.string({
-      required_error: "A seu municípoi é obrigatório!",
-    }),
 
-    bairro: z.string()
+  municipio: z.string({
+    required_error: "A seu municípoi é obrigatório!",
+  }),
+
+  bairro: z.string(),
 });
 
 const FormSchemaComercial = z.object({
@@ -69,13 +65,11 @@ const FormSchemaComercial = z.object({
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!")
     .transform((nomeCliente) => {
-      return nomeCliente
-        .trim()
-        .toUpperCase()
-        // .split(" ")
-        // .map((word) => {
-        //   return word[0].toLocaleUpperCase().concat(word.substring(1));
-        // });
+      return nomeCliente.trim().toUpperCase();
+      // .split(" ")
+      // .map((word) => {
+      //   return word[0].toLocaleUpperCase().concat(word.substring(1));
+      // });
     }),
   dataNascimento: z
     .string()
@@ -94,8 +88,8 @@ const FormSchemaComercial = z.object({
     }),
 
   telefone: z
-  .string({ required_error: "O campo não pode estar vazio!" })
-  .min(1, "Formato de telefone inválido"),
+    .string({ required_error: "O campo não pode estar vazio!" })
+    .min(1, "Formato de telefone inválido"),
 
   numeroBi: z
     .string({
@@ -106,7 +100,9 @@ const FormSchemaComercial = z.object({
     .transform((phone) => {
       return phone.trim().toUpperCase();
     }),
-  areaActividade: z.string({ required_error: "O campo é obrigatório!" }).min(1, "O campo é obrigatório!"),
+  areaActividade: z
+    .string({ required_error: "O campo é obrigatório!" })
+    .min(1, "O campo é obrigatório!"),
   local: z.string({ required_error: "O campo é obrigatório!" }).min(1, "O campo é obrigatório!"),
 });
 
@@ -117,9 +113,9 @@ export default function PersonalData() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const useStepsRegisto = useStepperRegistoStore();
-  let account_type = "";
+  let tipoConta = "";
   if (typeof window !== "undefined") {
-    account_type = localStorage.getItem("accountType") || "";
+    tipoConta = localStorage.getItem("tipoConta") || "";
   }
 
   useEffect(() => {
@@ -146,19 +142,18 @@ export default function PersonalData() {
   async function APICall(data: any) {
     setIsLoading(true);
     try {
-      console.log(data)
+      console.log(data);
       await api.post(`/openacount/verificarDadosPessoais`, data);
-      
-      if (typeof window !== "undefined") {
-        localStorage.setItem("nomeCliente", data.nomeCliente)
-        localStorage.setItem("dataNascimento", data.dataNascimento.toDateString())
-        localStorage.setItem("numeroBi", data.numeroBi)
-        localStorage.setItem("telefone", data.telefone)
-        localStorage.setItem("areaActividade", data.areaActividade || "")
-        localStorage.setItem("local", data.local || "")
-        localStorage.setItem("municipio", data.municipio || "")
-      }
 
+      if (typeof window !== "undefined") {
+        localStorage.setItem("nomeCliente", data.nomeCliente);
+        localStorage.setItem("dataNascimento", data.dataNascimento.toDateString());
+        localStorage.setItem("numeroBi", data.numeroBi);
+        localStorage.setItem("telefone", data.telefone);
+        localStorage.setItem("areaActividade", data.areaActividade || "");
+        localStorage.setItem("local", data.local || "");
+        localStorage.setItem("municipio", data.municipio || "");
+      }
 
       router.push("/registo/validacao-identidade");
       toast.success("Dados verificados com sucesso");
@@ -171,7 +166,7 @@ export default function PersonalData() {
         }
       }
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -189,24 +184,19 @@ export default function PersonalData() {
 
   async function submitForm2(data: FormTypeComercial) {
     const parseddataNascimento = new Date(data.dataNascimento);
-  
-    
+
     const formatedData = {
       nomeCliente: data.nomeCliente,
       numeroBi: data.numeroBi,
       dataNascimento: parseddataNascimento,
       telefone: data.telefone,
       areaActividade: data.areaActividade,
-      local: data.local
-    }
-    if (typeof window !== "undefined") {
-      localStorage.setItem("local", data.local);
-      localStorage.setItem("area", data.areaActividade);
-    }
+      local: data.local,
+    };
     APICall(formatedData);
   }
 
-  return account_type === "c1" ? (
+  return tipoConta === "c1" ? (
     <form onSubmit={handleSubmit(submitForm)} className="login_form">
       <div className="header_form">
         <h1>Dados pessoais</h1>
@@ -218,7 +208,11 @@ export default function PersonalData() {
       <div className="body_form">
         <div className="input_field">
           <label htmlFor="name">Nome completo</label>
-          <input type="text" placeholder="Insira o seu nome completo" {...register("nomeCliente")} />
+          <input
+            type="text"
+            placeholder="Insira o seu nome completo"
+            {...register("nomeCliente")}
+          />
           {errors.nomeCliente && <InfoError message={errors.nomeCliente.message} />}
         </div>
 
@@ -234,12 +228,21 @@ export default function PersonalData() {
 
         <div className="input_field">
           <label htmlFor="nomeCliente">Telefone</label>
-          <input type="text" placeholder="Insira o seu número de telefone" {...register("telefone")} />
+          <input
+            type="text"
+            placeholder="Insira o seu número de telefone"
+            {...register("telefone")}
+          />
           {errors.nomeCliente && <InfoError message={errors.nomeCliente.message} />}
         </div>
         <div className="input_field">
           <label htmlFor="bi_number">Número do BI</label>
-          <input type="text" placeholder="Insira o número do BI" {...register("numeroBi")} maxLength={14} />
+          <input
+            type="text"
+            placeholder="Insira o número do BI"
+            {...register("numeroBi")}
+            maxLength={14}
+          />
           {errors.numeroBi && <InfoError message={errors.numeroBi.message} />}
         </div>
 
@@ -273,7 +276,6 @@ export default function PersonalData() {
     </form>
   ) : (
     <form onSubmit={handleSubmit2(submitForm2)} className="login_form">
-      
       <div className="header_form">
         <h1>Dados pessoais</h1>
         <p>
@@ -284,7 +286,11 @@ export default function PersonalData() {
       <div className="body_form">
         <div className="input_field">
           <label htmlFor="name">Nome completo</label>
-          <input type="text" placeholder="Insira o seu nome completo" {...register2("nomeCliente")} />
+          <input
+            type="text"
+            placeholder="Insira o seu nome completo"
+            {...register2("nomeCliente")}
+          />
           {errors2.nomeCliente && <InfoError message={errors2.nomeCliente.message} />}
         </div>
         <div className="input_field">
@@ -298,13 +304,22 @@ export default function PersonalData() {
         </div>
         <div className="input_field">
           <label htmlFor="bi_number">Número do BI</label>
-          <input type="text" placeholder="Insira o número do BI" {...register2("numeroBi")} maxLength={14}/>
+          <input
+            type="text"
+            placeholder="Insira o número do BI"
+            {...register2("numeroBi")}
+            maxLength={14}
+          />
           {errors2.numeroBi && <InfoError message={errors2.numeroBi.message} />}
         </div>
 
         <div className="input_field">
           <label htmlFor="name">Telefone</label>
-          <input type="text" placeholder="Insira o seu número de telefone" {...register2("telefone")} />
+          <input
+            type="text"
+            placeholder="Insira o seu número de telefone"
+            {...register2("telefone")}
+          />
           {errors2.telefone && <InfoError message={errors2.telefone.message} />}
         </div>
         <div className="input_field">

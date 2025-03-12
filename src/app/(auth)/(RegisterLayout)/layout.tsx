@@ -13,10 +13,10 @@ import "react-step-progress/dist/index.css";
 import "./register.css";
 import { useStepperStore } from "@/contexts/stepsStore";
 import { useStepperRegistoStore } from "@/contexts/stepsStore";
-import Logo from "@/Components/Logo";
+import Logo from "@/components/Logo";
 import { useRouter, usePathname } from "next/navigation";
 import { LogIn } from "lucide-react";
-import { Stepper } from "@/Components/Stepper";
+import { Stepper } from "@/components/Stepper";
 
 interface AdesaoLayoutProps {
   children: React.ReactNode;

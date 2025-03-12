@@ -90,13 +90,14 @@ export default function RegisterInfoModal({ isOpen, onOpenChange }: IProps) {
 							</p>
 						</ModalBody>
 						<ModalFooter>
+
 							<Button
-								color="danger"
+								color="success"
 								radius="sm"
 								variant="flat"
 								onPress={onClose}
 							>
-								Fechar
+								Continuar
 							</Button>
 						</ModalFooter>
 					</>

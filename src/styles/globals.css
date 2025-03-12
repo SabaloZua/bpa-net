@@ -22,7 +22,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   outline: none;
-  font-family: Rubik, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-family: Rubik, /*system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',*/ sans-serif
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
@@ -38,6 +38,31 @@
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+}
+
+:root{
+  --color-link: #478099;
+  --color-body: #f7f7f7;
+  --color-cards: #fff;
+  --shadow-cards: hsla(210, 8%, 62%, .2) 0px 8px;
+  /* --color-focus3: #e5553c1e; */
+  --color-focus3: #D6E9FF;
+  --color-focus2: #2985f5;
+  --color-focus: #318cfc;
+  --color-placeholder: #545454;
+  --border-input: 1px solid #d8d8d8;
+  --color-border: #d2d2d2;
+  --color-border2: #293746;
+  --color-border3: rgb(205, 213, 244);
+  --color-gray: #4B5563; 
+  --color-primary:#1A82FF;
+  --color-text: #565656;
+  --font-small: clamp(0.8rem, 0.875rem, 0.9rem);
+  --font-small-titles: clamp(0.95rem, 1rem, 1.2rem);
+  --font-small-info: clamp(0.7rem, 0.725rem, 1rem);
+  --font-page-titles: clamp(1.8rem, 1.9rem, 2rem);
+  --font-page-subtitles: 1.25rem;
+  --font-page-focus: clamp(1.2rem, 1.3rem, 1.7rem);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -289,30 +314,7 @@ input:-webkit-autofill {
 }
 
 
-:root{
-    --color-link: #478099;
-    --color-body: #f7f7f7;
-    --color-cards: #fff;
-    --shadow-cards: hsla(210, 8%, 62%, .2) 0px 8px;
-    /* --color-focus3: #e5553c1e; */
-    --color-focus3: #D6E9FF;
-    --color-focus2: #2985f5;
-    --color-focus: #318cfc;
-    --color-placeholder: #545454;
-    --border-input: 1px solid #d8d8d8;
-    --color-border: #d2d2d2;
-    --color-border2: #293746;
-    --color-border3: rgb(205, 213, 244);
-    --color-gray: #4B5563; 
-    --color-primary:#1A82FF;
-    --color-text: #565656;
-    --font-small: clamp(0.8rem, 0.875rem, 0.9rem);
-    --font-small-titles: clamp(0.95rem, 1rem, 1.2rem);
-    --font-small-info: clamp(0.7rem, 0.725rem, 1rem);
-    --font-page-titles: clamp(1.8rem, 1.9rem, 2rem);
-    --font-page-subtitles: 1.25rem;
-    --font-page-focus: clamp(1.2rem, 1.3rem, 1.7rem);
-}
+
 
 
 @layer utilities {

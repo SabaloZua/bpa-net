@@ -24,7 +24,7 @@ export default function Register() {
   async function APICall() {
     setLoading(true);
     try {
-      const response = await api.get(`/openaccount/resendEmail/${email}`);
+      const response = await api.get(`/openaccount/emailvalidete/${email}`);
       if (response.status === 201) {
         toast.success(response.data.message);
       } else {

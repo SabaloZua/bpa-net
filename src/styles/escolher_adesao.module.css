@@ -46,7 +46,7 @@
 
 .cartao .iconeContainer {
   display: flex;
-  justify-content: end;
+  justify-content: center;
 }
 
 /* Tablets para cima */

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ArrowRight, KeyRound } from "lucide-react";
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useStepperStore } from "@/contexts/stepsStore";
 
 import Image from "next/image";
@@ -15,7 +15,7 @@ const CredenciaisPage = () => {
   }, [currentStep, setCurrentStep]);
 
   return (
-    <div className="flex flex-col gap-3 md:min-w-[35rem]">
+    <div className="flex flex-col gap-3 md:max-w-[35rem]">
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
           <KeyRound className="w-6 h-6 text-blue-600" />
@@ -24,8 +24,8 @@ const CredenciaisPage = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-gray-800">
-        As suas credenciais já foram enviadas para o seu email!
+        <p className="text-sm text-gray-800 text-center">
+          As suas credenciais já foram enviadas para o seu email!
         </p>
       </div>
 
@@ -37,7 +37,7 @@ const CredenciaisPage = () => {
           height={100}
         />
       </div>
-      <Button type="submit">
+      <Button type="submit" className="button_auth">
         Fazer login
         <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
       </Button>

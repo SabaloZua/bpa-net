@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
-import { Button as ButtonUI } from "@/Components/ui/button";
+import { Button as ButtonUI } from "@/components/ui/button";
 
 export default function TipoContaPage() {
   const [account, setAccount] = useState("");
@@ -156,7 +156,7 @@ export default function TipoContaPage() {
                         <strong>
                           2- Montante mínimo <br />
                         </strong>
-                        Fins Comerciais Com TPA - 16.000,00 KZ
+                        Fins Comerciais - 10.000,00 KZ Fins Comerciais Com TPA - 20.000,00 KZ
                         <br />
                       </p>
                     </li>
@@ -165,7 +165,7 @@ export default function TipoContaPage() {
                         <strong>
                           3- Montante máximo <br />
                         </strong>
-                        Fins Comerciais Com TPA - 4.000.000,00 KZ
+                        Fins Comerciais - 2.000.000,00 KZ Fins Comerciais Com TPA - 4.000.000,00 KZ
                       </p>
                     </li>
                     <li style={{ marginBottom: "15px" }}>
@@ -311,7 +311,7 @@ export default function TipoContaPage() {
                         <strong>
                           3- Montante máximo <br />
                         </strong>
-                        Contas para Fins Pessoais - 1.000.000,00 KZ <br />
+                        Contas para Fins Pessoais - 600.000,00 KZ <br />
                       </p>
                     </li>
                     <li style={{ marginBottom: "15px" }}>
