@@ -4,7 +4,7 @@ import {
   ArrowRightLeft,
   DollarSign,
   Shield,
-  PiggyBank,
+  MapPinned 
 } from 'lucide-react';
 // Aqui estão os dados dos links do sidebar como a a rota imagem e Legenda\
 export  const sidebarLinks = [
@@ -15,7 +15,7 @@ export  const sidebarLinks = [
   { name: 'Pagamentos', icon: <DollarSign size={18} />, path: '/pagamentos' },
   { name: 'Transações', icon: <ArrowRightLeft size={18} />, path: '/transacoes' },
   { name: 'Créditos', icon: <DollarSign size={18} />, path: '/creditos' },
-  { name: 'Poupanças', icon: <PiggyBank size={18} />, path: '/poupancas' },
+  { name: 'Mapa', icon: <MapPinned size={18} />, path: '/mapa' },
   { name: 'Seguros', icon: <Shield size={18} />, path: '/seguros' },
   
 ];

@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import { RotateCw } from "lucide-react";
-import { Input } from "@/components/ui/input";
+
+import React, { useState, useEffect } from 'react';
+import { RotateCw } from 'lucide-react';
+import { Input } from "@/Components/ui/input";
+
 const CurrencyConverterCard = () => {
-  const [amount, setAmount] = useState("1,00");
-  const [fromCurrency, setFromCurrency] = useState("AOA");
-  const [toCurrency, setToCurrency] = useState("USD");
+  const [amount, setAmount] = useState('1,00');
+  const [fromCurrency, setFromCurrency] = useState('AOA');
+  const [toCurrency, setToCurrency] = useState('USD');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [result, setResult] = useState("0.00105");
+  const [rates, setRates] = useState<Record<string, number>>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState('');
+  // Armazenar o valor numérico real para cálculos
+  const [numericAmount, setNumericAmount] = useState(1);
 
   const currencies = [
     { value: "AOA", label: "AOA", flag: "🇦🇴" },
@@ -15,11 +22,146 @@ const CurrencyConverterCard = () => {
     { value: "GBP", label: "GBP", flag: "🇬🇧" },
   ];
 
-  // const handleSwapCurrencies = () => {
-  //   const temp = fromCurrency;
-  //   setFromCurrency(toCurrency);
-  //   setToCurrency(temp);
-  // };
+  // Função para buscar as taxas de câmbio atualizadas
+  const fetchExchangeRates = async () => {
+    try {
+      setIsLoading(true);
+      // Usando a API free do ExchangeRate-API
+      const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+      const data = await response.json();
+      
+      if (data.result === 'success') {
+        setRates(data.rates);
+        
+        // Formatar a data da última atualização
+        const updateDate = new Date(data.time_last_update_utc);
+        const formattedDate = `${updateDate.getDate()} ${updateDate.toLocaleString('pt-PT', { month: 'short' })} ${updateDate.getFullYear()}, ${updateDate.getHours()}:${updateDate.getMinutes().toString().padStart(2, '0')}`;
+        setLastUpdated(formattedDate);
+        
+        // Realizar a conversão imediatamente após obter as taxas
+        convertCurrency();
+      }
+    } catch (error) {
+      console.error('Erro ao buscar taxas de câmbio:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Função para converter a moeda usando o valor numérico
+  const convertCurrency = () => {
+    if (!rates || !rates[toCurrency]) return;
+    
+    const convertedAmount = numericAmount * rates[toCurrency];
+    setResult(formatCurrency(convertedAmount));
+  };
+
+  // Função para trocar as moedas
+  const handleSwapCurrencies = () => {
+    const temp = fromCurrency;
+    setFromCurrency(toCurrency);
+    setToCurrency(temp);
+  };
+
+  // Formatação de valores para exibição (com separadores de milhares e vírgulas)
+  const formatCurrency = (value: number): string => {
+    return value.toFixed(2)
+      .replace('.', ',')
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
+  // Função para obter o símbolo da moeda
+  const getCurrencySymbol = (currencyCode: string): string => {
+    const currency = currencies.find(c => c.value === currencyCode);
+    return currency ? currency.symbol : '';
+  };
+
+  // Extrai o valor numérico real de uma string formatada
+  const extractNumericValue = (formattedValue: string): number => {
+    // Remove todos os separadores de milhares (pontos)
+    const cleanValue = formattedValue.replace(/\./g, '');
+    // Substitui a vírgula por ponto para conversão para número
+    const numericString = cleanValue.replace(',', '.');
+    return parseFloat(numericString) || 0;
+  };
+
+  // Formatação do input de montante
+  const formatInputValue = (value: string): string => {
+    // Remove todos os separadores existentes e letras
+    let cleanValue = value.replace(/\./g, '').replace(/[^0-9,]/g, '');
+    
+    // Se não tiver vírgula, assume que só tem parte inteira
+    if (!cleanValue.includes(',')) {
+      cleanValue = cleanValue + ',00';
+    } else {
+      // Garantir que tenha 2 casas decimais após a vírgula
+      const parts = cleanValue.split(',');
+      if (parts[1].length === 0) {
+        cleanValue = parts[0] + ',00';
+      } else if (parts[1].length === 1) {
+        cleanValue = parts[0] + ',' + parts[1] + '0';
+      } else {
+        cleanValue = parts[0] + ',' + parts[1].substring(0, 2);
+      }
+    }
+
+    // Se o valor estiver vazio, retorna 0,00
+    if (cleanValue === ',00' || cleanValue === '') {
+      return '0,00';
+    }
+
+    // Adicionar separadores de milhares
+    const integerPart = cleanValue.split(',')[0];
+    const decimalPart = cleanValue.split(',')[1];
+    
+    let formattedInteger = '';
+    for (let i = 0; i < integerPart.length; i++) {
+      if (i > 0 && (integerPart.length - i) % 3 === 0) {
+        formattedInteger += '.';
+      }
+      formattedInteger += integerPart[i];
+    }
+    
+    return formattedInteger + ',' + decimalPart;
+  };
+
+  // Buscar taxas quando moeda de origem muda
+  useEffect(() => {
+    fetchExchangeRates();
+  }, [fromCurrency]);
+
+  // Converter quando moeda de destino muda ou valor numérico muda
+  useEffect(() => {
+    if (Object.keys(rates).length > 0) {
+      convertCurrency();
+    }
+  }, [toCurrency, numericAmount, rates]);
+
+  // Tratamento da entrada do montante
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    
+    // Remove todos os separadores e processa apenas os dígitos
+    const digitsOnly = inputValue.replace(/\./g, '').replace(/[^0-9,]/g, '');
+    
+    // Permitir apenas dígitos e uma vírgula
+    if (/^[0-9]*,?[0-9]*$/.test(digitsOnly)) {
+      // Formatar o valor para exibição
+      const formattedValue = formatInputValue(digitsOnly);
+      setAmount(formattedValue);
+      
+      // Extrair e armazenar o valor numérico real
+      const newNumericValue = extractNumericValue(formattedValue);
+      setNumericAmount(newNumericValue);
+    }
+  };
+
+  // Formatar o valor inicial ao carregar o componente
+  useEffect(() => {
+    const formattedInitial = formatInputValue(amount);
+    setAmount(formattedInitial);
+    setNumericAmount(extractNumericValue(formattedInitial));
+  }, []);
 
   return (
     <div className="w-full px-3 py-3 flex flex-col gap-2 ">
