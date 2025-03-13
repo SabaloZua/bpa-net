@@ -27,7 +27,7 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
   const { currentStepRegisto } = useStepperRegistoStore();
 
   const router = useRouter();
-  const path = usePathname();
+  const path = usePathname() || "";
 
   return (
     <div className="flex flex-col min-h-dvh bg-[#EBF5FF]">

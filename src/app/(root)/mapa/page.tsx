@@ -1,7 +1,7 @@
 'use client'
 import dynamic from "next/dynamic"
 
-const MapaComponent = dynamic(() => import("@/Components/Mapa/mapa"), { ssr: false })
+const MapaComponent = dynamic(() => import("@/components/Mapa/mapa"), { ssr: false })
 
 export default function localizaratms(){
     return(

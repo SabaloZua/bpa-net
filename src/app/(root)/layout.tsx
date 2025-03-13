@@ -2,7 +2,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
+import nextAuthOptions  from "@/lib/nextAuthOptions";
 import { redirect } from "next/navigation";
 
 // import NavMoblie from '@/Components/NavMoblie'
