@@ -1,6 +1,9 @@
 import api from "@/utils/axios"
+import { AxiosError } from "axios"
 import  { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { toast } from "sonner"
+
 const nextAuthOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
@@ -13,6 +16,7 @@ const nextAuthOptions: NextAuthOptions = {
             },
 
             async authorize(credentials) {
+                try{
                 const response = await api.post('/login/verify2fa',
                 {
                     codigo2fa:credentials?.codigo2fa,
@@ -28,6 +32,15 @@ const nextAuthOptions: NextAuthOptions = {
 
 
                 return null
+            }catch (error) {
+                if (error instanceof AxiosError) {
+                  if (error.response?.status === 400) {
+                    toast.error(error.response?.data.message);
+                  } else {
+                    toast.error("Sem conexão com o servidor");
+                  }
+                }
+              }
             },
 
            

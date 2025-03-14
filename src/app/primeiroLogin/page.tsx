@@ -50,15 +50,15 @@ function App() {
   async function submitForm(data: FormData) {
     setIsLoading(true);
     try {
-      await api.post("/login/primeiroLogin", {
-        idconta:4,
+      await api.post("/login/primeiriologin", {
+        idconta:1,
         codigoacesso:data.codigoAcesso,
         pergunta:data.pergunta,
         resposta:data.resposta
       }
       );
      
-      router.replace('/pagamentos');
+      router.replace('/inicio');
       //router.push("/registo/tipo-conta");
     } catch (error) {
       if (error instanceof AxiosError) {

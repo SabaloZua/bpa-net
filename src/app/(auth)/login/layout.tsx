@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import styels from "../../../styles/bg_login.module.css";
 import Link from "next/link";
-import nextAuthOptions  from "@/lib/nextAuthOptions";
+import  nextAuthOptions  from "@/lib/nextAuthOptions";
 import { redirect } from "next/navigation";
 
 export default async function RootLayout({
