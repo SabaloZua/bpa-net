@@ -248,13 +248,13 @@ export default function PersonalData() {
 
         <div className="input_field">
           <label htmlFor="name">Município</label>
-          <input type="text" placeholder="Insira o seu nome completo" {...register("municipio")} />
+          <input type="text" placeholder="Insira o nome do seu município" {...register("municipio")} />
           {errors.municipio && <InfoError message={errors.municipio.message} />}
         </div>
 
         <div className="input_field">
           <label htmlFor="name">Bairro</label>
-          <input type="text" placeholder="Insira o seu nome completo" {...register("bairro")} />
+          <input type="text" placeholder="Insira o nome do seu bairro" {...register("bairro")} />
           {errors.bairro && <InfoError message={errors.bairro.message} />}
         </div>
 

@@ -156,7 +156,8 @@ export default function TipoContaPage() {
                         <strong>
                           2- Montante mínimo <br />
                         </strong>
-                        Fins Comerciais - 10.000,00 KZ Fins Comerciais Com TPA - 20.000,00 KZ
+                        Fins Comerciais - 10.000,00 KZ 
+                        Fins Comerciais Com TPA - 20.000,00 KZ
                         <br />
                       </p>
                     </li>
@@ -165,7 +166,8 @@ export default function TipoContaPage() {
                         <strong>
                           3- Montante máximo <br />
                         </strong>
-                        Fins Comerciais - 2.000.000,00 KZ Fins Comerciais Com TPA - 4.000.000,00 KZ
+                        Fins Comerciais - 2.000.000,00 KZ 
+                        Fins Comerciais Com TPA - 4.000.000,00 KZ
                       </p>
                     </li>
                     <li style={{ marginBottom: "15px" }}>

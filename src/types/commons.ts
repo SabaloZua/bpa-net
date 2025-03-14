@@ -12,7 +12,6 @@ export type Cliente = {
     nome: string;
     email: string;
     numeroBi: string;
-
 };
   
 export type Conta = {
@@ -28,3 +27,10 @@ export type Conta = {
     currency: string,
     state: string,
 };
+
+export type User={
+    nome: string;
+    email: string;
+    numeroBi: string;
+    conta:Conta;
+}

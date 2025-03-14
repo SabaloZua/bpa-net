@@ -274,7 +274,7 @@ export default function IdentityValidation() {
             )}
           </div>
           <div className="upload_container">
-            <p className="simple_text">Selfie pessoal</p>
+            <p className="simple_text">Fotografia tipo passe</p>
             {backFile.haveFile ? (
               <Uploader
                 fileName={backFile.name}

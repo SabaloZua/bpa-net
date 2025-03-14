@@ -9,7 +9,6 @@ import Link from "next/link";
 export default function Home() {
   const [amount, setAmount] = useState("0.00");
   const [mostrarSaldo, setMostrarSado] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const mudarIcon = mostrarSaldo === true ? false : true;
   return (
     <>

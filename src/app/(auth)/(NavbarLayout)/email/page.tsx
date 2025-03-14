@@ -111,7 +111,7 @@ export default function Register() {
                   />
                 ) : (
                   <>
-                    Aderir <FaArrowRightLong style={{ marginLeft: "10px" }} />
+                    Continuar <FaArrowRightLong style={{ marginLeft: "10px" }} />
                   </>
                 )}
               </button>
