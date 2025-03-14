@@ -36,7 +36,7 @@ const FormSchema = z.object({
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!"),
 
-  codigoAcesso: z
+    codigoAcesso: z
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!"),
 });
@@ -117,7 +117,13 @@ export default function AuthForm() {
         redirect:false
       })
 
-      router.replace("/pagamentos"); //Utilizei o replace para o navegador apagar o historico de navegacao...
+        const response=await api.get(`/login/verificalogin/${OTP}`)
+        if(response.data.primeirologin == true){
+          router.replace('/primeiroLogin')
+        }else{
+          router.replace("/inicio");
+        }
+      
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
