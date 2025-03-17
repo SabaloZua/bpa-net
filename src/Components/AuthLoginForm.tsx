@@ -31,6 +31,7 @@ import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
+
 const FormSchema = z.object({
   numeroAdesao: z
     .string({ required_error: "O campo não pode estar vazio!" })
@@ -109,6 +110,8 @@ export default function AuthForm() {
     setIsLoadingModal(true);
     try {
 
+      console.log(OTP);
+      
       await signIn('credentials',{
         codigo2fa: OTP,
         iddispositivo:  id,
@@ -117,7 +120,9 @@ export default function AuthForm() {
         redirect:false
       })
 
-        const response=await api.get(`/login/verificalogin/${OTP}`)
+      const response=await api.get(`/login/verificalogin/${OTP}`);
+       // useConta.setId(Number(response.data.idConta));
+       localStorage.setItem("idConta",response.data.idConta)
         if(response.data.primeirologin == true){
           router.replace('/primeiroLogin')
         }else{

@@ -1,36 +1,43 @@
-export interface ICurrency {
-    taxa: number;
-    descricaoTipoCambio: string;
-    tipoCambio: string;
-    data: string;
-    designacaoMoeda: string;
-    codigoMoeda: string;
+
+export interface DadosConta{
+    dados:Dados;
 }
 
 
-export type Cliente = {
-    nome: string;
-    email: string;
-    numeroBi: string;
-};
+export interface Dados {
+    iban:string,
+    saldo:number,
+    estado:string,
+    nba:string,
+    dataAbertura:string,
+    numeroConta:string,
+    idTipoConta:number,
+    cartao: Cartao
+    cliente: Cliente
+}
+
+export interface Conta{
+    iban:string,
+    saldo:number,
+    estado:string,
+    nba:string,
+    dataAbertura:string,
+    numeroConta:string,
+    idTipoConta:number,
+}
+
+
+export interface Cartao{
+    idCartao:number,
+    descricao:string,
+    dataValidade:string,
+    estado:string,
+    numero:string
+}
+
+export interface Cliente{
+    nome:string,
+    bi:string,
+    email:string
+}
   
-export type Conta = {
-    iban: string,
-    nbi: string,
-    role: number,
-    number: string,
-    authorized_balance: number,
-    bic: string,
-    available_balance: number,
-    up_balance: number,
-    created_at: string,
-    currency: string,
-    state: string,
-};
-
-export type User={
-    nome: string;
-    email: string;
-    numeroBi: string;
-    conta:Conta;
-}

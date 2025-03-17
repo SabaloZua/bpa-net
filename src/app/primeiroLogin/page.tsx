@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Image from "next/image";
-import welcome from "@/assets/images/welcome.svg";
+import welcome from "@/assets/images/resetPass.svg";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import api from "@/utils/axios";
+
 
 const formSchema = z
   .object({
@@ -35,9 +36,11 @@ const formSchema = z
 
 type FormData = z.infer<typeof formSchema>;
 
-function App() {
+
+export default function PrimeiroLogin() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
 
   const {
     register,
@@ -50,8 +53,8 @@ function App() {
   async function submitForm(data: FormData) {
     setIsLoading(true);
     try {
-      await api.post("/login/primeiriologin", {
-        idconta:1,
+      await api.post("/login/primeiroLogin", {
+        idconta:Number(localStorage.getItem("idConta")),
         codigoacesso:data.codigoAcesso,
         pergunta:data.pergunta,
         resposta:data.resposta
@@ -75,10 +78,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1A82FF]/10 to-[#1A82FF]/5 flex items-center justify-center p-4">
-      <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row items-center gap-8 p-4">
+      <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row items-center gap-8 ">
         {/* Illustration for larger screens */}
         <div className="hidden lg:block w-1/2">
-          <Image src={welcome} alt="Segurança Bancária" className="w-full h-auto" width={400} />
+          <Image src={welcome} alt="Segurança Bancária" className="w-full h-auto" width={200} />
         </div>
 
         {/* Form Container */}
@@ -187,5 +190,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

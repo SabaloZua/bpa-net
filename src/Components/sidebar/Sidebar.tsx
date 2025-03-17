@@ -14,6 +14,7 @@ export default function Sidebar() {
     path: string;
     name: string;
     icon: JSX.Element;
+    active:boolean;
   }
 
   const links: LinkItem[] = sidebarLinks;
@@ -31,7 +32,10 @@ export default function Sidebar() {
 
         <nav className="overflow-y-auto p-1">
           {links.map((link: LinkItem, index: number) => (
-            <Link href={link.path} key={index}>
+            <Link href={link.path} key={index}  className="btn"
+            data-active={link.active}
+            data-page={link.name}
+            type="button">
               <div
                 className={`mx-4 my-2 p-3 rounded-md flex items-center justify-between cursor-pointer ${
                   isActive(link.path) ? "bg-white text-black-2" : "hover:bg-blue-600"

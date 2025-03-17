@@ -16,7 +16,7 @@ import "@/styles/email_campos.css";
 import "@/styles/email.css";
 import { TailSpin } from "react-loader-spinner";
 import api from "@/utils/axios";
-import { useUserStore } from "@/contexts/userStore";
+//import { useUserStore } from "@/contexts/userStore";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 
@@ -36,7 +36,7 @@ export default function Register() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { setEmail } = useUserStore();
+  //const { setEmail } = useUserStore();
 
   const {
     register,
@@ -50,7 +50,7 @@ export default function Register() {
     setIsLoading(true);
     try {
       await api.post("/openacount/emailvalidete", data);
-      setEmail(data.email);
+      //setEmail(data.email);
       if (typeof window !== "undefined") {
         localStorage.setItem("email", data.email);
       }
@@ -58,11 +58,11 @@ export default function Register() {
       //router.push("/registo/tipo-conta");
     } catch (error) {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 400) {
-          toast.error(error.response?.data.message);
-        } else {
-          toast.error("Sem conexão com o servidor");
-        }
+       if(error.response?.status == 400){
+        toast.error(error.response.data.message)
+       }else{
+        toast.error("Sem conexão com o servidor")
+       }
       }
     } finally {
       setIsLoading(false);
