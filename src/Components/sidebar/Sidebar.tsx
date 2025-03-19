@@ -32,9 +32,9 @@ export default function Sidebar() {
 
         <nav className="overflow-y-auto p-1">
           {links.map((link: LinkItem, index: number) => (
-            <Link href={link.path} key={index}  className="btn"
+            <a  key={index}  className="btn"
             data-active={link.active}
-            data-page={link.name}
+            data-page={link.path}
             type="button">
               <div
                 className={`mx-4 my-2 p-3 rounded-md flex items-center justify-between cursor-pointer ${
@@ -47,7 +47,7 @@ export default function Sidebar() {
                 </div>
                 {link.name !== "O Meu BPA" && <ChevronDown size={16} />}
               </div>
-            </Link>
+            </a>
           ))}
         </nav>
 

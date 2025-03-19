@@ -41,44 +41,8 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
 
   useEffect(() => {
     const buttons = document.querySelectorAll(".btn[data-active]") as NodeListOf<HTMLButtonElement>;
-    const item_list = document.querySelectorAll(".btn") as NodeListOf<HTMLButtonElement>;
-    const shadow = document.querySelector(".shadow") as HTMLDivElement;
 
-    for (const item of item_list) {
-      if (item.dataset.active === "true") {
-        shadow.style.transition = ".5s";
-        shadow.style.transform = `translate(${
-          item.getBoundingClientRect().x + 7
-        }px, ${item.getBoundingClientRect().y + 18}px)`;
-        shadow.style.height = `${item.getBoundingClientRect().height - 35}px`;
-      }
-    }
-
-    for (const button of buttons) {
-      button.addEventListener("mouseover", () => {
-        shadow.style.transform = `translate(${
-          button.getBoundingClientRect().x + 7
-        }px, ${button.getBoundingClientRect().y + 18}px)`;
-        shadow.style.height = `${button.getBoundingClientRect().height - 35}px`;
-      });
-    }
-
-    for (const button of buttons) {
-      button.addEventListener("mouseleave", () => {
-        for (const item of item_list) {
-          if (item.dataset.active === "true") {
-            shadow.style.transition = ".5s";
-            shadow.style.transform = `translate(${
-              item.getBoundingClientRect().x + 7
-            }px, ${item.getBoundingClientRect().y + 18}px)`;
-            shadow.style.height = `${
-              item.getBoundingClientRect().height - 35
-            }px`;
-          }
-        }
-      });
-    }
-
+    
     function update(button: HTMLButtonElement) {
       for (const btn of buttons) {
         btn.dataset.active = "false";
@@ -97,10 +61,10 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
 
 
     return ( 
-        <main className=" grid lg:grid-cols-4  h-screen ">
+      <main className=" grid lg:grid-cols-5  h-screen ">
         <Sidebar />
   
-        <div className="lg:col-span-3 flex flex-col overflow-hidden bg-white ">
+        <div className="lg:col-span-4 flex flex-col overflow-hidden bg-white ">
           {/* Header */}
           <header className="z-10">
             <div className="flex items-center justify-between p-4">
@@ -119,7 +83,7 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
                   href={undefined}
                   className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                 >
-                  <Bell className="h-6 w-6" />
+                  <Bell className="h-8 w-8" />
                 </Link>
                 <div className="ml-3 relative">
                   <div className="flex items-center">
@@ -135,21 +99,18 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
               </div>
             </div>
             <div className="px-4 py-2 border-t  flex items-center">
-              <div className="mr-4">
-                Olá <span className="font-medium text-blue-500">{dadosConta?.dados.cliente.nome}</span>👋
-              </div>
             </div>
           </header>
   
-          <main className="flex-1 overflow-y-auto py-6 px-4 sm:px-6 lg:px-8 bg-white no-scrollbar xl:overflow-y-scroll">
+          <main className="flex-1 overflow-y-auto py-2 px-4 sm:px-6 lg:px-6 bg-white no-scrollbar xl:overflow-y-scroll">
           {page === "inicio" ? (
             <Home/>
-          ) : page === "Transferencias" ? (
+          ) : page === "transferencias" ? (
             <Transferencias/>
-          ) : page === "Mapa" ? (
+          ) : page === "mapa" ? (
             <Mapa/>
           )
-          : page === "Pagamentos" ? (
+          : page === "pagamentos" ? (
             <Pagamentos/>
           )
           : null}

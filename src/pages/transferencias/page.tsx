@@ -79,7 +79,7 @@ async function handleTranferencia(data:intraSchema){
                           Intrabancária
                       </Radio>
                       <Radio value="interbank"  description="Entre bancos diferentes">
-                          interbancária                       
+                          Interbancária                       
                       </Radio>
                     </div>
                   </RadioGroup>
