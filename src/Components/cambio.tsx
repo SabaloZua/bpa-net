@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RotateCw } from 'lucide-react';
+import {  RotateCw } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 
 const CurrencyConverterCard = () => {
@@ -55,11 +55,11 @@ const CurrencyConverterCard = () => {
   };
 
   // Função para trocar as moedas
-  const handleSwapCurrencies = () => {
-    const temp = fromCurrency;
-    setFromCurrency(toCurrency);
-    setToCurrency(temp);
-  };
+  // const handleSwapCurrencies = () => {
+  //   const temp = fromCurrency;
+  //   setFromCurrency(toCurrency);
+  //   setToCurrency(temp);
+  // };
 
   // Formatação de valores para exibição (com separadores de milhares e vírgulas)
   const formatCurrency = (value: number): string => {
@@ -201,14 +201,14 @@ const CurrencyConverterCard = () => {
           </div>
         </div>
         
-        {/* Botão de troca entre as posições centrais */}
+        {/* Botão de troca entre as posições centrais
         <button 
           onClick={handleSwapCurrencies}
           className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center z-10"
         >
-          <RotateCw className="w-4 h-4" />
+          <ArrowRightLeft  className="w-4 h-4" />
         </button>
-        
+         */}
         <div>
           <label className="block text-sm text-gray-600 mb-1">Para</label>
           <div className="relative">

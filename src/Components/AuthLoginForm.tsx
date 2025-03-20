@@ -122,7 +122,7 @@ export default function AuthForm() {
 
       const response=await api.get(`/login/verificalogin/${OTP}`);
        // useConta.setId(Number(response.data.idConta));
-       localStorage.setItem("idConta",response.data.idConta)
+       localStorage.setItem("idConta",response.data.contaid)
         if(response.data.primeirologin == true){
           router.replace('/primeiroLogin')
         }else{

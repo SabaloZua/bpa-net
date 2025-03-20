@@ -5,6 +5,7 @@ import Link from "next/link";
 import nextAuthOptions  from "@/lib/nextAuthOptions";
 import { redirect } from "next/navigation";
 
+
 // import NavMoblie from '@/Components/NavMoblie'
 // import styles from '@/styles/dasbodrd.module.css'
 
@@ -25,8 +26,8 @@ export default async function RootLayout({
 
       <div className="lg:col-span-3 flex flex-col overflow-hidden bg-white ">
         {/* Header */}
-        <header className="  z-10">
-          <div className="flex items-center justify-between p-4">
+        <header className="   z-10">
+          <div className="flex items-center justify-between border-b p-4">
             <div className="relative w-full max-w-md">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-gray-400" />
@@ -57,14 +58,12 @@ export default async function RootLayout({
               </div>
             </div>
           </div>
-          <div className="px-4 py-2 border-t  flex items-center">
-            <div className="mr-4">
-              Olá <span className="font-medium text-blue-500">Sablo Zua</span>👋
-            </div>
-          </div>
+         
         </header>
 
-        <main className="flex-1 overflow-y-auto py-6 px-4 sm:px-6 lg:px-8 bg-white no-scrollbar xl:overflow-y-scroll">
+
+       
+        <main className="flex-1 overflow-y-auto py-2 px-4 sm:px-6 lg:px-6 bg-white no-scrollbar xl:overflow-y-scroll">
           {children}
         </main>
       </div>
