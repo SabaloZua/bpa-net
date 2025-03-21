@@ -104,7 +104,7 @@ export default function PrimeiroLogin() {
                   type="password"
                   {...register("codigoAcesso")}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A82FF] focus:border-transparent transition"
-                  placeholder="Mínimo 8 caracteres"
+                  placeholder="Mínimo 4 caracteres"
                 />
                 {errors.codigoAcesso && (
                   <p className="text-red-500 text-sm mt-1">{errors.codigoAcesso.message}</p>

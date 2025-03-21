@@ -8,6 +8,7 @@ import Transferencias from "../transferencias/page";
 import Mapa from "../mapa/page";
 import Pagamentos from "../pagamentos/page";
 import Home from "../inicio/page";
+import Levantamentos from "../levantamentos/page";
 
 
 
@@ -99,6 +100,7 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
               </div>
             </div>
             <div className="px-4 py-2 border-t  flex items-center">
+          
             </div>
           </header>
   
@@ -112,6 +114,8 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
           )
           : page === "pagamentos" ? (
             <Pagamentos/>
+          ): page === "levantamentos" ? (
+            <Levantamentos/>
           )
           : null}
           </main>
