@@ -1,4 +1,9 @@
+'use client'
+
 import React from "react";
+import api from "@/utils/axios";
+import { useEffect, useState } from "react";
+
 import {
   Table,
   TableHeader,
@@ -6,10 +11,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  User,
   Avatar,
   AvatarIcon,
 } from "@nextui-org/react";
+import { ArrowUp,ArrowDown } from 'lucide-react';
 
 
 
@@ -20,62 +25,42 @@ export const columns = [
   {name: "Valor", uid: "valor"},
 ];
 
-export const users = [
-  {
-    id: 1,
-    Descricao: "Transferência interbancaria",
-    data: '23-04-2024',
-    debito:'2000kz',
-    credtio:""
-  },
-  {
-    id: 2,
-    Descricao: "Levantamento sem cartão",
-    data: '23-04-2024',
-    debito:'5000kz',
-    credtio:""
-  },
-  {
-    id: 3,
-    Descricao: "pagamentos de serviços",
-    data: '23-04-2024',
-    debito:'2000kz',
-    credtio:""
-  },
-  {
-    id: 4,
-    Descricao: "Transferência interbancaria",
-    data: '23-04-2024',
-   debito:'',
-    credtio:"1500kz"
-  },
-  {
-    id: 5,
-    Descricao: "Transferência interbancaria",
-    data: '23-04-2024',
-   debito:'',
-    credtio:"2000kz"
-  },
-  {
-    id: 6,
-    Descricao: "Transferência interbancaria",
-    data: '23-04-2024',
-    debito:'',
-    credtio:"3000kz"
-  },
 
+
+
+
+
+export default  function App() {
+  
+  type Dados = {
+    id: number;
+    Descricao: string;
+    data: string;
+    debito: string;
+    credtio: string;
+  };
+  const [transacoes, settransacoes] = useState<Dados[]>([]);
+
+    useEffect(() => {
+          function fetchPergunta() {
+              api.get(`/trasacao/trasacoesrecentes/${Number(localStorage.getItem("idConta"))}`)
+              .then(response => {
+                const dados = response.data.trasacoes;
+                settransacoes(dados);
+              })
+              .catch(error => {
+                console.error("Erro ao buscar transações:", error);
+              });
+          }
+          if (transacoes) {
+              fetchPergunta();
+             
+          }
+      },[])
 
   
-];
-
-
-
-
-type User = (typeof users)[0];
-
-export default function App() {
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User];
+  const renderCell = React.useCallback((dados: Dados, columnKey: React.Key) => {
+    const cellValue = dados[columnKey as keyof Dados];
 
     switch (columnKey) {
       case "mov":
@@ -87,7 +72,7 @@ export default function App() {
             img:' w-[20px] h-[20px]'
           }}
           icon={<AvatarIcon />}
-          radius="sm" src={user.Descricao === 'Transferência interbancaria' ? '/icons/trans9.png' : user.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : 'icons/pagame3.png'} />
+          radius="sm" src={dados.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : dados.Descricao === 'Pagamentos de Serviços' ? 'icons/pagame3.png' : '/icons/trans9.png'} />
         );
       case "Descricao":
         return (
@@ -100,13 +85,27 @@ export default function App() {
           <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
         );
       case "valor":
-        return (
-          <p className="text-bold text-12 capitalize text-default-700">
-            {
-              user.debito==""?  <span className="text-green-500">+ {user.credtio}</span>: <span className="text-red-600">-{user.debito}</span>
-            }
-          </p>
-        );
+        // Extrai apenas números do débito ou do crédito
+  const valueNumber =
+  dados.debito && dados.debito.trim() !== ""
+    ? Number(dados.debito.replace(/\D/g, ""))
+    : Number(dados.credtio.replace(/\D/g, ""));
+    
+const formattedValue = new Intl.NumberFormat("pt-AO", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+}).format(valueNumber)
+.replace(/\s/g, '.');
+return (
+  <p className="text-bold text-12 capitalize text-default-700">
+    {dados.debito == null || dados.debito === "" ? (
+      <span className=" flex items-center"><ArrowUp className="w-3 h-3 text-green-500"/>{formattedValue}</span>
+    ) : (
+      <span className=" flex items-center"><ArrowDown className="w-3 h-3 text-red-600"/>{formattedValue}</span>
+    )}
+  </p>
+);
       default:
         return cellValue;
     }
@@ -129,7 +128,7 @@ export default function App() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={transacoes}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

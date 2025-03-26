@@ -11,8 +11,20 @@ import { useStepperRegistoStore } from "@/contexts/stepsStore";
 import api from "@/utils/axios";
 import { AxiosError } from "axios";
 import { Button } from "@/components/ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { provincias } from "@/constants";
 
-const FormSchemaPessoal = z.object({
+const FormSchema = z.object({
   nomeCliente: z
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!")
@@ -53,89 +65,37 @@ const FormSchemaPessoal = z.object({
       return phone.trim().toUpperCase();
     }),
 
-  municipio: z.string({
-    required_error: "A seu municípoi é obrigatório!",
+  /*provincia: z.string({
+    required_error: "A sua província é obrigatória!",
   }),
 
-  bairro: z.string(),
+  municipio: z.string({
+    required_error: "A seu município é obrigatório!",
+  })*/
 });
 
-const FormSchemaComercial = z.object({
-  nomeCliente: z
-    .string({ required_error: "O campo não pode estar vazio!" })
-    .min(1, "O campo não pode estar vazio!")
-    .transform((nomeCliente) => {
-      return nomeCliente.trim().toUpperCase();
-      // .split(" ")
-      // .map((word) => {
-      //   return word[0].toLocaleUpperCase().concat(word.substring(1));
-      // });
-    }),
-  dataNascimento: z
-    .string()
-    .refine(
-      (value) => {
-        const date = new Date(value);
-        return !Number.isNaN(date.getTime());
-      },
-      {
-        message: "A data de nascimento deve estar no formato válido (DD/MM/AAAA)",
-        path: ["dataNascimento"],
-      }
-    )
-    .transform((value) => {
-      return new Date(value);
-    }),
-
-  telefone: z
-    .string({ required_error: "O campo não pode estar vazio!" })
-    .min(1, "Formato de telefone inválido"),
-
-  numeroBi: z
-    .string({
-      required_error: "O número do BI é obrigatório!",
-    })
-    .min(1, "O número do BI é obrigatório!")
-    .regex(/^[0-9]{9}[A-Z|a-z]{2}[0-9]{3}$/, "Número do BI inválido!")
-    .transform((phone) => {
-      return phone.trim().toUpperCase();
-    }),
-  areaActividade: z
-    .string({ required_error: "O campo é obrigatório!" })
-    .min(1, "O campo é obrigatório!"),
-  local: z.string({ required_error: "O campo é obrigatório!" }).min(1, "O campo é obrigatório!"),
-});
-
-type FormTypePessoal = z.infer<typeof FormSchemaPessoal>;
-type FormTypeComercial = z.infer<typeof FormSchemaComercial>;
+type FormType = z.infer<typeof FormSchema>;
 
 export default function PersonalData() {
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [value, setValue] = useState("");
+  const [value2, setValue2] = useState("");
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const useStepsRegisto = useStepperRegistoStore();
-  let tipoConta = "";
-  if (typeof window !== "undefined") {
-    tipoConta = localStorage.getItem("tipoConta") || "";
-  }
 
   useEffect(() => {
-    useStepsRegisto.setCurrentStepRegisto(2);
+    useStepsRegisto.setCurrentStepRegisto(1);
   }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormTypePessoal>({
-    resolver: zodResolver(FormSchemaPessoal),
-  });
-
-  const {
-    register: register2,
-    handleSubmit: handleSubmit2,
-    formState: { errors: errors2 },
-  } = useForm<FormTypeComercial>({
-    resolver: zodResolver(FormSchemaComercial),
+  } = useForm<FormType>({
+    resolver: zodResolver(FormSchema),
   });
 
   //Nesta Etapa é verificada se o BI já pertence a uma conta
@@ -150,8 +110,7 @@ export default function PersonalData() {
         localStorage.setItem("dataNascimento", data.dataNascimento.toDateString());
         localStorage.setItem("numeroBi", data.numeroBi);
         localStorage.setItem("telefone", data.telefone);
-        localStorage.setItem("areaActividade", data.areaActividade || "");
-        localStorage.setItem("local", data.local || "");
+        localStorage.setItem("provincia", data.provincia || "");
         localStorage.setItem("municipio", data.municipio || "");
       }
 
@@ -170,34 +129,22 @@ export default function PersonalData() {
     }
   }
 
-  async function submitForm(data: FormTypePessoal) {
+  async function submitForm(data: FormType) {
     const parseddataNascimento = new Date(data.dataNascimento);
     const formatedData = {
       nomeCliente: data.nomeCliente,
       numeroBi: data.numeroBi,
       dataNascimento: parseddataNascimento,
       telefone: data.telefone,
+      provincia: value,
+      municipio: value2,
     };
 
     APICall(formatedData);
   }
 
-  async function submitForm2(data: FormTypeComercial) {
-    const parseddataNascimento = new Date(data.dataNascimento);
-
-    const formatedData = {
-      nomeCliente: data.nomeCliente,
-      numeroBi: data.numeroBi,
-      dataNascimento: parseddataNascimento,
-      telefone: data.telefone,
-      areaActividade: data.areaActividade,
-      local: data.local,
-    };
-    APICall(formatedData);
-  }
-
-  return tipoConta === "c1" ? (
-    <form onSubmit={handleSubmit(submitForm)} className="login_form">
+  return (
+    <form onSubmit={handleSubmit(submitForm)} className="login_form" autoComplete="off">
       <div className="header_form">
         <h1>Dados pessoais</h1>
         <p>
@@ -246,101 +193,115 @@ export default function PersonalData() {
           {errors.numeroBi && <InfoError message={errors.numeroBi.message} />}
         </div>
 
-        <div className="input_field">
-          <label htmlFor="name">Município</label>
-          <input type="text" placeholder="Insira o nome do seu município" {...register("municipio")} />
-          {errors.municipio && <InfoError message={errors.municipio.message} />}
-        </div>
-
-        <div className="input_field">
-          <label htmlFor="name">Bairro</label>
-          <input type="text" placeholder="Insira o nome do seu bairro" {...register("bairro")} />
-          {errors.bairro && <InfoError message={errors.bairro.message} />}
-        </div>
+        <fieldset id="morada" name="morada_field" className="border p-1 px-2 rounded mb-4">
+          <legend>Morada</legend>
+          <div className="input_field">
+            {/*
+            <input type="text" placeholder="Seleccione a sua província" {...register("provincia")} /> */}
+            <label htmlFor="name">Província</label>
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className={`w-full justify-between ${
+                    value ? "text-gray-900" : "text-gray-500"
+                  } text-[1rem]`}
+                >
+                  {value
+                    ? provincias.find((provincia) => provincia.nome === value)?.nome
+                    : "Selecione a sua província"}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[400px] p-0">
+                <Command>
+                  <CommandInput placeholder="Pesquisar Província" className="h-9" />
+                  <CommandList>
+                    <CommandEmpty>No provincia found.</CommandEmpty>
+                    <CommandGroup>
+                      {provincias.map((provincia) => (
+                        <CommandItem
+                          key={provincia.nome}
+                          value={provincia.nome}
+                          onSelect={(currentValue) => {
+                            setValue(currentValue === value ? "" : currentValue);
+                            setOpen(false);
+                          }}
+                        >
+                          {provincia.nome}
+                          <Check
+                            className={cn(
+                              "ml-auto",
+                              value === provincia.nome ? "opacity-100" : "opacity-0"
+                            )}
+                          />
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+            {/* {errors.provincia && <InfoError message={errors.provincia.message} />} */}
+          </div>
+          <div className="input_field">
+            <label htmlFor="name">Município</label>
+            <Popover open={open2} onOpenChange={setOpen2}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open2}
+                  className={`w-full justify-between ${
+                    value2 ? "text-gray-900" : "text-gray-500"
+                  } text-[1rem]`}
+                >
+                  {value2
+                    ? provincias
+                        .find((provincia) => provincia.nome === value)
+                        ?.municipios.find((municipio) => municipio === value2)
+                    : "Selecione o seu município"}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[400px] p-0">
+                <Command>
+                  <CommandInput placeholder="Pesquisar município" className="h-9" />
+                  <CommandList>
+                    <CommandEmpty>Nenhum município encontrado</CommandEmpty>
+                    <CommandGroup>
+                      {provincias
+                        .find((provincia) => provincia.nome === value)
+                        ?.municipios.map((municipio) => (
+                          <CommandItem
+                            key={municipio}
+                            value={municipio}
+                            onSelect={(currentValue) => {
+                              setValue2(currentValue === value2 ? "" : currentValue);
+                              setOpen2(false);
+                            }}
+                          >
+                            {municipio}
+                            <Check
+                              className={cn(
+                                "ml-auto",
+                                value === municipio ? "opacity-100" : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+            {/* {errors.municipio && <InfoError message={errors.municipio.message} />} */}
+          </div>
+        </fieldset>
 
         <Button type="submit" disabled={isLoading} className="button_auth">
-          {isLoading ? (
-            <TailSpin
-              height="25"
-              width="25"
-              color="#fff"
-              ariaLabel="tail-spin-loading"
-              radius="1"
-              visible={true}
-            />
-          ) : (
-            "Enviar dados"
-          )}
-        </Button>
-      </div>
-    </form>
-  ) : (
-    <form onSubmit={handleSubmit2(submitForm2)} className="login_form">
-      <div className="header_form">
-        <h1>Dados pessoais</h1>
-        <p>
-          Introduza os seus dados pessoais abaixo. Certifique-se de digitar as informações
-          corretamente.{errors2.telefone && <h1>ola</h1>}
-        </p>
-      </div>
-      <div className="body_form">
-        <div className="input_field">
-          <label htmlFor="name">Nome completo</label>
-          <input
-            type="text"
-            placeholder="Insira o seu nome completo"
-            {...register2("nomeCliente")}
-          />
-          {errors2.nomeCliente && <InfoError message={errors2.nomeCliente.message} />}
-        </div>
-        <div className="input_field">
-          <label htmlFor="email">Data de nascimento</label>
-          <input
-            type="date"
-            placeholder="Insira a sua data de nascimento "
-            {...register2("dataNascimento")}
-          />
-          {errors2.dataNascimento && <InfoError message={errors2.dataNascimento.message} />}
-        </div>
-        <div className="input_field">
-          <label htmlFor="bi_number">Número do BI</label>
-          <input
-            type="text"
-            placeholder="Insira o número do BI"
-            {...register2("numeroBi")}
-            maxLength={14}
-          />
-          {errors2.numeroBi && <InfoError message={errors2.numeroBi.message} />}
-        </div>
-
-        <div className="input_field">
-          <label htmlFor="name">Telefone</label>
-          <input
-            type="text"
-            placeholder="Insira o seu número de telefone"
-            {...register2("telefone")}
-          />
-          {errors2.telefone && <InfoError message={errors2.telefone.message} />}
-        </div>
-        <div className="input_field">
-          <label htmlFor="bi_number">Área de atividade</label>
-          <input
-            type="text"
-            placeholder="Insira a área de atividade do seu negócio"
-            {...register2("areaActividade")}
-          />
-          {errors2.areaActividade && <InfoError message={errors2.areaActividade.message} />}
-        </div>
-        <div className="input_field">
-          <label htmlFor="bi_number">Local do estabelecimento</label>
-          <input
-            type="text"
-            placeholder="Insira o local do seu estabelecimento"
-            {...register2("local")}
-          />
-          {errors2.local && <InfoError message={errors2.local.message} />}
-        </div>
-        <Button type="submit" disabled={isLoading} className="w-full">
           {isLoading ? (
             <TailSpin
               height="25"

@@ -1,10 +1,6 @@
 
-export interface DadosConta{
-    dados:Dados;
-}
 
-
-export interface Dados {
+export interface DadosContaType {
     iban:string,
     saldo:number,
     estado:string,

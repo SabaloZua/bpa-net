@@ -1,23 +1,27 @@
 'use client'
 import Sidebar from "@/components/sidebar/Sidebar";
 import useContaStore from "@/contexts/contaStore";
-import {  DadosConta } from "@/types/commons";
-import { Bell, ChevronDown, Link, Search } from "lucide-react";
+import { DadosContaType } from "@/types/commons";
+import dynamic from "next/dynamic"
+import { Bell, ChevronDown, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import Transferencias from "../transferencias/page";
-import Mapa from "../mapa/page";
 import Pagamentos from "../pagamentos/page";
 import Home from "../inicio/page";
 import Levantamentos from "../levantamentos/page";
-
+import TransactionsPage from "../transacoes/page";
+import { abrevia } from "@/constants/modules";
 
 
 interface DashboardProps{
     idConta: number | undefined;
-    dadosConta:DadosConta | undefined;
+    dadosConta:DadosContaType | undefined;
 }
 
 export default function Dashboard({idConta, dadosConta}:DashboardProps){
+
+  const MapaComponent = dynamic(() => import("@/components/Mapa/mapa"), { ssr: false })
+
 
   const [page, setPage] = useState<string>("inicio");
   const useConta = useContaStore();
@@ -25,14 +29,14 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
   useEffect(()=>{
     if(dadosConta){
       
-      useConta.setSaldo(dadosConta.dados.saldo);
-      useConta.setIban(dadosConta.dados.iban);
-      useConta.setNumeroConta(dadosConta.dados.numeroConta);
-      useConta.setIdTipoConta(dadosConta.dados.idTipoConta);
-      useConta.setDataAbertura(dadosConta.dados.dataAbertura);
-      useConta.setEstado(dadosConta.dados.estado);
-      useConta.setCliente(dadosConta.dados.cliente);
-      useConta.setCartao(dadosConta.dados.cartao);
+      useConta.setSaldo(dadosConta.saldo);
+      useConta.setIban(dadosConta.iban);
+      useConta.setNumeroConta(dadosConta.numeroConta);
+      useConta.setIdTipoConta(dadosConta.idTipoConta);
+      useConta.setDataAbertura(dadosConta.dataAbertura);
+      useConta.setEstado(dadosConta.estado);
+      useConta.setCliente(dadosConta.cliente);
+      useConta.setCartao(dadosConta.cartao);
     }
 
     if(idConta){
@@ -80,18 +84,17 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
                 />
               </div>
               <div className="flex items-center">
-                <Link
-                  href={undefined}
+                <span
                   className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                 >
-                  <Bell className="h-8 w-8" />
-                </Link>
+                  <Bell className="h-6 w-6" />
+                </span>
                 <div className="ml-3 relative">
                   <div className="flex items-center">
                     <button className="bg-gray-200 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                       <span className="sr-only">Open user menu</span>
                       <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">
-                        AS
+                        {abrevia(dadosConta?.cliente.nome)}
                       </div>
                     </button>
                     <ChevronDown className="ml-1 h-4 w-4 text-gray-400" />
@@ -106,16 +109,18 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
   
           <main className="flex-1 overflow-y-auto py-2 px-4 sm:px-6 lg:px-6 bg-white no-scrollbar xl:overflow-y-scroll">
           {page === "inicio" ? (
-            <Home/>
+            <Home dadosConta={dadosConta}/>
           ) : page === "transferencias" ? (
             <Transferencias/>
           ) : page === "mapa" ? (
-            <Mapa/>
+            <MapaComponent/>
           )
           : page === "pagamentos" ? (
-            <Pagamentos/>
+            <Pagamentos dados={dadosConta}/>
           ): page === "levantamentos" ? (
-            <Levantamentos/>
+            <Levantamentos dados={dadosConta}/>
+          ): page === "transacoes" ? (
+            <TransactionsPage/>
           )
           : null}
           </main>

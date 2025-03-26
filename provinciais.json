@@ -1,0 +1,3946 @@
+{
+    "data": [
+      {
+        "nome": "Bengo",
+        "slug": "bengo",
+        "extensao": "31.371 km²",
+        "data_fundacao": "26-04-1980",
+        "capital": {
+          "nome": "Caxito",
+          "slug": "caxito"
+        },
+        "municipios": [
+          {
+            "nome": "Ambriz",
+            "slug": "ambriz",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bela Vista",
+                "slug": "bela-vista"
+              },
+              {
+                "nome": "Ambriz",
+                "slug": "ambriz"
+              },
+              {
+                "nome": "Tabi",
+                "slug": "tabi"
+              }
+            ]
+          },
+          {
+            "nome": "Bula Atumba",
+            "slug": "bula-atumba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bula Atumba",
+                "slug": "bula-atumba"
+              },
+              {
+                "nome": "Quiage",
+                "slug": "quiage"
+              }
+            ]
+          },
+          {
+            "nome": "Dande",
+            "slug": "dande",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Barra do Dande",
+                "slug": "barra-do-dande"
+              },
+              {
+                "nome": "Caxito",
+                "slug": "caxito"
+              },
+              {
+                "nome": "Mabubas",
+                "slug": "mabubas"
+              },
+              {
+                "nome": "Quicabo",
+                "slug": "quicabo"
+              },
+              {
+                "nome": "Úcua",
+                "slug": "ucua"
+              }
+            ]
+          },
+          {
+            "nome": "Dembos",
+            "slug": "dembos",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quibaxe",
+                "slug": "quibaxe"
+              },
+              {
+                "nome": "Piri",
+                "slug": "piri"
+              },
+              {
+                "nome": "Paredes",
+                "slug": "paredes"
+              },
+              {
+                "nome": "Coxe",
+                "slug": "coxe"
+              }
+            ]
+          },
+          {
+            "nome": "Nambuangongo",
+            "slug": "nambuangongo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Canacassala",
+                "slug": "canacassala"
+              },
+              {
+                "nome": "Quicunzo",
+                "slug": "quicunzo"
+              },
+              {
+                "nome": "Muxaluando",
+                "slug": "muxaluando"
+              },
+              {
+                "nome": "Quixico",
+                "slug": "quixico"
+              },
+              {
+                "nome": "Gombe",
+                "slug": "gombe"
+              },
+              {
+                "nome": "Cage",
+                "slug": "cage"
+              },
+              {
+                "nome": "Zala",
+                "slug": "zala"
+              }
+            ]
+          },
+          {
+            "nome": "Pango Aluquém",
+            "slug": "pango-aluquem",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Pango Aluquém",
+                "slug": "pango-aluquem"
+              },
+              {
+                "nome": "Cazuangongo",
+                "slug": "cazuangongo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          },
+          {
+            "nome": "Bakongo",
+            "slug": "bakongo"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          },
+          {
+            "nome": "Kikongo",
+            "slug": "kikongo"
+          }
+        ]
+      },
+      {
+        "nome": "Benguela",
+        "slug": "benguela",
+        "extensao": "39.827 km²",
+        "data_fundacao": "17-05-1617",
+        "capital": {
+          "nome": "Benguela",
+          "slug": "benguela"
+        },
+        "municipios": [
+          {
+            "nome": "Baía Farta",
+            "slug": "baia-farta",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dombe Grande",
+                "slug": "dombe-grande"
+              },
+              {
+                "nome": "Baía Farta",
+                "slug": "baia-farta"
+              },
+              {
+                "nome": "Calohanga",
+                "slug": "calohanga"
+              },
+              {
+                "nome": "Equimina",
+                "slug": "equimina"
+              }
+            ]
+          },
+          {
+            "nome": "Balombo",
+            "slug": "balombo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Balombo",
+                "slug": "balombo"
+              },
+              {
+                "nome": "Chingongo",
+                "slug": "chingongo"
+              },
+              {
+                "nome": "Chindumbo",
+                "slug": "chindumbo"
+              },
+              {
+                "nome": "Maca Mombolo",
+                "slug": "maca-mombolo"
+              }
+            ]
+          },
+          {
+            "nome": "Benguela",
+            "slug": "benguela",
+            "distritos": [
+              {
+                "nome": "Benguela",
+                "slug": "benguela"
+              }
+            ],
+            "comunas": []
+          },
+          {
+            "nome": "Bocoio",
+            "slug": "bocoio",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bocoio",
+                "slug": "bocoio"
+              },
+              {
+                "nome": "Cubal do Lumbo",
+                "slug": "cubal-do-lumbo"
+              },
+              {
+                "nome": "Monte Belo",
+                "slug": "monte-belo"
+              },
+              {
+                "nome": "Chila",
+                "slug": "chila"
+              },
+              {
+                "nome": "Passe",
+                "slug": "passe"
+              }
+            ]
+          },
+          {
+            "nome": "Caimbambo",
+            "slug": "caimbambo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caimbambo",
+                "slug": "caimbambo"
+              },
+              {
+                "nome": "Catengue",
+                "slug": "catengue"
+              },
+              {
+                "nome": "Caiave",
+                "slug": "caiave"
+              },
+              {
+                "nome": "Canhamela",
+                "slug": "canhamela"
+              },
+              {
+                "nome": "Viangombe",
+                "slug": "viangombe"
+              }
+            ]
+          },
+          {
+            "nome": "Catumbela",
+            "slug": "catumbela",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Catumbela",
+                "slug": "catumbela"
+              },
+              {
+                "nome": "Biópio",
+                "slug": "biopio"
+              },
+              {
+                "nome": "Gama",
+                "slug": "gama"
+              },
+              {
+                "nome": "Praia Bebé",
+                "slug": "praia-bebe"
+              }
+            ]
+          },
+          {
+            "nome": "Chongoroi",
+            "slug": "chongoroi",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chongorói",
+                "slug": "chongoroi"
+              },
+              {
+                "nome": "Bolonguera",
+                "slug": "bolonguera"
+              },
+              {
+                "nome": "Camuine",
+                "slug": "camuine"
+              }
+            ]
+          },
+          {
+            "nome": "Cubal",
+            "slug": "cubal",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Capupa",
+                "slug": "capupa"
+              },
+              {
+                "nome": "Cubal",
+                "slug": "cubal"
+              },
+              {
+                "nome": "Tumbulo",
+                "slug": "tumbulo"
+              },
+              {
+                "nome": "Iambala",
+                "slug": "iambala"
+              }
+            ]
+          },
+          {
+            "nome": "Ganda",
+            "slug": "ganda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ganda",
+                "slug": "ganda"
+              },
+              {
+                "nome": "Ebanga",
+                "slug": "ebanga"
+              },
+              {
+                "nome": "Chicuma",
+                "slug": "chicuma"
+              },
+              {
+                "nome": "Babaera",
+                "slug": "babaera"
+              },
+              {
+                "nome": "Casseque",
+                "slug": "casseque"
+              }
+            ]
+          },
+          {
+            "nome": "Lobito",
+            "slug": "lobito",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Egito Praia",
+                "slug": "egito-praia"
+              },
+              {
+                "nome": "Lobito",
+                "slug": "lobito"
+              },
+              {
+                "nome": "Canata",
+                "slug": "canata"
+              },
+              {
+                "nome": "Canjala",
+                "slug": "canjala"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovimbundu",
+            "slug": "ovimbundu"
+          },
+          {
+            "nome": "Ohvanyaneka",
+            "slug": "ohvanyaneka"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Umbundu",
+            "slug": "umbundu"
+          },
+          {
+            "nome": "Ohvanyaneka",
+            "slug": "ohvanyaneka"
+          }
+        ]
+      },
+      {
+        "nome": "Bié",
+        "slug": "bie",
+        "extensao": "70.314 km²",
+        "data_fundacao": "01-05-1922",
+        "capital": {
+          "nome": "Cuíto",
+          "slug": "cuito"
+        },
+        "municipios": [
+          {
+            "nome": "Andulo",
+            "slug": "andulo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Andulo",
+                "slug": "andulo"
+              },
+              {
+                "nome": "Calucinga",
+                "slug": "calucinga"
+              },
+              {
+                "nome": "Cassumbe",
+                "slug": "cassumbe"
+              },
+              {
+                "nome": "Chivaúlo",
+                "slug": "chivaulo"
+              }
+            ]
+          },
+          {
+            "nome": "Camacupa",
+            "slug": "camacupa",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ringoma",
+                "slug": "ringoma"
+              },
+              {
+                "nome": "Camacupa",
+                "slug": "camacupa"
+              },
+              {
+                "nome": "Muinha",
+                "slug": "muinha"
+              },
+              {
+                "nome": "Umpulo",
+                "slug": "umpulo"
+              },
+              {
+                "nome": "Cuanza",
+                "slug": "cuanza"
+              }
+            ]
+          },
+          {
+            "nome": "Catabola",
+            "slug": "catabola",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Catabola",
+                "slug": "catabola"
+              },
+              {
+                "nome": "Chipeta",
+                "slug": "chipeta"
+              },
+              {
+                "nome": "Caiuera",
+                "slug": "caiuera"
+              },
+              {
+                "nome": "Chiuca",
+                "slug": "chiuca"
+              },
+              {
+                "nome": "Sande",
+                "slug": "sande"
+              }
+            ]
+          },
+          {
+            "nome": "Chinguar",
+            "slug": "chinguar",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chinguar",
+                "slug": "chinguar"
+              },
+              {
+                "nome": "Cutato",
+                "slug": "cutato"
+              },
+              {
+                "nome": "Cangote",
+                "slug": "cangote"
+              }
+            ]
+          },
+          {
+            "nome": "Chitembo",
+            "slug": "chitembo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cachingues",
+                "slug": "cachingues"
+              },
+              {
+                "nome": "Chitembo",
+                "slug": "chitembo"
+              },
+              {
+                "nome": "Mutumbo",
+                "slug": "mutumbo"
+              },
+              {
+                "nome": "Mumbué",
+                "slug": "mumbue"
+              },
+              {
+                "nome": "Malengue",
+                "slug": "malengue"
+              },
+              {
+                "nome": "Soma Cuanza",
+                "slug": "soma-cuanza"
+              }
+            ]
+          },
+          {
+            "nome": "Cuemba",
+            "slug": "cuemba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Luando",
+                "slug": "luando"
+              },
+              {
+                "nome": "Munhango",
+                "slug": "munhango"
+              },
+              {
+                "nome": "Cuemba",
+                "slug": "cuemba"
+              },
+              {
+                "nome": "Sachinemuna",
+                "slug": "sachinemuna"
+              }
+            ]
+          },
+          {
+            "nome": "Cunhinga",
+            "slug": "cunhinga",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cunhinga",
+                "slug": "cunhinga"
+              },
+              {
+                "nome": "Belo Horizonte",
+                "slug": "belo-horizonte"
+              }
+            ]
+          },
+          {
+            "nome": "Cuíto",
+            "slug": "cuito",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuito",
+                "slug": "cuito"
+              },
+              {
+                "nome": "Chicala",
+                "slug": "chicala"
+              },
+              {
+                "nome": "Cunje",
+                "slug": "cunje"
+              },
+              {
+                "nome": "Trumba",
+                "slug": "trumba"
+              },
+              {
+                "nome": "Cambândua",
+                "slug": "cambandua"
+              }
+            ]
+          },
+          {
+            "nome": "Nharea",
+            "slug": "nharea",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Nharêa",
+                "slug": "nharea"
+              },
+              {
+                "nome": "Gamba",
+                "slug": "gamba"
+              },
+              {
+                "nome": "Lúbia",
+                "slug": "lubia"
+              },
+              {
+                "nome": "Caiei",
+                "slug": "caiei"
+              },
+              {
+                "nome": "Dando",
+                "slug": "dando"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovimbundu",
+            "slug": "ovimbundu"
+          },
+          {
+            "nome": "Tucokwe",
+            "slug": "tucokwe"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Umbundu",
+            "slug": "umbundu"
+          },
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          }
+        ]
+      },
+      {
+        "nome": "Cabinda",
+        "slug": "cabinda",
+        "extensao": "7.283 km²",
+        "data_fundacao": "28-02-1868",
+        "capital": {
+          "nome": "Cabinda",
+          "slug": "cabinda"
+        },
+        "municipios": [
+          {
+            "nome": "Cabinda",
+            "slug": "cabinda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cabinda",
+                "slug": "cabinda"
+              },
+              {
+                "nome": "Malembo",
+                "slug": "malembo"
+              },
+              {
+                "nome": "Tando Zinze",
+                "slug": "tando-zinze"
+              }
+            ]
+          },
+          {
+            "nome": "Cacongo",
+            "slug": "cacongo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cacongo",
+                "slug": "cacongo"
+              },
+              {
+                "nome": "Dinge",
+                "slug": "dinge"
+              },
+              {
+                "nome": "Massabi",
+                "slug": "massabi"
+              }
+            ]
+          },
+          {
+            "nome": "Buco-Zau",
+            "slug": "buco-zau",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Buco Zau",
+                "slug": "buco-zau"
+              },
+              {
+                "nome": "Necuto",
+                "slug": "necuto"
+              },
+              {
+                "nome": "Inhuca",
+                "slug": "inhuca"
+              }
+            ]
+          },
+          {
+            "nome": "Belize",
+            "slug": "belize",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Miconje",
+                "slug": "miconje"
+              },
+              {
+                "nome": "Belize",
+                "slug": "belize"
+              },
+              {
+                "nome": "Luali",
+                "slug": "luali"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Bakongo",
+            "slug": "bakongo"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kikongo",
+            "slug": "kikongo"
+          },
+          {
+            "nome": "Fiote",
+            "slug": "fiote"
+          }
+        ]
+      },
+      {
+        "nome": "Cuando Cubango",
+        "slug": "cuando-cubango",
+        "extensao": "199.049 km²",
+        "data_fundacao": "21-10-1961",
+        "capital": {
+          "nome": "Menongue",
+          "slug": "menongue"
+        },
+        "municipios": [
+          {
+            "nome": "Calai",
+            "slug": "calai",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Maué",
+                "slug": "maue"
+              },
+              {
+                "nome": "Calai",
+                "slug": "calai"
+              },
+              {
+                "nome": "Mavengue",
+                "slug": "mavengue"
+              }
+            ]
+          },
+          {
+            "nome": "Cuangar",
+            "slug": "cuangar",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Savate",
+                "slug": "savate"
+              },
+              {
+                "nome": "Caila",
+                "slug": "caila"
+              },
+              {
+                "nome": "Cuangar",
+                "slug": "cuangar"
+              }
+            ]
+          },
+          {
+            "nome": "Cuchi",
+            "slug": "cuchi",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuchi",
+                "slug": "cuchi"
+              },
+              {
+                "nome": "Cutato",
+                "slug": "cutato"
+              },
+              {
+                "nome": "Chinguanja",
+                "slug": "chinguanja"
+              },
+              {
+                "nome": "Vissati",
+                "slug": "vissati"
+              }
+            ]
+          },
+          {
+            "nome": "Cuito Cuanavale",
+            "slug": "cuito-cuanavale",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lupire",
+                "slug": "lupire"
+              },
+              {
+                "nome": "Cuito Cuanavale",
+                "slug": "cuito-cuanavale"
+              },
+              {
+                "nome": "Longa",
+                "slug": "longa"
+              },
+              {
+                "nome": "Baixo Longa",
+                "slug": "baixo-longa"
+              }
+            ]
+          },
+          {
+            "nome": "Dirico",
+            "slug": "dirico",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dirico",
+                "slug": "dirico"
+              },
+              {
+                "nome": "Mucusso",
+                "slug": "mucusso"
+              },
+              {
+                "nome": "Xamavera",
+                "slug": "xamavera"
+              }
+            ]
+          },
+          {
+            "nome": "Mavinga",
+            "slug": "mavinga",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mavinga",
+                "slug": "mavinga"
+              },
+              {
+                "nome": "Cutuile",
+                "slug": "cutuile"
+              },
+              {
+                "nome": "Cunjamba",
+                "slug": "cunjamba"
+              },
+              {
+                "nome": "Luengue",
+                "slug": "luengue"
+              }
+            ]
+          },
+          {
+            "nome": "Menongue",
+            "slug": "menongue",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caiundo",
+                "slug": "caiundo"
+              },
+              {
+                "nome": "Menongue",
+                "slug": "menongue"
+              },
+              {
+                "nome": "Cueio",
+                "slug": "cueio"
+              },
+              {
+                "nome": "Missombo",
+                "slug": "missombo"
+              }
+            ]
+          },
+          {
+            "nome": "Nancova",
+            "slug": "nancova",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Rito",
+                "slug": "rito"
+              },
+              {
+                "nome": "Nancova",
+                "slug": "nancova"
+              }
+            ]
+          },
+          {
+            "nome": "Rivungo",
+            "slug": "rivungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Rivungo",
+                "slug": "rivungo"
+              },
+              {
+                "nome": "Xipundo",
+                "slug": "xipundo"
+              },
+              {
+                "nome": "Luiana",
+                "slug": "luiana"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovanganguela",
+            "slug": "ovanganguela"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Nganguela",
+            "slug": "nganguela"
+          }
+        ]
+      },
+      {
+        "nome": "Cuanza Norte",
+        "slug": "cuanza-norte",
+        "extensao": "24.110 km²",
+        "data_fundacao": "15-08-1914",
+        "capital": {
+          "nome": "Ndalatando",
+          "slug": "ndalatando"
+        },
+        "municipios": [
+          {
+            "nome": "Ambaca",
+            "slug": "ambaca",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Camabatela",
+                "slug": "camabatela"
+              },
+              {
+                "nome": "Tango",
+                "slug": "tango"
+              },
+              {
+                "nome": "Máua",
+                "slug": "maua"
+              },
+              {
+                "nome": "Bindo",
+                "slug": "bindo"
+              },
+              {
+                "nome": "Luinga",
+                "slug": "luinga"
+              }
+            ]
+          },
+          {
+            "nome": "Banga",
+            "slug": "banga",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Banga",
+                "slug": "banga"
+              },
+              {
+                "nome": "Caculo Cabaça",
+                "slug": "caculo-cabaca"
+              },
+              {
+                "nome": "Aldeia Nova",
+                "slug": "aldeia-nova"
+              },
+              {
+                "nome": "Cariamba",
+                "slug": "cariamba"
+              }
+            ]
+          },
+          {
+            "nome": "Bolongongo",
+            "slug": "bolongongo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bolongongo",
+                "slug": "bolongongo"
+              },
+              {
+                "nome": "Terreiro",
+                "slug": "terreiro"
+              },
+              {
+                "nome": "Quiquiemba",
+                "slug": "quiquiemba"
+              }
+            ]
+          },
+          {
+            "nome": "Cambambe",
+            "slug": "cambambe",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dondo",
+                "slug": "dondo"
+              },
+              {
+                "nome": "Massangano",
+                "slug": "massangano"
+              },
+              {
+                "nome": "Dange ya Menha",
+                "slug": "dange-ya-menha"
+              },
+              {
+                "nome": "Zenza do Itombe",
+                "slug": "zenza-do-itombe"
+              },
+              {
+                "nome": "São Pedro da Quilemba",
+                "slug": "sao-pedro-da-quilemba"
+              }
+            ]
+          },
+          {
+            "nome": "Cazengo",
+            "slug": "cazengo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ndalatando",
+                "slug": "ndalatando"
+              },
+              {
+                "nome": "Canhoca",
+                "slug": "canhoca"
+              }
+            ]
+          },
+          {
+            "nome": "Golungo Alto",
+            "slug": "golungo-alto",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Golungo Alto",
+                "slug": "golungo-alto"
+              },
+              {
+                "nome": "Cambondo",
+                "slug": "cambondo"
+              },
+              {
+                "nome": "Cêrca",
+                "slug": "cerca"
+              },
+              {
+                "nome": "Quiluanje",
+                "slug": "quiluanje"
+              }
+            ]
+          },
+          {
+            "nome": "Gonguembo",
+            "slug": "gonguembo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quilombo dos Dembos",
+                "slug": "quilombo-dos-dembos"
+              },
+              {
+                "nome": "Camame",
+                "slug": "camame"
+              },
+              {
+                "nome": "Cavunga",
+                "slug": "cavunga"
+              }
+            ]
+          },
+          {
+            "nome": "Lucala",
+            "slug": "lucala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lucala",
+                "slug": "lucala"
+              },
+              {
+                "nome": "Quiangombe",
+                "slug": "quiangombe"
+              }
+            ]
+          },
+          {
+            "nome": "Quiculungo",
+            "slug": "quiculungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quiculungo",
+                "slug": "quiculungo"
+              }
+            ]
+          },
+          {
+            "nome": "Samba Cajú",
+            "slug": "samba-caju",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Samba Cajú",
+                "slug": "samba-caju"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          }
+        ]
+      },
+      {
+        "nome": "Cuanza Sul",
+        "slug": "cuanza-sul",
+        "extensao": "55.660 km²",
+        "data_fundacao": "15-09-1917",
+        "capital": {
+          "nome": "Sumbe",
+          "slug": "sumbe"
+        },
+        "municipios": [
+          {
+            "nome": "Gabela",
+            "slug": "gabela",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Gabela",
+                "slug": "gabela"
+              },
+              {
+                "nome": "Assango",
+                "slug": "assango"
+              }
+            ]
+          },
+          {
+            "nome": "Cassongue",
+            "slug": "cassongue",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cassongue",
+                "slug": "cassongue"
+              },
+              {
+                "nome": "Pambangala",
+                "slug": "pambangala"
+              },
+              {
+                "nome": "Dumbi",
+                "slug": "dumbi"
+              },
+              {
+                "nome": "Atóme",
+                "slug": "atome"
+              }
+            ]
+          },
+          {
+            "nome": "Cela",
+            "slug": "cela",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Sanga",
+                "slug": "sanga"
+              },
+              {
+                "nome": "Waku Kungo",
+                "slug": "waku-kungo"
+              },
+              {
+                "nome": "Quissanga Cunjo",
+                "slug": "quissanga-cunjo"
+              }
+            ]
+          },
+          {
+            "nome": "Conda",
+            "slug": "conda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Conda",
+                "slug": "conda"
+              },
+              {
+                "nome": "Cunjo",
+                "slug": "cunjo"
+              }
+            ]
+          },
+          {
+            "nome": "Ebo",
+            "slug": "ebo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ebo",
+                "slug": "ebo"
+              },
+              {
+                "nome": "Condé",
+                "slug": "conde"
+              },
+              {
+                "nome": "Quissanje",
+                "slug": "quissanje"
+              }
+            ]
+          },
+          {
+            "nome": "Libolo",
+            "slug": "libolo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Calulo",
+                "slug": "calulo"
+              },
+              {
+                "nome": "Munenga",
+                "slug": "munenga"
+              },
+              {
+                "nome": "Cabuta",
+                "slug": "cabuta"
+              },
+              {
+                "nome": "Quissongo",
+                "slug": "quissongo"
+              }
+            ]
+          },
+          {
+            "nome": "Mussende",
+            "slug": "mussende",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mussende",
+                "slug": "mussende"
+              },
+              {
+                "nome": "Quienha",
+                "slug": "quienha"
+              },
+              {
+                "nome": "São Lucas",
+                "slug": "sao-lucas"
+              }
+            ]
+          },
+          {
+            "nome": "Porto Amboim",
+            "slug": "porto-amboim",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Capolo",
+                "slug": "capolo"
+              },
+              {
+                "nome": "Porto Amboim",
+                "slug": "porto-amboim"
+              }
+            ]
+          },
+          {
+            "nome": "Quilenda",
+            "slug": "quilenda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quilenda",
+                "slug": "quilenda"
+              },
+              {
+                "nome": "Quirimbo",
+                "slug": "quirimbo"
+              }
+            ]
+          },
+          {
+            "nome": "Quibala",
+            "slug": "quibala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quibala",
+                "slug": "quibala"
+              },
+              {
+                "nome": "Dala Cachibo",
+                "slug": "dala-cachibo"
+              },
+              {
+                "nome": "Cariango",
+                "slug": "cariango"
+              },
+              {
+                "nome": "Lonhe",
+                "slug": "lonhe"
+              }
+            ]
+          },
+          {
+            "nome": "Seles",
+            "slug": "seles",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Seles",
+                "slug": "seles"
+              },
+              {
+                "nome": "Amboiva",
+                "slug": "amboiva"
+              },
+              {
+                "nome": "Botera",
+                "slug": "botera"
+              }
+            ]
+          },
+          {
+            "nome": "Sumbe",
+            "slug": "sumbe",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Sumbe",
+                "slug": "sumbe"
+              },
+              {
+                "nome": "Gungo",
+                "slug": "gungo"
+              },
+              {
+                "nome": "Gangula",
+                "slug": "gangula"
+              },
+              {
+                "nome": "Quicombo",
+                "slug": "quicombo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          },
+          {
+            "nome": "Ovimbundu",
+            "slug": "ovimbundu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          },
+          {
+            "nome": "Ubundu",
+            "slug": "ubundu"
+          }
+        ]
+      },
+      {
+        "nome": "Cunene",
+        "slug": "cunene",
+        "extensao": "78.342 km²",
+        "data_fundacao": "10-07-1970",
+        "capital": {
+          "nome": "Ondijiva",
+          "slug": "ondijiva"
+        },
+        "municipios": [
+          {
+            "nome": "Cahama",
+            "slug": "cahama",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cahama",
+                "slug": "cahama"
+              },
+              {
+                "nome": "Otchinjau",
+                "slug": "otchinjau"
+              }
+            ]
+          },
+          {
+            "nome": "Cuanhama",
+            "slug": "cuanhama",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ondjiva",
+                "slug": "ondjiva"
+              },
+              {
+                "nome": "Nehone Cafima",
+                "slug": "nehone-cafima"
+              },
+              {
+                "nome": "Evale",
+                "slug": "evale"
+              },
+              {
+                "nome": "Tchompolo Oximolo",
+                "slug": "tchompolo-oximolo"
+              },
+              {
+                "nome": "Môngwa",
+                "slug": "mongwa"
+              }
+            ]
+          },
+          {
+            "nome": "Curoca",
+            "slug": "curoca",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Oncócua",
+                "slug": "oncocua"
+              },
+              {
+                "nome": "Chitado",
+                "slug": "chitado"
+              }
+            ]
+          },
+          {
+            "nome": "Cuvelai",
+            "slug": "cuvelai",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mupa",
+                "slug": "mupa"
+              },
+              {
+                "nome": "Mukolongodjo",
+                "slug": "mukolongodjo"
+              },
+              {
+                "nome": "Calonga",
+                "slug": "calonga"
+              },
+              {
+                "nome": "Cubati",
+                "slug": "cubati"
+              }
+            ]
+          },
+          {
+            "nome": "Namacunde",
+            "slug": "namacunde",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Namacunde",
+                "slug": "namacunde"
+              },
+              {
+                "nome": "Chiede",
+                "slug": "chiede"
+              }
+            ]
+          },
+          {
+            "nome": "Ombadja",
+            "slug": "ombadja",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Humpe",
+                "slug": "humpe"
+              },
+              {
+                "nome": "Mucope",
+                "slug": "mucope"
+              },
+              {
+                "nome": "Naulila",
+                "slug": "naulila"
+              },
+              {
+                "nome": "Ombala yo Mungu",
+                "slug": "ombala-yo-mungu"
+              },
+              {
+                "nome": "Xangongo",
+                "slug": "xangongo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovambu",
+            "slug": "ovambu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Oshiwambo",
+            "slug": "oshiwambo"
+          }
+        ]
+      },
+      {
+        "nome": "Huambo",
+        "slug": "huambo",
+        "extensao": "2609",
+        "data_fundacao": "08-08-1912",
+        "capital": {
+          "nome": "Huambo",
+          "slug": "huambo"
+        },
+        "municipios": [
+          {
+            "nome": "Longonjo",
+            "slug": "longonjo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lépi",
+                "slug": "lepi"
+              },
+              {
+                "nome": "Iava",
+                "slug": "iava"
+              },
+              {
+                "nome": "Chilata",
+                "slug": "chilata"
+              },
+              {
+                "nome": "Longonjo",
+                "slug": "longonjo"
+              }
+            ]
+          },
+          {
+            "nome": "Bailundo",
+            "slug": "bailundo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bimbe",
+                "slug": "bimbe"
+              },
+              {
+                "nome": "Bailundo",
+                "slug": "bailundo"
+              },
+              {
+                "nome": "Lunge",
+                "slug": "lunge"
+              },
+              {
+                "nome": "Luvemba",
+                "slug": "luvemba"
+              },
+              {
+                "nome": "Hengue",
+                "slug": "hengue"
+              }
+            ]
+          },
+          {
+            "nome": "Chicala Choloanga",
+            "slug": "chicala-choloanga",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Sambo",
+                "slug": "sambo"
+              },
+              {
+                "nome": "Mbawe",
+                "slug": "mbawe"
+              },
+              {
+                "nome": "Chicala",
+                "slug": "chicala"
+              },
+              {
+                "nome": "Samboto",
+                "slug": "samboto"
+              }
+            ]
+          },
+          {
+            "nome": "Mungo",
+            "slug": "mungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mungo",
+                "slug": "mungo"
+              },
+              {
+                "nome": "Cambuengo",
+                "slug": "cambuengo"
+              }
+            ]
+          },
+          {
+            "nome": "Londuimbale",
+            "slug": "londuimbale",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Londuimbali",
+                "slug": "londuimbali"
+              },
+              {
+                "nome": "Cumbira",
+                "slug": "cumbira"
+              },
+              {
+                "nome": "Galanga",
+                "slug": "galanga"
+              },
+              {
+                "nome": "Ussoque",
+                "slug": "ussoque"
+              },
+              {
+                "nome": "Alto Hama",
+                "slug": "alto-hama"
+              }
+            ]
+          },
+          {
+            "nome": "Tchindjenje",
+            "slug": "tchindjenje",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chinjenje",
+                "slug": "chinjenje"
+              },
+              {
+                "nome": "Chiaca",
+                "slug": "chiaca"
+              }
+            ]
+          },
+          {
+            "nome": "Ucuma",
+            "slug": "ucuma",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Ucuma",
+                "slug": "ucuma"
+              },
+              {
+                "nome": "Cacoma",
+                "slug": "cacoma"
+              },
+              {
+                "nome": "Mundundo",
+                "slug": "mundundo"
+              }
+            ]
+          },
+          {
+            "nome": "Cachiungo",
+            "slug": "cachiungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chiumbo",
+                "slug": "chiumbo"
+              },
+              {
+                "nome": "Chinhama",
+                "slug": "chinhama"
+              },
+              {
+                "nome": "Cachiungo",
+                "slug": "cachiungo"
+              }
+            ]
+          },
+          {
+            "nome": "Caála",
+            "slug": "caala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caála",
+                "slug": "caala"
+              },
+              {
+                "nome": "Catata",
+                "slug": "catata"
+              },
+              {
+                "nome": "Calenga",
+                "slug": "calenga"
+              },
+              {
+                "nome": "Cuima",
+                "slug": "cuima"
+              }
+            ]
+          },
+          {
+            "nome": "Ecunha",
+            "slug": "ecunha",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quipeio",
+                "slug": "quipeio"
+              },
+              {
+                "nome": "Ecunha",
+                "slug": "ecunha"
+              }
+            ]
+          },
+          {
+            "nome": "Huambo",
+            "slug": "huambo",
+            "distritos": [],
+            "comunas": []
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovimbundu",
+            "slug": "ovimbundu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Umbundu",
+            "slug": "umbundu"
+          }
+        ]
+      },
+      {
+        "nome": "Huíla",
+        "slug": "huila",
+        "extensao": "79022",
+        "data_fundacao": "02-09-1901",
+        "capital": {
+          "nome": "Lubango",
+          "slug": "lubango"
+        },
+        "municipios": [
+          {
+            "nome": "Caconda",
+            "slug": "caconda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caconda",
+                "slug": "caconda"
+              },
+              {
+                "nome": "Gungue",
+                "slug": "gungue"
+              },
+              {
+                "nome": "Uaba",
+                "slug": "uaba"
+              },
+              {
+                "nome": "Cusse",
+                "slug": "cusse"
+              }
+            ]
+          },
+          {
+            "nome": "Cacula",
+            "slug": "cacula",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chituto",
+                "slug": "chituto"
+              },
+              {
+                "nome": "Viti Vivali",
+                "slug": "viti-vivali"
+              },
+              {
+                "nome": "Cacula",
+                "slug": "cacula"
+              },
+              {
+                "nome": "Tchicuaqueia",
+                "slug": "tchicuaqueia"
+              }
+            ]
+          },
+          {
+            "nome": "Caluquembe",
+            "slug": "caluquembe",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caluquembe",
+                "slug": "caluquembe"
+              },
+              {
+                "nome": "Calepi",
+                "slug": "calepi"
+              },
+              {
+                "nome": "Ngola",
+                "slug": "ngola"
+              }
+            ]
+          },
+          {
+            "nome": "Gambos",
+            "slug": "gambos",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chimbemba",
+                "slug": "chimbemba"
+              },
+              {
+                "nome": "Chiange",
+                "slug": "chiange"
+              }
+            ]
+          },
+          {
+            "nome": "Chibia",
+            "slug": "chibia",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chibia",
+                "slug": "chibia"
+              },
+              {
+                "nome": "Jau",
+                "slug": "jau"
+              },
+              {
+                "nome": "Capunda Cavilongo",
+                "slug": "capunda-cavilongo"
+              },
+              {
+                "nome": "Quihita",
+                "slug": "quihita"
+              }
+            ]
+          },
+          {
+            "nome": "Chicomba",
+            "slug": "chicomba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chicomba",
+                "slug": "chicomba"
+              },
+              {
+                "nome": "Cutenda",
+                "slug": "cutenda"
+              }
+            ]
+          },
+          {
+            "nome": "Chipindo",
+            "slug": "chipindo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bambi",
+                "slug": "bambi"
+              },
+              {
+                "nome": "Chipindo",
+                "slug": "chipindo"
+              }
+            ]
+          },
+          {
+            "nome": "Cuvango",
+            "slug": "cuvango",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuvango",
+                "slug": "cuvango"
+              },
+              {
+                "nome": "Galangue",
+                "slug": "galangue"
+              },
+              {
+                "nome": "Vicungo",
+                "slug": "vicungo"
+              }
+            ]
+          },
+          {
+            "nome": "Humpata",
+            "slug": "humpata",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Humpata",
+                "slug": "humpata"
+              }
+            ]
+          },
+          {
+            "nome": "Jamba",
+            "slug": "jamba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dongo",
+                "slug": "dongo"
+              },
+              {
+                "nome": "Cassinga",
+                "slug": "cassinga"
+              },
+              {
+                "nome": "Jamba",
+                "slug": "jamba"
+              }
+            ]
+          },
+          {
+            "nome": "Lubango",
+            "slug": "lubango",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lubango",
+                "slug": "lubango"
+              },
+              {
+                "nome": "Hoque",
+                "slug": "hoque"
+              },
+              {
+                "nome": "Arimba",
+                "slug": "arimba"
+              },
+              {
+                "nome": "Huila",
+                "slug": "huila"
+              }
+            ]
+          },
+          {
+            "nome": "Matala",
+            "slug": "matala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Capelongo",
+                "slug": "capelongo"
+              },
+              {
+                "nome": "Matala",
+                "slug": "matala"
+              },
+              {
+                "nome": "Mulondo",
+                "slug": "mulondo"
+              }
+            ]
+          },
+          {
+            "nome": "Quilengues",
+            "slug": "quilengues",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quilengues",
+                "slug": "quilengues"
+              },
+              {
+                "nome": "Impulo",
+                "slug": "impulo"
+              },
+              {
+                "nome": "Dinde",
+                "slug": "dinde"
+              }
+            ]
+          },
+          {
+            "nome": "Quipungo",
+            "slug": "quipungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quipungo",
+                "slug": "quipungo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovambu",
+            "slug": "ovambu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Umbundu",
+            "slug": "umbundu"
+          },
+          {
+            "nome": "Olunhaneka",
+            "slug": "olunhaneka"
+          }
+        ]
+      },
+      {
+        "nome": "Luanda",
+        "slug": "luanda",
+        "extensao": "18.826 km²",
+        "data_fundacao": "25-01-1576",
+        "capital": {
+          "nome": "Luanda",
+          "slug": "luanda"
+        },
+        "municipios": [
+          {
+            "nome": "Icolo e Bengo",
+            "slug": "icolo-e-bengo",
+            "distritos": [
+              {
+                "nome": "Catete",
+                "slug": "catete"
+              },
+              {
+                "nome": "Bela Vista",
+                "slug": "bela-vista"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Cassoneca",
+                "slug": "cassoneca"
+              },
+              {
+                "nome": "Cabiri",
+                "slug": "cabiri"
+              },
+              {
+                "nome": "Bom Jesus",
+                "slug": "bom-jesus"
+              },
+              {
+                "nome": "Caculo Cahango",
+                "slug": "caculo-cahango"
+              },
+              {
+                "nome": "Quiminha",
+                "slug": "quiminha"
+              }
+            ]
+          },
+          {
+            "nome": "Luanda",
+            "slug": "luanda",
+            "distritos": [
+              {
+                "nome": "Sambizanga",
+                "slug": "sambizanga"
+              },
+              {
+                "nome": "Rangel",
+                "slug": "rangel"
+              },
+              {
+                "nome": "Maianga",
+                "slug": "maianga"
+              },
+              {
+                "nome": "Ingombota",
+                "slug": "ingombota"
+              },
+              {
+                "nome": "Samba",
+                "slug": "samba"
+              },
+              {
+                "nome": "Neves Bendinha",
+                "slug": "neves-bendinha"
+              },
+              {
+                "nome": "Ngola Kiluanje",
+                "slug": "ngola-kiluanje"
+              }
+            ],
+            "comunas": []
+          },
+          {
+            "nome": "Quiçama",
+            "slug": "quicama",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Muxima",
+                "slug": "muxima"
+              },
+              {
+                "nome": "Demba Chio",
+                "slug": "demba-chio"
+              },
+              {
+                "nome": "Quixinge",
+                "slug": "quixinge"
+              },
+              {
+                "nome": "Mumbondo",
+                "slug": "mumbondo"
+              },
+              {
+                "nome": "Caboledo",
+                "slug": "caboledo"
+              }
+            ]
+          },
+          {
+            "nome": "Cacuaco",
+            "slug": "cacuaco",
+            "distritos": [
+              {
+                "nome": "Kikolo",
+                "slug": "kikolo"
+              },
+              {
+                "nome": "Mulenvos de Baixo",
+                "slug": "mulenvos-de-baixo"
+              },
+              {
+                "nome": "Sequele",
+                "slug": "sequele"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Cacuaco",
+                "slug": "cacuaco"
+              },
+              {
+                "nome": "Quicolo",
+                "slug": "quicolo"
+              },
+              {
+                "nome": "Funda",
+                "slug": "funda"
+              }
+            ]
+          },
+          {
+            "nome": "Cazenga",
+            "slug": "cazenga",
+            "distritos": [
+              {
+                "nome": "Cazenga",
+                "slug": "cazenga"
+              },
+              {
+                "nome": "Hoji ya Henda",
+                "slug": "hoji-ya-henda"
+              },
+              {
+                "nome": "11 de Novembro",
+                "slug": "11-de-novembro"
+              },
+              {
+                "nome": "Kima Kieza",
+                "slug": "kima-kieza"
+              },
+              {
+                "nome": "Tala Hadi",
+                "slug": "tala-hadi"
+              },
+              {
+                "nome": "Kalawenda",
+                "slug": "kalawenda"
+              }
+            ],
+            "comunas": []
+          },
+          {
+            "nome": "Viana",
+            "slug": "viana",
+            "distritos": [
+              {
+                "nome": "Viana",
+                "slug": "viana"
+              },
+              {
+                "nome": "Estalagem",
+                "slug": "estalagem"
+              },
+              {
+                "nome": "Kikuxi",
+                "slug": "kikuxi"
+              },
+              {
+                "nome": "Baía",
+                "slug": "baia"
+              },
+              {
+                "nome": "Zango",
+                "slug": "zango"
+              },
+              {
+                "nome": "Vila Flôr",
+                "slug": "vila-flor"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Calumbo",
+                "slug": "calumbo"
+              }
+            ]
+          },
+          {
+            "nome": "Belas",
+            "slug": "belas",
+            "distritos": [
+              {
+                "nome": "Quenguela",
+                "slug": "quenguela"
+              },
+              {
+                "nome": "Morro dos Veados",
+                "slug": "morro-dos-veados"
+              },
+              {
+                "nome": "Ramiros",
+                "slug": "ramiros"
+              },
+              {
+                "nome": "Vila Verde",
+                "slug": "vila-verde"
+              },
+              {
+                "nome": "Cabolombo",
+                "slug": "cabolombo"
+              },
+              {
+                "nome": "Kilamba",
+                "slug": "kilamba"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Camama",
+                "slug": "camama"
+              },
+              {
+                "nome": "Benfica",
+                "slug": "benfica"
+              },
+              {
+                "nome": "Vila Estoril",
+                "slug": "vila-estoril"
+              },
+              {
+                "nome": "Ilha do Mussulo",
+                "slug": "ilha-do-mussulo"
+              },
+              {
+                "nome": "Barra do Kwanza",
+                "slug": "barra-do-kwanza"
+              },
+              {
+                "nome": "Futungo de Belas",
+                "slug": "futungo-de-belas"
+              },
+              {
+                "nome": "Ramiro",
+                "slug": "ramiro"
+              }
+            ]
+          },
+          {
+            "nome": "Kilamba Kiaxi",
+            "slug": "kilamba-kiaxi",
+            "distritos": [
+              {
+                "nome": "Golfe",
+                "slug": "golfe"
+              },
+              {
+                "nome": "Sapú",
+                "slug": "sapu"
+              },
+              {
+                "nome": "Palanca",
+                "slug": "palanca"
+              },
+              {
+                "nome": "Nova Vida",
+                "slug": "nova-vida"
+              }
+            ],
+            "comunas": []
+          },
+          {
+            "nome": "Talatona",
+            "slug": "talatona",
+            "distritos": [
+              {
+                "nome": "Benfica",
+                "slug": "benfica"
+              },
+              {
+                "nome": "Futungo de Belas",
+                "slug": "futungo-de-belas"
+              },
+              {
+                "nome": "Lar do Patriota",
+                "slug": "lar-do-patriota"
+              },
+              {
+                "nome": "Talatona",
+                "slug": "talatona"
+              },
+              {
+                "nome": "Camama",
+                "slug": "camama"
+              },
+              {
+                "nome": "Cidade Universitária",
+                "slug": "cidade-universitaria"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Mussulo",
+                "slug": "mussulo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          }
+        ]
+      },
+      {
+        "nome": "Lunda Norte",
+        "slug": "lunda-norte",
+        "extensao": "103.760 km²",
+        "data_fundacao": "04-07-1978",
+        "capital": {
+          "nome": "Dundo",
+          "slug": "dundo"
+        },
+        "municipios": [
+          {
+            "nome": "Cambulo",
+            "slug": "cambulo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Luia",
+                "slug": "luia"
+              },
+              {
+                "nome": "Cachimo",
+                "slug": "cachimo"
+              },
+              {
+                "nome": "Canzar",
+                "slug": "canzar"
+              },
+              {
+                "nome": "Cambulo",
+                "slug": "cambulo"
+              }
+            ]
+          },
+          {
+            "nome": "Capenda Camulemba",
+            "slug": "capenda-camulemba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Capenda Camulemba",
+                "slug": "capenda-camulemba"
+              },
+              {
+                "nome": "Xinge",
+                "slug": "xinge"
+              }
+            ]
+          },
+          {
+            "nome": "Caungula",
+            "slug": "caungula",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Caungula",
+                "slug": "caungula"
+              },
+              {
+                "nome": "Camaxili",
+                "slug": "camaxili"
+              }
+            ]
+          },
+          {
+            "nome": "Chitato",
+            "slug": "chitato",
+            "distritos": [
+              {
+                "nome": "Chitato",
+                "slug": "chitato"
+              },
+              {
+                "nome": "Dundo",
+                "slug": "dundo"
+              },
+              {
+                "nome": "Mussungue",
+                "slug": "mussungue"
+              }
+            ],
+            "comunas": [
+              {
+                "nome": "Chitato",
+                "slug": "chitato"
+              },
+              {
+                "nome": "Luachimo",
+                "slug": "luachimo"
+              }
+            ]
+          },
+          {
+            "nome": "Cuango",
+            "slug": "cuango",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuango",
+                "slug": "cuango"
+              },
+              {
+                "nome": "Luremo",
+                "slug": "luremo"
+              }
+            ]
+          },
+          {
+            "nome": "Cuílo",
+            "slug": "cuilo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuilo",
+                "slug": "cuilo"
+              },
+              {
+                "nome": "Caluango",
+                "slug": "caluango"
+              }
+            ]
+          },
+          {
+            "nome": "Lubalo",
+            "slug": "lubalo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lubalo",
+                "slug": "lubalo"
+              },
+              {
+                "nome": "Luangue",
+                "slug": "luangue"
+              },
+              {
+                "nome": "Muvuluege",
+                "slug": "muvuluege"
+              }
+            ]
+          },
+          {
+            "nome": "Lucapa",
+            "slug": "lucapa",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lucapa",
+                "slug": "lucapa"
+              },
+              {
+                "nome": "Capaia",
+                "slug": "capaia"
+              },
+              {
+                "nome": "Camissombo",
+                "slug": "camissombo"
+              },
+              {
+                "nome": "Xá Cassau",
+                "slug": "xa-cassau"
+              }
+            ]
+          },
+          {
+            "nome": "Lóvua",
+            "slug": "lovua",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lucapa",
+                "slug": "lucapa"
+              },
+              {
+                "nome": "Capaia",
+                "slug": "capaia"
+              },
+              {
+                "nome": "Camissombo",
+                "slug": "camissombo"
+              },
+              {
+                "nome": "Xá Cassau",
+                "slug": "xa-cassau"
+              }
+            ]
+          },
+          {
+            "nome": "Xá-Muteba",
+            "slug": "xa-muteba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Xá Muteba",
+                "slug": "xa-muteba"
+              },
+              {
+                "nome": "Iongo",
+                "slug": "iongo"
+              },
+              {
+                "nome": "Cassanje Calucala",
+                "slug": "cassanje-calucala"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          }
+        ]
+      },
+      {
+        "nome": "Lunda Sul",
+        "slug": "lunda-sul",
+        "extensao": "77.636 km²",
+        "data_fundacao": "13-07-1895",
+        "capital": {
+          "nome": "Saurimo",
+          "slug": "saurimo"
+        },
+        "municipios": [
+          {
+            "nome": "Cacolo",
+            "slug": "cacolo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Xassengue",
+                "slug": "xassengue"
+              },
+              {
+                "nome": "Cucumbi",
+                "slug": "cucumbi"
+              },
+              {
+                "nome": "Alto Chicapa",
+                "slug": "alto-chicapa"
+              },
+              {
+                "nome": "Cacolo",
+                "slug": "cacolo"
+              }
+            ]
+          },
+          {
+            "nome": "Dala",
+            "slug": "dala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dala",
+                "slug": "dala"
+              },
+              {
+                "nome": "Luma Cassai",
+                "slug": "luma-cassai"
+              },
+              {
+                "nome": "Cazage",
+                "slug": "cazage"
+              }
+            ]
+          },
+          {
+            "nome": "Muconda",
+            "slug": "muconda",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Chiluage",
+                "slug": "chiluage"
+              },
+              {
+                "nome": "Cassai",
+                "slug": "cassai"
+              },
+              {
+                "nome": "Muriege",
+                "slug": "muriege"
+              },
+              {
+                "nome": "Muconda",
+                "slug": "muconda"
+              }
+            ]
+          },
+          {
+            "nome": "Saurimo",
+            "slug": "saurimo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Saurimo",
+                "slug": "saurimo"
+              },
+              {
+                "nome": "Mona Quimbundo",
+                "slug": "mona-quimbundo"
+              },
+              {
+                "nome": "Sombo",
+                "slug": "sombo"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          }
+        ]
+      },
+      {
+        "nome": "Malanje",
+        "slug": "malanje",
+        "extensao": "2.422 km²",
+        "data_fundacao": "13-02-1868",
+        "capital": {
+          "nome": "Malanje",
+          "slug": "malanje"
+        },
+        "municipios": [
+          {
+            "nome": "Cacuso",
+            "slug": "cacuso",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cacuso",
+                "slug": "cacuso"
+              },
+              {
+                "nome": "Lombe",
+                "slug": "lombe"
+              },
+              {
+                "nome": "Quizenga",
+                "slug": "quizenga"
+              },
+              {
+                "nome": "Pungu a Ndongo",
+                "slug": "pungu-a-ndongo"
+              },
+              {
+                "nome": "Soqueco",
+                "slug": "soqueco"
+              }
+            ]
+          },
+          {
+            "nome": "Caombo",
+            "slug": "caombo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mbanji ya Ngola",
+                "slug": "mbanji-ya-ngola"
+              },
+              {
+                "nome": "Cahombo",
+                "slug": "cahombo"
+              },
+              {
+                "nome": "Cambo Suinginge",
+                "slug": "cambo-suinginge"
+              },
+              {
+                "nome": "Micanda",
+                "slug": "micanda"
+              }
+            ]
+          },
+          {
+            "nome": "Calandula",
+            "slug": "calandula",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mbanji ya Ngola",
+                "slug": "mbanji-ya-ngola"
+              },
+              {
+                "nome": "Cahombo",
+                "slug": "cahombo"
+              },
+              {
+                "nome": "Cambo Suinginge",
+                "slug": "cambo-suinginge"
+              },
+              {
+                "nome": "Micanda",
+                "slug": "micanda"
+              }
+            ]
+          },
+          {
+            "nome": "Cambundi-Catembo",
+            "slug": "cambundi-catembo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Talamungongo",
+                "slug": "talamungongo"
+              },
+              {
+                "nome": "Cambundi Catembo",
+                "slug": "cambundi-catembo"
+              },
+              {
+                "nome": "Quitapa",
+                "slug": "quitapa"
+              },
+              {
+                "nome": "Dumba Cambango",
+                "slug": "dumba-cambango"
+              }
+            ]
+          },
+          {
+            "nome": "Cangandala",
+            "slug": "cangandala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cangandala",
+                "slug": "cangandala"
+              },
+              {
+                "nome": "Bembo",
+                "slug": "bembo"
+              },
+              {
+                "nome": "Culamagia",
+                "slug": "culamagia"
+              },
+              {
+                "nome": "Caribo",
+                "slug": "caribo"
+              }
+            ]
+          },
+          {
+            "nome": "Cuaba Nzogo",
+            "slug": "cuaba-nzogo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Kiwaba Nzoji",
+                "slug": "kiwaba-nzoji"
+              },
+              {
+                "nome": "Mufuma",
+                "slug": "mufuma"
+              }
+            ]
+          },
+          {
+            "nome": "Cunda-Dia-Baze",
+            "slug": "cunda-dia-baze",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Kunda dya Baze",
+                "slug": "kunda-dya-baze"
+              },
+              {
+                "nome": "Milando",
+                "slug": "milando"
+              },
+              {
+                "nome": "Lemba",
+                "slug": "lemba"
+              }
+            ]
+          },
+          {
+            "nome": "Luquembo",
+            "slug": "luquembo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quimbango",
+                "slug": "quimbango"
+              },
+              {
+                "nome": "Capunda",
+                "slug": "capunda"
+              },
+              {
+                "nome": "Dombo wa Zanga",
+                "slug": "dombo-wa-zanga"
+              },
+              {
+                "nome": "Luquembo",
+                "slug": "luquembo"
+              },
+              {
+                "nome": "Cunga Palanga",
+                "slug": "cunga-palanga"
+              },
+              {
+                "nome": "Rimba",
+                "slug": "rimba"
+              }
+            ]
+          },
+          {
+            "nome": "Malanje",
+            "slug": "malanje",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Malanje",
+                "slug": "malanje"
+              },
+              {
+                "nome": "Ngola Luiji",
+                "slug": "ngola-luiji"
+              },
+              {
+                "nome": "Cambaxe",
+                "slug": "cambaxe"
+              }
+            ]
+          },
+          {
+            "nome": "Marimba",
+            "slug": "marimba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Marimba",
+                "slug": "marimba"
+              },
+              {
+                "nome": "Cabombo",
+                "slug": "cabombo"
+              },
+              {
+                "nome": "Tembo Aluma",
+                "slug": "tembo-aluma"
+              }
+            ]
+          },
+          {
+            "nome": "Massango",
+            "slug": "massango",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Massango",
+                "slug": "massango"
+              },
+              {
+                "nome": "Quihuhu",
+                "slug": "quihuhu"
+              },
+              {
+                "nome": "Quinguengue",
+                "slug": "quinguengue"
+              }
+            ]
+          },
+          {
+            "nome": "Mucari",
+            "slug": "mucari",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Catala",
+                "slug": "catala"
+              },
+              {
+                "nome": "Caculama",
+                "slug": "caculama"
+              },
+              {
+                "nome": "Caxinga",
+                "slug": "caxinga"
+              },
+              {
+                "nome": "Muquixe",
+                "slug": "muquixe"
+              }
+            ]
+          },
+          {
+            "nome": "Quela",
+            "slug": "quela",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Catala",
+                "slug": "catala"
+              },
+              {
+                "nome": "Caculama",
+                "slug": "caculama"
+              },
+              {
+                "nome": "Caxinga",
+                "slug": "caxinga"
+              },
+              {
+                "nome": "Muquixe",
+                "slug": "muquixe"
+              }
+            ]
+          },
+          {
+            "nome": "Quirima",
+            "slug": "quirima",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Sautar",
+                "slug": "sautar"
+              },
+              {
+                "nome": "Quirima",
+                "slug": "quirima"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          }
+        ]
+      },
+      {
+        "nome": "Moxico",
+        "slug": "moxico",
+        "extensao": "223.023 km²",
+        "data_fundacao": "15-09-1917",
+        "capital": {
+          "nome": "Luena",
+          "slug": "luena"
+        },
+        "municipios": [
+          {
+            "nome": "Alto Zambeze",
+            "slug": "alto-zambeze",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Nana Candundo",
+                "slug": "nana-candundo"
+              },
+              {
+                "nome": "Lumbala Caquengue",
+                "slug": "lumbala-caquengue"
+              },
+              {
+                "nome": "Cazombo",
+                "slug": "cazombo"
+              },
+              {
+                "nome": "Macondo",
+                "slug": "macondo"
+              },
+              {
+                "nome": "Caianda",
+                "slug": "caianda"
+              },
+              {
+                "nome": "Calunda",
+                "slug": "calunda"
+              },
+              {
+                "nome": "Lóvua",
+                "slug": "lovua"
+              }
+            ]
+          },
+          {
+            "nome": "Bundas",
+            "slug": "bundas",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Lutembo",
+                "slug": "lutembo"
+              },
+              {
+                "nome": "Chiume",
+                "slug": "chiume"
+              },
+              {
+                "nome": "Lumbala Nguimbo",
+                "slug": "lumbala-nguimbo"
+              },
+              {
+                "nome": "Luvuei",
+                "slug": "luvuei"
+              },
+              {
+                "nome": "Ninda",
+                "slug": "ninda"
+              },
+              {
+                "nome": "Mussuma",
+                "slug": "mussuma"
+              },
+              {
+                "nome": "Sessa",
+                "slug": "sessa"
+              }
+            ]
+          },
+          {
+            "nome": "Camanongue",
+            "slug": "camanongue",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Camanongue",
+                "slug": "camanongue"
+              }
+            ]
+          },
+          {
+            "nome": "Léua",
+            "slug": "leua",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Léua",
+                "slug": "leua"
+              },
+              {
+                "nome": "Liangongo",
+                "slug": "liangongo"
+              }
+            ]
+          },
+          {
+            "nome": "Luacano",
+            "slug": "luacano",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Luacano",
+                "slug": "luacano"
+              },
+              {
+                "nome": "Lago Dilolo",
+                "slug": "lago-dilolo"
+              }
+            ]
+          },
+          {
+            "nome": "Moxico",
+            "slug": "moxico",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Luau",
+                "slug": "luau"
+              },
+              {
+                "nome": "Lucusse",
+                "slug": "lucusse"
+              },
+              {
+                "nome": "Cachipoque",
+                "slug": "cachipoque"
+              },
+              {
+                "nome": "Luena",
+                "slug": "luena"
+              },
+              {
+                "nome": "Muangai",
+                "slug": "muangai"
+              }
+            ]
+          },
+          {
+            "nome": "Luchazes",
+            "slug": "luchazes",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cangombe",
+                "slug": "cangombe"
+              },
+              {
+                "nome": "Cassamba",
+                "slug": "cassamba"
+              },
+              {
+                "nome": "Tempué",
+                "slug": "tempue"
+              },
+              {
+                "nome": "Cangamba",
+                "slug": "cangamba"
+              },
+              {
+                "nome": "Muié",
+                "slug": "muie"
+              }
+            ]
+          },
+          {
+            "nome": "Cameia",
+            "slug": "cameia",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cameia",
+                "slug": "cameia"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ovanga",
+            "slug": "ovanga"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Cokwe",
+            "slug": "cokwe"
+          },
+          {
+            "nome": "Nganguela",
+            "slug": "nganguela"
+          }
+        ]
+      },
+      {
+        "nome": "Namibe",
+        "slug": "namibe",
+        "extensao": "8916",
+        "data_fundacao": "10-07-1645",
+        "capital": {
+          "nome": "Moçâmedes",
+          "slug": "mocamedes"
+        },
+        "municipios": [
+          {
+            "nome": "Moçâmedes",
+            "slug": "mocamedes",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Moçâmedes",
+                "slug": "mocamedes"
+              },
+              {
+                "nome": "Lucira",
+                "slug": "lucira"
+              },
+              {
+                "nome": "Bentiaba",
+                "slug": "bentiaba"
+              },
+              {
+                "nome": "Forte Santa Rita",
+                "slug": "forte-santa-rita"
+              }
+            ]
+          },
+          {
+            "nome": "Camucuio",
+            "slug": "camucuio",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Camucuio",
+                "slug": "camucuio"
+              },
+              {
+                "nome": "Mamué",
+                "slug": "mamue"
+              },
+              {
+                "nome": "Chingo",
+                "slug": "chingo"
+              }
+            ]
+          },
+          {
+            "nome": "Bibala",
+            "slug": "bibala",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bibala",
+                "slug": "bibala"
+              },
+              {
+                "nome": "Caitou",
+                "slug": "caitou"
+              },
+              {
+                "nome": "Capangombe",
+                "slug": "capangombe"
+              },
+              {
+                "nome": "Lola",
+                "slug": "lola"
+              }
+            ]
+          },
+          {
+            "nome": "Virei",
+            "slug": "virei",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Virei",
+                "slug": "virei"
+              },
+              {
+                "nome": "Cainde",
+                "slug": "cainde"
+              }
+            ]
+          },
+          {
+            "nome": "Tômbua",
+            "slug": "tombua",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Baía dos Tigres",
+                "slug": "baia-dos-tigres"
+              },
+              {
+                "nome": "Iona",
+                "slug": "iona"
+              },
+              {
+                "nome": "Tômbwa",
+                "slug": "tombwa"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Minoria Oluyaneka",
+            "slug": "minoria-oluyaneka"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Oluherero",
+            "slug": "oluherero"
+          }
+        ]
+      },
+      {
+        "nome": "Uíge",
+        "slug": "uige",
+        "extensao": "58.698 km²",
+        "data_fundacao": "31-05-1887",
+        "capital": {
+          "nome": "Uíge",
+          "slug": "uige"
+        },
+        "municipios": [
+          {
+            "nome": "Uíge",
+            "slug": "uige",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Uíge",
+                "slug": "uige"
+              }
+            ]
+          },
+          {
+            "nome": "Alto Cauale",
+            "slug": "alto-cauale",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cangola",
+                "slug": "cangola"
+              },
+              {
+                "nome": "Bengo",
+                "slug": "bengo"
+              },
+              {
+                "nome": "Caiongo",
+                "slug": "caiongo"
+              }
+            ]
+          },
+          {
+            "nome": "Ambuíla",
+            "slug": "ambuila",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Nova Ambuíla",
+                "slug": "nova-ambuila"
+              },
+              {
+                "nome": "Quipedro",
+                "slug": "quipedro"
+              }
+            ]
+          },
+          {
+            "nome": "Bembe",
+            "slug": "bembe",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bembe",
+                "slug": "bembe"
+              },
+              {
+                "nome": "Lucunga",
+                "slug": "lucunga"
+              },
+              {
+                "nome": "Mabaia",
+                "slug": "mabaia"
+              }
+            ]
+          },
+          {
+            "nome": "Buengas",
+            "slug": "buengas",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Buenga Sul",
+                "slug": "buenga-sul"
+              },
+              {
+                "nome": "Nova Esperança",
+                "slug": "nova-esperanca"
+              },
+              {
+                "nome": "Cuilo Camboso",
+                "slug": "cuilo-camboso"
+              }
+            ]
+          },
+          {
+            "nome": "Bungo",
+            "slug": "bungo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Bungo",
+                "slug": "bungo"
+              }
+            ]
+          },
+          {
+            "nome": "Milunga",
+            "slug": "milunga",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Macocola",
+                "slug": "macocola"
+              },
+              {
+                "nome": "Macolo",
+                "slug": "macolo"
+              },
+              {
+                "nome": "Milunga",
+                "slug": "milunga"
+              },
+              {
+                "nome": "Massau",
+                "slug": "massau"
+              }
+            ]
+          },
+          {
+            "nome": "Damba",
+            "slug": "damba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Damba",
+                "slug": "damba"
+              },
+              {
+                "nome": "Nsosso",
+                "slug": "nsosso"
+              },
+              {
+                "nome": "Camatambo",
+                "slug": "camatambo"
+              },
+              {
+                "nome": "Lêmboa",
+                "slug": "lemboa"
+              },
+              {
+                "nome": "Petecusso",
+                "slug": "petecusso"
+              }
+            ]
+          },
+          {
+            "nome": "Maquela do Zombo",
+            "slug": "maquela-do-zombo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Maquela do Zombo",
+                "slug": "maquela-do-zombo"
+              },
+              {
+                "nome": "Quibocolo",
+                "slug": "quibocolo"
+              },
+              {
+                "nome": "Béu",
+                "slug": "beu"
+              },
+              {
+                "nome": "Sacandica",
+                "slug": "sacandica"
+              },
+              {
+                "nome": "Cuilo Futa",
+                "slug": "cuilo-futa"
+              }
+            ]
+          },
+          {
+            "nome": "Mucaba",
+            "slug": "mucaba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mucaba",
+                "slug": "mucaba"
+              },
+              {
+                "nome": "Uando Mucaba",
+                "slug": "uando-mucaba"
+              }
+            ]
+          },
+          {
+            "nome": "Negage",
+            "slug": "negage",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Dimuca",
+                "slug": "dimuca"
+              },
+              {
+                "nome": "Quisseque",
+                "slug": "quisseque"
+              },
+              {
+                "nome": "Negage",
+                "slug": "negage"
+              }
+            ]
+          },
+          {
+            "nome": "Puri",
+            "slug": "puri",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Puri",
+                "slug": "puri"
+              }
+            ]
+          },
+          {
+            "nome": "Quimbele",
+            "slug": "quimbele",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuango",
+                "slug": "cuango"
+              },
+              {
+                "nome": "Icoca",
+                "slug": "icoca"
+              },
+              {
+                "nome": "Quimbele",
+                "slug": "quimbele"
+              },
+              {
+                "nome": "Alto Zaza",
+                "slug": "alto-zaza"
+              }
+            ]
+          },
+          {
+            "nome": "Quitexe",
+            "slug": "quitexe",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Quitexe",
+                "slug": "quitexe"
+              },
+              {
+                "nome": "Aldeia Viçosa",
+                "slug": "aldeia-vicosa"
+              },
+              {
+                "nome": "Cambamba",
+                "slug": "cambamba"
+              },
+              {
+                "nome": "Vista Alegre",
+                "slug": "vista-alegre"
+              }
+            ]
+          },
+          {
+            "nome": "Sanza Pombo",
+            "slug": "sanza-pombo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Sanza Pombo",
+                "slug": "sanza-pombo"
+              },
+              {
+                "nome": "Cuilo Pombo",
+                "slug": "cuilo-pombo"
+              },
+              {
+                "nome": "Uamba",
+                "slug": "uamba"
+              },
+              {
+                "nome": "Alfândega",
+                "slug": "alfandega"
+              }
+            ]
+          },
+          {
+            "nome": "Songo",
+            "slug": "songo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Songo",
+                "slug": "songo"
+              },
+              {
+                "nome": "Quivuenga",
+                "slug": "quivuenga"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Ambundu",
+            "slug": "ambundu"
+          },
+          {
+            "nome": "Bakongo",
+            "slug": "bakongo"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kimbundu",
+            "slug": "kimbundu"
+          },
+          {
+            "nome": "Kikongo",
+            "slug": "kikongo"
+          }
+        ]
+      },
+      {
+        "nome": "Zaire",
+        "slug": "zaire",
+        "extensao": "40130",
+        "data_fundacao": "01-04-1961",
+        "capital": {
+          "nome": "Mbanza Congo",
+          "slug": "mbanza-congo"
+        },
+        "municipios": [
+          {
+            "nome": "Mbanza Congo",
+            "slug": "mbanza-congo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Mbanza Kongo",
+                "slug": "mbanza-kongo"
+              },
+              {
+                "nome": "Luvo",
+                "slug": "luvo"
+              },
+              {
+                "nome": "Caluca",
+                "slug": "caluca"
+              },
+              {
+                "nome": "Madimba",
+                "slug": "madimba"
+              },
+              {
+                "nome": "Quiende",
+                "slug": "quiende"
+              },
+              {
+                "nome": "Calambata",
+                "slug": "calambata"
+              }
+            ]
+          },
+          {
+            "nome": "Soyo",
+            "slug": "soyo",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Soyo",
+                "slug": "soyo"
+              },
+              {
+                "nome": "Sumba",
+                "slug": "sumba"
+              },
+              {
+                "nome": "Pedra de Feitiço",
+                "slug": "pedra-de-feitico"
+              },
+              {
+                "nome": "Quêlo",
+                "slug": "quelo"
+              },
+              {
+                "nome": "Mangue Grande",
+                "slug": "mangue-grande"
+              }
+            ]
+          },
+          {
+            "nome": "Nzeto",
+            "slug": "nzeto",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Nzeto",
+                "slug": "nzeto"
+              },
+              {
+                "nome": "Quindeje",
+                "slug": "quindeje"
+              },
+              {
+                "nome": "Musserra",
+                "slug": "musserra"
+              },
+              {
+                "nome": "Quibala Norte",
+                "slug": "quibala-norte"
+              }
+            ]
+          },
+          {
+            "nome": "Cuimba",
+            "slug": "cuimba",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Cuimba",
+                "slug": "cuimba"
+              },
+              {
+                "nome": "Buela",
+                "slug": "buela"
+              },
+              {
+                "nome": "Serra da Canda",
+                "slug": "serra-da-canda"
+              },
+              {
+                "nome": "Luvaca",
+                "slug": "luvaca"
+              }
+            ]
+          },
+          {
+            "nome": "Nóqui",
+            "slug": "noqui",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Nóqui",
+                "slug": "noqui"
+              },
+              {
+                "nome": "Lufico",
+                "slug": "lufico"
+              },
+              {
+                "nome": "Mpala",
+                "slug": "mpala"
+              }
+            ]
+          },
+          {
+            "nome": "Tomboco",
+            "slug": "tomboco",
+            "distritos": [],
+            "comunas": [
+              {
+                "nome": "Tomboco",
+                "slug": "tomboco"
+              },
+              {
+                "nome": "Quinsimba",
+                "slug": "quinsimba"
+              },
+              {
+                "nome": "Quinzau",
+                "slug": "quinzau"
+              }
+            ]
+          }
+        ],
+        "etnias": [
+          {
+            "nome": "Bakongo",
+            "slug": "bakongo"
+          }
+        ],
+        "linguas": [
+          {
+            "nome": "Kikongo",
+            "slug": "kikongo"
+          }
+        ]
+      }
+    ]
+  }

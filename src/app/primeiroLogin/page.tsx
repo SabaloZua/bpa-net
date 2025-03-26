@@ -53,7 +53,7 @@ export default function PrimeiroLogin() {
   async function submitForm(data: FormData) {
     setIsLoading(true);
     try {
-      await api.post("/login/primeiroLogin", {
+      await api.post("/login/primeirologin", {
         idconta:Number(localStorage.getItem("idConta")),
         codigoacesso:data.codigoAcesso,
         pergunta:data.pergunta,
@@ -61,7 +61,7 @@ export default function PrimeiroLogin() {
       }
       );
      
-      router.replace('/inicio');
+      router.replace('/dashboard');
       //router.push("/registo/tipo-conta");
     } catch (error) {
       if (error instanceof AxiosError) {

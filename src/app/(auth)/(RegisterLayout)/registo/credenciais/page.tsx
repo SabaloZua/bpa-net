@@ -24,7 +24,7 @@ export default function RegisterCredentials() {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    stepsStore.setCurrentStepRegisto(4);
+    stepsStore.setCurrentStepRegisto(3);
   }, []);
 
   useEffect(() => {
@@ -54,7 +54,6 @@ export default function RegisterCredentials() {
     setIsLoading(true);
     try {
       if (typeof window !== "undefined") {
-        const NumberOfTipoConta = localStorage.getItem("tipoConta") == "c1" ? 1 : 2;
 
         const dados = {
           nomeCliente: localStorage.getItem("nomeCliente") || "",
@@ -63,9 +62,7 @@ export default function RegisterCredentials() {
           numeroBi: localStorage.getItem("numeroBi") || "",
           telefone: localStorage.getItem("telefone") || "",
           municipio: localStorage.getItem("municipio") || "",
-          areaActividade: localStorage.getItem("areaActividade") || "",
-          local: localStorage.getItem("local") || "",
-          idTipoConta: NumberOfTipoConta,
+          provincia: localStorage.getItem("provincia") || "",
           navegador: navegador,
           sistemaoperativo: sistemaoperativo,
           iddispositivo: id,

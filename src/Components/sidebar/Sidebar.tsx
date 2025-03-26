@@ -3,8 +3,9 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, LogOut } from "lucide-react";
 import { JSX } from "react";
-import Logo from "@/components/Logo";
+
 import { sidebarLinks } from "@/constants/index";
+import Image from "next/image";
 export default function Sidebar() {
   const pathname = usePathname();
 
@@ -14,7 +15,7 @@ export default function Sidebar() {
     path: string;
     name: string;
     icon: JSX.Element;
-    active:boolean;
+    active: boolean;
   }
 
   const links: LinkItem[] = sidebarLinks;
@@ -23,7 +24,25 @@ export default function Sidebar() {
       {/* Sidebar */}
       <div className="lg:col-span-1 max-xl:hidden flex flex-col bg-blue-500 text-white">
         <div className="p-4 border-teal-700">
-          <Logo size={40} />
+          {/* <Logo size={40} className="text-white" /> */}
+          <div
+            className={` flex cursor-pointer items-center gap-1 `}
+          >
+            <Image
+              src={`/icons/logo_favicon.svg`}
+              width={35}
+              height={35}
+              alt="Logo horizontal"
+              className="size-[36px] max-md:size-14"
+            />
+            <h1 className="font-bold text-white text-[26px]">
+              BPA <span className="text-sm">NET</span>
+            </h1>
+
+            {/* <h1 className="text-30 font-ibm-plex-serif font-bold text-black-1">
+        BPA <span className="text-sm">NET</span>
+      </h1> */}
+          </div>
         </div>
 
         <div className="p-2 text-sm font-medium  ">
@@ -32,10 +51,13 @@ export default function Sidebar() {
 
         <nav className="overflow-y-auto p-1">
           {links.map((link: LinkItem, index: number) => (
-            <a  key={index}  className="btn"
-            data-active={link.active}
-            data-page={link.path}
-            type="button">
+            <a
+              key={index}
+              className="btn"
+              data-active={link.active}
+              data-page={link.path}
+              type="button"
+            >
               <div
                 className={`mx-4 my-2 p-3 rounded-md flex items-center justify-between cursor-pointer ${
                   isActive(link.path) ? "bg-white text-black-2" : "hover:bg-blue-600"

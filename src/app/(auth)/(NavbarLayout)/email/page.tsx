@@ -80,7 +80,7 @@ export default function Register() {
           <p>Crie uma conta e junte-se à essa maravilhosa comunidade.</p>
         </div>
         <div className="right">
-          <form onSubmit={handleSubmit(submitForm)} className="login_form">
+          <form onSubmit={handleSubmit(submitForm)} className="login_form" autoComplete="off">
             <div className="header_form">
               <h1>Crie uma conta</h1>
               <p>
@@ -99,6 +99,7 @@ export default function Register() {
                 />
                 {errors.email && <InfoError message={errors.email.message} />}
               </div>
+             
               <button type="submit" disabled={isLoading} className="button_auth">
                 {isLoading ? (
                   <TailSpin

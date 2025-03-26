@@ -10,11 +10,36 @@ import { Separator } from "@/components/ui/separator";
 import Banner from "@/assets/images/pagamentos_banner.svg";
 import { publicServices, tvServices } from "@/constants";
 import Image from "next/image";
-import { useState } from "react";
+import {  useState } from "react";
+import { DadosContaType } from "@/types/commons";
 
-export default function Pagamentos() {
+
+interface Props {
+  dados: DadosContaType | undefined;
+}
+
+export default function Pagamentos({dados}:Props) {
   const [tipoPag, setTipoPag] = useState<string>("");
   const [categoria, setCategoria] = useState<string>("");
+  //const [todosProdutos, setTodosProdutos] = useState([]);
+  //const [todosServicos, setTodosServicos] = useState([]);
+
+  /*useEffect(()=>{
+
+    async function getAllProducts(){
+      try {
+        const data = api.get('/entidade/dados');
+        console.log(data)
+      } catch (error) {
+        console.log(error);
+        
+      }
+     
+    }
+
+  },[])*/
+
+
   return (
     <div className="flex">
       <div>
@@ -119,7 +144,7 @@ export default function Pagamentos() {
                 <div className="mt-4 flex flex-col justify-center items-center gap-3 px-2">
                   <div className="campo w-full">
                     <label htmlFor="">Conta de origem</label>
-                    <Input readOnly className="bg-gray-100" placeholder="123" />
+                    <Input readOnly className="bg-gray-100" placeholder={dados?.numeroConta} />
                   </div>
                   <div className="campo w-full">
                     <label htmlFor="">Referência</label>
@@ -139,7 +164,6 @@ export default function Pagamentos() {
             <Image src={Banner} width={350} alt=""/>
           </div>
         )
-        
         }
       </div>
       <div className="UltimosPagamentos px-4 w-96">

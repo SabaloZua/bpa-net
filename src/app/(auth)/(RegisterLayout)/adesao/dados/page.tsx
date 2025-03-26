@@ -64,7 +64,7 @@ const EtapaDadosPage = () => {
     }
   }
   return (
-    <form onSubmit={handleSubmit(handleVerifyPersonalData)} className="w-full">
+    <form onSubmit={handleSubmit(handleVerifyPersonalData)} className="w-full" autoComplete="off">
       <div className="flex items-center space-x-3 mb-6">
         <div className="p-2 bg-blue-100 rounded-lg">
           <User className="w-6 h-6 text-blue-600" />

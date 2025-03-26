@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, User, FileText, KeyRound, Check, Landmark } from "lucide-react";
+import { Mail, User, FileText, KeyRound, Check } from "lucide-react";
 
 interface StepperProps {
   currentStep: number;
@@ -14,10 +14,9 @@ export function Stepper({ currentStep, type }: StepperProps) {
     { number: 3, title: "Contrato", icon: FileText },
     { number: 4, title: "Credenciais", icon: KeyRound },
   ] : [
-    { number: 1, title: "Tipo de conta", icon: Landmark},
-    { number: 2, title: "Dados Pessoais", icon: User },
-    { number: 3, title: "Documentação", icon: FileText },
-    { number: 4, title: "Credenciais", icon: KeyRound },
+    { number: 1, title: "Dados Pessoais", icon: User },
+    { number: 2, title: "Documentação", icon: FileText },
+    { number: 3, title: "Credenciais", icon: KeyRound },
   ];
 
 

@@ -1,20 +1,13 @@
-import { getServerSession } from "next-auth";
+
 import styels from "../../../styles/bg_login.module.css";
 import Link from "next/link";
-import  nextAuthOptions  from "@/lib/nextAuthOptions";
-import { redirect } from "next/navigation";
+
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const session = await getServerSession(nextAuthOptions)
-
-  if(session){
-    redirect('/inicio')
-  }
 
   return (
     <main className="flex min-h-screen w-full justify-between font-inter">

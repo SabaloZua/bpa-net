@@ -14,19 +14,20 @@ import "./register.css";
 import { useStepperStore } from "@/contexts/stepsStore";
 import { useStepperRegistoStore } from "@/contexts/stepsStore";
 import Logo from "@/components/Logo";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { LogIn } from "lucide-react";
 import { Stepper } from "@/components/Stepper";
+import Link from "next/link";
 
-interface AdesaoLayoutProps {
+
+interface RegisterLayoutProps {
   children: React.ReactNode;
 }
 
-const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
+const RegisterLayout = ({ children }: RegisterLayoutProps) => {
   const { currentStep } = useStepperStore();
   const { currentStepRegisto } = useStepperRegistoStore();
 
-  const router = useRouter();
   const path = usePathname() || "";
 
   return (
@@ -47,10 +48,10 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
             <p>Já tem uma conta?</p>
           </NavbarItem>
           <NavbarItem>
-            <button className="login-button" onClick={() => router.replace("/login")}>
+            <Link href={'/login'} className="login-button" >
               <LogIn style={{ width: "1rem", height: "1rem" }} />
               <span>Fazer login</span>
-            </button>
+            </Link>
           </NavbarItem>
         </NavbarContent>
 
@@ -63,20 +64,10 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
             <p>Já tem uma conta?</p>
           </NavbarItem>
           <NavbarItem>
-            <button
-              type="button"
-              className="goToLogin"
-              onClick={(event) => {
-                event.preventDefault();
-                router.replace("/login");
-              }}
-            >
-              Fazer login
-            </button>
-            <button className="login-button" onClick={() => router.replace("/login")}>
+            <Link href={'/login'} className="login-button" >
               <LogIn style={{ width: "1rem", height: "1rem" }} />
               <span>Fazer login</span>
-            </button>
+            </Link>
           </NavbarItem>
         </NavbarMenu>
       </Navbar>
@@ -97,4 +88,4 @@ const AdesaoLayout = ({ children }: AdesaoLayoutProps) => {
   );
 };
 
-export default AdesaoLayout;
+export default RegisterLayout;

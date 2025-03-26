@@ -57,7 +57,7 @@ export default function IdentityValidation() {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    stepsStore.setCurrentStepRegisto(3);
+    stepsStore.setCurrentStepRegisto(2);
   }, []);
 
   useEffect(() => {
@@ -184,10 +184,10 @@ export default function IdentityValidation() {
     if (idCard && idSelfie) {
       const distance = faceapi.euclideanDistance(idCard.descriptor, idSelfie.descriptor);
       if (distance < 0.5) {
-        toast.success("Validação facial pessoas iguais!" + distance);
+        toast.success("Validação facial pessoas iguais!");
         router.push("/registo/credenciais");
       } else {
-        toast.warning("Pessoas diferentes." + distance);
+        toast.warning("Pessoas diferentes.");
         setLoading(false);
       }
     }

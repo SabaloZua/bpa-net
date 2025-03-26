@@ -6,13 +6,14 @@ interface LogoProps {
   size: number;
   isLink?: boolean;
   position?: "center" | "start" | "end";
+  className?:string;
 }
 
-const Logo = ({ position }: LogoProps) => {
+const Logo = ({ position,className }: LogoProps) => {
   return (
     <div
       className={` flex cursor-pointer items-center gap-1 
-    ${position ? `justify-${position}` : ""}`}
+    ${position ? `justify-${position}` : ""} ${className}`}
     >
       <Image
         src={`/icons/logo_favicon.svg`}

@@ -30,14 +30,14 @@ import { toast } from "sonner";
 import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-
+import useContaStore from "@/contexts/contaStore";
 
 const FormSchema = z.object({
   numeroAdesao: z
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!"),
 
-    codigoAcesso: z
+  codigoAcesso: z
     .string({ required_error: "O campo não pode estar vazio!" })
     .min(1, "O campo não pode estar vazio!"),
 });
@@ -49,6 +49,7 @@ export default function AuthForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingModal, setIsLoadingModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const useConta = useContaStore();
 
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [currentInput, setCurrentInput] = useState(0);
@@ -109,26 +110,24 @@ export default function AuthForm() {
   const submitFormModal = async (OTP: string) => {
     setIsLoadingModal(true);
     try {
-
       console.log(OTP);
-      
-      await signIn('credentials',{
-        codigo2fa: OTP,
-        iddispositivo:  id,
-        sistemadispositivo: sistemaoperativo, 
-        navegadordispositivo: navegador,
-        redirect:false
-      })
 
-      const response=await api.get(`/login/verificalogin/${OTP}`);
-       // useConta.setId(Number(response.data.idConta));
-       localStorage.setItem("idConta",response.data.idConta)
-        if(response.data.primeirologin == true){
-          router.replace('/primeiroLogin')
-        }else{
-          router.replace("/inicio");
-        }
-      
+      await signIn("credentials", {
+        codigo2fa: OTP,
+        iddispositivo: id,
+        sistemadispositivo: sistemaoperativo,
+        navegadordispositivo: navegador,
+        redirect: false,
+      });
+
+      const response = await api.get(`/login/verificalogin/${OTP}`);
+      useConta.setId(Number(response.data.contaid));
+      localStorage.setItem("idConta", response.data.contaid);
+      if (response.data.primeirologin == true) {
+        router.replace("/primeiroLogin");
+      } else {
+        router.replace("/dashboard");
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
@@ -207,7 +206,7 @@ export default function AuthForm() {
         </div>
       </header>
 
-      <form className="space-y-4" onSubmit={handleSubmit(submitForm)}>
+      <form className="space-y-4" onSubmit={handleSubmit(submitForm)} autoComplete="off">
         <div className="form-item text-gray-700 focus-within:text-bankGradient">
           <label
             className={`${styles.lableinputs} text-[#565656] w-full max-w-[280px] font-medium `}
@@ -238,7 +237,7 @@ export default function AuthForm() {
             <Input
               placeholder="Insira o seu código de acesso"
               className={`input-class`}
-              type="password"
+              type={`${mostrarSenha ? 'password' : 'text'}`}
               maxLength={20}
               {...register("codigoAcesso")}
             />

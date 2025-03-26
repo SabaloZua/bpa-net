@@ -97,7 +97,7 @@ export default function RegisterInfoModal({ isOpen, onOpenChange }: IProps) {
 								variant="flat"
 								onPress={onClose}
 							>
-								Continuar
+								Aceitar
 							</Button>
 						</ModalFooter>
 					</>
