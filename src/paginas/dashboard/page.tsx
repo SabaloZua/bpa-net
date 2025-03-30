@@ -111,7 +111,7 @@ export default function Dashboard({idConta, dadosConta}:DashboardProps){
           {page === "inicio" ? (
             <Home dadosConta={dadosConta}/>
           ) : page === "transferencias" ? (
-            <Transferencias/>
+            <Transferencias dados={dadosConta}/>
           ) : page === "mapa" ? (
             <MapaComponent/>
           )

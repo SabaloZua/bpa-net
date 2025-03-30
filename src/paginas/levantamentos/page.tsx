@@ -24,6 +24,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { montantes } from "@/constants";
+import useContaStore from "@/contexts/contaStore";
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -43,6 +44,7 @@ export default function Levantamentos({ dados }: Props) {
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const useConta = useContaStore();
   const {
     register,
     handleSubmit,
@@ -56,14 +58,32 @@ export default function Levantamentos({ dados }: Props) {
 
     setIsLoading(true);
     try {
-      await api.post("/trasacao/levantamento", {
+      let email:string|undefined ="";
+      if(data.emaildestino==""){
+        email = dados?.cliente.email;
+      }else{
+        email = data.emaildestino
+      }
+
+      const response = await api.post("/trasacao/levantamento", {
         idconta: Number(localStorage.getItem("idConta")),
         pin: data.pin,
         valor: Number(value.replace(" ","").replace("Kz","")),
-        emaildestino: data.emaildestino,
+        emaildestino: email,
       });
 
-      toast.success("Levantamento feito com sucesso");
+      useConta.setSaldo(Number(response.data.saldoactualizado))
+
+      toast.success("Levantamento feito com sucesso",{
+        action: {
+          label: "Comprovativo",
+          onClick: async () =>
+            window.open(
+              `http://localhost:5000/pdf/comprovativo/${response.data.idtransacao}`,
+              "_blank"
+            ),
+        },
+      });
       //router.push("/registo/tipo-conta");
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -82,7 +102,7 @@ export default function Levantamentos({ dados }: Props) {
     <div className="flex">
       <form className="max-w-[36rem]" onSubmit={handleSubmit(submitForm)}>
         <div>
-          <h1 className="text-3xl text-gray-900">Levantamentos</h1>
+          <h1 className="text-3xl text-gray-900">Levantamentos sem cartão</h1>
           <p className="font-medium text-gray-500 mt-2">
             Retire o seu dinheiro a qualquer momento.
           </p>

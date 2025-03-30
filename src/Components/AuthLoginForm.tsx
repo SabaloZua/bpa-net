@@ -15,17 +15,17 @@ import FingerprintJS from "@fingerprintjs/fingerprintjs"; // lib que cria um id 
 import Browser from "bowser";
 import api from "@/utils/axios";
 import { TailSpin } from "react-loader-spinner";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import InfoError from "./InfoError";
 import {
-  Button,
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { toast } from "sonner";
 import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
@@ -50,9 +50,7 @@ export default function AuthForm() {
   const [isLoadingModal, setIsLoadingModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const useConta = useContaStore();
-
-  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
-  const [currentInput, setCurrentInput] = useState(0);
+  const [otp, setOtp] = useState("");
   const [id, setid] = useState<string>();
   const [navegador, setnavegador] = useState<string>();
   const [sistemaoperativo, setsistemaoperativo] = useState<string>();
@@ -87,6 +85,14 @@ export default function AuthForm() {
   } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
   });
+
+  function handleInput(otp:string){
+    setOtp(otp);
+    if(otp.length == 6){
+      submitFormModal(otp)
+      return;
+    }
+  }
 
   const submitForm = async (data: FormType) => {
     setIsLoading(true);
@@ -138,36 +144,6 @@ export default function AuthForm() {
       }
     } finally {
       setIsLoadingModal(false);
-    }
-  };
-
-  const focusNextInput = () => {
-    const nextInput = inputRefs.current[currentInput + 1];
-    if (nextInput) {
-      nextInput.focus();
-    }
-  };
-
-  const focusPreviousInput = () => {
-    const previousInput = inputRefs.current[currentInput - 1];
-    if (previousInput) {
-      previousInput.focus();
-    }
-  };
-
-  const handleInputChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 0) {
-      setCurrentInput((prev) => prev + 1);
-      focusNextInput();
-    } else {
-      setCurrentInput((prev) => prev - 1);
-      focusPreviousInput();
-    }
-
-    // Verifica se todos os campos estão preenchidos
-    if (currentInput === 5) {
-      const values = inputRefs.current.map((ref) => ref?.value || "").join("");
-      submitFormModal(values);
     }
   };
 
@@ -237,7 +213,7 @@ export default function AuthForm() {
             <Input
               placeholder="Insira o seu código de acesso"
               className={`input-class`}
-              type={`${mostrarSenha ? 'password' : 'text'}`}
+              type={`${mostrarSenha ? "password" : "text"}`}
               maxLength={20}
               {...register("codigoAcesso")}
             />
@@ -291,7 +267,7 @@ export default function AuthForm() {
         backdrop="blur"
       >
         <ModalContent>
-          {(onClose) => (
+          {() => (
             <>
               <ModalHeader className="flex flex-col gap-1">Código de verificação</ModalHeader>
               <ModalBody>
@@ -300,29 +276,22 @@ export default function AuthForm() {
                   poder continuar
                 </p>
                 <div className="body_form">
-                  {
-                    <div className="fragments_container">
-                      {[1, 2, 3, 4, 5, 6].map((index) => (
-                        <input
-                          key={index}
-                          type="text"
-                          maxLength={1}
-                          id={`value${index}`}
-                          className="phone_fragment"
-                          ref={(el) => {
-                            if (el) {
-                              inputRefs.current[index - 1] = el;
-                            }
-                          }}
-                          onChange={(e) => handleInputChange(index - 1, e)}
-                        />
-                      ))}
-                    </div>
-                  }
+                  <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} className="w-[90%] flex gap-1 justify-center text-center"
+                  value={otp}
+                  onChange={(otp) => handleInput(otp)}>
+                    <InputOTPGroup className="flex gap-2 ">
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
 
                   <button
                     type="button"
-                    disabled={isLoadingModal || currentInput !== 6}
+                    disabled={isLoadingModal}
                     className="button_auth"
                   >
                     {isLoadingModal ? (
@@ -354,14 +323,6 @@ export default function AuthForm() {
                   </div>
                 </div>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>

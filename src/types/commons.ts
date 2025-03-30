@@ -1,6 +1,7 @@
 
 
 export interface DadosContaType {
+    id:number,
     iban:string,
     saldo:number,
     estado:string,
@@ -36,4 +37,20 @@ export interface Cliente{
     bi:string,
     email:string
 }
+
+export type EntidadeType = {
+    id:number,
+    nome:string,
+    referencia:string,
+    logo:string
+}
+
+
+export type ProdutoType = {
+    id:number,
+    idEntidade:number,
+    descricao:string,
+    preco:string
+}
+  
   

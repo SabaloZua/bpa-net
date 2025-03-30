@@ -15,6 +15,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DadosContaType } from "@/types/commons";
 import { formataNome, formataSaldo } from "@/constants/modules";
+import useContaStore from "@/contexts/contaStore";
 
 interface Props {
   dadosConta: DadosContaType | undefined;
@@ -26,6 +27,8 @@ export default function Home({ dadosConta }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [mostrarSaldo, setMostrarSado] = useState(true);
   const mudarIcon = mostrarSaldo === true ? false : true;
+
+  const useConta = useContaStore();
 
   const nahoraSchema = z.object({
     valor: z.string(),
@@ -96,7 +99,7 @@ export default function Home({ dadosConta }: Props) {
 
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">
-            Saldo: Kz <span>{mostrarSaldo ? "****" : `${formataSaldo(dadosConta?.saldo)}`}</span>,00
+            Saldo: Kz <span>{mostrarSaldo ? "****" : `${formataSaldo(useConta.saldo)}`}</span>,00
           </h1>
         </div>
       </div>

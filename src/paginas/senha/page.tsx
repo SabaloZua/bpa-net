@@ -7,10 +7,13 @@ import { toast } from "sonner";
 import Logo from "@/components/Logo";
 import api from "@/utils/axios";
 import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { ArrowRight  } from "lucide-react";
+import useconta from "@/contexts/contaStore"
 const personalDataSchema = z.object({
-    resposta: z.string(),
+    senha: z.string(),
+    novasenha: z.string(),
+    confirmasenha:z.string()
 
 });
 type personalDataSchema = z.infer<typeof personalDataSchema>;
@@ -20,27 +23,8 @@ type personalDataSchema = z.infer<typeof personalDataSchema>;
 
 
 
-export default function Confirmar() {
-    const [dispositivo, setDispositivo] = useState<string | null>(null);
-    const [usuario, setUsuario] = useState<string | null>(null);
-    const [Pergunta, setPergunta] = useState<string | null>(null);
+export default function AlteraSenha() {
     const [isLoading, setIsLoading] = useState(false);
-    useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search);
-        setDispositivo(searchParams.get("dispositivo"));
-        setUsuario(searchParams.get("usuario"));
-    }, []);
-
-    useEffect(() => {
-        async function fetchPergunta() {
-            const response = await api.get(`/login/buscarpergunta/${usuario}`)
-            const pergunta = response.data.pergunta;;
-            setPergunta(pergunta);
-        }
-        if (usuario) {
-            fetchPergunta();
-        }
-    }, [usuario])
 
 
     const { register, handleSubmit } = useForm<personalDataSchema>({
@@ -52,15 +36,14 @@ export default function Confirmar() {
         try {
             // setIsLoading(true);
             const dados = {
-                iddispositivo: dispositivo,
-                idusuario: usuario,
+                contaid:useconta.getState().id,
                 ...data
             }
-            console.log(dados)
-              await api.post(`/login/verificarresposta`, dados);
+
+            const response=  await api.post(`/cliente/actualizaSenha`, dados);
             setIsLoading(true);
-            router.push("/login");
-            toast.success("Dados verificados com sucesso");
+            router.refresh();
+            toast.success(response.data.message);
         } catch (error) {
             if (error instanceof AxiosError) {
                 if (error.response?.status === 400) {
@@ -87,9 +70,9 @@ export default function Confirmar() {
       </div>
       
       <div className="mb-5 text-center">
-        <h2 className="text-xl font-medium text-gray-600">Verificação de Segurança</h2>
+        <h2 className="text-xl font-medium text-gray-600">Alteração de Codigo de Acesso</h2>
         <p className="text-gray-500 text-sm mt-2">
-          Para confirmar a sua identidade, por favor responda à pergunta de segurança abaixo
+          Para Alterar o seu Codigo de Acesso digite as suas novas credenciais
         </p>
       </div>
 
@@ -100,24 +83,52 @@ export default function Confirmar() {
           <div className="flex items-center mb-2">
             
             <label htmlFor="securityQuestion" className="block text-gray-500 font-normal">
-              Pergunta de Segurança
+             Seu codigo de acesso Actual<span className="text-red-500">*</span>
             </label>
           </div>
-          <div className="bg-gray-50 p-3 rounded-md border border-gray-200 mb-4">
-            <p className="text-gray-400">{Pergunta}</p>
+          
+          <div className="relative">
+            <input
+              
+              className={`w-full px-3 text-gray-600 py-3 border rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10 transition-all duration-200`}
+              placeholder="Insira o seu  Codigo de Acesso"
+              {...register("senha")}
+              disabled={isLoading}
+              autoComplete="off"
+            />
+          
           </div>
         </div>
-
+        <div className="mb-5">
+          <div className="flex items-center mb-2">
+            
+            <label htmlFor="securityQuestion" className="block text-gray-500 font-normal">
+             Novo codigo de Acesso <span className="text-red-500">*</span>
+            </label>
+          </div>
+          
+          <div className="relative">
+            <input
+              
+              className={`w-full px-3 text-gray-600 py-3 border rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10 transition-all duration-200`}
+              placeholder="Insira o seu novo Codigo de Acesso"
+              {...register("novasenha")}
+              disabled={isLoading}
+              autoComplete="off"
+            />
+          
+          </div>
+        </div>
         <div className="mb-6">
           <label htmlFor="securityAnswer" className="block text-gray-500 font-normal text-sm mb-2">
-            Sua Resposta <span className="text-red-500">*</span>
+            Confirme o Seu Codigo <span className="text-red-500">*</span>
           </label>
           <div className="relative">
             <input
               
               className={`w-full px-3 text-gray-600 py-3 border rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10 transition-all duration-200`}
-              placeholder="Insira sua resposta"
-              {...register("resposta")}
+              placeholder="Confirme o seu novo Codigo de Acesso"
+              {...register("confirmasenha")}
               disabled={isLoading}
               autoComplete="off"
             />
@@ -140,7 +151,7 @@ export default function Confirmar() {
             </>
           ) : (
             <>
-              Continuar
+              Alterar
               <ArrowRight className="w-4 h-4 ml-2" />
             </>
           )}

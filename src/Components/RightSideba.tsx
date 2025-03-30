@@ -1,4 +1,4 @@
-import Cartao from "./Cartão"
+//import Cartao from "./Cartão"
 import styles from '@/styles/Righitsibar.module.css'
 
 
@@ -15,7 +15,7 @@ export default function RightSideba() {
                 <div className="flex flex-col">
                     <p className={`${styles.profilenome}   text-gray-700 mb-4`}>Meus Cartões</p>
                     
-                        <Cartao />
+                        {/* <Cartao  dados={}/> */}
 
                         <div className="  w-full  items-center flex flex-col gap-2 mt-4">
                             <div className="flex justify-between w-full ">
