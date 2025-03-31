@@ -1,9 +1,10 @@
-"use client";
+
 import { Toaster } from "sonner";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import NextTopLoader from "nextjs-toploader";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
+
 
 export default function RootLayout({
   children,
@@ -33,7 +34,7 @@ export default function RootLayout({
         />
         <NextUIProvider>
           
-          <NextAuthSessionProvider>
+          <NextAuthSessionProvider >
             {children}
           </NextAuthSessionProvider>
          

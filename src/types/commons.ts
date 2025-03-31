@@ -35,7 +35,11 @@ export interface Cartao{
 export interface Cliente{
     nome:string,
     bi:string,
-    email:string
+    email:Email[]
+}
+
+export interface Email {
+    t_email_address: string;
 }
 
 export type EntidadeType = {
@@ -44,7 +48,6 @@ export type EntidadeType = {
     referencia:string,
     logo:string
 }
-
 
 export type ProdutoType = {
     id:number,

@@ -60,7 +60,7 @@ export default function Levantamentos({ dados }: Props) {
     try {
       let email:string|undefined ="";
       if(data.emaildestino==""){
-        email = dados?.cliente.email;
+        email =dados?.cliente.email[0].t_email_address;
       }else{
         email = data.emaildestino
       }
@@ -154,7 +154,7 @@ export default function Levantamentos({ dados }: Props) {
               <Input
                 readOnly
                 className="bg-gray-100 mt-2"
-                placeholder={`${dados?.cliente.email} `}
+                placeholder={`${dados?.cliente.email[0].t_email_address} `}
               />
               {errors.emaildestino?.message}
             </div>
