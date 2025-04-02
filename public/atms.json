@@ -10,29 +10,15 @@
             "type": "node",
             "id": 1562485879,
             "lat": -8.8292177,
-            "lon": 13.26468,
-            "tags": {
-                "addr:city": "Luanda",
-                "addr:housename": "Edificio BIC",
-                "addr:street": "Av. Hoji ya Henda",
-                "amenity": "bank",
-                "atm": "yes",
-                "name": "Banco BIC Angola"
-            }
+            "lon": 13.26468
+          
         },
         {
           "type": "node",
           "id": 1562485879,
           "lat": -8.8292177,
-          "lon": 13.26468,
-          "tags": {
-              "addr:city": "Luanda",
-              "addr:housename": "Edificio BIC",
-              "addr:street": "Av. Hoji ya Henda",
-              "amenity": "bank",
-              "atm": "yes",
-              "name": "Banco BIC Angola"
-          }
+          "lon": 13.26468
+       
         },
 
         {
@@ -40,83 +26,26 @@
             "type": "node",
             "id": 1562487513,
             "lat":-8.830212,
-            "lon": 13.247476,
-            "tags": {
-                "addr:housename": "Banco BFA",
-                "addr:street": "Av. Deolinda Rodrigues",
-                "amenity": "bank",
-                "atm": "yes",
-                "designation": "Banco BFA",
-                "name": "Banco de Fomento Angola (BFA)"
-            }
+            "lon": 13.247476
+         
         },
         {
             "type": "node",
             "id": 1562490807,
             "lat": -8.8294117,
-            "lon": 13.2638156,
-            "tags": {
-                "addr:city": "Luanda",
-                "addr:housename": "Edificio Yalelin",
-                "addr:street": "Rua dos Eucaliptos",
-                "amenity": "bank",
-                "atm": "yes",
-                "designation": "Banco de Poupanca e Credito",
-                "name": "Banco de Poupança e Crédito (BPC)"
-            }
+            "lon": 13.2638156
         },
         {
             "type": "node",
             "id": 1563901860,
             "lat": -8.8258363,
-            "lon": 13.2465967,
-            "tags": {
-                "addr:city": "Luanda",
-                "amenity": "bank",
-                "atm": "yes",
-                "branch": "Cine Atlântico",
-                "brand": "Banco de Fomento Angola (BFA)",
-                "brand:en": "Angola Development Bank (BFA)",
-                "brand:es": "Banco de Fomento Angola (BFA)",
-                "brand:wikidata": "Q806197",
-                "brand:wikipedia": "de:Banco de Fomento Angola",
-                "name": "Banco de Fomento Angola (BFA)",
-                "name:de": "Angola Entwicklungsbank (BFA)",
-                "name:en": "Angola Development Bank (BFA)",
-                "name:es": "Banco de Fomento Angola (BFA)",
-                "name:fr": "Banque de Developpement Angola (BFA)",
-                "name:it": "Banca di Sviluppo Angola (BFA)",
-                "name:nl": "Angola Ontwikkelingsbank (BFA)",
-                "name:pl": "Bank Rozwoju Angola (BFA)",
-                "name:pt": "Banco de Fomento Angola (BFA)"
-            }
+            "lon": 13.2465967
         },
         {
             "type": "node",
             "id": 1633554399,
             "lat": -8.8426222,
-            "lon": 13.2426789,
-            "tags": {
-                "addr:city": "Luanda",
-                "addr:street": "Avenida M. Alves de Pinho",
-                "amenity": "bank",
-                "atm": "yes",
-                "brand": "Banco de Fomento Angola (BFA)",
-                "brand:en": "Angola Development Bank (BFA)",
-                "brand:es": "Banco de Fomento Angola (BFA)",
-                "brand:wikidata": "Q806197",
-                "brand:wikipedia": "de:Banco de Fomento Angola",
-                "name": "Banco de Fomento Angola (BFA)",
-                "name:de": "Angola Entwicklungsbank (BFA)",
-                "name:en": "Angola Development Bank (BFA)",
-                "name:es": "Banco de Fomento Angola (BFA)",
-                "name:fr": "Banque de Developpement Angola (BFA)",
-                "name:it": "Banca di Sviluppo Angola (BFA)",
-                "name:nl": "Angola Ontwikkelingsbank (BFA)",
-                "name:pl": "Bank Rozwoju Angola (BFA)",
-                "name:pt": "Banco de Fomento Angola (BFA)",
-                "name:ru": "Банк Развития Ангола (БФА)"
-            }
+            "lon": 13.2426789
         },
         {
             "type": "node",
@@ -145,80 +74,19 @@
             "type": "node",
             "id": 1635393250,
             "lat": -8.822018,
-            "lon": 13.2380138,
-            "tags": {
-                "addr:city": "Luanda",
-                "amenity": "bank",
-                "brand": "Banco de Fomento Angola",
-                "brand:en": "Angola Development Bank (BFA)",
-                "brand:es": "Banco de Fomento Angola (BFA)",
-                "brand:short": "BFA",
-                "brand:wikidata": "Q806197",
-                "brand:wikipedia": "de:Banco de Fomento Angola",
-                "name": "Banco de Fomento Angola",
-                "name:de": "Angola Entwicklungsbank (BFA)",
-                "name:en": "Angola Development Bank (BFA)",
-                "name:es": "Banco de Fomento Angola (BFA)",
-                "name:fr": "Banque de Developpement Angola (BFA)",
-                "name:it": "Banca di Sviluppo Angola (BFA)",
-                "name:nl": "Angola Ontwikkelingsbank (BFA)",
-                "name:pl": "Bank Rozwoju Angola (BFA)",
-                "name:pt": "Banco de Fomento Angola (BFA)",
-                "name:ru": "Банк Развития Ангола (БФА)",
-                "short_name": "BFA"
-            }
+            "lon": 13.2380138
         },
         {
             "type": "node",
             "id": 1636695782,
             "lat": -8.8832943,
-            "lon": 13.2512988,
-            "tags": {
-                "amenity": "bank",
-                "atm": "yes",
-                "brand": "Banco de Fomento Angola (BFA)",
-                "brand:en": "Angola Development Bank (BFA)",
-                "brand:es": "Banco de Fomento Angola (BFA)",
-                "brand:wikidata": "Q806197",
-                "brand:wikipedia": "de:Banco de Fomento Angola",
-                "name": "Banco de Fomento Angola (BFA)",
-                "name:de": "Angola Entwicklungsbank (BFA)",
-                "name:en": "Angola Development Bank (BFA)",
-                "name:es": "Banco de Fomento Angola (BFA)",
-                "name:fr": "Banque de Developpement Angola (BFA)",
-                "name:it": "Banca di Sviluppo Angola (BFA)",
-                "name:nl": "Angola Ontwikkelingsbank (BFA)",
-                "name:pl": "Bank Rozwoju Angola (BFA)",
-                "name:pt": "Banco de Fomento Angola (BFA)",
-                "name:ru": "Банк Развития Ангола (БФА)",
-                "opening_hours": "Mo-Fr 07:30-16:00"
-            }
+            "lon": 13.2512988
         },
         {
             "type": "node",
             "id": 1637905087,
             "lat": -8.9026926,
-            "lon": 13.1963144,
-            "tags": {
-                "addr:city": "Luanda",
-                "addr:street": "Avenida Pedro de C. Vandunem-Loy",
-                "amenity": "bank",
-                "atm": "yes",
-                "brand": "Banco Sol",
-                "brand:en": "Sol Bank",
-                "brand:pt": "Banco Sol",
-                "brand:wikidata": "Q62118744",
-                "name": "Banco Sol",
-                "name:de": "Sonnenbank - Morro Bento II",
-                "name:en": "Sun Bank - Morro Bento II",
-                "name:es": "Banco Sol - Morro Bento II",
-                "name:fr": "Banc Soleil - Morro Bento II",
-                "name:it": "Banca Sole - Morro Bento II",
-                "name:nl": "Zonnebank - Morro Bento II",
-                "name:pl": "Bank Słońca - Morro Bento II",
-                "name:pt": "Banco Sol - Morro Bento II",
-                "name:ru": "Солнечный Берег - Морро Бенто II"
-            }
+            "lon": 13.1963144
         },
         {
             "type": "node",
@@ -249,120 +117,25 @@
             "type": "node",
             "id": 1655558695,
             "lat": -8.9075646,
-            "lon": 13.373312,
-            "tags": {
-                "alt_name:de": "Angolanische Investitionsbank (BAI)",
-                "alt_name:en": "Angolan Investment Bank (BAI)",
-                "alt_name:es": "Banco Angoleño de Inversión (BAI)",
-                "alt_name:fr": "Banque Angolaise d'investissement (BAI)",
-                "alt_name:it": "Banca d'investimento Angolana (BAI)",
-                "alt_name:nl": "Angolese Investeringsbank (BAI)",
-                "alt_name:pl": "Angolski Bank Inwestycyjny (BAI)",
-                "amenity": "bank",
-                "atm": "yes",
-                "name": "Banco Angolano de Investimentos (BAI)",
-                "name:de": "Angolano de Investimentosbank (BAI)",
-                "name:en": "Angolano de Investimentos Bank (BAI)",
-                "name:es": "Banco Angolano de Investimentos (BAI)",
-                "name:fr": "Banc Angolano de Investimentos (BAI)",
-                "name:it": "Banca Angolano de Investimentos (BAI)",
-                "name:ja": "アンゴラ投資銀行 (BAI)",
-                "name:nl": "Angolano de Investimentosbank (BAI)",
-                "name:pl": "Bank Angolano de Investimentos (BAI)",
-                "name:pt": "Banco Angolano de Investimentos (BAI)",
-                "name:ru": "Ангольский Инвестиционный Банк (БАИ)",
-                "name:zh-Hans": "安哥拉投资银行 (BAI)",
-                "name:zh-Hant": "安哥拉投資銀行 (BAI)"
-            }
+            "lon": 13.373312
         },
         {
             "type": "node",
             "id": 1655558726,
             "lat": -8.9075646,
-            "lon": 13.3735373,
-            "tags": {
-                "alt_name:de": "Sparkasse und Kreditbank (BPC)",
-                "alt_name:en": "Savings and Credit Bank (BPC)",
-                "alt_name:es": "Banco de Ahorro y Crédito (BPC)",
-                "alt_name:fr": "Banque d'épargne et de Crédit (BPC)",
-                "alt_name:it": "Banca di Risparmio e di Credito (BPC)",
-                "alt_name:nl": "Spaar en Kredietbank (BPC)",
-                "alt_name:pl": "Bank Oszczędnościowo Kredytowy (BPC)",
-                "amenity": "bank",
-                "atm": "yes",
-                "name": "Banco de Poupança e Crédito (BPC)",
-                "name:de": "Poupança e Créditobank (BPC)",
-                "name:en": "Poupança e Crédito Bank (BPC)",
-                "name:es": "Banco de Poupança e Crédito (BPC)",
-                "name:fr": "Banque Poupança e Crédito (BPC)",
-                "name:it": "Banca di Poupança e Crédito (BPC)",
-                "name:ja": "貯金・信用銀行 (BPC)",
-                "name:nl": "Poupança e Créditobank (BPC)",
-                "name:pl": "Bank Poupança e Crédito (BPC)",
-                "name:pt": "Banco de Poupança e Crédito (BPC)",
-                "name:ru": "Сберегательно-кредитный Банк (BPC)",
-                "name:zh-Hans": "储蓄和信贷银行 (BPC)",
-                "name:zh-Hant": "儲蓄和信貸銀行 (BPC)"
-            }
+            "lon": 13.3735373
         },
         {
             "type": "node",
             "id": 1655558962,
             "lat": -8.9069816,
-            "lon": 13.3738699,
-            "tags": {
-                "alt_name:de": "Atlantische Millennium-Bank",
-                "alt_name:en": "Millennium Atlantic Bank",
-                "alt_name:es": "Banco Milenio Atlántico",
-                "alt_name:fr": "Banque Millénaire l'Atlantique",
-                "alt_name:it": "Banca Millennio Atlantico",
-                "alt_name:nl": "Atlantisch Millenniumbank",
-                "alt_name:pl": "Bank Atlantyk Milenijny",
-                "amenity": "bank",
-                "atm": "yes",
-                "name": "Banco Millennium Atlântico",
-                "name:de": "Millennium Atlânticobank",
-                "name:en": "Millennium Atlântico Bank",
-                "name:es": "Banco Millennium Atlântico",
-                "name:fr": "Banc Millennium Atlântico",
-                "name:it": "Banca Millennium Atlântico",
-                "name:ja": "千年大西洋銀行",
-                "name:nl": "Millennium Atlânticobank",
-                "name:pl": "Bank Millennium Atlântico",
-                "name:pt": "Banco Millennium Atlântico",
-                "name:ru": "Атлантическое Тысячелетие Банк",
-                "name:zh-Hans": "千年大西洋银行",
-                "name:zh-Hant": "千年大西洋銀行"
-            }
+            "lon": 13.3738699
         },
         {
             "type": "node",
             "id": 1655560644,
             "lat": -8.9062291,
-            "lon": 13.3743634,
-            "tags": {
-                "alt_name:de": "Sparkasse und Kreditbank (BPC)",
-                "alt_name:en": "Savings and Credit Bank (BPC)",
-                "alt_name:es": "Banco de Ahorro y Crédito (BPC)",
-                "alt_name:fr": "Banque d'épargne et de Crédit (BPC)",
-                "alt_name:it": "Banca di Risparmio e di Credito (BPC)",
-                "alt_name:nl": "Spaar en Kredietbank (BPC)",
-                "alt_name:pl": "Bank Oszczędnościowo Kredytowy (BPC)",
-                "amenity": "bank",
-                "name": "Banco de Poupança e Crédito (BPC)",
-                "name:de": "Poupança e Créditobank (BPC)",
-                "name:en": "Poupança e Crédito Bank (BPC)",
-                "name:es": "Banco de Poupança e Crédito (BPC)",
-                "name:fr": "Banque Poupança e Crédito (BPC)",
-                "name:it": "Banca di Poupança e Crédito (BPC)",
-                "name:ja": "貯金・信用銀行 (BPC)",
-                "name:nl": "Poupança e Créditobank (BPC)",
-                "name:pl": "Bank Poupança e Crédito (BPC)",
-                "name:pt": "Banco de Poupança e Crédito (BPC)",
-                "name:ru": "Сберегательно-кредитный Банк (BPC)",
-                "name:zh-Hans": "储蓄和信贷银行 (BPC)",
-                "name:zh-Hant": "儲蓄和信貸銀行 (BPC)"
-            }
+            "lon": 13.3743634
         },
         {
             "type": "node",
@@ -381,35 +154,7 @@
             "type": "node",
             "id": 1655560646,
             "lat": -8.9068332,
-            "lon": 13.3746209,
-            "tags": {
-                "alt_name:de": "Angola Entwicklungsbank (BFA)",
-                "alt_name:en": "Angola Development Bank (BFA)",
-                "alt_name:es": "Banco de Desarrollo Angola (BFA)",
-                "alt_name:fr": "Banque de Développement Angola (BFA)",
-                "alt_name:it": "Banca di Sviluppo Angola (BFA)",
-                "alt_name:nl": "Angola Ontwikkelingsbank (BFA)",
-                "alt_name:pl": "Bank Rozwoju Angola (BFA)",
-                "amenity": "bank",
-                "brand": "Banco de Fomento Angola (BFA)",
-                "brand:en": "Angola Development Bank (BFA)",
-                "brand:es": "Banco de Fomento Angola (BFA)",
-                "brand:wikidata": "Q806197",
-                "brand:wikipedia": "de:Banco de Fomento Angola",
-                "name": "Banco de Fomento Angola (BFA)",
-                "name:de": "Fomento de Angola-Bank (BFA)",
-                "name:en": "Fomento Angola Bank (BFA)",
-                "name:es": "Banco de Fomento Angola (BFA)",
-                "name:fr": "Banque de Fomento de Angola (BFA)",
-                "name:it": "Banca di Fomento de Angola (BFA)",
-                "name:ja": "開発銀行アンゴラ (BFA)",
-                "name:nl": "Fomento de Angola Bank (BFA)",
-                "name:pl": "Fomento de Angola Bank (BFA)",
-                "name:pt": "Banco de Fomento Angola (BFA)",
-                "name:ru": "Банк Развития Ангола (БФА)",
-                "name:zh-Hans": "安哥拉妇女银行 (BFA)",
-                "name:zh-Hant": "安哥拉婦女銀行 (BFA)"
-            }
+            "lon": 13.3746209
         },
         {
             "type": "node",

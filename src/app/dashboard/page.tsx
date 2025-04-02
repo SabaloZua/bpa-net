@@ -7,8 +7,7 @@ import { redirect } from "next/navigation";
 export default async function DashboardPage(){
 
     const session = await getServerSession(nextAuthOptions);
-    console.log(session)
-
+   
     try {
          
         const dadosConta = await api.get(`/conta/dadoscliente/${session?.contaid}`)

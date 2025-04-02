@@ -295,7 +295,7 @@ export default function TransactionsPage() {
                               img: ' w-[20px] h-[20px]'
                             }}
                             icon={<AvatarIcon />}
-                            radius="sm" src={transaction.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : transaction.Descricao === 'Pagamentos de Serviços' ? 'icons/pagame3.png' : '/icons/trans9.png'} />
+                            radius="sm" src={transaction.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : transaction.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
 
                         </div>
                         <span title={transaction.Descricao} className="text-gray-700 truncate text-14">{transaction.Descricao}</span>

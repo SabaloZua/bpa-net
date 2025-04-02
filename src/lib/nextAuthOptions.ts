@@ -2,7 +2,7 @@ import api from "@/utils/axios"
 import { AxiosError } from "axios"
 import  { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { toast } from "sonner"
+
 
 const nextAuthOptions: NextAuthOptions = {
     providers: [
@@ -31,13 +31,12 @@ const nextAuthOptions: NextAuthOptions = {
                 }
 
 
-                return null
             }catch (error) {
                 if (error instanceof AxiosError) {
                   if (error.response?.status === 400) {
-                    toast.error(error.response?.data.message);
+                    throw new Error(error.response.data.message || "Dispositivo desconhecido");
                   } else {
-                    toast.error("Sem conexão com o servidor");
+                    throw new Error("Sem conexão com o servidor");
                   }
                 }
               }
