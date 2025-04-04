@@ -135,9 +135,6 @@ div[data-overlay-container="true"] {
     width: 17px;
     height: 17px;
 }
-.input_field > input:focus {
-    border-color: var(--color-focus);
-}
 
 .button_auth {
     width: 100%;

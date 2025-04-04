@@ -21,9 +21,12 @@ type Cartao ={
 type Cliente = {
     nome:string,
     bi:string,
-    email:string
+    email:Email[]
 }
 
+export interface Email {
+    t_email_address: string;
+}
 type State = {
     id:number;
     iban:string,
@@ -69,7 +72,7 @@ const useContaStore = create<State & Actions>((set) => ({
     cliente: {
         nome: '',
         bi: '',
-        email: ''
+        email: []
     },
     
     setId: (id: number): void => set((state) => ({ ...state, id })),

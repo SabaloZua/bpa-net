@@ -139,7 +139,7 @@
 }
 .header_form > h1 {
     font-size: 1.6rem;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 .header_form > p {
     font-size: var(--font-small);

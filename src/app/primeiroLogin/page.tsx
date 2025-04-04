@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,13 +12,17 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import api from "@/utils/axios";
-
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import "@/styles/email_campos.css";
+import "@/styles/email.css";
+import FirstLoginModal from "@/components/modals/FirstLoginModal";
+import { useDisclosure } from "@nextui-org/react";
+import Logo from "@/components/Logo";
 
 const formSchema = z
   .object({
-    codigoAcesso: z
-      .string()
-      .min(4, "A senha deve ter no mínimo 4 caracteres"),
+    codigoAcesso: z.string().min(4, "A senha deve ter no mínimo 4 caracteres"),
     confirmarSenha: z.string(),
     pergunta: z
       .string()
@@ -36,11 +40,10 @@ const formSchema = z
 
 type FormData = z.infer<typeof formSchema>;
 
-
 export default function PrimeiroLogin() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const {
     register,
@@ -54,14 +57,13 @@ export default function PrimeiroLogin() {
     setIsLoading(true);
     try {
       await api.post("/login/primeirologin", {
-        idconta:Number(localStorage.getItem("idConta")),
-        codigoacesso:data.codigoAcesso,
-        pergunta:data.pergunta,
-        resposta:data.resposta
-      }
-      );
-     
-      router.replace('/dashboard');
+        idconta: Number(localStorage.getItem("idConta")),
+        codigoacesso: data.codigoAcesso,
+        pergunta: data.pergunta,
+        resposta: data.resposta,
+      });
+
+      router.replace("/dashboard");
       //router.push("/registo/tipo-conta");
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -76,23 +78,22 @@ export default function PrimeiroLogin() {
     }
   }
 
+  useEffect(() => onOpen(), [onOpen]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1A82FF]/10 to-[#1A82FF]/5 flex items-center justify-center p-4">
-      <div className="container mx-auto max-w-6xl flex flex-col lg:flex-row items-center gap-8 ">
-        {/* Illustration for larger screens */}
+    <div className="min-h-screen bg-gradient-to-b from-[#1A82FF]/10 to-[#1A82FF]/5 flex items-center justify-center p-4 md:p-0 md:items-start md:justify-start">
+      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 ">
+     
         <div className="hidden lg:block w-1/2">
-          <Image src={welcome} alt="Segurança Bancária" className="w-full h-auto" width={200} />
+          <Image src={welcome} alt="Segurança Bancária" className="w-full h-auto" width={100} />
         </div>
 
-        {/* Form Container */}
+       
         <div className="w-full lg:w-1/2">
           <div className="bg-white w-full max-w-md mx-auto p-8 rounded-xl shadow-lg">
             <div className="text-center mb-8">
-              <h1 className="text-2xl font-bold text-[#1A82FF]">BPA Net</h1>
+              <Logo size={10} className="text-center"/>
               <p className="text-gray-600 mt-2">Configure suas credenciais de acesso</p>
-              <p className="text-sm text-gray-500 mt-1">
-                Para sua segurança, crie uma senha forte e uma pergunta personalizada
-              </p>
             </div>
 
             <form onSubmit={handleSubmit(submitForm)} className="space-y-6">
@@ -127,10 +128,6 @@ export default function PrimeiroLogin() {
               </div>
 
               <div className="pt-4 border-t border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Pergunta de Segurança Personalizada
-                </h2>
-
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Crie sua Pergunta de Segurança
@@ -179,14 +176,12 @@ export default function PrimeiroLogin() {
                 )}
               </button>
             </form>
-
-            <p className="text-sm text-gray-500 mt-6 text-center">
-              Lembre-se de guardar sua pergunta e resposta de segurança. Elas serão necessárias caso
-              precise recuperar seu acesso.
-            </p>
           </div>
         </div>
       </div>
+      <FirstLoginModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
+
+
   );
 }

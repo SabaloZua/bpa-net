@@ -61,7 +61,7 @@ export const Header = () => {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link className="text-color-text" href="/forgot-password">
+            <Link className="text-color-text" href="/credencias/email">
               Recuperar Credenciais
             </Link>
           </NavbarItem>

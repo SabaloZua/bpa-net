@@ -97,7 +97,10 @@ export default function AuthForm() {
   const submitForm = async (data: FormType) => {
     setIsLoading(true);
     try {
-      await api.post("/login/generate2fa", data);
+      await api.post("/login/generate2fa", {
+        numeroAdesao:data.numeroAdesao.trim(),
+        codigoAcesso:data.codigoAcesso.trim()
+      });
       onOpen();
       //router.push("/registo/tipo-conta");
     } catch (error) {
@@ -118,13 +121,18 @@ export default function AuthForm() {
     try {
       console.log(OTP);
 
-      await signIn("credentials", {
+   const result=await signIn("credentials", {
         codigo2fa: OTP,
         iddispositivo: id,
         sistemadispositivo: sistemaoperativo,
         navegadordispositivo: navegador,
         redirect: false,
       });
+
+      if (result?.error) {
+        toast.error(result.error);
+        return;
+      }
 
       const response = await api.get(`/login/verificalogin/${OTP}`);
       useConta.setId(Number(response.data.contaid));
@@ -229,6 +237,7 @@ export default function AuthForm() {
           </div>
           {errors.codigoAcesso && <InfoError message={errors.codigoAcesso.message} />}
         </div>
+        <Link className={`${styles.lableinputs} text-[#63B5E7] w-full flex justify-end`} href={"/credencias/email"}>Recuperar Credencias</Link>
 
         <button className={`button_auth`} type="submit" disabled={isLoading}>
           {isLoading ? (

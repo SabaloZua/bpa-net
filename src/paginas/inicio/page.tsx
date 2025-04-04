@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client";
 import Tabela from "@/components/Tabela";
 import { ArrowRight, CreditCard, Eye, EyeClosed, Settings } from "lucide-react";
@@ -6,6 +7,7 @@ import Cambio from "@/components/cambio";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Link from "next/link";
+// import { useLayoutEffect } from "react";
 import api from "@/utils/axios";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
@@ -19,11 +21,11 @@ import useContaStore from "@/contexts/contaStore";
 
 interface Props {
   dadosConta: DadosContaType | undefined;
+  setDashboardPage?: (page: string) => void; // nova prop para atualizar o state no Dashboard
 }
 
+export default function Home({ dadosConta, setDashboardPage }: Props) {
 
-
-export default function Home({ dadosConta }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [mostrarSaldo, setMostrarSado] = useState(true);
   const mudarIcon = mostrarSaldo === true ? false : true;
@@ -75,11 +77,15 @@ export default function Home({ dadosConta }: Props) {
 
   //Funções Auxiliares
 
+  
+  
 
+  console.log(dadosConta?.saldo)
 
   return (
-    <div>
-      <p className="font-medium text-gray-500  mb-6">
+    <div >
+      
+      <p className="ola font-medium text-gray-500  mb-6">
         Olá{" "}
         <span className="font-medium text-blue-500">{formataNome(dadosConta?.cliente.nome)}</span>{" "}
         👋
@@ -99,17 +105,17 @@ export default function Home({ dadosConta }: Props) {
 
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">
-            Saldo: Kz <span>{mostrarSaldo ? "****" : `${formataSaldo(useConta.saldo)}`}</span>,00
+            Saldo: Kz <span>{mostrarSaldo ? "****,00" : `${formataSaldo(useConta.saldo)},00`}</span>
           </h1>
         </div>
       </div>
 
       {/* Cards Section */}
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2" >
           {/* Card Section */}
 
-          <div className=" lg:col-span-2 bg-gray-100 rounded-lg p-4 flex flex-col ">
+          <div className=" lg:col-span-2 bg-gray-100 rounded-lg p-4 flex flex-col " id="inicio">
             <div className="flex items-center justify-between ">
               <h2 className="text-lg font-medium text-blue-500">Cartões</h2>
               <div className="text-blue-500">
@@ -119,15 +125,19 @@ export default function Home({ dadosConta }: Props) {
             <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
 
             <div className="w-full flex justify-center">
-              <Cartao dados={dadosConta}/>
+              <Cartao dados={dadosConta}  />
+              
             </div>
             <div className="flex justify-center mt-6">
-              <div className="flex space-x-12">
-                <button className="flex flex-col items-center text-gray-600">
-                  <div className="p-3 rounded-full border border-gray-300 mb-2">
+              <div className=" flex space-x-12">
+                <button  className=" lev  flex flex-col items-center text-gray-600" onClick={()=>{
+                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                  setDashboardPage && setDashboardPage('levantamentos')}
+                    } >
+                  <div className=" p-3 rounded-full border border-gray-300 mb-2">
                     <CreditCard className="h-5 w-5" />
                   </div>
-                  <span className="text-sm">Levantar</span>
+                  <span  className="text-sm">Levantar</span>
                 </button>
                 <button className="flex flex-col items-center text-gray-600">
                   <div className="p-3 rounded-full border border-gray-300 mb-2">
@@ -142,7 +152,7 @@ export default function Home({ dadosConta }: Props) {
           {/* Transfer Section */}
           <form
             onSubmit={handleSubmit(handleNahora)}
-            className=" bg-gray-100 rounded-lg p-4 flex  items-center flex-col"
+            className="nahora bg-gray-100 rounded-lg p-4 flex  items-center flex-col"
           >
             <div className=" w-full flex items-center justify-between">
               <h2 className="text-lg font-medium text-blue-500">Enviar NaHora</h2>
@@ -177,7 +187,7 @@ export default function Home({ dadosConta }: Props) {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Montante *</label>
                 <div className="relative">
                   <Input
-                    placeholder="Insira o N° de Telemóvel do Beneficiário"
+                    placeholder="Insira o montante a enviar"
                     {...register("valor")}
                     required
                   />
@@ -211,11 +221,11 @@ export default function Home({ dadosConta }: Props) {
 
         <div className="grid grid-cols-1 rounded-lg lg:grid-cols-4 gap-4 p-5 bg-gray-100 ">
           {/* llll; */}
-          <div className=" lg:col-span-2 bg-white rounded-xl  p-4 flex flex-col ">
+          <div className="trans  lg:col-span-2 bg-white rounded-xl  p-4 flex flex-col ">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-medium text-blue-500">Transaçoes recentes</h2>
               <div className="text-blue-500">
-                <Link href={"/transacoes"} className="cursor-pointer">
+                <Link href={'#'} className="cursor-pointer" onClick={()=>{setDashboardPage && setDashboardPage('transacoes')}}>
                   <ArrowRight />
                 </Link>
               </div>
@@ -223,7 +233,7 @@ export default function Home({ dadosConta }: Props) {
             <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
             <Tabela />
           </div>
-          <div className=" lg:col-span-2 bg-white rounded-xl p-3 flex flex-col ">
+          <div className=" cambio lg:col-span-2 bg-white rounded-xl p-3 flex flex-col ">
             <div className="flex items-center justify-between ">
               <h2 className="text-lg font-medium text-blue-500">Câmbio</h2>
               <div className="text-blue-500">
@@ -237,6 +247,9 @@ export default function Home({ dadosConta }: Props) {
           </div>
         </div>
       </div>
+  
+     
     </div>
+    
   );
 }

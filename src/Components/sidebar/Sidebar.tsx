@@ -3,7 +3,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, LogOut } from "lucide-react";
 import { JSX } from "react";
-
+import {signOut} from 'next-auth/react'
+import { useRouter } from "next/navigation";
 import { sidebarLinks } from "@/constants/index";
 import Image from "next/image";
 export default function Sidebar() {
@@ -17,6 +18,13 @@ export default function Sidebar() {
     icon: JSX.Element;
     active: boolean;
   }
+  const router=useRouter();
+  async function terminarSessao() {
+    await signOut({
+      redirect:false
+    })
+   router.replace('/login') 
+  }
 
   const links: LinkItem[] = sidebarLinks;
   return (
@@ -29,11 +37,11 @@ export default function Sidebar() {
             className={` flex cursor-pointer items-center gap-1 `}
           >
             <Image
-              src={`/icons/logo_favicon.svg`}
-              width={35}
-              height={35}
+              src={`/icons/logow.svg`}
+              width={37}
+              height={50}
               alt="Logo horizontal"
-              className="size-[36px] max-md:size-14"
+              className=" max-md:size-14"
             />
             <h1 className="font-bold text-white text-[26px]">
               BPA <span className="text-sm">NET</span>
@@ -75,7 +83,7 @@ export default function Sidebar() {
 
         <div className="p-4  shadow-lg mt-auto">
           <div className="flex items-center text-sm cursor-pointer">
-            <Link href={"/login"}>
+            <Link onClick={terminarSessao} href={"#"}>
               <LogOut size={18} className="mr-2" />
             </Link>
             <div>

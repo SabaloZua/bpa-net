@@ -12,6 +12,34 @@ export interface DadosContaType {
     cartao: Cartao
     cliente: Cliente
 }
+export interface DadoAdmin{
+    valorTotalTransacoes:    string;
+    totalClientes:           number;
+    totalTransacoes:         number;
+    percentagemContasAtivas: number;
+    trasacoes:trasacoes,
+    cliente:cliente
+}
+export interface cliente {
+    nome:        string;
+    email:       string;
+    numeroConta: string;
+    iban:        string;
+}
+export interface trasacoes {
+    n_Idtrasacao:            number;
+    n_contaorigem:           number;
+    t_contadestino:          null | string;
+    t_debito:                null | string;
+    t_credito:               null | string;
+    t_benefeciario:          null | string;
+    t_descricao:             string
+    t_datatrasacao:          Date;
+    t_saldoactual:           string;
+    valorTransacaoFormatada: string;
+}
+
+
 
 export interface Conta{
     iban:string,
@@ -35,7 +63,11 @@ export interface Cartao{
 export interface Cliente{
     nome:string,
     bi:string,
-    email:string
+    email:Email[]
+}
+
+export interface Email {
+    t_email_address: string;
 }
 
 export type EntidadeType = {
@@ -44,7 +76,6 @@ export type EntidadeType = {
     referencia:string,
     logo:string
 }
-
 
 export type ProdutoType = {
     id:number,

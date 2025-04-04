@@ -77,7 +77,6 @@ export default function Transferencias({ dados }: Props) {
   }
 
   const [transferType, setTransferType] = useState("intrabank");
-  const [accountNumber] = useState("1234567890"); // Example account number
 
   return (
     <div className="bg-gray-100 rounded-xl p-4">
@@ -119,10 +118,11 @@ export default function Transferencias({ dados }: Props) {
                   </div>
                   <input
                     type="text"
-                    value={accountNumber}
+                    value={dados?.numeroConta}
                     placeholder="conta destino"
                     className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
-                  />
+                    disabled
+                 />
                 </div>
               </div>
 

@@ -45,7 +45,7 @@ export default  function App() {
           function fetchPergunta() {
               api.get(`/trasacao/trasacoesrecentes/${Number(localStorage.getItem("idConta"))}`)
               .then(response => {
-                const dados = response.data.trasacoes;
+                const dados =  response.data.trasacoes;
                 settransacoes(dados);
               })
               .catch(error => {
@@ -72,12 +72,14 @@ export default  function App() {
             img:' w-[20px] h-[20px]'
           }}
           icon={<AvatarIcon />}
-          radius="sm" src={dados.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : dados.Descricao === 'Pagamentos de Serviços' ? 'icons/pagame3.png' : '/icons/trans9.png'} />
+          radius="sm" src={dados.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : dados.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
         );
       case "Descricao":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-12 capitalize text-default-700">{cellValue}</p>
+            <p title={dados.Descricao} className="text-bold text-12 capitalize text-default-700">
+              {dados.Descricao.split(" ").slice(0, 5).join(" ")}
+            </p>
           </div>
         );
       case "data":
