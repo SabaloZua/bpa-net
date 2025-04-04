@@ -1,4 +1,3 @@
-
 import { Toaster } from "sonner";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
