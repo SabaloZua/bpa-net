@@ -178,6 +178,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
 
                 <Input
                   placeholder="Insira o N° de Telemóvel do Beneficiário"
+                  maxLength={9}
                   {...register("telefonecontadestino")}
                   required
                 />

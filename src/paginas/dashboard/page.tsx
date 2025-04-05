@@ -22,6 +22,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select"
+import Conta from "../conta/page";
 
 interface DashboardProps {
   idConta: number | undefined;
@@ -163,8 +164,9 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
               <TransactionsPage />
             ): page === "Senha" ? (
               <Senha />
-            )
-              : null}
+            ): page === "conta" ? (
+                <Conta dados={dadosConta} />
+              ): null}
         </main>
       </div>
 

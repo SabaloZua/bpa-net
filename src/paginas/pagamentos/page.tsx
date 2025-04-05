@@ -65,6 +65,8 @@ export default function Pagamentos({ dados }: Props) {
     console.log(produtosFiltrados);
   }
 
+  console.log(todosProdutos)
+
   //Criar uma funcao generica de submit
 
   const handleSubmit = async (e:FormEvent) => {

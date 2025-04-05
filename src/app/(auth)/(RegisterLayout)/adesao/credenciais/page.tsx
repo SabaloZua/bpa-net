@@ -2,10 +2,11 @@
 
 import React, { useEffect } from "react";
 import { ArrowRight, KeyRound } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { useStepperStore } from "@/contexts/stepsStore";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const CredenciaisPage = () => {
   const { currentStep, setCurrentStep } = useStepperStore();
@@ -37,10 +38,10 @@ const CredenciaisPage = () => {
           height={100}
         />
       </div>
-      <Button type="submit" className="button_auth">
+      <Link href={'/login'} className="button_auth">
         Fazer login
         <ArrowRight style={{ width: "1.25rem", height: "1.25rem" }} />
-      </Button>
+      </Link>
     </div>
   );
 };

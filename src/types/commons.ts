@@ -63,7 +63,7 @@ export interface Cartao{
 export interface Cliente{
     nome:string,
     bi:string,
-    email:Email[]
+    email:string,
 }
 
 export interface Email {

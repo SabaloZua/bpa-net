@@ -178,6 +178,7 @@ export default function PersonalData() {
           <input
             type="text"
             placeholder="Insira o seu número de telefone"
+            maxLength={9}
             {...register("telefone")}
           />
           {errors.nomeCliente && <InfoError message={errors.nomeCliente.message} />}

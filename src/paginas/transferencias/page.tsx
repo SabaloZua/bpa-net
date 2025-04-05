@@ -81,7 +81,7 @@ export default function Transferencias({ dados }: Props) {
   return (
     <div className="bg-gray-100 rounded-xl p-4">
       <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
-        <form onSubmit={handleSubmit(handleTranferencia)}>
+        <form onSubmit={handleSubmit(handleTranferencia)} autoComplete="off">
           <div className="px-6 py-5 sm:p-6">
             {/* Transfer Type Selector */}
             <div className="mb-6">

@@ -96,25 +96,29 @@ const ContratoPage = () => {
         <h2 className="text-2xl font-semibold">Contrato de Adesão</h2>
       </div>
 
-      <div className=" h-fit overflow-y-auto pr-6 scrollbar-thin mb-4">
-        <div className="space-y-6 text-gray-600 max-w-xl">
+      <div className=" h-fit overflow-y-auto mb-4">
+        <div className="space-y-6 text-gray-600">
           <h2 className="text-xl font-semibold text-gray-800">BPA NET</h2>
 
           <div className="flex">
-            <p>
-              O BPA NET é a plataforma de internet banking do Banco BPA, oferecendo acesso seguro e
-              conveniente a serviços bancários online. Através dela, o cliente pode consultar
-              saldos, efetuar pagamentos, transferências e outras operações de forma rápida e
-              prática. Disponível 24 horas por dia, o BPA NET garante total segurança e eficiência
-              para a sua experiência bancária digital.
-            </p>
-            <Image
-              src={"/banners/contrato.svg"}
-              alt="BPA NET"
-              width={300}
-              height={50}
-              className="hidden lg:flex"
-            />
+            <div className="md:w-2/3">
+              <p>
+                O BPA NET é a plataforma de internet banking do Banco BPA, oferecendo acesso seguro e
+                conveniente a serviços bancários online. Através dela, o cliente pode consultar
+                saldos, efetuar pagamentos, transferências e outras operações de forma rápida e
+                prática. Disponível 24 horas por dia, o BPA NET garante total segurança e eficiência
+                para a sua experiência bancária digital.
+              </p>
+            </div>
+            <div className="md:w-1/3 flex items-end">
+              <Image
+                src={"/banners/contrato.svg"}
+                alt="BPA NET"
+                width={400}
+                height={50}
+                className="hidden md:flex"
+              />
+            </div>
           </div>
         </div>
       </div>

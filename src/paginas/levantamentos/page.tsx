@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Check, ChevronsUpDown, Terminal } from "lucide-react";
+import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
@@ -8,7 +8,7 @@ import { useState } from "react";
 import { DadosContaType } from "@/types/commons";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { TailSpin } from "react-loader-spinner";
 import api from "@/utils/axios";
 import { AxiosError } from "axios";
@@ -18,63 +18,69 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
-  CommandList,
 } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { montantes } from "@/constants";
 import useContaStore from "@/contexts/contaStore";
+import "@/styles/levantamento.css";
 interface Props {
   dados: DadosContaType | undefined;
 }
 
 type TipoLevantamento = "mim" | "outro";
 
-const FormSchema = z.object({
-  emaildestino: z.string(),
-  pin: z.string(),
-  pin2: z.string(),
-});
+const FormSchema = z
+  .object({
+    emaildestino: z.string().nonempty("Deve preencher este campo"),
+    pin: z.string().min(3, "Seu código deve ter 3 caracteres"),
+    pin2: z.string(),
+    montante: z.number().min(500,"Selecione um montante"),
+  })
+  .refine((data) => data.pin === data.pin2, {
+    message: "Os códigos não coincidem",
+    path: ["pin2"],
+  });
 
 type FormType = z.infer<typeof FormSchema>;
 
 export default function Levantamentos({ dados }: Props) {
   const [tipoLevantamento, setTipoLevantamento] = useState<TipoLevantamento>("mim");
-  const [value, setValue] = useState("");
+
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const useConta = useContaStore();
   const {
     register,
     handleSubmit,
+    setValue,
+    control,
     formState: { errors },
   } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      emaildestino: String(dados?.cliente.email),
+    },
   });
 
   //{ pin, valor,emaildestino,idconta}
   async function submitForm(data: FormType) {
-
     setIsLoading(true);
     try {
-      let email:string|undefined ="";
-      if(data.emaildestino==""){
-        email =dados?.cliente.email[0].t_email_address;
-      }else{
-        email = data.emaildestino
-      }
 
+      console.log(data);
       const response = await api.post("/trasacao/levantamento", {
         idconta: Number(localStorage.getItem("idConta")),
         pin: data.pin,
-        valor: Number(value.replace(" ","").replace("Kz","")),
-        emaildestino: email,
+        valor: data.montante,
+        emaildestino: data.emaildestino,
       });
 
-      useConta.setSaldo(Number(response.data.saldoactualizado))
 
-      toast.success("Levantamento feito com sucesso",{
+      useConta.setSaldo(Number(response.data.saldoactualizado));
+
+      toast.success("Levantamento feito com sucesso", {
         action: {
           label: "Comprovativo",
           onClick: async () =>
@@ -98,129 +104,134 @@ export default function Levantamentos({ dados }: Props) {
     }
   }
 
+  function altereTipoLevantamento(tipo: string): void {
+    if (tipo == "mim") {
+      setTipoLevantamento("mim");
+      setValue("emaildestino", String(dados?.cliente.email));
+    } else {
+      setTipoLevantamento("outro");
+    }
+  }
+
   return (
-    <div className="flex">
-      <form className="max-w-[36rem]" onSubmit={handleSubmit(submitForm)}>
-        <div>
-          <h1 className="text-3xl text-gray-900">Levantamentos sem cartão</h1>
-          <p className="font-medium text-gray-500 mt-2">
+    <div className="levantamento-container">
+      <form className="levantamento-form" onSubmit={handleSubmit(submitForm)}>
+      <div className="levantamento-header">
+          <h1>Levantamentos sem cartão</h1>
+          <p>
             Retire o seu dinheiro a qualquer momento.
           </p>
         </div>
 
-        <div className="optionContainer mt-4">
-          <div className="flex gap-1 items-center">
+        <div className="levantamento-opcoes">
+          <div className="opcao-container">
             <User className="text-gray-500" />
-            <h2 className="text-[#2E90FA]">Quem vai levantar o dinheiro?</h2>
+            <h2>Quem vai levantar o dinheiro?</h2>
           </div>
-          <div className="Options mt-2 flex p-1 gap-2">
+          <div className="opcoes">
             <div
-              className={`ParaMim 
-              hover:${tipoLevantamento == "outro" ? "" : "bg-gray-50"} border 
-              w-72 h-16 rounded-md 
-              flex items-center justify-center 
-            ${tipoLevantamento == "mim" ? "border-[#2E90FA]" : ""}
-            text-gray-700 cursor-pointer`}
-              onClick={() => setTipoLevantamento("mim")}
+              className={`opcao ${tipoLevantamento == "mim" ? "selecionada" : ""}`}
+              onClick={() => altereTipoLevantamento("mim")}
             >
               Eu próprio
             </div>
             <div
-              className={`
-                hover:${tipoLevantamento == "mim" ? "" : "bg-gray-50"}
-                w-72 h-16 rounded-md 
-                flex items-center justify-center
-              text-gray-700 border cursor-pointer
-              ${tipoLevantamento == "outro" ? "border-[#2E90FA]" : ""}`}
-              onClick={() => setTipoLevantamento("outro")}
+              className={`opcao ${tipoLevantamento == "outro" ? "selecionada" : ""}`}
+              onClick={() => altereTipoLevantamento("outro")}
             >
               Outra pessoa
             </div>
           </div>
         </div>
-        <div className="mt-2">
+        <div className="email-container">
           {tipoLevantamento == "outro" ? (
             <div>
-              <label htmlFor="" className="text-gray-500 flex items-center">
-                Endereço do email do beneficiário
-              </label>
-              <Input className="mt-2" placeholder="" {...register("emaildestino")} />
+              <label htmlFor="">Endereço do email do beneficiário</label>
+              <Input className="email-input" {...register('emaildestino')}/>
+              {errors.emaildestino && <p className="text-red-500 text-sm">{errors.emaildestino.message}</p>}
             </div>
           ) : (
             <div>
-              <label htmlFor="" className="text-gray-500">
-                Meu endereço de e-mail
-              </label>
+              <label>Meu endereço de e-mail</label>
               <Input
                 readOnly
-                className="bg-gray-100 mt-2"
-                placeholder={`${dados?.cliente.email[0].t_email_address} `}
+                className="email-input"
+                placeholder={`${dados?.cliente.email} `}
               />
-              {errors.emaildestino?.message}
             </div>
           )}
         </div>
 
-        <div className="mt-6">
-          <label htmlFor="" className="text-[#2E90FA] flex items-center gap-2">
+        <div className="montante-container">
+          <label htmlFor="">
             <Banknote className="text-gray-500" />
             Quanto dinheiro vai levantar?
           </label>
           {/* Inicio.. */}
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild className="mt-2">
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className={`w-full justify-between ${
-                  value ? "text-gray-900" : "text-gray-500"
-                } text-[1rem]`}
-              >
-                {value
-                  ? montantes.find((montante) => montante.name === value)?.name
-                  : "Selecione o montante a levantar"}
-                <ChevronsUpDown className="opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[400px] p-0">
-              <Command>
-                <CommandList>
-                  <CommandEmpty>No montante found.</CommandEmpty>
-                  <CommandGroup>
-                    {montantes.map((montante) => (
-                      <CommandItem
-                        key={montante.name}
-                        value={montante.name}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue);
-                          setOpen(false);
-                        }}
-                      >
-                        {montante.name}
-                        <Check
-                          className={cn(
-                            "ml-auto",
-                            value === montante.name ? "opacity-100" : "opacity-0"
-                          )}
-                        />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          <Controller
+            control={control}
+            name="montante"
+            rules={{ required: "Selecione um montante" }}
+            defaultValue={0}
+            render={({ field }) => {
+              
+              const selected = montantes.find((montante) => montante.value === field.value);
+              return (
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="montante-button"
+                    >
+                      {selected ? selected.name : "Selecione um montante"}
+                      <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[400px] p-0">
+                    <Command>
+                      <CommandEmpty>Nenhum montante encontrado.</CommandEmpty>
+                      <CommandGroup>
+                        {montantes.map((montante) => (
+                          <CommandItem
+                            key={montante.value}
+                            onSelect={() => {
+                              field.onChange(montante.value);
+                              setOpen(false);
+                            }}
+                            className="cursor-pointer"
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                montante.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                            {montante.name}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              );
+    
+            }}
+          />
+
+          {errors.montante && <p className="text-red-500 text-sm">{errors.montante.message}</p>}
           {/* Fim Inicio... */}
         </div>
 
-        <div className="mt-8">
-          <label htmlFor="" className="text-[#2E90FA] flex items-center gap-2">
+        <div className="codigo-container">
+          <label htmlFor="">
             <LockKeyhole className="text-gray-500" />
             Qual o seu código secreto?
           </label>
-          <Alert className="mt-2 bg-gray-100">
-            <Terminal className="h-4 w-4" />
+          <Alert className="alerta-codigo">
             <AlertDescription>
               O código secreto será utilizado pelo destinatário para que possa realizar o
               levantamento
@@ -233,11 +244,11 @@ export default function Levantamentos({ dados }: Props) {
             {...register("pin")}
             maxLength={3}
           />
-          {errors.pin?.message}
+          {errors.pin && <p className="text-red-500 text-sm mt-1">{errors.pin.message}</p>}
         </div>
 
-        <div className="mt-4">
-          <label htmlFor="" className="text-[#2E90FA] flex items-center gap-2">
+        <div className="codigo-container">
+          <label htmlFor="">
             <LockKeyhole className="text-gray-500" />
             Repita o seu código secreto
           </label>
@@ -248,6 +259,7 @@ export default function Levantamentos({ dados }: Props) {
             maxLength={3}
             {...register("pin2")}
           />
+          {errors.pin2 && <p className="text-red-500 text-sm mt-1">{errors.pin2.message}</p>}
         </div>
 
         <button className="button_auth mt-8" type="submit">
@@ -271,7 +283,7 @@ export default function Levantamentos({ dados }: Props) {
 
       <div>
         <div className="UltimosPagamentos px-4 w-96">
-          <div className="border rounded-md p-4 min-h-96">
+          <div className="pagamentos-container">
             <h1>Levantamentos efectuados</h1>
             <Separator className="mt-2" />
           </div>

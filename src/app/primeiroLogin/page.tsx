@@ -12,8 +12,6 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import api from "@/utils/axios";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import "@/styles/email_campos.css";
 import "@/styles/email.css";
 import FirstLoginModal from "@/components/modals/FirstLoginModal";
@@ -96,7 +94,7 @@ export default function PrimeiroLogin() {
               <p className="text-gray-600 mt-2">Configure suas credenciais de acesso</p>
             </div>
 
-            <form onSubmit={handleSubmit(submitForm)} className="space-y-6">
+            <form onSubmit={handleSubmit(submitForm)} className="space-y-6" autoComplete="off">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Código de Acesso

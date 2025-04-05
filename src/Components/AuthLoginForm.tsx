@@ -139,9 +139,9 @@ export default function AuthForm() {
       useConta.setId(Number(response.data.contaid));
       localStorage.setItem("idConta", response.data.contaid);
       if (response.data.primeirologin == true) {
-        router.replace("/primeiroLogin");
+        router.push("/primeiroLogin");
       } else {
-        router.replace("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       if (error instanceof AxiosError) {

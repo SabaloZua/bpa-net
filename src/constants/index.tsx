@@ -10,7 +10,7 @@ import epal from "@/assets/images/epal.png";
 // Aqui estão os dados dos links do sidebar como a a rota imagem e Legenda\
 export const sidebarLinks = [
   { name: "O Meu BPA", icon: <CreditCard size={18} />, path: "inicio", active: false },
-  { name: "Contas", icon: <Users size={18} />, path: "contas", active: false },
+  { name: "Contas", icon: <Users size={18} />, path: "conta", active: false },
   {name: "Transferências", icon: <ArrowRightLeft size={18} />, path: "transferencias", active:false,
   },
   { name: "Pagamentos", icon: <HandCoins size={18} />, path: "pagamentos", active: false },
