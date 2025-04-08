@@ -1,4 +1,5 @@
 import { DadosContaType } from "@/types/commons";
+import Cabecalho from '@/components/Cabecalho'
 
 
 interface Props {
@@ -7,30 +8,26 @@ interface Props {
 
 const Conta = ({dados}:Props) => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-8">
-          Detalhes da Conta Bancária
-        </h1>
+    <div>
+      <Cabecalho Titulo='Detalhes de Conta' subTitulo='Veja as informações relacionadas a sua conta' />
+      <div className="flex p-4 min-h-screen bg-gray-100">
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-full w-full flex flex-col items-center">
 
-        <div className="mb-4">
-          <strong className="text-gray-700">Nome do Titular:</strong>
-          <p className="text-teal-600 font-semibold">{dados?.cliente.nome}</p>
+          <div className="mb-4">
+            <strong className="text-gray-700">Nome do Titular:</strong>
+            <p className="text-teal-600 font-semibold">{dados?.cliente.nome}</p>
+          </div>
+          <div className="mb-4">
+            <strong className="text-gray-700 text-center">IBAN:</strong>
+            <p className="text-teal-600 font-semibold">{dados?.iban}</p>
+          </div>
+          <div className="mb-4">
+            <strong className="text-gray-700">Número da Conta:</strong>
+            <p className="text-teal-600 font-semibold">{dados?.numeroConta}</p>
+          </div>
+      
+      
         </div>
-
-        <div className="mb-4">
-          <strong className="text-gray-700">IBAN:</strong>
-          <p className="text-teal-600 font-semibold">{dados?.iban}</p>
-        </div>
-
-        <div className="mb-4">
-          <strong className="text-gray-700">Número da Conta:</strong>
-          <p className="text-teal-600 font-semibold">{dados?.numeroConta}</p>
-        </div>
-
-        
-
-        
       </div>
     </div>
   );

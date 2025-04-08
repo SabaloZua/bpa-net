@@ -282,7 +282,7 @@ export default function AuthForm() {
               <ModalHeader className="flex flex-col gap-1">Código de verificação</ModalHeader>
               <ModalBody>
                 <p>
-                  Foi enviado um código de verificação para o seu e-mail, por favor Inisa-o para
+                  Foi enviado um código de verificação para o seu e-mail, por favor Insira-o para
                   poder continuar
                 </p>
                 <div className="body_form">

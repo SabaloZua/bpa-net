@@ -56,7 +56,7 @@ const EtapaEmailPage = () => {
   return (
     <>
       {!sucessEmail ? (
-        <form onSubmit={handleSubmit(handleVerifyEmail)} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit(handleVerifyEmail)} className="flex flex-col gap-3" autoComplete="off">
           <div className="flex items-center space-x-3 mb-6">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Mail className="w-6 h-6 text-blue-600" />

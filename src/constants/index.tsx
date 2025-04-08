@@ -47,11 +47,14 @@ type Provincia = {
 };
 
 export const montantes = [
+  {name:"200 Kz", value:200},
+  {name:"500 Kz", value:500},
   {name:"1 000 Kz", value:1000},
   {name:"2 000 Kz", value:2000},
+  {name:"3 000 Kz", value:3000},
   {name:"5 000 Kz", value:5000},
   {name:"10 000 Kz", value:10000},
-  
+  {name:"20 000 Kz", value:20000},
 ];
 
 export const provincias: Provincia[] = [
