@@ -8,10 +8,10 @@ interface Props {
   dados: DadosContaType | undefined;
 }
 
-const Conta = ({dados}:Props) => {
+const Perfil = ({dados}:Props) => {
   return (
     <div>
-      <Cabecalho Titulo='Detalhes de Conta' subTitulo='Veja as informações relacionadas a sua conta' />
+      <Cabecalho Titulo='Meu Perfil' subTitulo='Veja as informações relacionadas a sua conta' />
       <div className="flex min-h-screen ">
         <div className="bg-white  border-r p-8 min-w-[60%] flex flex-col ">
           <div className="mb-4">
@@ -51,4 +51,4 @@ const Conta = ({dados}:Props) => {
   );
 };
 
-export default Conta;
+export default Perfil;

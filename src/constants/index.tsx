@@ -1,4 +1,4 @@
-import { CreditCard, Users, ArrowRightLeft, MapPinned, Inbox, HandCoins, Banknote } from "lucide-react";
+import { CreditCard, Users, ArrowRightLeft, MapPinned, Inbox, HandCoins, Banknote, PiggyBank } from "lucide-react";
 import africell from "@/assets/images/africell.png";
 import unitel from "@/assets/images/unitel.png";
 import zap from "@/assets/images/zap.png";
@@ -16,6 +16,7 @@ export const sidebarLinks = [
   { name: "Pagamentos", icon: <HandCoins size={18} />, path: "pagamentos", active: false },
   { name: "Levantamentos", icon: <Inbox size={18}/>, path: "levantamentos", active: false },
   { name: "ATMs", icon: <MapPinned size={18} />, path: "mapa", active: false },
+  { name: "Depósitos", icon: <PiggyBank size={18} />, path: "mapa", active: false },
   { name: "Transações", icon: <Banknote size={18} />, path: "transacoes", active: false },
  
 ];

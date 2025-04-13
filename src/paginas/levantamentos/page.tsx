@@ -55,6 +55,7 @@ export default function Levantamentos({ dados }: Props) {
   const [dadosForm, setDadosForm] = useState<FormType>();
   const [nomeBeneficiario, setNomeBeneficiario] = useState("");
   const [open, setOpen] = useState(false);
+  //const [ultimosLevantamentos, setUltimosLevantamentos] = useState([])
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const useConta = useContaStore();
   const {

@@ -10,6 +10,7 @@ import { TailSpin } from "react-loader-spinner";
 import api from "@/utils/axios";
 import { useUserStore } from "@/contexts/userStore";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
@@ -24,16 +25,20 @@ export default function Register() {
   async function APICall() {
     setLoading(true);
     try {
-      const response = await api.get(`/openaccount/emailvalidete/${email}`);
-      if (response.status === 201) {
-        toast.success(response.data.message);
-      } else {
-        toast.error(response.data.message);
+     await api.get(`/openaccount/emailvalidete/${email}`);
+      //toast.success("");
+     
+      setLoading(false);
+    } catch(error){
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("Sem conexão com o servidor");
+        }
       }
-      setLoading(false);
-    } catch {
-      toast.error("Sem conexão com o servidor");
-      setLoading(false);
+    }finally{
+      setLoading(false)
     }
   }
 
