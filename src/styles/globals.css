@@ -9,6 +9,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* drive stper */
+.driver-popover.driverjs-theme {
+  background-color: #fff;
+  color: #000;
+  font-family: Rubik;
+  padding: 20px;
+  letter-spacing: .6px;
+}
+.driver-popover.driverjs-theme .driver-popover-title{
+  --tw-text-opacity: 1;
+    color: rgb(52 64 84 / var(--tw-text-opacity, 1)) /* #344054 */
+}
+.driver-popover.driverjs-theme .driver-popover-description{
+  --tw-text-opacity: 1;
+  color: rgb(102 112 133 / var(--tw-text-opacity, 1)) /* #667085 */;
+}
+
+/*----------------------------- FIM---------------- */
 .max-w-\[1024px\] {
   max-width: none !important;
 }

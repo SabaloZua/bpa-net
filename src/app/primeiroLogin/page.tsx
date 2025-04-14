@@ -61,6 +61,9 @@ export default function PrimeiroLogin() {
         resposta: data.resposta,
       });
 
+      if (typeof window !== "undefined") {
+        localStorage.setItem('primeiroLogin', 'true');
+      }
       router.replace("/dashboard");
       //router.push("/registo/tipo-conta");
     } catch (error) {
@@ -80,7 +83,7 @@ export default function PrimeiroLogin() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1A82FF]/10 to-[#1A82FF]/5 flex items-center justify-center p-4 md:p-0 md:items-start md:justify-start">
-      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 md:items-center ">
+      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-8 ">
      
         <div className="hidden lg:block w-1/2">
           <Image src={welcome} alt="Segurança Bancária" className="w-full h-auto" width={100} />
