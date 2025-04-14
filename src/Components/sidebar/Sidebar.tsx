@@ -68,7 +68,7 @@ export default function Sidebar() {
             >
               <div
                 className={`mx-4 my-2 p-3 rounded-md flex items-center justify-between cursor-pointer ${
-                  link.active ? "bg-white text-black-2" : "hover:bg-blue-600"
+                  isActive(link.path) ? "bg-white text-black-2" : "hover:bg-blue-600"
                 }`}
               >
                 <div className="flex items-center">

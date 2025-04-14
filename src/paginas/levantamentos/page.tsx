@@ -4,7 +4,7 @@ import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Banknote, LockKeyhole, User } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DadosContaType } from "@/types/commons";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { montantes } from "@/constants";
 import useContaStore from "@/contexts/contaStore";
-
+import GuideDriver from "@/components/Guia";
 //Modals
 import { useDisclosure } from "@nextui-org/react";
 
@@ -55,7 +55,6 @@ export default function Levantamentos({ dados }: Props) {
   const [dadosForm, setDadosForm] = useState<FormType>();
   const [nomeBeneficiario, setNomeBeneficiario] = useState("");
   const [open, setOpen] = useState(false);
-  //const [ultimosLevantamentos, setUltimosLevantamentos] = useState([])
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const useConta = useContaStore();
   const {
@@ -71,6 +70,26 @@ export default function Levantamentos({ dados }: Props) {
     },
   });
 
+  const LevantamentosSteps = [
+    { element: '.levantamento-containe', popover: { title: 'Tela de levantamentos', description: 'Nesta Pagina voce pode fazer levantamento em ATM sem usar seu cartão Vamos Guia-lo' } },
+    { element: '.levantamento-opcoes', popover: { title: 'Opções de quem enviar', description: 'Aqui voce deve escolher quem deseja que levante o Dinheiro' } },
+    { element: '.email-container', popover: { title: 'Email', description: 'Aqui voce deve escolher deve definir o email a quem vai enviar' } },
+    { element: '.montante-container', popover: { title: 'Montante', description: 'Aqui voce deve escolher o montante que deseja enviar' } },
+    { element: '.codigos', popover: { title: 'Código', description: 'Aqui voce deve definir o código secrecto  que deseja enviar' } },
+    { element: '.button_auth', popover: { title: 'Botão de continuar', description: 'Aqui voce deve clicar para continuar' } },
+  ]
+  const [showGuide, setShowGuide] = useState(false);
+  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+  useEffect( () => {
+    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+    if (localStorage.getItem('primeiroLogin') == 'true') {
+      // Executa o driver
+      if(!localStorage.getItem('GuiaLevantamentosE')) {
+        // Executa o driver
+        setTimeout(() => setShowGuide(true), 100);
+        }	
+    }
+  }, []);
   //{ pin, valor,emaildestino,idconta}
   async function confirmaLevantamento(data: FormType) {
     setDadosForm(data);
@@ -98,7 +117,7 @@ export default function Levantamentos({ dados }: Props) {
       const response = await api.post("/trasacao/levantamento", dataset);
 
       useConta.setSaldo(Number(response.data.saldoactualizado));
-
+      onClose2();
       toast.success("Levantamento feito com sucesso", {
         action: {
           label: "Comprovativo",
@@ -239,7 +258,8 @@ export default function Levantamentos({ dados }: Props) {
             {errors.valor && <p className="text-red-500 text-sm">{errors.valor.message}</p>}
             {/* Fim Inicio... */}
           </div>
-          <div className="codigo-container">
+        <div className="codigos">
+        <div className="codigo-container">
             <label htmlFor="">
               <LockKeyhole className="text-gray-500" />
               Qual o seu código secreto?
@@ -273,6 +293,8 @@ export default function Levantamentos({ dados }: Props) {
             />
             {errors.pin2 && <p className="text-red-500 text-sm mt-1">{errors.pin2.message}</p>}
           </div>
+        </div>
+        
           <button className="button_auth mt-8" type="submit">
             {isLoading ? (
               <TailSpin
@@ -326,6 +348,11 @@ export default function Levantamentos({ dados }: Props) {
         isLoading={isLoading}
         handleFunction={submitForm}
       />
+      {showGuide && <GuideDriver steps={LevantamentosSteps} onFinish={()=>{
+      console.log("Tour finalizado! Levantamentos");
+      localStorage.setItem('GuiaLevantamentosE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
   );
 }

@@ -50,20 +50,7 @@ export default function TransactionsPage() {
   const fetchTransactions = async (): Promise<void> => {
     try {
       setLoading(true);
-      // Exemplo de como adicionar filtros de data à sua chamada API
-
-      // const params = new URLSearchParams();
-
-      // if (dataInicio) {
-      //   params.append('dataInicio', format(dataInicio, 'yyyy-MM-dd'));
-      // }
-      // if (datafim) {
-      //   params.append('datafim', format(datafim, 'yyyy-MM-dd'));
-      // }
-
-      // if (params.toString()) {
-      //   url += `?${params.toString()}`;
-      // }
+  
 
       api.get(`/trasacao/trasacoesrecentes/${Number(localStorage.getItem("idConta"))}`)
         .then(response => {

@@ -10,9 +10,8 @@ import Pagamentos from "../pagamentos/page";
 import Home from "../inicio/page";
 import Levantamentos from "../levantamentos/page";
 import Senha from "../senha/page";
+import Deposito from "../deposito/page";
 import TransactionsPage from "../transacoes/page";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import {
@@ -33,31 +32,33 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
 
   const MapaComponent = dynamic(() => import("@/components/Mapa/mapa"), { ssr: false })
 
-  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
-  useEffect(() => {
-    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
-    const checkElement = setInterval(() => {
-      const pessoaElement = document.querySelector("#inicio");
-      if (pessoaElement) {
-        clearInterval(checkElement);
-        const driverObj = driver({
-          showProgress: true,
-          steps: [
-            { element: '.pessoa', popover: { title: 'Bem Vindo', description: 'Seja bem vindo ao BPA NET agora Iremos guia-lo' } },
-            { element: '#inicio', popover: { title: 'Cartão', description: 'Aqui você pode ver os dados do seu cartão' } },
-            { element: '.lev', popover: { title: 'Levantamentos', description: 'Clicado neste botão você irá para a pagina de levantamentos sem cartão' } },
-            { element: '.nahora', popover: { title: 'Na hora', description: 'Aqui você pode fazer trasferencias intrabancarias de uma forma rápida apartir do numero de telefone ' } },
-            { element: '.trans', popover: { title: 'Transações', description: 'Aqui você pode acompanhe suas transações recentes ' } },
-            { element: '.cambio', popover: { title: 'Cambio', description: 'Aqui você pode fazer a converção de uma moeda para outra ' } },
-          ]
-        });
-        driverObj.drive();
-      }
-    }, 100);
 
-    return () => clearInterval(checkElement);
-  }, []);
+  // const iniciarDrive= ()=>{
+  //   const checkElement = setInterval( () => {
+  //     const pessoaElement = document.querySelector("#inicio");
+  //     if (pessoaElement) {
+  //       clearInterval(checkElement);
+  //       const driverObj = driver({
+  //         popoverClass: 'driverjs-theme',
+  //         doneBtnText: 'Fechar',
+  //         nextBtnText: 'Próximo',
+  //         prevBtnText: 'Anterior',
+  //         showProgress: true,
+  //         steps: [
+  //           { element: '.pessoa', popover: { title: 'Bem Vindo', description: 'Seja bem vindo ao BPA NET agora Iremos guia-lo' } },
+  //           { element: '#inicio', popover: { title: 'Cartão', description: 'Aqui você pode ver os dados do seu cartão' } },
+  //           { element: '.lev', popover: { title: 'Levantamentos', description: 'Clicado neste botão você irá para a pagina de levantamentos sem cartão' } },
+  //           { element: '.nahora', popover: { title: 'Na hora', description: 'Aqui você pode fazer trasferencias intrabancarias de uma forma rápida apartir do numero de telefone ' } },
+  //           { element: '.trans', popover: { title: 'Transações', description: 'Aqui você pode acompanhe suas transações recentes ' } },
+  //           { element: '.cambio', popover: { title: 'Cambio', description: 'Aqui você pode fazer a converção de uma moeda para outra ' } },
+  //         ]
+  //       });
+  //        driverObj.drive();
+  //     }
+  //   }, 100);
 
+  //   return () => clearInterval(checkElement);
+  // }
 
   const [page, setPage] = useState<string>("inicio");
   const useConta = useContaStore();
@@ -166,10 +167,13 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
               <Senha />
             ): page === "conta" ? (
                 <Conta dados={dadosConta} />
-              ): null}
+              ): page === "deposito" ? (
+                <Deposito />
+              ):
+              null}
         </main>
       </div>
-
+      
     </main>
 
   );

@@ -25,21 +25,19 @@ export default function Register() {
   async function APICall() {
     setLoading(true);
     try {
-     await api.get(`/openaccount/emailvalidete/${email}`);
-      //toast.success("");
-     
+       await api.get(`/openaccount/emailvalidete/${email}`);
       setLoading(false);
-    } catch(error){
+    } catch (error)  {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 400) {
-          toast.error(error.response?.data.message);
-        } else {
-          toast.error("Sem conexão com o servidor");
+             if (error.response?.status === 400) {
+               toast.error(error.response?.data.message);
+             } else {
+               toast.error("Sem conexão com o servidor");
+             }
+           }
+    } finally {
+          setLoading(false);
         }
-      }
-    }finally{
-      setLoading(false)
-    }
   }
 
   async function resendEmail() {

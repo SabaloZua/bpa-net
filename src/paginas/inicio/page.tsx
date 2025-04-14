@@ -5,7 +5,7 @@ import { ArrowRight, CreditCard, Eye, EyeClosed, Settings } from "lucide-react";
 import Cartao from "@/components/Cartão";
 import Cambio from "@/components/cambio";
 import { Input } from "@/components/ui/input";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import Link from "next/link";
 // import { useLayoutEffect } from "react";
 import api from "@/utils/axios";
@@ -18,7 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DadosContaType } from "@/types/commons";
 import { formataNome, formataSaldo } from "@/constants/modules";
 import useContaStore from "@/contexts/contaStore";
-
+import GuideDriver from "@/components/Guia";
 //Modals
 import { useDisclosure } from "@nextui-org/react";
 
@@ -40,7 +40,26 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
   const mudarIcon = mostrarSaldo === true ? false : true;
   const [otp, setOtp] = useState("");
   const [dadosForm, setDadosForm] = useState<nahoraSchema>() 
-
+  const dashboardSteps = [
+    { element: '.pessoa', popover: { title: 'Bem Vindo', description: 'Seja bem vindo ao BPA NET agora Iremos guia-lo' } },
+    { element: '#inicio', popover: { title: 'Cartão', description: 'Aqui você pode ver os dados do seu cartão' } },
+    { element: '.lev', popover: { title: 'Levantamentos', description: 'Clicado neste botão você irá para a pagina de levantamentos sem cartão' } },
+    { element: '.nahora', popover: { title: 'Na hora', description: 'Aqui você pode fazer trasferencias intrabancarias de uma forma rápida apartir do numero de telefone ' } },
+    { element: '.trans', popover: { title: 'Transações', description: 'Aqui você pode acompanhe suas transações recentes ' } },
+    { element: '.cambio', popover: { title: 'Cambio', description: 'Aqui você pode fazer a converção de uma moeda para outra ' } },
+  ]
+  const [showGuide, setShowGuide] = useState(false);
+  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+  useEffect( () => {
+    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+    if (localStorage.getItem('primeiroLogin') == 'true') {
+      if(!localStorage.getItem('GuiaInicioE')) {
+      // Executa o driver
+      setTimeout(() => setShowGuide(true), 100);
+      }	
+      // Seta a flag para que não execute novamente
+    }
+  }, []);
 
 
   const useConta = useContaStore();
@@ -330,6 +349,11 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
         isLoading={isLoading}
         handleFunction={handleNahora}
       />
+      {showGuide && <GuideDriver steps={dashboardSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaInicioE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
   );
 }

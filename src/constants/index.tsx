@@ -16,7 +16,7 @@ export const sidebarLinks = [
   { name: "Pagamentos", icon: <HandCoins size={18} />, path: "pagamentos", active: false },
   { name: "Levantamentos", icon: <Inbox size={18}/>, path: "levantamentos", active: false },
   { name: "ATMs", icon: <MapPinned size={18} />, path: "mapa", active: false },
-  { name: "Depósitos", icon: <PiggyBank size={18} />, path: "mapa", active: false },
+  { name: "Deposito", icon: <PiggyBank size={18}/>, path: "deposito", active: false },
   { name: "Transações", icon: <Banknote size={18} />, path: "transacoes", active: false },
  
 ];

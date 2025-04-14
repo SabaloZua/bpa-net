@@ -11,7 +11,14 @@ interface Props {
 }
 
 
-
+function formatExpiryDate(dateStr: string | undefined): string {
+    if (!dateStr) return "";
+    const parts = dateStr.split('-');
+    // Verifica se tem os três componentes (dd, mm, yyyy)
+    if (parts.length !== 3) return dateStr;
+    const [yyyy, mm, ] = parts;
+    return `${mm}/${yyyy}`;
+  }
 function formataEmQuatro(value:string|undefined) {
     if (typeof value !== 'string' && typeof value !== 'number') return 'Valor inválido';
     
@@ -78,7 +85,7 @@ export default function Cartao({dados}:Props) {
 
                         <div className=" flex justify-between">
                             <h1 className="text-12 font-semibold text-white">{formataNome(dados?.cliente.nome)}</h1>
-                            <h2 className="text-12 font-semibold text-white">**/****</h2>
+                            <h2 className="text-12 font-semibold text-white">{formatExpiryDate(dados?.cartao.dataValidade)}</h2>
                         </div>
                       
                        
