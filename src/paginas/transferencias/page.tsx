@@ -11,7 +11,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useContaStore from "@/contexts/contaStore";
 import { DadosContaType } from "@/types/commons";
-
+import Cabecalho from '@/components/Cabecalho'
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -79,6 +79,8 @@ export default function Transferencias({ dados }: Props) {
   const [transferType, setTransferType] = useState("intrabank");
 
   return (
+    <div>
+       <Cabecalho Titulo='Trasnferências' subTitulo='Envie dinheiro a qualquer momento' />
     <div className="bg-gray-100 rounded-xl p-4">
       <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
         <form onSubmit={handleSubmit(handleTranferencia)} autoComplete="off">
@@ -249,6 +251,7 @@ export default function Transferencias({ dados }: Props) {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }

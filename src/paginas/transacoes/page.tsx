@@ -24,7 +24,7 @@ import {
   ArrowUp
 } from 'lucide-react';
 import { Avatar, AvatarIcon } from '@nextui-org/react';
-
+import GuideDriver from "@/components/Guia";
 // Definição de tipos
 interface Transaction {
   id: number;
@@ -46,6 +46,25 @@ export default function TransactionsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+    const TransacoesSteps = [
+      { element: '.inicial', popover: { title: 'Tela de Trasações', description: 'Esta Página  permite você visualizar todas as movimentações realizadas em sua conta  Vamos Guia-lo' } },
+      { element: '.trasacao', popover: { title: 'Visualização de Transações', description: 'Aqui, a tela exibe uma lista detalhada das transações realizadas, incluindo: A data da transação, O tipo de transação , O montante movimentado, E o saldo após cada movimento' } },
+      { element: '.personalizar', popover: { title: 'Personalização da Consulta', description: 'Para facilitar a busca por transações específicas, o você pode personalizar sua consulta definindo  Data de Início e Data de Fim'} },
+      { element: '.aplicar', popover: { title: 'Personalização da Consulta', description: 'Aqui voce deve escolher o montante que deseja enviar' } },
+      { element: '.pdf', popover: { title: 'Geração de Extrato', description: 'Se o você precisar de um extrato das suas transações,  pode gerar um arquivo PDF clicando neste botão' } },
+    ]
+    const [showGuide, setShowGuide] = useState(false);
+    // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+    useEffect( () => {
+      // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+      if (localStorage.getItem('primeiroLogin') == 'true') {
+        // Executa o driver
+        if(!localStorage.getItem('GuiaTrasacaoeE')) {
+          // Executa o driver
+          setTimeout(() => setShowGuide(true), 100);
+          }	
+      }
+    }, []);
   // Função para buscar os dados da API
   const fetchTransactions = async (): Promise<void> => {
     try {
@@ -170,7 +189,7 @@ export default function TransactionsPage() {
       <div className='bg-gray-100 p-5 rounded-xl'>
         <div className="max-w-6xl mx-auto p-4 font-sans bg-white rounded-lg">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row gap-4 personalizar">
               <div>
                 <label className="text-sm text-gray-600 block mb-1">Data de Início</label>
                 <div className="relative">
@@ -233,14 +252,14 @@ export default function TransactionsPage() {
 
               <button
                 onClick={handleApplyFilters}
-                className="mt-6 flex items-center gap-2 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-md"
+                className="aplicar mt-6 flex items-center gap-2 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-md"
               >
                 <Check className="w-4 h-4" />
                 <span>Aplicar</span>
               </button>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 pdf">
               <button
                 onClick={GeraPdf}
                 className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md">
@@ -249,7 +268,7 @@ export default function TransactionsPage() {
               </button>
             </div>
           </div>
-
+          <div className='trasacao'>
           {loading ? (
             <div className="flex justify-center items-center py-8">
               <p>Carregando transações...</p>
@@ -328,8 +347,14 @@ export default function TransactionsPage() {
               <p>Nenhuma transação encontrada.</p>
             </div>
           )}
+          </div>
         </div>
       </div>
+          {showGuide && <GuideDriver steps={TransacoesSteps} onFinish={()=>{
+            console.log("Tour finalizado! Trasação concluída.");
+            localStorage.setItem('GuiaTrasacaoeE', 'true');
+            setShowGuide(false);
+            }} />}
     </div>
 
   );

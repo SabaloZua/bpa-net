@@ -164,9 +164,11 @@ export default function DepositosPage() {
   }
 
   return (
+    <div>
+      <Cabecalho Titulo='Despositos' subTitulo='Aplicações de depositos a prazo' />
     <div className="bg-gray-100 rounded-xl container mx-auto p-5">
       <div className="flex flex-col space-y-4 ">
-        <Cabecalho Titulo='Despositos' subTitulo='Aplicações de depositos a prazo' />
+        
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Área dos Cards dinâmicos */}
@@ -384,6 +386,7 @@ export default function DepositosPage() {
           )}
         </ModalContent>
       </Modal>
+    </div>
     </div>
   )
 }
