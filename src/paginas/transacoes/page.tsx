@@ -50,7 +50,7 @@ export default function TransactionsPage() {
       { element: '.inicial', popover: { title: 'Tela de Trasações', description: 'Esta Página  permite você visualizar todas as movimentações realizadas em sua conta  Vamos Guia-lo' } },
       { element: '.trasacao', popover: { title: 'Visualização de Transações', description: 'Aqui, a tela exibe uma lista detalhada das transações realizadas, incluindo: A data da transação, O tipo de transação , O montante movimentado, E o saldo após cada movimento' } },
       { element: '.personalizar', popover: { title: 'Personalização da Consulta', description: 'Para facilitar a busca por transações específicas, o você pode personalizar sua consulta definindo  Data de Início e Data de Fim'} },
-      { element: '.aplicar', popover: { title: 'Personalização da Consulta', description: 'Aqui voce deve escolher o montante que deseja enviar' } },
+      { element: '.aplicar', popover: { title: 'Personalização da Consulta', description: 'Clique aqui para exibir os dados da sua consulta' } },
       { element: '.pdf', popover: { title: 'Geração de Extrato', description: 'Se o você precisar de um extrato das suas transações,  pode gerar um arquivo PDF clicando neste botão' } },
     ]
     const [showGuide, setShowGuide] = useState(false);
@@ -61,7 +61,7 @@ export default function TransactionsPage() {
         // Executa o driver
         if(!localStorage.getItem('GuiaTrasacaoeE')) {
           // Executa o driver
-          setTimeout(() => setShowGuide(true), 100);
+          setTimeout(() => setShowGuide(true), 150);
           }	
       }
     }, []);
