@@ -44,7 +44,7 @@ export default function ValidacaoModal({ isOpen, onClose, otp, isLoading, setOtp
                 <div className="flex flex-col gap-3 justify-center items-center my-3">
                   <p>Digite o código enviado na sua caixa de entrada para validar a operação</p>
                 </div>
-                <div>
+                <div className="w-full overflow-x-hidden">
                   <InputOTP
                     maxLength={6}
                     pattern={REGEXP_ONLY_DIGITS_AND_CHARS}

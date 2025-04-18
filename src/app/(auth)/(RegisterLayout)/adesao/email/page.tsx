@@ -98,27 +98,29 @@ const EtapaEmailPage = () => {
           </Button>
         </form>
       ) : (
-        <div className="flex flex-col gap-3 md:min-w-[35rem]">
-          <div className="flex items-center space-x-3 mb-6">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3 mb-6">
             <div className="p-2 bg-blue-100 rounded-lg">
               <MailOpen className="w-6 h-6 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-semibold"> Um email de verificação foi enviado</h2>
+            <h2 className="text-2xl font-semibold">Link de verificação enviado!</h2>
           </div>
+      
+          <div className="px-4">
+            <span className="text-sm text-gray-800">
+              Verifique a sua caixa de entrada e clique no link de verificação para continuar o processo de adesão.&nbsp; 
+            </span>
+            <span className="hover:underline text-blue-400 cursor-pointer" 
+              onClick={()=>{setSucessEmail(false)}}>Corrigir email.</span>
 
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-gray-800">
-              Verifique a sua caixa de entrada e clique no link de verificação para continuar
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2 mx-auto">
-            <Image
-              src="/banners/sendEmail.svg"
-              alt="Email de Verificação enviado"
-              width={400}
-              height={100}
-            />
+            <div className="flex mx-auto">
+              <Image
+                src="/banners/sendEmail.svg"
+                alt="Email de Verificação enviado"
+                width={400}
+                height={90}
+              />
+            </div>
           </div>
         </div>
       )}

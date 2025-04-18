@@ -10,13 +10,12 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
 } from "@nextui-org/react";
-import Image from "next/image";
 
 export const Header = () => {
   return (
     <>
       <Navbar isBordered isBlurred>
-        <NavbarContent className="sm:hidden pr-1" justify="start">
+        <NavbarContent className="md:hidden pr-1" justify="start">
           <NavbarBrand>
             {/* <Image
               src={`/icons/logo_favicon.svg`}
@@ -31,19 +30,10 @@ export const Header = () => {
             <Logo size={22}/>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex gap-6" justify="start">
+        <NavbarContent className="hidden md:flex gap-6" justify="start">
           <NavbarBrand>
 
-            <Image
-              src={`/icons/logo_favicon.svg`}
-              width={35}
-              height={35}
-              alt="Logo horizontal"
-              className="size-[36px] max-md:size-14"
-            />
-            <h1 className="sidebar-logo">
-              BPA <span className="text-sm">NET</span>
-            </h1>
+            <Logo size={22}/>
           </NavbarBrand>
           <NavbarItem>
             <Link className="text-color-text" href="/login">
@@ -67,7 +57,7 @@ export const Header = () => {
           </NavbarItem>
         </NavbarContent>
 
-        <NavbarContent className="sm:hidden" justify="end">
+        <NavbarContent className="md:hidden" justify="end">
           <NavbarMenuToggle />
         </NavbarContent>
 

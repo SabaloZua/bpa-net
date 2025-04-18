@@ -20,7 +20,7 @@ import Logo from "@/components/Logo";
 
 const formSchema = z
   .object({
-    codigoAcesso: z.string().min(4, "A senha deve ter no mínimo 4 caracteres"),
+    codigoAcesso: z.string().min(8, "A senha deve ter no mínimo 8 caracteres"),
     confirmarSenha: z.string(),
     pergunta: z
       .string()

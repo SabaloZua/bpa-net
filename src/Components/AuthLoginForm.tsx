@@ -67,10 +67,12 @@ export default function AuthForm() {
       const result = await fp.get();
       // pegando o Id unico
       setid(result.visitorId);
+      console.log(result.visitorId)
 
       const browserInfo = Browser.getParser(navigator.userAgent);
       // getBrowserName retorna o nome do navegador do usuario
       setnavegador(browserInfo.getBrowserName());
+      console.log(browserInfo.getBrowserName());
       //// getOS retorna o nome do sistema operativo  do usuario
       setsistemaoperativo(browserInfo.getOS().name);
     };
@@ -118,6 +120,11 @@ export default function AuthForm() {
   };
 
   const submitFormModal = async (OTP: string) => {
+
+    if(OTP.length < 6){
+      toast.error("Digite o código correctamente");
+      return;
+    }
     setIsLoadingModal(true);
     try {
       console.log(OTP);
@@ -286,23 +293,27 @@ export default function AuthForm() {
                   poder continuar
                 </p>
                 <div className="body_form">
-                  <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} className="w-[90%] flex gap-1 justify-center text-center"
-                  value={otp}
-                  onChange={(otp) => handleInput(otp)}>
-                    <InputOTPGroup className="flex gap-2 ">
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
+                  <div className="w-full overflow-x-hidden">
+                    <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} className="w-[100%] flex gap-1 justify-center text-center"
+                    value={otp}
+                    onChange={(otp) => handleInput(otp)}
+                    style={{}}>
+                      <InputOTPGroup className="flex gap-2 ">
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
+                  </div>
 
                   <button
                     type="button"
                     disabled={isLoadingModal}
                     className="button_auth"
+                    onClick={()=>submitFormModal(otp)}
                   >
                     {isLoadingModal ? (
                       <TailSpin
