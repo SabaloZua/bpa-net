@@ -53,6 +53,7 @@ const ContratoPage = () => {
       const browserInfo = Browser.getParser(navigator.userAgent);
       // getBrowserName retorna o nome do navegador do usuario
       setnavegador(browserInfo.getBrowserName());
+      console.log(navegador+"---"+browserInfo.getBrowserName())
       //// getOS retorna o nome do sistema operativo  do usuario
       setsistemaoperativo(browserInfo.getOS().name);
     };
@@ -103,8 +104,7 @@ const ContratoPage = () => {
           <div className="flex">
             <div className="md:w-2/3">
               <p>
-                O BPA NET é a plataforma de internet banking do Banco BPA, oferecendo acesso seguro e
-                conveniente a serviços bancários online. Através dela, o cliente pode consultar
+                O BPA NET é a plataforma de internet banking do Banco BPA. Através dela, o cliente pode consultar
                 saldos, efetuar pagamentos, transferências e outras operações de forma rápida e
                 prática. Disponível 24 horas por dia, o BPA NET garante total segurança e eficiência
                 para a sua experiência bancária digital.
@@ -123,7 +123,7 @@ const ContratoPage = () => {
         </div>
       </div>
 
-      <p className="text-gray-600 flex items-center gap-2 mb-4 cursor-pointer">
+      <p className="text-gray-600 flex items-center gap-2 mb-4 cursor-pointer" onClick={()=> {window.open('/arquivos/contrato_adesao.pdf', '_blank')}}>
         <Download className="w-6 h-6" strokeWidth={2.5} /> Baixar contrato de adesão
       </p>
 

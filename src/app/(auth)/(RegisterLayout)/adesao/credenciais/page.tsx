@@ -25,8 +25,8 @@ const CredenciaisPage = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-gray-800 text-center">
-          As suas credenciais já foram enviadas para o seu email!
+        <p className="text-sm text-gray-800 ">
+          As suas credenciais já foram enviadas para o seu email! Verifique a sua caixa de entrada para as visualizar.
         </p>
       </div>
 

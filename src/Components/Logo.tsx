@@ -20,7 +20,7 @@ const Logo = ({ position,className }: LogoProps) => {
         width={35}
         height={35}
         alt="Logo horizontal"
-        className="size-[36px] max-md:size-14"
+        className="size-[36px]"
       />
       <h1 className={styles.sidebarLogo}>
         BPA <span className="text-sm">NET</span>
