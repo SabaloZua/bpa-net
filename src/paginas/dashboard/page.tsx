@@ -158,7 +158,7 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
             <MapaComponent />
           )
             : page === "pagamentos" ? (
-              <Pagamentos dados={dadosConta} />
+              <Pagamentos />
             ) : page === "levantamentos" ? (
               <Levantamentos dados={dadosConta} />
             ) : page === "transacoes" ? (

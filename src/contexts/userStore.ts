@@ -5,7 +5,9 @@ interface UserStore {
   setEmail: (email: string) => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+ const useUserStore = create<UserStore>((set) => ({
   email: "",
   setEmail: (email) => set({ email }),
 }));
+
+export default useUserStore;
