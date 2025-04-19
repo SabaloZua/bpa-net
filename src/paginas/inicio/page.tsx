@@ -43,7 +43,6 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
   const dashboardSteps = [
     { element: '.pessoa', popover: { title: 'Bem Vindo', description: 'Seja bem vindo ao BPA NET agora Iremos guia-lo' } },
     { element: '#inicio', popover: { title: 'Cartão', description: 'Aqui você pode ver os dados do seu cartão' } },
-    { element: '.lev', popover: { title: 'Levantamentos', description: 'Clicado neste botão você irá para a pagina de levantamentos sem cartão' } },
     { element: '.nahora', popover: { title: 'Na hora', description: 'Aqui você pode fazer trasferencias intrabancarias de uma forma rápida apartir do numero de telefone ' } },
     { element: '.trans', popover: { title: 'Transações', description: 'Aqui você pode acompanhe suas transações recentes ' } },
     { element: '.cambio', popover: { title: 'Cambio', description: 'Aqui você pode fazer a converção de uma moeda para outra ' } },
