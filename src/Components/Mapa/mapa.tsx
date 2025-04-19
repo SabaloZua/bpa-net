@@ -7,6 +7,7 @@ import L  from "leaflet";
 import '@/styles/mapa.css';
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import Cabecalho from "../Cabecalho";
 const LeafletGeocoder = dynamic(() => import("./LeafletGeocoder"), { ssr: false });
 const LeafletRoutingMachine = dynamic(() => import("./LeafletRoutingMachine"), { ssr: false });
 
@@ -28,6 +29,7 @@ function App() {
   
   return (
     <div className="App">
+      <Cabecalho Titulo='Atms' subTitulo='Localize Atms perto de si' />
       <MapContainer center={position} zoom={20} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

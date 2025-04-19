@@ -80,7 +80,7 @@ export default function Cartao({dados}:Props) {
 
                      <p className="text-14 tracking-[1.1px] text-white mb-2 w-full ">
                         {/* 5056 4789 3456 4393 */}
-                        {formataEmQuatro(dados?.numeroConta)}
+                        {formataEmQuatro(dados?.cartao.numero)}
                         </p>
 
                         <div className=" flex justify-between">
