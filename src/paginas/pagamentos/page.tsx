@@ -3,7 +3,6 @@
 //import LateralCard from "@/components/cards/requestCard";
 //import PayList from "@/components/lists/payList";
 import PayDefault from "@/components/pagamentos/pay_default";
-import PayReference from "@/components/pagamentos/pay_reference";
 import PayServices from "@/components/pagamentos/pay_services";
 //import PayState from "@/components/pagamentos/pay_state";
 import useAccountStore from "@/contexts/contaStore";
@@ -41,8 +40,7 @@ export default function Payments() {
 								Selecione
 							</option>
 							<option value="1">Pagamento de serviços</option>
-							{/* <option value="2">Pagamento ao estado</option> */}
-							<option value="3">Pagamento por referência</option>
+							
 						</select>
 					</div>
 				</div>
@@ -51,7 +49,6 @@ export default function Payments() {
 				{selectedPage === "0" && <PayDefault />}
 				{selectedPage === "1" && <PayServices />}
 				{/* {selectedPage === "2" && <PayState number={useAccount.number}/>} */}
-				{selectedPage === "3" && <PayReference number={useAccount.numeroConta}/>}
 			</div>
 			<div className="lateral">
 				<h1 className="title" style={{margin: "10px 0px 0px 0px"}}>Últimos pagamentos</h1>

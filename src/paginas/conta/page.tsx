@@ -1,8 +1,7 @@
 import { DadosContaType } from "@/types/commons";
 import Cabecalho from '@/components/Cabecalho'
 import Cartao, { formatExpiryDate } from "@/components/Cartão";
-import { IoCloseSharp } from "react-icons/io5";
-import { ArrowLeft, Download, Globe, LockIcon, Mail, Settings } from "lucide-react";
+import { Download, LockIcon, Mail } from "lucide-react";
 import { useState } from "react";
 
 

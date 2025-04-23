@@ -230,7 +230,8 @@ export default function Perfil({dados}:Props) {
 								</div>
 		
 							</div>
-							<div className="flex items-center justify-between">
+							<div className="flex items~
+							-center justify-between">
 								<div className="space-y-0.5">
 									<h4 className="font-medium">
 										Emails de Marketing
