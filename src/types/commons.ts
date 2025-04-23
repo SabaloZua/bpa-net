@@ -70,18 +70,35 @@ export interface Email {
     t_email_address: string;
 }
 
+export type LevantamentoType={
+    data:string,
+    valor:number,
+    referencia:string,
+    idLevantamento:number,
+    estado:string
+}
+
 export type EntidadeType = {
     id:number,
     nome:string,
     referencia:string,
-    logo:string
+    logo:string,
+    campos:string[]
+}
+
+export type SubProdutoType ={
+    id: number,
+    descricao:string,
+    preco:string,
+    idProduto: number,
 }
 
 export type ProdutoType = {
     id:number,
     idEntidade:number,
     descricao:string,
-    preco:string
+    preco:string,
+
 }
   
   

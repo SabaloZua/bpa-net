@@ -1,68 +1,52 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import api from "@/utils/axios";
-import useSWR from "swr";
 import Skeleton from "react-loading-skeleton";
 import ButtonService from "../buttonService";
+import { EntidadeType} from "@/types/commons";
+import { entidades } from "@/constants";
 
-interface SubProduct {
-  id: number;
-  name: string;
-  price?: number;
+interface Props{
+  setEntidade: (entidade:EntidadeType)=> void
 }
 
-interface Product {
-  id: number;
-  name: string;
-  reference: [string],
-  referenceLenght: 0,
-  subProducts: SubProduct[];
-}
+export default function ServicesList({setEntidade}: Props) {
 
-interface Entity {
-  entity_id: number;
-  reference: string;
-  name: string;
-  balance: number;
-  account_id: number;
-  description: string;
-  products: Product[];
-  logo: string;
-}
+  //const [entidades, setentidades] = useState<EntidadeType[]>([]);
+  //const [todosProdutos, setTodosProdutos] = useState<ProdutoType[]>([]);
 
-interface ApiResponse {
-  success: boolean;
-  entities: Entity[];
-}
+  /*useEffect(() => {
+    async function getAllEntidades() {
+      try {
+        const dadosEntidades = await api.get("/entidade/dados");
+       // const dadosProdutos = await api.get("/entidade/produtos");
 
-export default function ServicesList({setEntity}: {setEntity: Dispatch<SetStateAction<Entity>>}) {
-  const [services, setServices] = useState<ApiResponse>({success: false, entities: []})
-  const fetcher = (url: string) => api.get(url).then(res => res.data);
-  const {data, error} = useSWR('/getEntities', fetcher)
-  
-  useEffect(()=>{
-    if (data) {
-      setServices(data)
+        setentidades(dadosEntidades.data.entidade);
+        console.log(dadosEntidades.data.entidade)
+        //setTodosProdutos(dadosProdutos.data.produtos);
+      } catch (error) {
+        toast.error("Deu errado");
+        console.log(error);
+      }
     }
-    if (error) {
-      setServices({success: false, entities: [ ]})
-    }
-  }, [data, error])
+
+    getAllEntidades();
+  }, []);*/
 
   return (
     <>
-      {(!services && !error) && (
+      {(!entidades) && (
         <>
           <Skeleton borderRadius={10} height={50} style={{ width: "100%" }} />
           <Skeleton borderRadius={10} height={50} style={{ width: "100%" }} />
           <Skeleton borderRadius={10} height={50} style={{ width: "100%" }} />
         </>
       )}
-      {services && services.entities.length > 0 && !error && (
-        services.entities.map((entity) => (
-          entity.reference === "600001" ? null : <ButtonService onClick={()=>{
-            setEntity(entity)
-          }}  key={entity.entity_id} image={entity.logo} serviceName={entity.name} />
+      {entidades && entidades.length > 0 && (
+        entidades.map((entidade) => (
+         <ButtonService onClick={()=>{
+            setEntidade(entidade)
+          }}  key={entidade.id} image={`/images/${entidade.logo}`} serviceName={entidade.nome} />
         ))
+
+        
       )}
     </>
   );

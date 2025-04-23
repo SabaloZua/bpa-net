@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import Sidebar from "@/components/sidebar/Sidebar";
 import useContaStore from "@/contexts/contaStore";
 import { DadosContaType } from "@/types/commons";
-import dynamic from "next/dynamic"
-import { Bell,  Search } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Bell, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import Transferencias from "../transferencias/page";
 import Pagamentos from "../pagamentos/page";
@@ -12,7 +12,8 @@ import Levantamentos from "../levantamentos/page";
 import Senha from "../senha/page";
 import Deposito from "../deposito/page";
 import TransactionsPage from "../transacoes/page";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Perfil from "../perfil/page";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
   Select,
@@ -20,7 +21,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import Conta from "../conta/page";
 
 interface DashboardProps {
@@ -29,9 +30,7 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
-
-  const MapaComponent = dynamic(() => import("@/components/Mapa/mapa"), { ssr: false })
-
+  const MapaComponent = dynamic(() => import("@/components/Mapa/mapa"), { ssr: false });
 
   // const iniciarDrive= ()=>{
   //   const checkElement = setInterval( () => {
@@ -62,10 +61,9 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
 
   const [page, setPage] = useState<string>("inicio");
   const useConta = useContaStore();
-  console.log(dadosConta)
+  console.log(dadosConta);
   useEffect(() => {
     if (dadosConta) {
-
       useConta.setSaldo(dadosConta.saldo);
       useConta.setIban(dadosConta.iban);
       useConta.setNumeroConta(dadosConta.numeroConta);
@@ -74,17 +72,15 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
       useConta.setEstado(dadosConta.estado);
       useConta.setCliente(dadosConta.cliente);
       useConta.setCartao(dadosConta.cartao);
-      
     }
 
     if (idConta) {
       useConta.setId(idConta);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const buttons = document.querySelectorAll(".btn[data-active]") as NodeListOf<HTMLButtonElement>;
-
 
     function update(button: HTMLButtonElement) {
       for (const btn of buttons) {
@@ -99,15 +95,13 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
         setPage(button.dataset.page || "");
       });
     }
-
   }, []);
 
-
   return (
-    <main className=" grid lg:grid-cols-5  h-screen ">
+    <main className="grid md:grid-cols-5  h-screen ">
       <Sidebar />
 
-      <div className="lg:col-span-4 flex flex-col overflow-hidden bg-white ">
+      <div className="md:col-span-4 flex flex-col overflow-hidden bg-white ">
         {/* Header */}
         <header className="z-10">
           <div className="flex items-center justify-between p-4">
@@ -122,31 +116,31 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
               />
             </div>
             <div className="flex items-center">
-                <Bell className="h-8 w-8" />
-              
+              <Bell className="h-8 w-8" />
+
               <div className="ml-3 relative">
-                <Select  onValueChange={(value: string) => setPage(value)}>
+                <Select onValueChange={(value: string) => setPage(value)}>
                   <SelectTrigger className="border-none">
-                  <div className="flex items-center">
-                    <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>{dadosConta?.cliente?.nome.charAt(0) || "N/A"}</AvatarFallback>
-                    </Avatar>
-                  </div>
+                    <div className="flex items-center">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>
+                          {dadosConta?.cliente?.nome.charAt(0) || "N/A"}
+                        </AvatarFallback>
+                      </Avatar>
+                    </div>
                   </SelectTrigger>
                   <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="mapa">Perfil</SelectItem>
-                    <SelectItem value="Senha">Alterar Senha</SelectItem>
-                  </SelectGroup>
+                    <SelectGroup>
+                      <SelectItem value="perfil">Perfil</SelectItem>
+                      <SelectItem value="Senha">Alterar Senha</SelectItem>
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
-          <div className="px-4 py-2 border-t  flex items-center">
-
-          </div>
+          <div className="px-4 py-2 border-t  flex items-center"></div>
         </header>
 
         <main className="flex-1 overflow-y-auto py-2 px-4 sm:px-6 lg:px-6 bg-white no-scrollbar xl:overflow-y-scroll">
@@ -156,25 +150,23 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
             <Transferencias dados={dadosConta} />
           ) : page === "mapa" ? (
             <MapaComponent />
-          )
-            : page === "pagamentos" ? (
-              <Pagamentos />
-            ) : page === "levantamentos" ? (
-              <Levantamentos dados={dadosConta} />
-            ) : page === "transacoes" ? (
-              <TransactionsPage />
-            ): page === "Senha" ? (
-              <Senha />
-            ): page === "conta" ? (
-                <Conta dados={dadosConta} />
-              ): page === "deposito" ? (
-                <Deposito />
-              ):
-              null}
+          ) : page === "pagamentos" ? (
+            <Pagamentos />
+          ) : page === "levantamentos" ? (
+            <Levantamentos dados={dadosConta} />
+          ) : page === "transacoes" ? (
+            <TransactionsPage />
+          ) : page === "Senha" ? (
+            <Senha />
+          ) : page === "conta" ? (
+            <Conta dados={dadosConta} />
+          ) : page === "deposito" ? (
+            <Deposito />
+          ) : page === "perfil" ? (
+            <Perfil />
+          ) : null}
         </main>
       </div>
-      
     </main>
-
   );
 }

@@ -34,7 +34,7 @@
     gap: 30px;
 }
 .pt1_container  > .bottom > .left {
-    width: 30%;
+    width: 40%;
     height: 100%;
     font-size: var(--font-small);
     font-family: Rubik;
@@ -47,7 +47,7 @@
     width: 100%;
     flex: auto;
     background-color: #efefef;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
     overflow-y: scroll;
@@ -111,7 +111,7 @@
     border-radius: 15px;
     height: 100%;
     display: flex;
-    background-color: var(--color-body);
+    background-color: #F3F4F6;
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;

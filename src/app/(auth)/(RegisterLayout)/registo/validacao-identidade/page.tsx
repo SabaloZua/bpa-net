@@ -184,7 +184,7 @@ export default function IdentityValidation() {
     if (idCard && idSelfie) {
       const distance = faceapi.euclideanDistance(idCard.descriptor, idSelfie.descriptor);
       if (distance < 0.5) {
-        toast.success("Validação facial pessoas iguais!");
+        toast.success("Validação facial feita com sucesso!");
         router.push("/registo/credenciais");
       } else {
         toast.warning("Pessoas diferentes.");

@@ -30,7 +30,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Sidebar */}
-      <div className="lg:col-span-1 max-xl:hidden flex flex-col bg-blue-500 text-white">
+      <div className="md:col-span-1 hidden md:flex flex-col bg-blue-500 text-white">
         <div className="p-4 border-teal-700">
           {/* <Logo size={40} className="text-white" /> */}
           <div

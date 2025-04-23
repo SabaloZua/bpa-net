@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-function formatExpiryDate(dateStr: string | undefined): string {
+export function formatExpiryDate(dateStr: string | undefined): string {
     if (!dateStr) return "";
     const parts = dateStr.split('-');
     // Verifica se tem os três componentes (dd, mm, yyyy)

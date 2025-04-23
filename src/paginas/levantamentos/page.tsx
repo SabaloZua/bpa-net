@@ -5,7 +5,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Banknote, LockKeyhole, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import { DadosContaType } from "@/types/commons";
+import { DadosContaType, LevantamentoType } from "@/types/commons";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
@@ -26,6 +26,7 @@ import { useDisclosure } from "@nextui-org/react";
 import "@/styles/levantamento.css";
 import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
 import ValidacaoModal from "@/components/modals/ValidacaoModal";
+import LevantamenosList from "@/components/lists/levantamentosList";
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -49,6 +50,8 @@ type FormType = z.infer<typeof FormSchema>;
 export default function Levantamentos({ dados }: Props) {
   const [tipoLevantamento, setTipoLevantamento] = useState<TipoLevantamento>("mim");
 
+  const [listaLevantamentos, setListaLevantamentos] = useState<LevantamentoType[]>();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
   const [otp, setOtp] = useState("");
@@ -71,23 +74,57 @@ export default function Levantamentos({ dados }: Props) {
   });
 
   const LevantamentosSteps = [
-    { element: '.levantamento-containe', popover: { title: 'Tela de levantamentos', description: 'Nesta Pagina voce pode fazer levantamento em ATM sem usar seu cartão Vamos Guia-lo' } },
-    { element: '.levantamento-opcoes', popover: { title: 'Opções de quem enviar', description: 'Aqui voce deve escolher quem deseja que levante o Dinheiro' } },
-    { element: '.email-container', popover: { title: 'Email', description: 'Aqui voce deve escolher deve definir o email a quem vai enviar' } },
-    { element: '.montante-container', popover: { title: 'Montante', description: 'Aqui voce deve escolher o montante que deseja enviar' } },
-    { element: '.codigos', popover: { title: 'Código', description: 'Aqui voce deve definir o código secrecto  que deseja enviar' } },
-    { element: '.button_auth', popover: { title: 'Botão de continuar', description: 'Aqui voce deve clicar para continuar' } },
-  ]
+    {
+      element: ".levantamento-containe",
+      popover: {
+        title: "Tela de levantamentos",
+        description:
+          "Nesta Pagina voce pode fazer levantamento em ATM sem usar seu cartão Vamos Guia-lo",
+      },
+    },
+    {
+      element: ".levantamento-opcoes",
+      popover: {
+        title: "Opções de quem enviar",
+        description: "Aqui voce deve escolher quem deseja que levante o Dinheiro",
+      },
+    },
+    {
+      element: ".email-container",
+      popover: {
+        title: "Email",
+        description: "Aqui voce deve escolher deve definir o email a quem vai enviar",
+      },
+    },
+    {
+      element: ".montante-container",
+      popover: {
+        title: "Montante",
+        description: "Aqui voce deve escolher o montante que deseja enviar",
+      },
+    },
+    {
+      element: ".codigos",
+      popover: {
+        title: "Código",
+        description: "Aqui voce deve definir o código secrecto  que deseja enviar",
+      },
+    },
+    {
+      element: ".button_auth",
+      popover: { title: "Botão de continuar", description: "Aqui voce deve clicar para continuar" },
+    },
+  ];
   const [showGuide, setShowGuide] = useState(false);
   // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
-  useEffect( () => {
+  useEffect(() => {
     // Aguarda até que o elemento ".pessoa" esteja presente na DOM
-    if (localStorage.getItem('primeiroLogin') == 'true') {
+    if (localStorage.getItem("primeiroLogin") == "true") {
       // Executa o driver
-      if(!localStorage.getItem('GuiaLevantamentosE')) {
+      if (!localStorage.getItem("GuiaLevantamentosE")) {
         // Executa o driver
         setTimeout(() => setShowGuide(true), 100);
-        }	
+      }
     }
   }, []);
   //{ pin, valor,emaildestino,idconta}
@@ -258,43 +295,43 @@ export default function Levantamentos({ dados }: Props) {
             {errors.valor && <p className="text-red-500 text-sm">{errors.valor.message}</p>}
             {/* Fim Inicio... */}
           </div>
-        <div className="codigos">
-        <div className="codigo-container">
-            <label htmlFor="">
-              <LockKeyhole className="text-gray-500" />
-              Qual o seu código secreto?
-            </label>
-            <Alert className="alerta-codigo">
-              <AlertDescription>
-                O código secreto será utilizado pelo destinatário para que possa realizar o
-                levantamento
-              </AlertDescription>
-            </Alert>
-            <Input
-              className="mt-2"
-              type="password"
-              placeholder="***"
-              {...register("pin")}
-              maxLength={3}
-            />
-            {errors.pin && <p className="text-red-500 text-sm mt-1">{errors.pin.message}</p>}
+          <div className="codigos">
+            <div className="codigo-container">
+              <label htmlFor="">
+                <LockKeyhole className="text-gray-500" />
+                Qual o seu código secreto?
+              </label>
+              <Alert className="alerta-codigo">
+                <AlertDescription>
+                  O código secreto será utilizado pelo destinatário para que possa realizar o
+                  levantamento
+                </AlertDescription>
+              </Alert>
+              <Input
+                className="mt-2"
+                type="password"
+                placeholder="***"
+                {...register("pin")}
+                maxLength={3}
+              />
+              {errors.pin && <p className="text-red-500 text-sm mt-1">{errors.pin.message}</p>}
+            </div>
+            <div className="codigo-container">
+              <label htmlFor="">
+                <LockKeyhole className="text-gray-500" />
+                Repita o seu código secreto
+              </label>
+              <Input
+                className="mt-2"
+                type="password"
+                placeholder="***"
+                maxLength={3}
+                {...register("pin2")}
+              />
+              {errors.pin2 && <p className="text-red-500 text-sm mt-1">{errors.pin2.message}</p>}
+            </div>
           </div>
-          <div className="codigo-container">
-            <label htmlFor="">
-              <LockKeyhole className="text-gray-500" />
-              Repita o seu código secreto
-            </label>
-            <Input
-              className="mt-2"
-              type="password"
-              placeholder="***"
-              maxLength={3}
-              {...register("pin2")}
-            />
-            {errors.pin2 && <p className="text-red-500 text-sm mt-1">{errors.pin2.message}</p>}
-          </div>
-        </div>
-        
+
           <button className="button_auth mt-8" type="submit">
             {isLoading ? (
               <TailSpin
@@ -313,11 +350,18 @@ export default function Levantamentos({ dados }: Props) {
             )}
           </button>
         </form>
-        <div>
-          <div className="UltimosPagamentos px-4 w-96">
+        <div className="w-full">
+          <div className="UltimosPagamentos w-full px-4">
             <div className="pagamentos-container">
-              <h1>Levantamentos efectuados</h1>
+              <h1 className="font-600">Últimos Levantamentos</h1>
               <Separator className="mt-2" />
+              <div className="requests">
+                <LevantamenosList
+                  idConta={dados?.id ?? 0}
+                  setListaLevantamentos={setListaLevantamentos}
+                  listaLevantamentos={listaLevantamentos ?? []}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -348,11 +392,16 @@ export default function Levantamentos({ dados }: Props) {
         isLoading={isLoading}
         handleFunction={submitForm}
       />
-      {showGuide && <GuideDriver steps={LevantamentosSteps} onFinish={()=>{
-      console.log("Tour finalizado! Levantamentos");
-      localStorage.setItem('GuiaLevantamentosE', 'true');
-      setShowGuide(false);
-      }} />}
+      {showGuide && (
+        <GuideDriver
+          steps={LevantamentosSteps}
+          onFinish={() => {
+            console.log("Tour finalizado! Levantamentos");
+            localStorage.setItem("GuiaLevantamentosE", "true");
+            setShowGuide(false);
+          }}
+        />
+      )}
     </div>
   );
 }
