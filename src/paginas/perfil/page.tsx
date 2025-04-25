@@ -185,7 +185,7 @@ export default function Perfil({dados}:Props) {
 							<FormField
 								control={form.control}
 								name="bio"
-								render={({ field }) => (
+								render={() => (
 									<FormItem>
 										<FormLabel>Biografia</FormLabel>
 										<FormControl>
