@@ -1,7 +1,7 @@
 import { DadosContaType } from "@/types/commons";
 import Cabecalho from '@/components/Cabecalho'
 import Cartao, { formatExpiryDate } from "@/components/Cartão";
-import { Download, LockIcon, Mail } from "lucide-react";
+import {LockIcon} from "lucide-react";
 import { useState } from "react";
 
 
@@ -138,7 +138,7 @@ return (
               
               <div>
                 <p className="text-sm text-gray-500">NBA</p>
-                <p className="font-medium">{accountData.nba}</p>
+                <p className="font-medium">{dados?.nba}</p>
               </div>
               
               
@@ -164,31 +164,17 @@ return (
               
               <div className="flex justify-between">
                 <p className="text-sm text-gray-500">Saldo disponível</p>
-                <p className="font-medium">{accountData.availableBalance}</p>
+                <p className="font-medium">{dados?.saldo}</p>
               </div>
               
               <div className="flex justify-between">
                 <p className="text-sm text-gray-500">Saldo autorizado</p>
-                <p className="font-medium">{accountData.authorizedBalance}</p>
+                <p className="font-medium">{dados?.saldo}</p>
               </div>
               
               <div className="flex justify-between">
                 <p className="text-sm text-gray-500">Estado</p>
                 <p className="font-medium text-green-600">{accountData.status}</p>
-              </div>
-              
-              <div className="pt-2">
-                <button className="flex items-center text-blue-500 hover:text-blue-600 transition-colors">
-                  <Mail size={16} className="mr-2" />
-                  <span>Enviar para email</span>
-                </button>
-              </div>
-              
-              <div>
-                <button className="flex items-center text-blue-500 hover:text-blue-600 transition-colors">
-                  <Download size={16} className="mr-2" />
-                  <span>Salvar como PDF</span>
-                </button>
               </div>
             </div>
           </div>

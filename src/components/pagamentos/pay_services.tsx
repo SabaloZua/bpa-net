@@ -2,10 +2,10 @@
 
 import "@/styles/pay-types.css";
 import { useEffect, useState } from "react";
-import { useDisclosure } from "@nextui-org/react";
+//import { useDisclosure } from "@nextui-org/react";
 import ServicesList from "../lists/servicesList";
 import useContaStore from "@/contexts/contaStore";
-import api from "@/utils/axios";
+//import api from "@/utils/axios";
 import { EntidadeType } from "@/types/commons";
 import {
   Command,
@@ -18,15 +18,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { toast } from "sonner";
+//import { toast } from "sonner";
 import { produtos, subProdutos } from "@/constants";
 import { cn } from "@/lib/utils";
 import { formatarKz } from "@/constants/modules";
 
 export default function PayServices() {
   const [entidade, setEntidade] = useState<EntidadeType>();
-  const [loading, setLoading] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const [loading, setLoading] = useState(false);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
   const [subProdutoSelecionado, setSubProdutoSelecionado] = useState("");
@@ -65,7 +65,7 @@ export default function PayServices() {
       </div>
       <div className="bottom">
         <div className="left">
-          <p onClick={() => onOpen()}>Selecione o serviço</p>
+          <p>Selecione o serviço</p>
           <ul className="services">
             <ServicesList setEntidade={setEntidade} />
           </ul>
@@ -77,10 +77,6 @@ export default function PayServices() {
             <>
               <form
                 style={{ width: "100%" }}
-                onSubmit={async (event) => {
-                  event.preventDefault();
-                  onOpen();
-                }}
               >
                 <div className="input_field">
                   <label htmlFor="email" className="font-semibold">Conta emissora</label>

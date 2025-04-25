@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Skeleton from "react-loading-skeleton";
-import { TailSpin } from "react-loader-spinner";
+
 import { LevantamentoType } from "@/types/commons";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { useEffect, useState } from "react";
@@ -39,7 +39,6 @@ export default function LevantamentosList({ idConta }: Props) {
     getAllProducts();
   }, []);
 
-  const mostra = () => console.log(listaLevantamentos);
 
   return (
     <>

@@ -163,7 +163,7 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
           ) : page === "deposito" ? (
             <Deposito />
           ) : page === "perfil" ? (
-            <Perfil />
+            <Perfil dados={dadosConta}/>
           ) : null}
         </main>
       </div>
