@@ -16,12 +16,18 @@ import { Separator } from "@/components/ui/separator";
 import { DadosContaType } from "@/types/commons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Upload } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import api from "@/utils/axios";
 import { toast } from "sonner";
+import { AxiosError } from "axios";
 import * as z from "zod";
+import { TailSpin } from "react-loader-spinner";
+
+
 
 const profileFormSchema = z.object({
-	username: z
+	numeroBI: z
 		.string()
 		.min(2, {
 			message: "O nome de utilizador deve ter pelo menos 2 caracteres.",
@@ -40,48 +46,71 @@ const profileFormSchema = z.object({
 	email: z.string().email({
 		message: "Por favor, introduza um endereço de email válido.",
 	}),
-	bio: z
-		.string()
-		.max(160, {
-			message: "A biografia não deve ter mais de 160 caracteres.",
-		})
-		.optional(),
-	location: z.string().optional(),
-	website: z
-		.string()
-		.url({
-			message: "Por favor, introduza um URL válido.",
-		})
-		.optional()
-		.or(z.literal("")),
+
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-const defaultValues: Partial<ProfileFormValues> = {
-	username: "johndoe",
-	name: "John Doe",
-	email: "john.doe@example.com",
-	bio: "Designer de produtos e programador sediado em Nova Iorque. Crio interfaces intuitivas para startups em crescimento.",
-	location: "Nova Iorque, EUA",
-	website: "https://example.com",
-};
-
-interface Props{
+interface Props {
 	dados: DadosContaType | undefined;
 }
 
-export default function Perfil({dados}:Props) {
+export default function Perfil({ dados }: Props) {
+	const [selectedImage, setSelectedImage] = useState<string | null>(dados?.cliente.imagem ?? null); // Estado para armazenar a imagem selecionada
+	const [selectedFile, setSelectedFile] = useState<File | null>(null); // Estado para armazenar o arquivo selecionado
+ 	 const [isLoading, setIsLoading] = useState(false);
+	const defaultValues: Partial<ProfileFormValues> = {
+		numeroBI: dados?.cliente.bi?.toString(),
+		name: dados?.cliente.nome,
+		email: dados?.cliente.email,
+	};
+
 	const form = useForm<ProfileFormValues>({
 		resolver: zodResolver(profileFormSchema),
 		defaultValues,
 		mode: "onChange",
 	});
-
-	function onSubmit(data: ProfileFormValues) {
-		toast("O seu perfil foi actualizado com sucesso.");
-		console.log("Edit-Profile-form", data);
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (file) {
+			const imageUrl = URL.createObjectURL(file); // Cria uma URL temporária para a imagem
+			setSelectedImage(imageUrl); // Atualiza o estado com a URL da imagem
+			setSelectedFile(file); 
+		}
 	}
+	async	function onSubmit(data: ProfileFormValues) {
+		try {
+		if (!selectedFile) {
+            alert("Por favor, selecione uma imagem antes de enviar.");
+            return;
+        }
+		setIsLoading(true);
+		const formData = new FormData();
+        formData.append("image", selectedFile); 
+
+		 await api.post(`/cliente/uploadfoto/${dados?.id}`, formData,
+			{
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+		 }
+		)
+		console.log("Edit-Profile-form", data);
+		toast.success("Foto de perfil carregada com sucesso!");
+	}catch (erro) {
+		if (erro instanceof AxiosError) {
+				if (erro.response?.status === 400) {
+				  toast.error(erro.response?.data.message);
+				} else {
+				  toast.error("Sem conexão com o servidor");
+				}
+			  }
+	}finally {
+		setIsLoading(false);
+	  }
+	}
+ // Função para lidar com a seleção de arquivo
+
 
 	return (
 		<div className="space-y-6">
@@ -89,7 +118,7 @@ export default function Perfil({dados}:Props) {
 				<div className="flex flex-col gap-4 sm:flex-row sm:items-center">
 					<Avatar className="h-24 w-24">
 						<AvatarImage
-							src="/placeholder.svg?height=80&width=80"
+							src={selectedImage ?? undefined}
 							alt="@johndoe"
 						/>
 						<AvatarFallback>JD</AvatarFallback>
@@ -101,9 +130,21 @@ export default function Perfil({dados}:Props) {
 							de perfil.
 						</p>
 						<div className="flex gap-2">
-							<Button size="sm" className="mt-2">
+							<input
+								type="file"
+								id="fileInput"
+								name="image"
+								hidden
+								multiple={false}
+								accept="image/*"
+								onChange={handleFileChange} // Adiciona o evento onChange
+							/>
+							<Button size="sm" className="mt-2"
+							 onClick={() => document.getElementById('fileInput')?.click()}
+							>
 								<Upload className="mr-2 h-4 w-4" />
-								Carregar imagem
+								Carregar foto
+
 							</Button>
 							<Button
 								size="sm"
@@ -146,7 +187,7 @@ export default function Perfil({dados}:Props) {
 							/>
 							<FormField
 								control={form.control}
-								name="username"
+								name="numeroBI"
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
@@ -155,6 +196,7 @@ export default function Perfil({dados}:Props) {
 										<FormControl>
 											<Input
 												placeholder={`${dados?.cliente.bi}`}
+												disabled
 												{...field}
 											/>
 										</FormControl>
@@ -172,6 +214,7 @@ export default function Perfil({dados}:Props) {
 											<Input
 												placeholder={`${dados?.cliente.email}`}
 												{...field}
+												disabled
 											/>
 										</FormControl>
 										<FormDescription>
@@ -182,75 +225,31 @@ export default function Perfil({dados}:Props) {
 									</FormItem>
 								)}
 							/>
-							<FormField
-								control={form.control}
-								name="bio"
-								render={() => (
-									<FormItem>
-										<FormLabel>Biografia</FormLabel>
-										<FormControl>
-									
-										</FormControl>
-										<FormDescription>
-											Descrição breve do seu perfil.
-											Máximo de 160 caracteres.
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-					</div>
-					<div className="space-y-6">
-						<h3 className="text-lg font-medium">
-							Preferências de Notificação
-						</h3>
-						<Separator />
-						<div className="space-y-4">
-							<div className="flex items-center justify-between">
-								<div className="space-y-0.5">
-									<h4 className="font-medium">
-										Notificações por Email
-									</h4>
-									<p className="text-sm text-muted-foreground">
-										Receber notificações importantes por
-										email.
-									</p>
-								</div>
-				
-							</div>
-							<div className="flex items-center justify-between">
-								<div className="space-y-0.5">
-									<h4 className="font-medium">
-										Notificações Push
-									</h4>
-									<p className="text-sm text-muted-foreground">
-										Receber notificações no seu dispositivo.
-									</p>
-								</div>
-		
-							</div>
-							<div className="flex items~
-							-center justify-between">
-								<div className="space-y-0.5">
-									<h4 className="font-medium">
-										Emails de Marketing
-									</h4>
-									<p className="text-sm text-muted-foreground">
-										Receber promoções e boletins
-										informativos.
-									</p>
-								</div>
-							
-							</div>
-						</div>
-					</div>
 
+						</div>
+					</div>
 					<div className="flex justify-end gap-2">
 						<Button type="button" variant="outline">
 							Cancelar
 						</Button>
-						<Button type="submit">Guardar Alterações</Button>
+						<Button type="submit">
+							
+								 {isLoading ? (
+											  <TailSpin
+												height="25"
+												width="25"
+												color="#fff"
+												ariaLabel="tail-spin-loading"
+												radius="1"
+												visible={true}
+											  />
+											) : (
+											  <>
+												<span>Guardar Alterações</span>
+												
+											  </>
+											)}
+							</Button>
 					</div>
 				</form>
 			</Form>

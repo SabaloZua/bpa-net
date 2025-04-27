@@ -1,11 +1,12 @@
 "use client";
-
 import "@/styles/pay-types.css";
 import { useEffect, useState } from "react";
 //import { useDisclosure } from "@nextui-org/react";
 import ServicesList from "../lists/servicesList";
 import useContaStore from "@/contexts/contaStore";
-//import api from "@/utils/axios";
+import api from "@/utils/axios";
+import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
+import ValidacaoModal from "@/components/modals/ValidacaoModal";
 import { EntidadeType } from "@/types/commons";
 import {
   Command,
@@ -18,18 +19,38 @@ import {
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Check, ChevronsUpDown } from "lucide-react";
-//import { toast } from "sonner";
+import { toast } from "sonner";
 import { produtos, subProdutos } from "@/constants";
 import { cn } from "@/lib/utils";
 import { formatarKz } from "@/constants/modules";
+import { AxiosError } from "axios";
+import { useDisclosure } from "@nextui-org/react";
+
+interface Produtos{
+  id: number,
+   idEntidade: number, 
+   descricao: string, 
+   preco: string
+}
+interface SubProdutos{
+  id: number,
+  idProduto: number, 
+  descricao: string, 
+  preco: string
+}
 
 export default function PayServices() {
-  const [entidade, setEntidade] = useState<EntidadeType>();
-  // const [loading, setLoading] = useState(false);
-  // const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [produtoSelecionado, setProdutoSelecionado] = useState("");
-  const [subProdutoSelecionado, setSubProdutoSelecionado] = useState("");
+  const [entidade, setEntidade] = useState<EntidadeType>();
+   const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+  const [Produto, setProduto] = useState("");
+  const [prod, setPro] = useState<Produtos | null>(null)
+  const [subProd,setSubProd] = useState<SubProdutos | null>(null)
+  const [subProduto, setSubProduto] = useState("");
+
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
 
@@ -48,7 +69,6 @@ export default function PayServices() {
       btn.dataset.active = "true";
 	  btn.style.backgroundColor ="#D6E9FF";
     }
-
     // biome-ignore lint/complexity/noForEach: <explanation>
     btns.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -57,6 +77,62 @@ export default function PayServices() {
     });
   }, []);
 
+    useEffect(() => {
+      const Produtos = produtos.find(prod => prod.descricao === Produto) ?? null;
+      setPro(Produtos);
+    }, [Produto, produtos]);
+
+  useEffect(() => {
+      const subprodutos = subProdutos.find(subprod => subprod.descricao === subProduto) ?? null;
+      setSubProd(subprodutos);
+    }, [subProduto, subProdutos]);
+    
+  async function confirmarPagamaneto() {
+    onOpen();
+  }
+   async function handlePagementos(otp: string) {
+      try {
+      
+        if(otp.length <6) return;
+        setLoading(true);
+  
+         const result = await api.post(`/trasacao/verificacodigo`,{codigo2fa:otp})
+         console.log(result);
+        const dataset = {
+          idconta:useAccount.id,
+          identidade:entidade?.id,
+          idproduto:prod?.id,
+          idsubproduto:subProd?.id,
+        };
+  
+        
+        const response = await api.post("/trasacao/pagamentoentidade", dataset);
+  
+        useAccount.setSaldo(Number(response.data.saldoactualizado));
+        onClose2();
+        toast.success(response.data.message, {
+          action: {
+            label: "Comprovativo",
+            onClick: async () =>
+              window.open(
+                `http://localhost:5000/pdf/comprovativo/${response.data.idtransacao}`,
+                "_blank"
+              ),
+          },
+  
+        });
+      } catch (erro) {
+        if (erro instanceof AxiosError) {
+          if (erro.response?.status === 400) {
+            toast.error(erro.response?.data.message);
+          } else {
+            toast.error("Sem conexão com o servidor");
+          }
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
   return (
     <div className="pt1_container">
       <div className="top">
@@ -92,12 +168,11 @@ export default function PayServices() {
                         role="combobox"
                         aria-expanded={open1}
                         className={`w-full justify-between ${
-                          produtoSelecionado ? "text-gray-900" : "text-gray-500"
+                          prod?.descricao ? "text-gray-900" : "text-gray-500"
                         } text-[1rem]`}
                       >
-                        {produtoSelecionado
-                          ? produtos
-                              .filter((produto) => produto.idEntidade === entidade?.id).find((produto) => produto.descricao === produtoSelecionado)?.descricao
+                        {Produto
+                          ? prod?.descricao
                           : "Selecione o produto"}
                         <ChevronsUpDown className="opacity-50" />
                       </Button>
@@ -114,7 +189,7 @@ export default function PayServices() {
                                   key={produto.id}
                                   value={produto.descricao}
                                   onSelect={(currentValue) => {
-                                    setProdutoSelecionado(currentValue === produtoSelecionado ? "" : currentValue);
+                                    setProduto(currentValue === Produto ? "" : currentValue);
                                     setOpen1(false);
                                   }}
                                 >
@@ -122,7 +197,7 @@ export default function PayServices() {
                                   <Check
                                     className={cn(
                                       "ml-auto",
-                                      produtoSelecionado === produto.descricao ? "opacity-100" : "opacity-0"
+                                      prod?.descricao === produto.descricao ? "opacity-100" : "opacity-0"
                                     )}
                                   />
                                 </CommandItem>
@@ -145,13 +220,11 @@ export default function PayServices() {
                         role="combobox"
                         aria-expanded={open2}
                         className={`w-full justify-between ${
-                          subProdutoSelecionado ? "text-gray-900" : "text-gray-500"
+                          subProduto ? "text-gray-900" : "text-gray-500"
                         } text-[1rem]`}
                       >
-                        {subProdutoSelecionado
-                          ? subProdutos
-                              .filter((subproduto) => subproduto.idProduto === 
-							  (produtos.find(p => p.descricao == produtoSelecionado))?.id).find((subproduto) => subproduto.descricao === subProdutoSelecionado)?.descricao
+                        {subProduto
+                          ? subProd?.descricao
                           : "Selecione o pacote"}
                         <ChevronsUpDown className="opacity-50" />
                       </Button>
@@ -163,13 +236,13 @@ export default function PayServices() {
                           <CommandEmpty>Nenhum pacote encontrado</CommandEmpty>
                           <CommandGroup>
                             {subProdutos.filter((subproduto) => subproduto.idProduto === 
-							(produtos.find(p => p.descricao == produtoSelecionado))?.id).
+							(produtos.find(p => p.descricao == prod?.descricao))?.id).
                               map((subproduto) => (
                                 <CommandItem
                                   key={subproduto.id}
                                   value={subproduto.descricao}
                                   onSelect={(currentValue) => {
-                                    setSubProdutoSelecionado(currentValue === subProdutoSelecionado ? "" : currentValue);
+                                    setSubProduto(currentValue === subProduto ? "" : currentValue);
                                     setOpen2(false);
                                   }}
                                 >
@@ -177,7 +250,7 @@ export default function PayServices() {
                                   <Check
                                     className={cn(
                                       "ml-auto",
-                                      subProdutoSelecionado === subproduto.descricao ? "opacity-100" : "opacity-0"
+                                      subProduto === subproduto.descricao ? "opacity-100" : "opacity-0"
                                     )}
                                   />
                                 </CommandItem>
@@ -192,7 +265,7 @@ export default function PayServices() {
 
                 <div className="input_field">
                   <label htmlFor="email" className="font-semibold">Preço</label>
-                  <input type="text" disabled value={formatarKz(Number(subProdutos.find(s => s.descricao == subProdutoSelecionado)?.preco))} />
+                  <input type="text" disabled value={formatarKz(Number(subProd?.preco))} />
                 </div>
 
                 <div className="input_field">
@@ -202,7 +275,7 @@ export default function PayServices() {
 
 							  	
                 <button
-                  type="submit"
+                  type="button"
                   style={{
                     padding: "10px 20px",
                     backgroundColor: "var(--color-focus3)",
@@ -213,6 +286,7 @@ export default function PayServices() {
                     justifyContent: "center",
                     borderRadius: "7px",
                   }}
+                  onClick={confirmarPagamaneto}
                 >
                   Efecutar pagamento
                 </button>
@@ -222,50 +296,27 @@ export default function PayServices() {
         </div>
       </div>
 
-      {/**
-		 * <Modal
-        isOpen={isOpen}
-        onClose={() => {
-          onClose();
-        }}
-        placement="top-center"
-      >
-        <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">Pagamento de serviço especial</ModalHeader>
-          <ModalBody>
-            <Input label="Entidade" type="text" variant="flat" value={entidade?.nome} disabled />
-            <Input
-              label="Referência"
-              type="text"
-              variant="flat"
-              value={entidade?.referencia}
-              disabled
-            />
-            <Input label="Produto" type="text" variant="flat" value={"sss"} disabled />
-
-            <Input label="Pacote" type="text" variant="flat" value={"sse"} disabled />
-
-            <Input label="Preço" type="text" variant="flat" value={"eded"} disabled />
-
-            <Input label={"3o3e"} type="text" variant="flat" value={"oo"} disabled />
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="danger"
-              variant="flat"
-              onPress={() => {
-                onClose();
-              }}
-            >
-              Cancelar
-            </Button>
-            <Button color="success" variant="flat">
-              Confirmar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-		 */}
+      <ConfirmacaoModal
+                   isOpen={isOpen}
+                   onClose={onClose}
+                   isLoading={loading}
+                   setIsLoading={setLoading}
+                   onOpen2={onOpen2}
+                   title="Confirme os dados do Pagamento"
+                   dados={[
+                     {key:"Beneficiário", value:entidade?.nome.toLocaleUpperCase() || ""},
+                     {key:"Produto", value: `${prod?.descricao}- ${subProd?.descricao}`},
+                     {key:"Montante", value:`${subProd?.preco},00 Kz`}
+                   ]}
+                 />
+               <ValidacaoModal
+                   isOpen={isOpen2}
+                   onClose={onClose2}
+                   otp={otp}
+                   setOtp={setOtp}
+                   isLoading={loading}
+                   handleFunction={handlePagementos}
+                 />
     </div>
   );
 }

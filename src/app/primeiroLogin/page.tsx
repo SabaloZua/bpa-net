@@ -115,7 +115,7 @@ export default function PrimeiroLogin() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirme sua Senha
+                  Confirme o seu Código de Acesso
                 </label>
                 <input
                   type="password"

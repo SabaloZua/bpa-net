@@ -23,6 +23,12 @@ export default function Sidebar() {
     await signOut({
       redirect:false
     })
+    if(localStorage.getItem('primeiroLogin')){
+      localStorage.removeItem('GuiaInicioE')
+      localStorage.removeItem('GuiaLevantamentosE')
+      localStorage.removeItem('GuiaTrasacaoeE')
+      localStorage.removeItem('primeiroLogin')
+    }
    router.replace('/login') 
   }
 

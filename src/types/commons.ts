@@ -64,6 +64,7 @@ export interface Cliente{
     nome:string,
     bi:string,
     email:string,
+    imagem:string
 }
 
 export interface Email {
