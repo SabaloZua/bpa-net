@@ -16,6 +16,7 @@ export default function RootLayout({
         <meta name="description" content="Internet Banking Plataform" />
         <title>BPA NET</title>
         <meta name="theme-color" content="#fff" />
+        <meta name="google-site-verification" content="GbB6Bxo2lyIC_ksyOATe3c3R2LBpmb9EzRIMnv522uE" />
         <link rel="shortcut icon" href="/icons/logo_favicon.svg" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/icons/logo_favicon.svg" />
       </head>
