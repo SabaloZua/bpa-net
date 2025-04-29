@@ -27,7 +27,14 @@ export default function Sidebar() {
       localStorage.removeItem('GuiaInicioE')
       localStorage.removeItem('GuiaLevantamentosE')
       localStorage.removeItem('GuiaTrasacaoeE')
+      localStorage.removeItem('GuiaPagamentoE')
+      localStorage.removeItem('GuiaPerfilE')
+      localStorage.removeItem('GuiaTransferenciaE')
+      localStorage.removeItem('GuiaAtmE')
+      localStorage.removeItem('GuiaContaE')
+      localStorage.removeItem('GuiaDepositoE')
       localStorage.removeItem('primeiroLogin')
+
     }
    router.replace('/login') 
   }

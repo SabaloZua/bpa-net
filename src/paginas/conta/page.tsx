@@ -4,13 +4,32 @@ import Cartao, { formatExpiryDate } from "@/components/Cartão";
 import { LockIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formataNome} from "@/constants/modules";
+import GuideDriver from "@/components/Guia";
+import { useState, useEffect } from "react";
 interface Props {
   dados: DadosContaType | undefined;
 }
 
 const Conta = ({ dados }: Props) => {
 
-
+  const ContaSteps = [
+    { element: '.cont', popover: { title: 'Detalhes da Conta', description: 'Nesta tela, você pode  informações relacionadas à sua conta, incluindo saldo, IBAN e outros detalhes importantes. agora Iremos guia-lo' } },
+    { element: '.foto', popover: { title: 'Foto de Perfil', description: 'Aqui você pode visualizar a foto associada ao titular da conta.' } },
+    { element: '.cartaoC', popover: { title: 'Informações do Cartão', description: 'Veja os detalhes do seu cartão, como número, tipo e data de validade. Você também pode bloquear o cartão, se necessário.' } },
+    { element: '.minha-conta', popover: { title: 'Minha Conta', description: 'Aqui estão os detalhes da sua conta, como número, IBAN, saldo disponível e estado da conta.' } },
+  ]
+  const [showGuide, setShowGuide] = useState(false);
+  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+  useEffect( () => {
+    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+    if (localStorage.getItem('primeiroLogin') == 'true') {
+      if(!localStorage.getItem('GuiaContaE')) {
+      // Executa o driver
+      setTimeout(() => setShowGuide(true), 100);
+      }	
+      // Seta a flag para que não execute novamente
+    }
+  }, []);
 
   return (
     // Previously MainLayout component
@@ -24,7 +43,7 @@ const Conta = ({ dados }: Props) => {
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="flex-1">
             {/* Previously ProfileCard component */}
-            <div className="bg-white rounded-lg p-4 shadow-sm mb-6 flex flex-col items-center">
+            <div className="bg-white rounded-lg p-4 shadow-sm mb-6 flex flex-col items-center foto">
 
               <Avatar className="w-24 h-24 rounded-full overflow-hidden bg-sky-200 mb-4 transition-transform hover:scale-105 duration-300">
                 <AvatarImage src={dados?.cliente.imagem} className="w-full h-full object-first" />
@@ -40,7 +59,7 @@ const Conta = ({ dados }: Props) => {
             </div>
 
             {/* Previously CardManagement component */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
+            <div className="bg-white rounded-lg p-6 shadow-sm cartaoC">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Previously CardForm component */}
                 <div>
@@ -89,7 +108,7 @@ const Conta = ({ dados }: Props) => {
           </div>
 
           {/* Previously AccountDetails component */}
-          <div className="lg:w-80">
+          <div className="lg:w-80 minha-conta">
             <div className="bg-white rounded-lg p-6 shadow-sm">
               <h3 className="text-lg font-medium text-gray-800 mb-4">Minha conta</h3>
 
@@ -149,6 +168,11 @@ const Conta = ({ dados }: Props) => {
           </div>
         </div>
       </div>
+      {showGuide && <GuideDriver steps={ContaSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaContaE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
   );
 };

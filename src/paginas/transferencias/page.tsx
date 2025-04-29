@@ -15,6 +15,7 @@ import Cabecalho from '@/components/Cabecalho';
 import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
 import { useDisclosure } from "@nextui-org/react";
 import ValidacaoModal from "@/components/modals/ValidacaoModal";
+import GuideDriver from "@/components/Guia";
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -38,6 +39,28 @@ export default function Transferencias({ dados }: Props) {
     resolver: zodResolver(intraSchema),
   });
 
+
+  const TransferenciaSteps = [
+    { element: '.transf', popover: { title: 'Transferências', description: 'Nesta tela, você pode realizar transferências bancárias de forma rápida e segura agora Iremos guia-lo' } },
+    { element: '.tipo', popover: { title: 'Tipo de Transferência', description: 'Aqui você pode escolher  entre transferência intrabancária (dentro do mesmo banco) ou interbancária (entre bancos diferentes)' } },
+    { element: '.origem', popover: { title: 'Conta de Origem', description: 'Aqui você pode visualizar a conta de onde o dinheiro será transferido neste caso a sua conta.' } },
+    { element: '.destino', popover: { title: 'Conta de Destino', description: 'Aqui deverá insira o número da conta de destino ou o IBAN, dependendo do tipo de transferência selecionado dependedo do tipo de transferencia.' } },
+    { element: '.beneficiario', popover: { title: 'Beneficiário', description: 'Confirme ou insira o nome do beneficiário da transferência no caso de uma transferencia  interbancaria ' } },
+    { element: '.montante', popover: { title: 'Montante', description: 'Informe o valor que deseja transferir.' } },
+  
+  ]
+  const [showGuide, setShowGuide] = useState(false);
+  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+  useEffect( () => {
+    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+    if (localStorage.getItem('primeiroLogin') == 'true') {
+      if(!localStorage.getItem('GuiaTransferenciaE')) {
+      // Executa o driver
+      setTimeout(() => setShowGuide(true), 100);
+      }	
+      // Seta a flag para que não execute novamente
+    }
+  }, []);
   const transferTypeOptions = {
     intrabank: "intrabank",
     interbank: "interbank",
@@ -131,7 +154,7 @@ export default function Transferencias({ dados }: Props) {
           <form onSubmit={handleSubmit(confirmarTransferencia)} autoComplete="off">
             <div className="px-6 py-5 sm:p-6">
               {/* Transfer Type Selector */}
-              <div className="mb-6">
+              <div className="mb-6 tipo">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tipo de Transferência
                 </label>
@@ -154,7 +177,7 @@ export default function Transferencias({ dados }: Props) {
               {/* Form Fields */}
               <div className="space-y-5">
                 {/* Origin Account */}
-                <div>
+                <div className="origem">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Conta de Origem
                   </label>
@@ -174,7 +197,7 @@ export default function Transferencias({ dados }: Props) {
 
                 {/* Destination Account */}
                 {transferType === transferTypeOptions.intrabank ? (
-                  <div>
+                  <div className="destino">
                     <label
                       htmlFor="destination-account"
                       className="block text-sm font-medium text-gray-700 mb-2"
@@ -220,7 +243,7 @@ export default function Transferencias({ dados }: Props) {
                 )}
 
                 {/* Beneficiary */}
-                <div>
+                <div className="beneficiario">
                   <label
                     htmlFor="beneficiary"
                     className="block text-sm font-medium text-gray-700 mb-2"
@@ -244,7 +267,7 @@ export default function Transferencias({ dados }: Props) {
                 </div>
 
                 {/* Amount */}
-                <div>
+                <div className="montante">
                   <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
                     Montante <span className="text-red-500">*</span>
                   </label>
@@ -315,6 +338,11 @@ export default function Transferencias({ dados }: Props) {
               isLoading={isLoading}
               handleFunction={handleTranferencia}
             />
+            {showGuide && <GuideDriver steps={TransferenciaSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaTransferenciaE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
   );
 }

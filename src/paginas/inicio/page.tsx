@@ -204,7 +204,12 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
                   </div>
                   <span className="text-sm">Levantar</span>
                 </button>
-                <button className="flex flex-col items-center text-gray-600">
+                <button className="flex flex-col items-center text-gray-600"
+                 onClick={() => {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                  setDashboardPage && setDashboardPage("conta");
+                }}
+                >
                   <div className="p-3 rounded-full border border-gray-300 mb-2">
                     <Settings className="h-5 w-5" />
                   </div>

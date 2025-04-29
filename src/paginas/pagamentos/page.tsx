@@ -10,7 +10,7 @@ import "@/styles/pagamentos.css";
 import { useState } from "react";
 
 export default function Payments() {
-	const [selectedPage, setSelectedPage] = useState("0");
+	const [selectedPage, setSelectedPage] = useState("1");
 	const useAccount = useAccountStore()
 
 	return (

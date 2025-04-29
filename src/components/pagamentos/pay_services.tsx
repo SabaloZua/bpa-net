@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import { formatarKz } from "@/constants/modules";
 import { AxiosError } from "axios";
 import { useDisclosure } from "@nextui-org/react";
+import GuideDriver from "@/components/Guia";
 
 interface Produtos{
   id: number,
@@ -53,7 +54,25 @@ export default function PayServices() {
 
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
-
+  const PagamentosSteps = [
+    { element: '.pag', popover: { title: 'Pagementos', description: 'Nesta tela  você pode realizar  pagamentos de serviços. agora Iremos guia-lo' } },
+    { element: '.entidade', popover: { title: 'Seleção de entidade', description: 'Aqui você escolhe o  serviço que deseja pagar' } },
+    { element: '.produto', popover: { title: 'Seleção de Produto', description: 'Aqui escolha o produto relacionado ao serviço que deseja pagar ' } },
+    { element: '.pacote', popover: { title: 'Seleção de Pacote', description: 'Selecione o pacote ou subproduto relacionado ao serviço escolhido.' } },
+    { element: '.referencia', popover: { title: 'Referência', description: 'Aqui  digite o referencia ou numero relecionado ao produto ' } },
+  ]
+  const [showGuide, setShowGuide] = useState(false);
+  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+  useEffect( () => {
+    // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+    if (localStorage.getItem('primeiroLogin') == 'true') {
+      if(!localStorage.getItem('GuiaPagamentoE')) {
+      // Executa o driver
+      setTimeout(() => setShowGuide(true), 100);
+      }	
+      // Seta a flag para que não execute novamente
+    }
+  }, []);
   const useAccount = useContaStore();
 
 
@@ -140,9 +159,9 @@ export default function PayServices() {
         <div className="separator" />
       </div>
       <div className="bottom">
-        <div className="left">
+        <div className="left entidade">
           <p>Selecione o serviço</p>
-          <ul className="services">
+          <ul className="services ">
             <ServicesList setEntidade={setEntidade} />
           </ul>
         </div>
@@ -159,7 +178,7 @@ export default function PayServices() {
                   <input type="text" disabled value={useAccount.numeroConta.replaceAll(".", " ")} />
                 </div>
 
-                <div className="input_field">
+                <div className="input_field produto">
                   <label htmlFor="email" className="font-semibold">Produto</label>
                   <Popover open={open1} onOpenChange={setOpen1}>
                     <PopoverTrigger asChild>
@@ -208,7 +227,7 @@ export default function PayServices() {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <div className="input_field">
+                <div className="input_field pacote">
                   <>
                     <label htmlFor="email" className="font-semibold">Pacote</label>
 
@@ -268,7 +287,7 @@ export default function PayServices() {
                   <input type="text" disabled value={formatarKz(Number(subProd?.preco))} />
                 </div>
 
-                <div className="input_field">
+                <div className="input_field referencia">
                   <label className="font-semibold">{entidade? entidade.campos[0] :"Nº da referência"} </label>
                   <input type="number"/>
                 </div>
@@ -317,6 +336,12 @@ export default function PayServices() {
                    isLoading={loading}
                    handleFunction={handlePagementos}
                  />
+
+{showGuide && <GuideDriver steps={PagamentosSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaPagamentoE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
   );
 }

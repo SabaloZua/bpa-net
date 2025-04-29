@@ -16,14 +16,14 @@ import { Separator } from "@/components/ui/separator";
 import { DadosContaType } from "@/types/commons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Upload } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import api from "@/utils/axios";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import * as z from "zod";
 import { TailSpin } from "react-loader-spinner";
-
+import GuideDriver from "@/components/Guia";
 
 
 const profileFormSchema = z.object({
@@ -59,6 +59,26 @@ export default function Perfil({ dados }: Props) {
 	const [selectedImage, setSelectedImage] = useState<string | null>(dados?.cliente.imagem ?? null); // Estado para armazenar a imagem selecionada
 	const [selectedFile, setSelectedFile] = useState<File | null>(null); // Estado para armazenar o arquivo selecionado
  	 const [isLoading, setIsLoading] = useState(false);
+
+	  const PerfilSteps = [
+		{ element: '.perf', popover: { title: 'Perfil', description: 'Nesta Tela você Pode visualizar os seus dados pessoais e mudificar a sua foto de perfil agora Iremos guia-lo' } },
+		{ element: '.avatar', popover: { title: 'Foto de Perfil', description: 'Aqui você pode visualizar ou alterar sua foto de perfil. Clique no botão para carregar uma nova imagem.' } },
+		{ element: '.informacoes', popover: { title: 'Informações Básicas', description: 'Aqui nesta seção, você pode visualizar suas informações pessoais, como nome, número do BI e email.' } },
+		{ element: '.botoes-acao', popover: { title: 'Ações', description: 'Use os botões abaixo para salvar alterações ou cancelar as edições feitas no perfil.' } },
+
+	  ]
+	  const [showGuide, setShowGuide] = useState(false);
+	  // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+	  useEffect( () => {
+		// Aguarda até que o elemento ".pessoa" esteja presente na DOM
+		if (localStorage.getItem('primeiroLogin') == 'true') {
+		  if(!localStorage.getItem('GuiaPerfilE')) {
+		  // Executa o driver
+		  setTimeout(() => setShowGuide(true), 100);
+		  }	
+		  // Seta a flag para que não execute novamente
+		}
+	  }, []);
 	const defaultValues: Partial<ProfileFormValues> = {
 		numeroBI: dados?.cliente.bi?.toString(),
 		name: dados?.cliente.nome,
@@ -114,16 +134,16 @@ export default function Perfil({ dados }: Props) {
 
 	return (
 		<div className="space-y-6">
-			<div className="space-y-4">
+			<div className="space-y-4 avatar">
 				<div className="flex flex-col gap-4 sm:flex-row sm:items-center">
 					<Avatar className="h-24 w-24">
 						<AvatarImage
 							src={selectedImage ?? undefined}
 							alt="@johndoe"
 						/>
-						<AvatarFallback>JD</AvatarFallback>
+						<AvatarFallback>{dados?.cliente.nome.charAt(0) || "N/A"}</AvatarFallback>
 					</Avatar>
-					<div className="space-y-1">
+					<div className="space-y-1 ">
 						<h3 className="text-lg font-medium">Foto de perfil</h3>
 						<p className="text-sm text-muted-foreground">
 							Clique no botão abaixo para carregar uma nova foto
@@ -160,9 +180,9 @@ export default function Perfil({ dados }: Props) {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="space-y-8"
+					className="space-y-8  "
 				>
-					<div className="space-y-6">
+					<div className="space-y-6 informacoes">
 						<h3 className="text-lg font-medium">
 							Informações Básicas
 						</h3>
@@ -228,7 +248,7 @@ export default function Perfil({ dados }: Props) {
 
 						</div>
 					</div>
-					<div className="flex justify-end gap-2">
+					<div className="flex justify-end gap-2 botoes-acao">
 						<Button type="button" variant="outline">
 							Cancelar
 						</Button>
@@ -253,6 +273,12 @@ export default function Perfil({ dados }: Props) {
 					</div>
 				</form>
 			</Form>
+
+			{showGuide && <GuideDriver steps={PerfilSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaPerfilE', 'true');
+      setShowGuide(false);
+      }} />}
 		</div>
 	);
 }

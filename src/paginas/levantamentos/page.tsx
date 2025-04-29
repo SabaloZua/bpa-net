@@ -22,7 +22,7 @@ import useContaStore from "@/contexts/contaStore";
 import GuideDriver from "@/components/Guia";
 //Modals
 import { useDisclosure } from "@nextui-org/react";
-
+import "@/styles/pagamentos.css";
 import "@/styles/levantamento.css";
 import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
 import ValidacaoModal from "@/components/modals/ValidacaoModal";
@@ -197,14 +197,17 @@ export default function Levantamentos({ dados }: Props) {
           onSubmit={handleSubmit(confirmaLevantamento)}
           autoComplete="off"
         >
-          <div className="levantamento-header">
+          <div className="payments_header mb-5">
+            <div className="top">
             <h1>Levantamentos sem cartão</h1>
             <p>Retire o seu dinheiro a qualquer momento.</p>
+            </div>
+          
           </div>
           <div className="levantamento-opcoes">
             <div className="opcao-container">
-              <User className="text-gray-500" />
-              <h2>Quem vai levantar o dinheiro?</h2>
+              <User className="text-gray-500 h-4 w-4 opacity-50" />
+              <h2 className="text-sm">Quem vai levantar o dinheiro?</h2>
             </div>
             <div className="opcoes">
               <div
@@ -224,7 +227,7 @@ export default function Levantamentos({ dados }: Props) {
           <div className="email-container">
             {tipoLevantamento == "outro" ? (
               <div>
-                <label htmlFor="">Endereço do email do beneficiário</label>
+                <label htmlFor="" className="text-sm mt-4 " >Endereço do email do beneficiário</label>
                 <Input className="email-input" {...register("emaildestino")} />
                 {errors.emaildestino && (
                   <p className="text-red-500 text-sm">{errors.emaildestino.message}</p>
@@ -232,14 +235,14 @@ export default function Levantamentos({ dados }: Props) {
               </div>
             ) : (
               <div>
-                <label>Meu endereço de e-mail</label>
+                <label className="text-sm mt-4">Meu endereço de e-mail</label>
                 <Input readOnly className="email-input" placeholder={`${dados?.cliente.email} `} />
               </div>
             )}
           </div>
           <div className="montante-container">
-            <label htmlFor="">
-              <Banknote className="text-gray-500" />
+            <label htmlFor="" className="text-sm">
+              <Banknote className="text-gray-500 h-4 w-4 opacity-50 " />
               Quanto dinheiro vai levantar?
             </label>
             {/* Inicio.. */}
@@ -297,8 +300,8 @@ export default function Levantamentos({ dados }: Props) {
           </div>
           <div className="codigos">
             <div className="codigo-container">
-              <label htmlFor="">
-                <LockKeyhole className="text-gray-500" />
+              <label htmlFor="" className="text-sm">
+                <LockKeyhole className="text-gray-500 h-4 w-4 opacity-50" />
                 Qual o seu código secreto?
               </label>
               <Alert className="alerta-codigo">
@@ -317,8 +320,8 @@ export default function Levantamentos({ dados }: Props) {
               {errors.pin && <p className="text-red-500 text-sm mt-1">{errors.pin.message}</p>}
             </div>
             <div className="codigo-container">
-              <label htmlFor="">
-                <LockKeyhole className="text-gray-500" />
+              <label htmlFor="" className="text-sm">
+                <LockKeyhole className="text-gray-500 h-4 w-4 opacity-50" />
                 Repita o seu código secreto
               </label>
               <Input
@@ -350,9 +353,8 @@ export default function Levantamentos({ dados }: Props) {
             )}
           </button>
         </form>
-        <div className="w-full">
-          <div className="UltimosPagamentos w-full px-4">
-            <div className="pagamentos-container">
+          <div className="UltimosPagamentos w-9/12 ml-2  px-10">
+            <div className="lateral">
               <h1 className="font-600">Últimos Levantamentos</h1>
               <Separator className="mt-2" />
               <div className="requests">
@@ -364,7 +366,7 @@ export default function Levantamentos({ dados }: Props) {
               </div>
             </div>
           </div>
-        </div>
+      
       </div>
 
       {/* Modals */}

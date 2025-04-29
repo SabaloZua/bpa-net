@@ -64,22 +64,21 @@ export default function LevantamentosList({ idConta }: Props) {
             style={{ border: "none", borderBottom: "1px solid #efefef", borderRadius: "0px" }}
           >
             <div
-              className="iconContainer p-1"
+              className="iconContainer p-1 bg-[#AE8C46]"
               style={{
-                backgroundColor: "rgb(219 0 0 / 10%)",
-                borderRadius: "6px",
+                borderRadius: "8px",
               }}
             >
               <BiMoneyWithdraw
+                size={25}
+                className="text-white"
                 style={{
-                  fill: "#01af23",
-                  width: "30px",
-                  height: "30px",
+                  borderRadius: "8px",
                 }}
               />
             </div>
-            <p style={{ fontWeight: "600" }}>{formatarKz(levantamento.valor)}</p>
-            <p>{formatarData(levantamento.data)}</p>
+            <p style={{ fontWeight: "700" }} className="text-bold text-14 capitalize text-default-700">{formatarKz(levantamento.valor)}</p>
+            <p className="text-bold text-14 capitalize text-default-700">{formatarData(levantamento.data)}</p>
           </button>
         ))}
 

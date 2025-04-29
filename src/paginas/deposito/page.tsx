@@ -40,6 +40,7 @@ import { TailSpin } from "react-loader-spinner"
 import ValidacaoModal from "@/components/modals/ValidacaoModal";
 import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
 import { formataSaldo } from "@/constants/modules";
+import GuideDriver from "@/components/Guia";
 // Atualize a interface para incluir as propriedades dinâmicas usadas no simulador
 interface IDeposito {
   n_idtipodeposito: number;
@@ -63,6 +64,26 @@ export default function DepositosPage() {
   const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
   const { isOpen: isOpen3, onOpen: onOpen3, onClose: onClose3 } = useDisclosure();
     const [isLoading, setIsLoading] = useState(false);
+
+
+    const DepositoSteps = [
+      { element: '.dp', popover: { title: 'Depósitos a Prazo', description: 'Nesta tela, você pode visualizar e aplicar depósitos a prazo de forma prática e segura, agora Iremos guia-lo' } },
+      { element: '.lista-produtos', popover: { title: 'Produtos Disponíveis', description: 'Aqui você pode escolher os produtos de depósito a prazo disponíveis, com suas taxas e prazos. Escolha o que melhor atende às suas necessidades.' } },
+      { element: '.simulador', popover: { title: 'Simulador', description: 'Use o simulador para calcular os juros e o rendimento do depósito com base no valor aplicado.' } },
+    
+    ]
+    const [showGuide, setShowGuide] = useState(false);
+    // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
+    useEffect( () => {
+      // Aguarda até que o elemento ".pessoa" esteja presente na DOM
+      if (localStorage.getItem('primeiroLogin') == 'true') {
+        if(!localStorage.getItem('GuiaDepositoE')) {
+        // Executa o driver
+        setTimeout(() => setShowGuide(true), 100);
+        }	
+        // Seta a flag para que não execute novamente
+      }
+    }, []);
   const [resultadoSimulacao, setResultadoSimulacao] = useState({
     jurosBrutos: "0 Kz",
     retencao: "0 Kz",
@@ -192,7 +213,7 @@ export default function DepositosPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Área dos Cards dinâmicos */}
-          <div className="lg:col-span-2 space-y-6 ">
+          <div className="lg:col-span-2 space-y-6 lista-produtos">
             {depositos.map(deposito => (
               <Card key={deposito.n_idtipodeposito}>
                 <CardContent className="p-6">
@@ -221,7 +242,7 @@ export default function DepositosPage() {
           </div>
 
           {/* Simulador */}
-          <Card className="lg:col-span-1">
+          <Card className="lg:col-span-1 simulador">
             <CardHeader>
               <CardTitle className="text-gray-700 mb-1">Simulador</CardTitle>
               <Separator />
@@ -427,6 +448,12 @@ export default function DepositosPage() {
                     isLoading={isLoading}
                     handleFunction={handledeposito}
                   />
+
+{showGuide && <GuideDriver steps={DepositoSteps} onFinish={()=>{
+      console.log("Tour finalizado! Inciando o tour novamente");
+      localStorage.setItem('GuiaDepositoE', 'true');
+      setShowGuide(false);
+      }} />}
     </div>
     </div>
   )
