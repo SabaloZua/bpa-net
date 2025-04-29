@@ -160,7 +160,7 @@ export default function Levantamentos({ dados }: Props) {
           label: "Comprovativo",
           onClick: async () =>
             window.open(
-              `http://localhost:5000/pdf/comprovativo/${response.data.idtransacao}`,
+              `https://bpanetapi.vercel.app/pdf/comprovativo/${response.data.idtransacao}`,
               "_blank"
             ),
         },

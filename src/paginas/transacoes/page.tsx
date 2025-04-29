@@ -116,7 +116,7 @@ export default function TransactionsPage() {
   const CriarPdf = async (): Promise<void> => {
     const DataInicio = dataInicio ? format(dataInicio, "yyyy-MM-dd") : "";
     const DataFim = datafim ? format(datafim, "yyyy-MM-dd") : "";
-    window.open(`http://localhost:5000/pdf/extrato/${Number(localStorage.getItem("idConta"))}/${DataInicio}/${DataFim}`, '_blank')
+    window.open(`https://bpanetapi.vercel.app/pdf/extrato/${Number(localStorage.getItem("idConta"))}/${DataInicio}/${DataFim}`, '_blank')
   }
 
 
@@ -329,7 +329,7 @@ export default function TransactionsPage() {
                       </div>
 
                       <div className="col-span-1 lg:col-span-2 flex justify-end gap-2">
-                        <button onClick={()=> window.open(`http://localhost:5000/pdf/comprovativo/${transaction.id}`)}>
+                        <button onClick={()=> window.open(`https://bpanetapi.vercel.app/pdf/comprovativo/${transaction.id}`)}>
                           <Download className="text-gray-500 w-5 h-5" />
                         </button>
                         <button>
