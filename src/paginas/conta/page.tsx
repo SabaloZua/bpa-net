@@ -6,6 +6,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formataNome} from "@/constants/modules";
 import GuideDriver from "@/components/Guia";
 import { useState, useEffect } from "react";
+import api from "@/utils/axios";
+import { AxiosError } from "axios";
+import { toast } from "sonner";
+import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
+import ValidacaoModal from "@/components/modals/ValidacaoModal";
+import { useDisclosure } from "@nextui-org/react";
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -19,6 +25,10 @@ const Conta = ({ dados }: Props) => {
     { element: '.minha-conta', popover: { title: 'Minha Conta', description: 'Aqui estão os detalhes da sua conta, como número, IBAN, saldo disponível e estado da conta.' } },
   ]
   const [showGuide, setShowGuide] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+  const [otp, setOtp] = useState("");
   // Inicializa o driver mas adia o drive() até ter certeza que o elemento existe
   useEffect( () => {
     // Aguarda até que o elemento ".pessoa" esteja presente na DOM
@@ -30,6 +40,39 @@ const Conta = ({ dados }: Props) => {
       // Seta a flag para que não execute novamente
     }
   }, []);
+
+   async function bloquearcartao(otp: string) {
+      setIsLoading(true);
+      try {
+        if (otp.length < 6) return;
+        const dataset = {
+          numerocartao: dados?.cartao.numero,
+        };
+        const response = await api.post("/conta/cartao/bloquear", dataset);
+        onClose2();
+       
+        toast.success(response.data.message);
+        //router.push("/registo/tipo-conta");
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          if (error.response?.status === 400) {
+            toast.error(error.response?.data.message);
+          } else {
+            toast.error("Sem conexão com o servidor");
+          }
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    async function confirmarbloquio() {
+      try {
+        onOpen();
+        
+      } catch {
+        toast.error("Erro tente mais tarde");
+      } 
+    }
 
   return (
     // Previously MainLayout component
@@ -92,8 +135,11 @@ const Conta = ({ dados }: Props) => {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="flex-1 bg-red-500 text-white py-2 px-4 rounded-md flex items-center justify-center hover:bg-red-600 transition-colors">
-                      <span className="mr-2">Bloquear</span>
+                    <button className="flex-1 bg-red-500 text-white py-2 px-4 rounded-md flex items-center justify-center hover:bg-red-600 transition-colors"
+                      onClick={confirmarbloquio}
+                      {...dados?.cartao.estado=="bloqueado"? {disabled:true} : {}}
+                    >
+                      <span className="mr-2">{dados?.cartao.estado=="bloqueado"? "Cartão Bloqueado":"Bloquear"}</span>
                       <span className="border border-white rounded-md p-1">
                         <LockIcon size={14} />
                       </span>
@@ -173,6 +219,28 @@ const Conta = ({ dados }: Props) => {
       localStorage.setItem('GuiaContaE', 'true');
       setShowGuide(false);
       }} />}
+
+          <ConfirmacaoModal
+              isOpen={isOpen}
+              onClose={onClose}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              onOpen2={onOpen2}
+              title="Deseja bloquear o cartão?"
+              dados={[
+                { key: "Bloquear Cartão?", value: `` },
+                
+              ]}
+            />
+      
+            <ValidacaoModal
+              isOpen={isOpen2}
+              onClose={onClose2}
+              otp={otp}
+              setOtp={setOtp}
+              isLoading={isLoading}
+              handleFunction={bloquearcartao}
+            />
     </div>
   );
 };
