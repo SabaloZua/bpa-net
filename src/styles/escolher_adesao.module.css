@@ -14,6 +14,7 @@
   flex-direction: column;
   gap: 0.5rem;
   transition: all .3s;
+ 
 }
 
 .cartao:hover{
@@ -27,9 +28,9 @@
 }
 
 .cartao > div > h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-
+  font-size: 1.3rem;         /* Menor no mobile */
+  line-height: 1.6rem;
+  white-space: nowrap;       /* Não quebra linha no mobile */
   color: var(--color-primary);
   font-weight: 700;
 }
@@ -54,6 +55,11 @@
   .cartao {
     width: 50%;
     height: 18rem;
+  }
+    .cartao > div > h1 {
+    font-size: 1.875rem;     /* Tamanho original no desktop */
+    line-height: 2.25rem;
+    white-space: normal;     /* Permite quebrar linha no desktop */
   }
 
   .icone {

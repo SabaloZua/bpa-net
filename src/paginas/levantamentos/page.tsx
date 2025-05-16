@@ -155,7 +155,7 @@ export default function Levantamentos({ dados }: Props) {
 
       useConta.setSaldo(Number(response.data.saldoactualizado));
       onClose2();
-      toast.success("Levantamento feito com sucesso", {
+   toast.success("Levantamento feito com sucesso", {
         action: {
           label: "Comprovativo",
           onClick: async () =>

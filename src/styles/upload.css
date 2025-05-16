@@ -11,6 +11,15 @@
     margin-bottom: 10px;
     margin-bottom: 20px;
   }
+  .upload_card > p,
+.basic_text,
+.simple_text {
+  word-break: break-word;
+  white-space: normal;
+  padding: 0 6px;
+  text-align: center;
+  font-size: 1rem;
+}
   
   .upload_container {
     width: 100%;
@@ -40,7 +49,8 @@
     font-size: var(--font-small);
     font-family: 'Rubik';
     text-align: center;
-  
+  word-break: break-word; /* Garante que o texto quebre dentro do card */
+  padding: 0 4px;        
   }
   
   .upload_card > p:nth-child(3) {
@@ -79,4 +89,25 @@
     visibility: none;
   }
   
-  
+
+@media (max-width: 480px) {
+
+    .upload_card {
+    display: flex; /* Altera de grid para flex no modo mobile */
+    flex-direction: column; /* Organiza os elementos verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    padding: 20px; /* Ajusta o padding para manter o layout limpo */
+  }
+  .upload_card > p,
+  .basic_text,
+  .simple_text {
+    font-size: 0.95rem;
+    padding: 0 2px;
+  }
+    .upload_card > svg {
+    margin-bottom: 10px;
+    width: 50px; /* Ajusta o tamanho do ícone para telas menores */
+    height: 50px;
+  }
+}

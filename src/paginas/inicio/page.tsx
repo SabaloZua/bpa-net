@@ -6,7 +6,7 @@ import Cartao from "@/components/Cartão";
 import Cambio from "@/components/cambio";
 import { Input } from "@/components/ui/input";
 import {  useEffect, useState } from "react";
-import Link from "next/link";
+
 // import { useLayoutEffect } from "react";
 import api from "@/utils/axios";
 import { toast } from "sonner";
@@ -168,7 +168,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
 
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">
-            Saldo: Kz <span>{mostrarSaldo ? "****,00" : `${formataSaldo(useConta.saldo)},00`}</span>
+            Saldo: Kz <span>{mostrarSaldo ? "****,00" : `${formataSaldo(useConta.saldo)}`}</span>
           </h1>
         </div>
       </div>
@@ -182,7 +182,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
             <div className="flex items-center justify-between ">
               <h2 className="text-lg font-medium text-blue-500">Cartões</h2>
               <div className="text-blue-500">
-                <ArrowRight />
+               
               </div>
             </div>
             <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
@@ -227,7 +227,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
             <div className=" w-full flex items-center justify-between">
               <h2 className="text-lg font-medium text-blue-500">Enviar NaHora</h2>
               <div className="text-blue-500">
-                <ArrowRight />
+                
               </div>
             </div>
             <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
@@ -301,15 +301,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-medium text-blue-500">Transaçoes recentes</h2>
               <div className="text-blue-500">
-                <Link
-                  href={"#"}
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setDashboardPage && setDashboardPage("transacoes");
-                  }}
-                >
-                  <ArrowRight />
-                </Link>
+              
               </div>
             </div>
             <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
@@ -319,7 +311,7 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
             <div className="flex items-center justify-between ">
               <h2 className="text-lg font-medium text-blue-500">Câmbio</h2>
               <div className="text-blue-500">
-                <ArrowRight />
+               
               </div>
             </div>
 

@@ -86,7 +86,7 @@ export default function UploadCard({
     >
       <IoCloudUpload className="iconOutButton" />
       <p className="simple_text">
-        Arraste e solte o seu arquivo ou clique <br /> para fazer upload.
+        clique <br /> para fazer upload.
       </p>
       <p className="simple_text small">Large aqui</p>
       <input

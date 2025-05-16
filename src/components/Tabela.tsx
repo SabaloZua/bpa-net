@@ -98,7 +98,7 @@ const formattedValue = new Intl.NumberFormat("pt-AO", {
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 }).format(valueNumber)
-.replace(/\s/g, '.');
+
 return (
   <p className="text-bold text-12 capitalize text-default-700">
     {dados.debito == null || dados.debito === "" ? (

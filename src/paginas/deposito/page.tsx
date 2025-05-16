@@ -223,7 +223,7 @@ export default function DepositosPage() {
                       {deposito.t_descricao}
                     </p>
                     <div className="flex justify-end space-x-2">
-                      <Button variant="outline">
+                      <Button variant="outline" onClick={()=> {window.open(`/arquivos/${deposito.t_nome=="DP BPA 10%" ? 'TANB10.pdf':"TANB2.pdf"}`, '_blank')}}>
                         <FileText className="mr-2 h-4 w-4" />
                         Ficha técnica
                       </Button>

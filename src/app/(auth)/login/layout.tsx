@@ -23,7 +23,7 @@ export default async function RootLayout({
           <button
             className={`rounded-lg bg-blue-500 w-full py-2 hover:bg-blue-400   ${styels.botao}`}
           >
-            <Link href={"/inicio"}>Saiba Mais</Link>
+           <a href="/arquivos/Formulario_de_Adessão_BPA_NET.pdf" target="_blank" className="list-none" >Saiba Mais</a>
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Skeleton from "react-loading-skeleton";
-
+import { FiXCircle } from "react-icons/fi"; 
 import { LevantamentoType } from "@/types/commons";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { useEffect, useState } from "react";
@@ -8,6 +8,9 @@ import api from "@/utils/axios";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { formatarData, formatarKz } from "@/constants/modules";
+import ConfirmacaoModal from "../modals/ConfirmacaoModal";
+import ValidacaoModal from "../modals/ValidacaoModal";
+import { useDisclosure } from "@nextui-org/react";
 
 interface Props {
   idConta: number;
@@ -17,6 +20,11 @@ interface Props {
 
 export default function LevantamentosList({ idConta }: Props) {
   const [listaLevantamentos, setListaLevantamentos] = useState<LevantamentoType[]>();
+  const [levantamentoSelecionado, setLevantamentoSelecionado] = useState<LevantamentoType | null>(null); // Levantamento selecionado
+   const { isOpen, onOpen, onClose } = useDisclosure();
+   const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [otp, setOtp] = useState("");
   useEffect(() => {
     async function getAllProducts() {
       try {
@@ -38,7 +46,40 @@ export default function LevantamentosList({ idConta }: Props) {
 
     getAllProducts();
   }, []);
+  async function handleCancelLevantamento(otp: string) {
+      setIsLoading(true);
+      
+      try {
+        if (otp.length < 6) return;
+        if (!levantamentoSelecionado) {
+          toast.error("Levantamento não selecionado!");
+          setIsLoading(false);
+          return;
+        }
+        const dataset = {
+          idlevantamento: Number(levantamentoSelecionado.idLevantamento),
+        }
+      await api.post(`/trasacao/Cancelarlevantamento`, dataset);
+      toast.success("Levantamento cancelado com sucesso!");
+      setListaLevantamentos((prev) => prev?.filter((item) => item.idLevantamento !== levantamentoSelecionado.idLevantamento));
+      onClose2();
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("Sem conexão com o servidor" + error);
+        }
+      }
+    }finally {
+      setIsLoading(false);
+    }
+  }
 
+  function abrirModal(levantamento: LevantamentoType) {
+    setLevantamentoSelecionado(levantamento);
+    onOpen();
+  }
 
   return (
     <>
@@ -57,9 +98,8 @@ export default function LevantamentosList({ idConta }: Props) {
       {listaLevantamentos &&
         listaLevantamentos.length > 0 &&
         listaLevantamentos.map((levantamento) => (
-          <button
+          <div
             key={levantamento.data}
-            type="button"
             className="cardDashboardTransaction flex justify-between w-full p-2 py-3 items-center"
             style={{ border: "none", borderBottom: "1px solid #efefef", borderRadius: "0px" }}
           >
@@ -79,8 +119,39 @@ export default function LevantamentosList({ idConta }: Props) {
             </div>
             <p style={{ fontWeight: "700" }} className="text-bold text-14 capitalize text-default-700">{formatarKz(levantamento.valor)}</p>
             <p className="text-bold text-14 capitalize text-default-700">{formatarData(levantamento.data)}</p>
-          </button>
+            <button
+              className="cancel-button flex items-center text-red-500 hover:text-red-700"
+             onClick={() =>abrirModal(levantamento)}
+            >
+              <FiXCircle className="mr-1" />
+            
+            </button>
+          </div>
         ))}
+            {levantamentoSelecionado && (
+     
+         <ConfirmacaoModal
+              isOpen={isOpen}
+              onClose={onClose}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              onOpen2={onOpen2}
+              title="Confirmação de Cancelamento"
+              dados={[
+                { key: "Montante", value: `${formatarKz(levantamentoSelecionado.valor)}` },
+                { key: "Data", value: `${formatarData(levantamentoSelecionado.data)}` },
+                { key: "Estado", value: `${levantamentoSelecionado.estado}` },
+              ]}
+            />
+            )}
+         <ValidacaoModal
+              isOpen={isOpen2}
+              onClose={onClose2}
+              otp={otp}
+              setOtp={setOtp}
+              isLoading={isLoading}
+              handleFunction={handleCancelLevantamento}
+            />
 
       {/*isOpen && (
 				<Modal isOpen={isOpen} onClose={()=>{
