@@ -8,6 +8,7 @@ import api from "@/utils/axios";
 import { AxiosError } from "axios";
 import { Button } from "@/components/ui/button"
 import Cabecalho from '@/components/Cabecalho'
+import useContaStore from "@/contexts/contaStore";
 import {
   Popover,
   PopoverContent,
@@ -45,7 +46,7 @@ export default function TransactionsPage() {
   const [datafim, setDatafim] = useState<Date | undefined>(undefined);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const useConta = useContaStore();
     const TransacoesSteps = [
       { element: '.inicial', popover: { title: 'Tela de Trasações', description: 'Esta Página  permite você visualizar todas as movimentações realizadas em sua conta  Vamos Guia-lo' } },
       { element: '.trasacao', popover: { title: 'Visualização de Transações', description: 'Aqui, a tela exibe uma lista detalhada das transações realizadas, incluindo: A data da transação, O tipo de transação , O montante movimentado, E o saldo após cada movimento' } },
@@ -69,9 +70,14 @@ export default function TransactionsPage() {
   const fetchTransactions = async (): Promise<void> => {
     try {
       setLoading(true);
-  
-
-      api.get(`/trasacao/trasacoesrecentes/${Number(localStorage.getItem("idConta"))}`)
+      
+       const idConta:string=  await useConta.id.toString();
+       console.log("ID da conta:", idConta);
+      if (!idConta || idConta === "0") {
+        toast.error("Conta não encontrada ou inválida.");
+        return;
+      }
+      api.get(`/trasacao/trasacoesrecentes/${idConta}`)
         .then(response => {
           const dados = response.data.trasacoes;
           setTransactions(dados);
@@ -95,7 +101,7 @@ export default function TransactionsPage() {
       const DataInicio = dataInicio ? format(dataInicio, "yyyy-MM-dd") : "";
       const DataFim = datafim ? format(datafim, "yyyy-MM-dd") : "";
       setLoading(true);
-      api.get(`/trasacao/gettrasacao/${Number(localStorage.getItem("idConta"))}/${DataInicio}/${DataFim}`)
+      api.get(`/trasacao/gettrasacao/${useConta.id}/${DataInicio}/${DataFim}`)
         .then(response => {
           const dados = response.data.trasacoes;
           setTransactions(dados);
@@ -116,7 +122,7 @@ export default function TransactionsPage() {
   const CriarPdf = async (): Promise<void> => {
     const DataInicio = dataInicio ? format(dataInicio, "yyyy-MM-dd") : "";
     const DataFim = datafim ? format(datafim, "yyyy-MM-dd") : "";
-    window.open(`https://bpanetapi.vercel.app/pdf/extrato/${Number(localStorage.getItem("idConta"))}/${DataInicio}/${DataFim}`, '_blank')
+    window.open(`https://bpanetapi.vercel.app/pdf/extrato/${useConta.id}/${DataInicio}/${DataFim}`, '_blank')
   }
 
 
@@ -301,7 +307,7 @@ export default function TransactionsPage() {
                               img: ' w-[20px] h-[20px]'
                             }}
                             icon={<AvatarIcon />}
-                            radius="sm" src={transaction.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : transaction.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
+                            radius="sm" src={transaction.Descricao.includes("Levantamento") ? '/icons/levan3.png' : transaction.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
 
                         </div>
                         <span title={transaction.Descricao} className="text-gray-700 truncate text-14">{transaction.Descricao}</span>

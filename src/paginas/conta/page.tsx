@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import ConfirmacaoModal from "@/components/modals/ConfirmacaoModal";
 import ValidacaoModal from "@/components/modals/ValidacaoModal";
 import { useDisclosure } from "@nextui-org/react";
+import {formataSaldo } from "@/constants/modules";
 interface Props {
   dados: DadosContaType | undefined;
 }
@@ -197,12 +198,12 @@ const Conta = ({ dados }: Props) => {
 
                 <div className="flex justify-between">
                   <p className="text-sm text-gray-500">Saldo disponível</p>
-                  <p className="font-medium">{dados?.saldo}</p>
+                  <p className="font-medium">{formataSaldo(dados?.saldo)}</p>
                 </div>
 
                 <div className="flex justify-between">
                   <p className="text-sm text-gray-500">Saldo autorizado</p>
-                  <p className="font-medium">{dados?.saldo}</p>
+                  <p className="font-medium">{formataSaldo(dados?.saldo)}</p>
                 </div>
 
                 <div className="flex justify-between">

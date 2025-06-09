@@ -3,7 +3,7 @@
 import React from "react";
 import api from "@/utils/axios";
 import { useEffect, useState } from "react";
-
+import useContaStore from "@/contexts/contaStore";
 import {
   Table,
   TableHeader,
@@ -31,7 +31,7 @@ export const columns = [
 
 
 export default  function App() {
-  
+    const useConta = useContaStore();
   type Dados = {
     id: number;
     Descricao: string;
@@ -40,12 +40,16 @@ export default  function App() {
     credtio: string;
   };
   const [transacoes, settransacoes] = useState<Dados[]>([]);
-
+ 
+ 
     useEffect(() => {
           function fetchPergunta() {
-              api.get(`/trasacao/trasacoesrecentes/${Number(localStorage.getItem("idConta"))}`)
+            const idConta:string= useConta.id.toString();
+            if (!idConta || idConta === "0") return; // só busca se o id for válido
+              api.get(`/trasacao/trasacoesrecentes/${idConta}`)
               .then(response => {
                 const dados =  response.data.trasacoes;
+                console.log(dados);
                 settransacoes(dados);
               })
               .catch(error => {
@@ -56,7 +60,7 @@ export default  function App() {
               fetchPergunta();
              
           }
-      },[])
+      },[useConta.id])
 
   
   const renderCell = React.useCallback((dados: Dados, columnKey: React.Key) => {
@@ -72,7 +76,7 @@ export default  function App() {
             img:' w-[20px] h-[20px]'
           }}
           icon={<AvatarIcon />}
-          radius="sm" src={dados.Descricao === 'Levantamento sem cartão' ? '/icons/levan3.png' : dados.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
+          radius="sm" src={dados.Descricao.includes("Levantamento") ? '/icons/levan3.png' : dados.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
         );
       case "Descricao":
         return (
