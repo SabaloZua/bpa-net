@@ -1,13 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ChevronDown, LogOut, Menu } from "lucide-react"; // Menu para o ícone do hambúrguer
-import { JSX } from "react";
+import { ChevronDown, LogOut } from "lucide-react"; // Menu para o ícone do hambúrguer
 import { signOut } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 import { sidebarLinks } from "@/constants/index";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+
 
 interface SidebarProps {
   isOpen: boolean; // Adicionando a propriedade isOpen
