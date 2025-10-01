@@ -57,7 +57,9 @@ export default function Register() {
             <div className="header_form">
               <h1>Verifique a sua caixa de entrada</h1>
               <p>
-                Foi enviado um email para o seu endereço, acesse e verifique o seu email.{" "}
+                Foi enviado um email para o seu endereço, acesse e verifique o seu email.{email} 
+                <br />
+                ATT: Caso não encontre o email na sua caixa  de entrada verifique a sua caixa de SPAM!!
                 <Link
                   onMouseDown={(event) => {
                     event.preventDefault();
