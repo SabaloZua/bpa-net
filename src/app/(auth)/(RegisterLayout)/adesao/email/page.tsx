@@ -108,7 +108,8 @@ const EtapaEmailPage = () => {
       
           <div className="px-4">
             <span className="text-sm text-gray-800">
-              Verifique a sua caixa de entrada e clique no link de verificação para continuar o processo de adesão.&nbsp; 
+              Verifique a sua caixa de entrada e clique no link de verificação para continuar o processo de adesão.&nbsp; ATT: Caso não encontre o email na sua caixa
+              de entrada verifique a sua caixa de spam !! 
             </span>
             <span className="hover:underline text-blue-400 cursor-pointer" 
               onClick={()=>{setSucessEmail(false)}}>Corrigir email.</span>
