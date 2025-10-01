@@ -3,8 +3,61 @@ import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import NextTopLoader from "nextjs-toploader";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
+import type { Metadata } from 'next'; // 👈 Import necessário
+
+// --- Componente auxiliar para injetar o JSON-LD (Schema.org) ---
+// Colocar scripts diretamente no layout não é o padrão. 
+// A solução mais simples é definir a estrutura como string e injetar no head.
+const JsonLdScript = () => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Banco de Poupança Angolano BPA",
+    "url": "https://bpa-net.vercel.app/",
+    "logo": "https://bpa-net.vercel.app/icons/logo_favicon.svg",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+};
 
 
+export const metadata: Metadata = {
+  // Title
+  title: 'BPA NET',
+
+  // Description
+  description: 'O BPA NET é uma plataforma digital oferecida pelo Banco de Poupança Angolano (BPA) que permite aos seus clientes realizar diversas operações bancárias de forma rápida, segura e conveniente.',
+
+  keywords: [
+    'BPA Net', 'banco digital', 'internet banking BPA', 'Angola', 
+    'Banco de Poupança Angolano', 'Poupança', 'Banco'
+  ],
+
+  // Theme Color
+  themeColor: '#fff',
+
+  // Icons (para favicon e apple-touch-icon)
+  icons: {
+    icon: '/icons/logo_favicon.svg',
+    apple: '/icons/logo_favicon.svg',
+  },
+
+  // Open Graph (SEO para partilha em redes sociais)
+  openGraph: {
+    title: 'Banco de Poupança Angolano BPA',
+    description: 'O BPA NET é uma plataforma digital oferecida pelo Banco de Poupança Angolano (BPA) que permite aos seus clientes realizar diversas operações bancárias de forma rápida, segura e conveniente.',
+    url: 'https://bpa-net.vercel.app/',
+    type: 'website',
+  },
+};
+
+
+// --- 2. LAYOUT PRINCIPAL (Com o JSX Corrigido) ---
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,14 +65,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <head>
-        <meta name="description" content="Internet Banking Plataform" />
-        <title>BPA NET</title>
-        <meta name="theme-color" content="#fff" />
-        <meta name="google-site-verification" content="GbB6Bxo2lyIC_ksyOATe3c3R2LBpmb9EzRIMnv522uE" />
-        <link rel="shortcut icon" href="/icons/logo_favicon.svg" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/icons/logo_favicon.svg" />
-      </head>
+     
+      <JsonLdScript /> 
+      
       <body>
         <NextTopLoader
           color="#1A82FF"
@@ -33,11 +81,9 @@ export default function RootLayout({
           shadow="0 0 10px #1A82FF,0 0 5px #1A82FF"
         />
         <NextUIProvider>
-          
           <NextAuthSessionProvider >
             {children}
           </NextAuthSessionProvider>
-         
         </NextUIProvider>
         <Toaster
           toastOptions={{

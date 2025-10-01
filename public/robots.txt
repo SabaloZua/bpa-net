@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /registo/dados-pessoais
+Disallow: /registo/credenciais
+Disallow: /registo/validacao-identidade
+Disallow: /adesao/contrato
+Disallow: /adesao/credenciais
+Disallow: /adesao/dados
+Sitemap: https://bpa-net.vercel.app/sitemap.xml

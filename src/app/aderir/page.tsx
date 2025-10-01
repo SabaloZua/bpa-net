@@ -1,6 +1,26 @@
 import { Header } from "@/components/Header";
 import Link from "next/link";
 import styles from "@/styles/escolher_adesao.module.css";
+import type { Metadata } from 'next';
+
+// 1. Defina o objeto Metadata (pode ser exportado)
+export const metadata: Metadata = {
+  // Define o <title> da página
+  title: 'Abertura de Conta e Adesão ao BPA Net | BPA - Banco',
+  
+  // Define a meta description (também é bom para SEO)
+  description: 'Em poucos passos faça a   abertura de conta bancária ou adesão ao serviço online BPA Net.',
+   // A Secção de Keywords (meta-keywords)
+  keywords: [
+    'BPA Net', 
+    'abertura de conta', 
+    'aderir online', 
+    'banco digital', 
+    'internet banking BPA',
+    'Angola BPA NET'
+  ]
+};
+
 
 const AderirPage = () => {
   return (
