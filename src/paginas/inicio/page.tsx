@@ -295,9 +295,9 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
           </form>
         </div>
 
-        <div className="grid grid-cols-1 rounded-lg lg:grid-cols-4 gap-4 p-5 bg-gray-100 ">
+        <div className="grid grid-cols-1 rounded-lg lg:grid-cols-4 gap-4  p-2 lg:p-4 bg-gray-100 ">
           {/* llll; */}
-          <div className="trans  lg:col-span-2 bg-white rounded-xl  p-4 flex flex-col ">
+          <div className="trans  lg:col-span-2 bg-white rounded-xl  p-3 lg:p-5 flex flex-col ">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-medium text-blue-500">Transaçoes recentes</h2>
               <div className="text-blue-500">
