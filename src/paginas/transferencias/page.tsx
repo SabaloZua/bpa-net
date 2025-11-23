@@ -147,14 +147,14 @@ export default function Transferencias({ dados }: Props) {
   }
 
   return (
-    <div>
+    <div className="w-full max-w-full overflow-x-hidden">
       <Cabecalho Titulo="Trasnferências" subTitulo="Envie dinheiro a qualquer momento" />
-      <div className="bg-gray-100 rounded-xl p-2 sm:p-4 ">
-        <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
+      <div className="bg-gray-100 rounded-xl p-2 sm:p-4">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden mb-4 sm:mb-6">
           <form onSubmit={handleSubmit(confirmarTransferencia)} autoComplete="off">
-            <div className="px-6 py-5 sm:p-6">
+            <div className="px-3 py-4 sm:px-6 sm:py-5 md:p-6">
               {/* Transfer Type Selector */}
-              <div className="mb-6 tipo">
+              <div className="mb-4 sm:mb-6 tipo">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tipo de Transferência
                 </label>
@@ -163,11 +163,11 @@ export default function Transferencias({ dados }: Props) {
                   onChange={(e) => setTransferType(e.target.value)}
                   className="mt-2"
                 >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <Radio value="intrabank" description="Dentro do mesmo Banco">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                    <Radio value="intrabank" description="Dentro do mesmo Banco" className="text-sm sm:text-base">
                       Intrabancária
                     </Radio>
-                    <Radio value="interbank" description="Entre bancos diferentes">
+                    <Radio value="interbank" description="Entre bancos diferentes" className="text-sm sm:text-base">
                       Interbancária
                     </Radio>
                   </div>
@@ -175,21 +175,21 @@ export default function Transferencias({ dados }: Props) {
               </div>
 
               {/* Form Fields */}
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* Origin Account */}
                 <div className="origem">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Conta de Origem
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <CreditCard size={18} className="text-gray-400" />
+                    <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                      <CreditCard size={16} className="text-gray-400 sm:w-[18px] sm:h-[18px]" />
                     </div>
                     <input
                       type="text"
                       value={dados?.numeroConta}
                       placeholder="Conta origem"
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
+                      className="block w-full pl-8 sm:pl-10 pr-3 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
                       disabled
                     />
                   </div>
@@ -205,14 +205,14 @@ export default function Transferencias({ dados }: Props) {
                       Conta Destino <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <CreditCard size={18} className="text-gray-400" />
+                      <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                        <CreditCard size={16} className="text-gray-400 sm:w-[18px] sm:h-[18px]" />
                       </div>
                       <input
                         id="destination-account"
                         type="text"
                         placeholder="Insira o número da conta de destino"
-                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
+                        className="block w-full pl-8 sm:pl-10 pr-3 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
                         {...register("contadestino")}
                         required
                       />
@@ -227,14 +227,14 @@ export default function Transferencias({ dados }: Props) {
                       IBAN <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <CreditCard size={18} className="text-gray-400" />
+                      <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                        <CreditCard size={16} className="text-gray-400 sm:w-[18px] sm:h-[18px]" />
                       </div>
                       <input
                         id="destination-account"
                         type="text"
                         placeholder="Insira o número do IBAN de destino"
-                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
+                        className="block w-full pl-8 sm:pl-10 pr-3 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
                         {...register("contadestino")}
                         required
                       />
@@ -251,14 +251,14 @@ export default function Transferencias({ dados }: Props) {
                     Beneficiário <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User size={18} className="text-gray-400" />
+                    <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                      <User size={16} className="text-gray-400 sm:w-[18px] sm:h-[18px]" />
                     </div>
                     <input
                       id="beneficiary"
                       type="text"
                       placeholder="Beneficiário"
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
+                      className="block w-full pl-8 sm:pl-10 pr-3 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-400 ease-in-out"
                       {...register("benefeciario")}
                       required
                       disabled={transferType === transferTypeOptions.intrabank}
@@ -272,19 +272,19 @@ export default function Transferencias({ dados }: Props) {
                     Montante <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className="text-gray-400">Kz</span>
+                    <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                      <span className="text-gray-400 text-sm sm:text-base">Kz</span>
                     </div>
                     <input
                       id="amount"
                       type="text"
                       placeholder="0.00"
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                      className="block w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out"
                       {...register("valor")}
                       required
                     />
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                      <span className="text-gray-500">Kz</span>
+                    <div className="absolute inset-y-0 right-0 pr-2 sm:pr-3 flex items-center pointer-events-none">
+                      <span className="text-gray-500 text-sm sm:text-base">Kz</span>
                     </div>
                   </div>
                 </div>
@@ -292,11 +292,11 @@ export default function Transferencias({ dados }: Props) {
             </div>
 
             {/* Submit */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+            <div className="px-3 sm:px-6 py-3 sm:py-4 bg-gray-50 border-t border-gray-200">
               <button
                 disabled={isLoading}
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg flex items-center justify-center font-medium transition-colors duration-200 shadow-md"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 sm:py-3 px-4 rounded-lg flex items-center justify-center font-medium text-sm sm:text-base transition-colors duration-200 shadow-md"
               >
                 {isLoading ? (
                   <TailSpin
@@ -310,7 +310,7 @@ export default function Transferencias({ dados }: Props) {
                 ) : (
                   <>
                     <span>Validar</span>
-                    <ArrowRight size={18} className="ml-2" />
+                    <ArrowRight size={16} className="ml-2 sm:w-[18px] sm:h-[18px]" />
                   </>
                 )}
               </button>

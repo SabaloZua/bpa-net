@@ -207,7 +207,7 @@ export default function DepositosPage() {
   return (
     <div>
       <Cabecalho Titulo='Despositos' subTitulo='Aplicações de depositos a prazo' />
-    <div className="bg-gray-100 rounded-xl container mx-auto p-5">
+    <div className="bg-gray-100 rounded-xl container mx-auto p-3 sm:p-5">
       <div className="flex flex-col space-y-4 ">
         
 
@@ -216,21 +216,28 @@ export default function DepositosPage() {
           <div className="lg:col-span-2 space-y-6 lista-produtos">
             {depositos.map(deposito => (
               <Card key={deposito.n_idtipodeposito}>
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-blue-600">{deposito.t_nome}</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-blue-600">{deposito.t_nome}</h3>
+                    <p className="text-sm sm:text-base text-gray-600">
                       {deposito.t_descricao}
                     </p>
-                    <div className="flex justify-end space-x-2">
-                      <Button variant="outline" onClick={()=> {window.open(`/arquivos/${deposito.t_nome=="DP BPA 10%" ? 'TANB10.pdf':"TANB2.pdf"}`, '_blank')}}>
+                    <div className="flex flex-col sm:flex-row justify-end gap-2 sm:space-x-2 sm:gap-0">
+                      <Button 
+                        variant="outline" 
+                        onClick={()=> {window.open(`/arquivos/${deposito.t_nome=="DP BPA 10%" ? 'TANB10.pdf':"TANB2.pdf"}`, '_blank')}}
+                        className="w-full sm:w-auto text-sm sm:text-base"
+                      >
                         <FileText className="mr-2 h-4 w-4" />
                         Ficha técnica
                       </Button>
-                      <Button onClick={() => {
-                        setModalidade(deposito.t_nome);
-                        onOpen();
-                      }}>
+                      <Button 
+                        onClick={() => {
+                          setModalidade(deposito.t_nome);
+                          onOpen();
+                        }}
+                        className="w-full sm:w-auto text-sm sm:text-base"
+                      >
                         <Plus className="mr-2 h-4 w-4" />
                         Constituir
                       </Button>
