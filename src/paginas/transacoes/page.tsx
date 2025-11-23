@@ -192,11 +192,11 @@ export default function TransactionsPage() {
   return (
     <div>
       <Cabecalho Titulo='Transações' subTitulo='Gira a suas Transações em qualquer momento' />
-      <div className='bg-gray-100 p-5 rounded-xl'>
-        <div className="max-w-6xl mx-auto p-4 font-sans bg-white rounded-lg">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <div className="flex flex-col md:flex-row gap-4 personalizar">
-              <div>
+      <div className='bg-gray-100 p-2 sm:p-4 md:p-5 rounded-xl'>
+        <div className="w-full max-w-6xl mx-auto p-3 sm:p-4 md:p-6 font-sans bg-white rounded-lg">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 sm:mb-6 gap-3 sm:gap-4">
+            <div className="flex flex-col md:flex-row gap-3 sm:gap-4 personalizar w-full md:w-auto">
+              <div className="w-full md:w-auto">
                 <label className="text-sm text-gray-600 block mb-1">Data de Início</label>
                 <div className="relative">
                   <Popover>
@@ -204,7 +204,7 @@ export default function TransactionsPage() {
                       <Button
                         variant={"outline"}
                         className={cn(
-                          "w-[240px] pl-3 text-left font-normal",
+                          "w-full md:w-[240px] pl-3 text-left font-normal",
                           !dataInicio && "text-muted-foreground"
                         )}
                       >
@@ -225,7 +225,7 @@ export default function TransactionsPage() {
                 </div>
               </div>
 
-              <div>
+              <div className="w-full md:w-auto">
                 <label className="text-sm text-gray-600 block mb-1">Data de Fim</label>
 
                 <div className="relative">
@@ -234,7 +234,7 @@ export default function TransactionsPage() {
                       <Button
                         variant={"outline"}
                         className={cn(
-                          "w-[240px] pl-3 text-left font-normal",
+                          "w-full md:w-[240px] pl-3 text-left font-normal",
                           !datafim && "text-muted-foreground"
                         )}
                       >
@@ -258,7 +258,7 @@ export default function TransactionsPage() {
 
               <button
                 onClick={handleApplyFilters}
-                className="aplicar mt-6 flex items-center gap-2 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-md"
+                className="aplicar mt-6 md:mt-0 flex items-center justify-center gap-2 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-md w-full md:w-auto"
               >
                 <Check className="w-4 h-4" />
                 <span>Aplicar</span>
@@ -281,14 +281,14 @@ export default function TransactionsPage() {
             </div>
           ) : transactionGroups.length > 0 ? (
             transactionGroups.map((group) => (
-              <div className="mb-4" key={group.date}>
-                <div className="flex gap-2 items-center mb-2">
+              <div className="mb-4 sm:mb-6" key={group.date}>
+                <div className="flex gap-2 items-center mb-3 sm:mb-4">
                   <CalendarIcon className="text-gray-600 w-4 h-4" />
-                  <span className="text-gray-700 font-medium">{formatDateHeader(group.date)}</span>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base">{formatDateHeader(group.date)}</span>
                 </div>
 
-                <div className="bg-white rounded-lg border overflow-hidden gap-3">
-                  <div className="grid grid-cols-12 px-4 py-3 text-sm text-gray-600">
+                <div className="bg-white rounded-lg border overflow-hidden">
+                  <div className="hidden sm:grid grid-cols-12 px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm text-gray-600 border-b">
                     <div className="col-span-4 lg:col-span-3">Descritivo</div>
                     <div className="col-span-2 lg:col-span-2">Data Valor</div>
                     <div className="col-span-2 lg:col-span-2 text-right">Montante</div>
@@ -297,51 +297,100 @@ export default function TransactionsPage() {
                   </div>
 
                   {group.transactions.map((transaction) => (
-                    <div className="grid grid-cols-12 px-4 py-4 hover:bg-gray-50 gap-3" key={transaction.id}>
-                      <div className="col-span-4 lg:col-span-3 flex items-center gap-3">
-                        <div className="">
+                    <div className="px-3 sm:px-4 md:px-6 py-4 sm:py-5 hover:bg-gray-50 border-b last:border-b-0" key={transaction.id}>
+                      {/* Mobile Layout */}
+                      <div className="sm:hidden space-y-3">
+                        <div className="flex items-center gap-3">
                           <Avatar size="sm"
                             classNames={{
-                              base: "bg-[#AE8C46]",
-                              icon: "text-black/80  flex items-center",
-                              img: ' w-[20px] h-[20px]'
+                              base: "bg-[#AE8C46] flex-shrink-0",
+                              icon: "text-black/80 flex items-center",
+                              img: 'w-[20px] h-[20px]'
                             }}
                             icon={<AvatarIcon />}
                             radius="sm" src={transaction.Descricao.includes("Levantamento") ? '/icons/levan3.png' : transaction.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
-
+                          <span title={transaction.Descricao} className="text-gray-700 text-sm font-medium flex-1">{transaction.Descricao}</span>
                         </div>
-                        <span title={transaction.Descricao} className="text-gray-700 truncate text-14">{transaction.Descricao}</span>
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                          <div>
+                            <p className="text-gray-500 text-xs mb-1">Data Valor</p>
+                            <p className="text-gray-700">{format(parseISO(transaction.data), "d MMM yyyy", { locale: ptBR })}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500 text-xs mb-1">Montante</p>
+                            <div className="flex items-center">
+                              {transaction.debito ? (
+                                <>
+                                  <ArrowDown className="w-3 h-3 mr-1 text-red-500 flex-shrink-0" />
+                                  <span className='text-gray-700 text-sm break-words'>Kz {Number(transaction.debito).toLocaleString('pt-BR').replace('.', " ")}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <ArrowUp className="w-3 h-3 mr-1 text-green-500 flex-shrink-0" />
+                                  <span className='text-gray-700 text-sm break-words'>Kz {Number(transaction.credtio || 0).toLocaleString('pt-BR').replace('.', " ")}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-gray-500 text-xs mb-1">Saldo após Movimento</p>
+                          <div className="flex items-center">
+                            <Plus className="w-3 h-3 mr-1 text-green-500 flex-shrink-0" />
+                            <span className='text-gray-700 text-sm break-words'>{transaction.saldoactual}</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-3 pt-2 border-t">
+                          <button onClick={()=> window.open(`https://bpanetapi.vercel.app/pdf/comprovativo/${transaction.id}`)}>
+                            <Download className="text-gray-500 w-5 h-5" />
+                          </button>
+                          <button>
+                            <MoreVertical className="text-gray-500 w-5 h-5" />
+                          </button>
+                        </div>
                       </div>
-
-                      <div className="col-span-2 lg:col-span-2 text-gray-600 flex items-center text-14">
-                        <p>{format(parseISO(transaction.data), "d MMM yyyy", { locale: ptBR })}</p>
-                      </div>
-                      <div className="col-span-2 lg:col-span-2 text-right flex items-center justify-end text-14">
-                        {transaction.debito ? (
-                          <>
-                            <ArrowDown className="w-4 h-4 mr-1 text-red-500" />
-                            <span className='text-gray-700'>Kz {Number(transaction.debito).toLocaleString('pt-BR').replace('.', " ")}</span>
-                          </>
-                        ) : (
-                          <>
-                            <ArrowUp className="w-4 h-4 mr-1 text-green-500" />
-                            <span className='text-gray-700'>Kz {Number(transaction.credtio || 0).toLocaleString('pt-BR').replace('.', " ")}</span>
-                          </>
-                        )}
-                      </div>
-                      <div className="col-span-3 lg:col-span-3 text-right flex items-center justify-end text-14">
-                        <Plus className="w-4 h-4 mr-1 text-green-500" />
-                        <span className='text-gray-700'>{transaction.saldoactual}</span>
-                      </div>
-
-                      <div className="col-span-1 lg:col-span-2 flex justify-end gap-2">
-                        <button onClick={()=> window.open(`https://bpanetapi.vercel.app/pdf/comprovativo/${transaction.id}`)}>
-                          <Download className="text-gray-500 w-5 h-5" />
-                        </button>
-                        <button>
-                          <MoreVertical className="text-gray-500 w-5 h-5" />
-                        </button>
-
+                      
+                      {/* Desktop Layout */}
+                      <div className="hidden sm:grid grid-cols-12 gap-3 items-center">
+                        <div className="col-span-4 lg:col-span-3 flex items-center gap-3">
+                          <Avatar size="sm"
+                            classNames={{
+                              base: "bg-[#AE8C46] flex-shrink-0",
+                              icon: "text-black/80 flex items-center",
+                              img: 'w-[20px] h-[20px]'
+                            }}
+                            icon={<AvatarIcon />}
+                            radius="sm" src={transaction.Descricao.includes("Levantamento") ? '/icons/levan3.png' : transaction.Descricao.includes('Pagamento') ? 'icons/pagame3.png' : '/icons/trans9.png'} />
+                          <span title={transaction.Descricao} className="text-gray-700 truncate text-14">{transaction.Descricao}</span>
+                        </div>
+                        <div className="col-span-2 lg:col-span-2 text-gray-600 text-14">
+                          <p>{format(parseISO(transaction.data), "d MMM yyyy", { locale: ptBR })}</p>
+                        </div>
+                        <div className="col-span-2 lg:col-span-2 text-right flex items-center justify-end text-14">
+                          {transaction.debito ? (
+                            <>
+                              <ArrowDown className="w-4 h-4 mr-1 text-red-500 flex-shrink-0" />
+                              <span className='text-gray-700 break-words'>Kz {Number(transaction.debito).toLocaleString('pt-BR').replace('.', " ")}</span>
+                            </>
+                          ) : (
+                            <>
+                              <ArrowUp className="w-4 h-4 mr-1 text-green-500 flex-shrink-0" />
+                              <span className='text-gray-700 break-words'>Kz {Number(transaction.credtio || 0).toLocaleString('pt-BR').replace('.', " ")}</span>
+                            </>
+                          )}
+                        </div>
+                        <div className="col-span-3 lg:col-span-3 text-right flex items-center justify-end text-14">
+                          <Plus className="w-4 h-4 mr-1 text-green-500 flex-shrink-0" />
+                          <span className='text-gray-700 break-words'>{transaction.saldoactual}</span>
+                        </div>
+                        <div className="col-span-1 lg:col-span-2 flex justify-end gap-2">
+                          <button onClick={()=> window.open(`https://bpanetapi.vercel.app/pdf/comprovativo/${transaction.id}`)}>
+                            <Download className="text-gray-500 w-5 h-5" />
+                          </button>
+                          <button>
+                            <MoreVertical className="text-gray-500 w-5 h-5" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}

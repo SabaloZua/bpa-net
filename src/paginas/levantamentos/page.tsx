@@ -193,14 +193,14 @@ export default function Levantamentos({ dados }: Props) {
     <div>
       <div className="levantamento-container">
         <form
-          className="levantamento-form"
+          className="levantamento-form px-2 sm:px-4 md:px-0"
           onSubmit={handleSubmit(confirmaLevantamento)}
           autoComplete="off"
         >
-          <div className="payments_header mb-5">
+          <div className="payments_header mb-4 sm:mb-5">
             <div className="top">
-            <h1>Levantamentos sem cartão</h1>
-            <p>Retire o seu dinheiro a qualquer momento.</p>
+            <h1 className="text-xl sm:text-2xl">Levantamentos sem cartão</h1>
+            <p className="text-sm sm:text-base">Retire o seu dinheiro a qualquer momento.</p>
             </div>
           
           </div>
@@ -227,15 +227,15 @@ export default function Levantamentos({ dados }: Props) {
           <div className="email-container">
             {tipoLevantamento == "outro" ? (
               <div>
-                <label htmlFor="" className="text-sm mt-4 " >Endereço do email do beneficiário</label>
+                <label htmlFor="" className="text-sm mt-4 block mb-2" >Endereço do email do beneficiário</label>
                 <Input className="email-input" {...register("emaildestino")} />
                 {errors.emaildestino && (
-                  <p className="text-red-500 text-sm">{errors.emaildestino.message}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.emaildestino.message}</p>
                 )}
               </div>
             ) : (
               <div>
-                <label className="text-sm mt-4">Meu endereço de e-mail</label>
+                <label className="text-sm mt-4 block mb-2">Meu endereço de e-mail</label>
                 <Input readOnly className="email-input" placeholder={`${dados?.cliente.email} `} />
               </div>
             )}
@@ -266,7 +266,7 @@ export default function Levantamentos({ dados }: Props) {
                         <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[400px] p-0">
+                    <PopoverContent className="w-[calc(100vw-2rem)] sm:w-[400px] p-0">
                       <Command>
                         <CommandEmpty>Nenhum montante encontrado.</CommandEmpty>
                         <CommandGroup>
@@ -335,7 +335,7 @@ export default function Levantamentos({ dados }: Props) {
             </div>
           </div>
 
-          <button className="button_auth mt-8" type="submit">
+          <button className="button_auth mt-6 sm:mt-8 w-full" type="submit">
             {isLoading ? (
               <TailSpin
                 height="25"

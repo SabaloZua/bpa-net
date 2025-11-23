@@ -29,7 +29,7 @@ export default function LevantamentosList({ idConta }: Props) {
     async function getAllProducts() {
       try {
         const levantamentosRecentes = await api.get(`/trasacao/levantamentos/${idConta}`);
-        console.log(levantamentosRecentes.data.Levantamentos);
+        
 
         setListaLevantamentos(levantamentosRecentes.data.Levantamentos);
         //setl(levantamentosRecentes.data);

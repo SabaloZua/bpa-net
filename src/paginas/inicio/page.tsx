@@ -295,17 +295,19 @@ export default function Home({ dadosConta, setDashboardPage }: Props) {
           </form>
         </div>
 
-        <div className="grid grid-cols-1 rounded-lg lg:grid-cols-4 gap-4  p-2 lg:p-4 bg-gray-100 ">
+        <div className="grid grid-cols-1 rounded-lg lg:grid-cols-4 gap-2 sm:gap-4 p-1 sm:p-2 lg:p-4 bg-gray-100 ">
           {/* llll; */}
-          <div className="trans  lg:col-span-2 bg-white rounded-xl  p-3 lg:p-5 flex flex-col ">
+          <div className="trans lg:col-span-2 bg-white rounded-xl p-2 sm:p-3 lg:p-5 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium text-blue-500">Transaçoes recentes</h2>
+              <h2 className="text-sm sm:text-lg font-medium text-blue-500">Transaçoes recentes</h2>
               <div className="text-blue-500">
               
               </div>
             </div>
-            <div className="w-full h-[0.5px] bg-[#efefef]   mb-4 mt-2" />
-            <Tabela />
+            <div className="w-full h-[0.5px] bg-[#efefef] mb-2 sm:mb-4 mt-2" />
+            <div className="overflow-x-auto -mx-2 sm:mx-0">
+              <Tabela />
+            </div>
           </div>
           <div className=" cambio lg:col-span-2 bg-white rounded-xl p-3 flex flex-col ">
             <div className="flex items-center justify-between ">

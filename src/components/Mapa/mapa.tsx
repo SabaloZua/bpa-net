@@ -40,17 +40,25 @@ function App() {
   });
   
   return (
-    <div className="App">
+    <div className="App atms w-full h-full flex flex-col">
       <Cabecalho Titulo='Atms' subTitulo='Localize Atms perto de si' />
-      <MapContainer center={position} zoom={20} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position} icon={userIcon} />
-        <LeafletGeocoder setAtmMarkers={setAtmMarkers} />
-        <LeafletRoutingMachine atmMarkers={atmMarkers} />
-      </MapContainer>
+      <div className="flex-1 w-full relative overflow-hidden" style={{ minHeight: '500px' }}>
+        <MapContainer 
+          center={position} 
+          zoom={20} 
+          scrollWheelZoom={true}
+          className="w-full h-full"
+          style={{ height: '100%', width: '100%', zIndex: 1 }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position} icon={userIcon} />
+          <LeafletGeocoder setAtmMarkers={setAtmMarkers} />
+          <LeafletRoutingMachine atmMarkers={atmMarkers} />
+        </MapContainer>
+      </div>
 
               {showGuide && <GuideDriver steps={AtmSteps} onFinish={()=>{
             console.log("Tour finalizado! Inciando o tour novamente");

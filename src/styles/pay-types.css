@@ -2,40 +2,81 @@
 .pt1_container, .pt3_container {
     width: 100%;
     height: 100%;
-    padding: 20px 20px 20px 20px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     font-size: var(--font-small);
 }
+
+@media (min-width: 640px) {
+    .pt1_container, .pt3_container {
+        padding: 20px;
+    }
+}
 .pt1_container > .top, .pt3_container > .top {
     width: 100%;
     height: max-content;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .pt1_container > .top, .pt3_container > .top {
+        margin-bottom: 20px;
+    }
 }
 .pt1_container .top > h1, .pt3_container > .top > h1 {
     font-family: Rubik;
     font-size: var(--font-small);
     color: var(--color-text);
     text-align: center;
-    width: 30%;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .pt1_container .top > h1, .pt3_container > .top > h1 {
+        width: 30%;
+    }
 }
 .pt1_container > .top > .separator, .pt3_container > .top > .separator {
-    width: 40%;
+    width: 80%;
+}
+
+@media (min-width: 640px) {
+    .pt1_container > .top > .separator, .pt3_container > .top > .separator {
+        width: 40%;
+    }
 }
 .pt1_container > .bottom {
     width: 100%;
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
 }
+
+@media (min-width: 768px) {
+    .pt1_container > .bottom {
+        flex-direction: row;
+        gap: 30px;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 1024px) {
+    .pt1_container > .bottom {
+        gap: 40px;
+    }
+}
+
 .pt1_container  > .bottom > .left {
-    width: 40%;
-    height: 100%;
+    width: 100%;
+    height: auto;
+    min-height: auto;
     font-size: var(--font-small);
     font-family: Rubik;
     display: flex;
@@ -43,25 +84,54 @@
     align-items: flex-start;
     justify-content: flex-start;
 }
+
+@media (min-width: 768px) {
+    .pt1_container  > .bottom > .left {
+        width: 40%;
+        height: 100%;
+        min-height: auto;
+    }
+}
 .pt1_container > .bottom > .left > .services {
     width: 100%;
     flex: auto;
     background-color: #efefef;
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
+
+@media (min-width: 640px) {
+    .pt1_container > .bottom > .left > .services {
+        padding: 15px;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .pt1_container > .bottom > .left > .services {
+        overflow-y: scroll;
+    }
+}
+
 .pt1_container > .bottom > .left > .services::-webkit-scrollbar {
     display: none;
 }
 .pt1_container > .bottom > .right {
-    width: 70%;
+    width: 100%;
     height: 100%;
+    min-height: 300px;
+}
+
+@media (min-width: 768px) {
+    .pt1_container > .bottom > .right {
+        width: 70%;
+    }
 }
 
 
@@ -70,21 +140,39 @@
     width: 100%;
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 90px;
+    gap: 20px;
     position: relative;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    .pt3_container > .bottom {
+        flex-direction: row;
+        gap: 90px;
+        padding: 0;
+    }
 }
 
 .pt3_container > .bottom > .left, .pt3_container > .bottom > .right {
-    width: 30%;
-    height: 70%;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+}
+
+@media (min-width: 768px) {
+    .pt3_container > .bottom > .left, .pt3_container > .bottom > .right {
+        width: 30%;
+        height: 70%;
+    }
 }
 
 .pt3_container > .bottom > button {
-    position: absolute;
-    bottom: 30px;
-    right: 40px;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
     background-color: var(--color-focus);
     color: var(--color-cards);
     display: flex;
@@ -95,6 +183,16 @@
     border-radius: 10px;
     transition: .3s;
     border: 1px solid transparent;
+}
+
+@media (min-width: 768px) {
+    .pt3_container > .bottom > button {
+        position: absolute;
+        width: auto;
+        margin-top: 0;
+        bottom: 30px;
+        right: 40px;
+    }
 }
 .pt3_container > .bottom > button:hover {
     border-color: var(--color-focus);
@@ -107,17 +205,36 @@
 /*«««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»*/
 .wallet.rigth {
     flex: 1;
-    padding: 20px;
+    padding: 16px;
     border-radius: 15px;
-    height: 100%;
+    height: auto;
+    min-height: 400px;
     display: flex;
     background-color: #F3F4F6;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
     align-items: flex-start;
     justify-content: flex-start;
-    overflow-y: scroll;
+    overflow-y: visible;
 }
+
+@media (min-width: 640px) {
+    .wallet.rigth {
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .wallet.rigth {
+        padding: 24px;
+        gap: 24px;
+        height: 100%;
+        min-height: auto;
+        overflow-y: scroll;
+    }
+}
+
 .wallet.rigth::-webkit-scrollbar {
     display: none;
 }
@@ -130,10 +247,16 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .wallet.rigth > .buttonContainer{
+        margin-top: 20px;
+    }
 }
 .wallet.rigth > .buttonContainer  > button {
-    width: 270px;
+    width: 100%;
     padding: 10px 0;
     background-color: var(--color-focus);
     color: var(--color-cards);
@@ -142,6 +265,12 @@
     justify-content: center;
     gap: 10px;
     border-radius: 10px;
+}
+
+@media (min-width: 640px) {
+    .wallet.rigth > .buttonContainer  > button {
+        width: 270px;
+    }
 }
 .wallet.rigth > .buttonContainer > button > svg {
     width: 24px;

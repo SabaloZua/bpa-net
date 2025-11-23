@@ -149,7 +149,7 @@ export default function Transferencias({ dados }: Props) {
   return (
     <div>
       <Cabecalho Titulo="Trasnferências" subTitulo="Envie dinheiro a qualquer momento" />
-      <div className="bg-gray-100 rounded-xl p-4">
+      <div className="bg-gray-100 rounded-xl p-2 sm:p-4 ">
         <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
           <form onSubmit={handleSubmit(confirmarTransferencia)} autoComplete="off">
             <div className="px-6 py-5 sm:p-6">

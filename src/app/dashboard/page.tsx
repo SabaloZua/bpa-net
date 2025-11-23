@@ -8,6 +8,7 @@ export default async function DashboardPage(){
 
     const session = await getServerSession(nextAuthOptions);
    
+    //${session?.contaid}
     try {
          
         const dadosConta = await api.get(`/conta/dadoscliente/${session?.contaid}`)
@@ -15,7 +16,7 @@ export default async function DashboardPage(){
           
         return(
             
-            <Dashboard idConta={session?.contaid} dadosConta={dadosConta.data.dados}/>
+            <Dashboard idConta={1} dadosConta={dadosConta.data.dados}/>
 
         )
  

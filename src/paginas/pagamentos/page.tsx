@@ -50,13 +50,6 @@ export default function Payments() {
 				{selectedPage === "1" && <PayServices />}
 				{/* {selectedPage === "2" && <PayState number={useAccount.number}/>} */}
 			</div>
-			<div className="lateral">
-				<h1 className="title" style={{margin: "10px 0px 0px 0px"}}>Últimos pagamentos</h1>
-				<div className="separator" />
-				<div className="requests">
-					{/* <PayList accountNumber={useAccount.number}/> */}
-				</div>
-			</div>
 		</div>
 	);
 }

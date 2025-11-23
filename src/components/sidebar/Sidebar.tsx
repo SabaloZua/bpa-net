@@ -1,19 +1,25 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ChevronDown, LogOut } from "lucide-react"; // Menu para o ícone do hambúrguer
+import { ChevronDown, LogOut, User } from "lucide-react"; // Menu para o ícone do hambúrguer
 import { signOut } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 import { sidebarLinks } from "@/constants/index";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "@/components/ui/select";
+import { formataNome } from "@/constants/modules";
+import { DadosContaType } from "@/types/commons";
 
 
 interface SidebarProps {
   isOpen: boolean; // Adicionando a propriedade isOpen
-    handleLinkClick: () => void;
+  handleLinkClick: () => void;
+  setPage?: (page: string) => void;
+  dadosConta?: DadosContaType | undefined;
 }
 
-export default function Sidebar({ isOpen, handleLinkClick }: SidebarProps) {
+export default function Sidebar({ isOpen, handleLinkClick, setPage, dadosConta }: SidebarProps) {
   const pathname = usePathname();
 
   // Verifica se o link está ativo com base no pathname atual
@@ -84,9 +90,57 @@ export default function Sidebar({ isOpen, handleLinkClick }: SidebarProps) {
         </div>
       </a>
     ))}
-      <div className="p-4">
-    <div className="flex items-center text-sm cursor-pointer ">
-      <Link onClick={terminarSessao} href={"#"}>
+    
+    {/* Menu de Perfil - Apenas Mobile */}
+    {setPage && dadosConta && (
+      <div className="md:hidden mx-4 my-2">
+        <Select onValueChange={(value: string) => {
+          if (value === "logout") {
+            terminarSessao();
+          } else {
+            setPage(value);
+            handleLinkClick();
+          }
+        }}>
+          <SelectTrigger className="w-full bg-transparent border-0 text-white hover:bg-blue-600 focus:ring-0 focus:ring-offset-0 shadow-none p-3 h-auto">
+            <div className="flex items-center gap-3 w-full">
+              <Avatar className="h-10 w-10 border-2 border-white/30">
+                <AvatarImage src={dadosConta?.cliente.imagem} />
+                <AvatarFallback className="bg-white text-blue-500 font-semibold">
+                  {dadosConta?.cliente?.nome.charAt(0) || "U"}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col items-start flex-1 min-w-0">
+                <span className="text-sm font-medium truncate w-full">{formataNome(dadosConta?.cliente.nome)}</span>
+                <span className="text-xs text-white/70">Perfil</span>
+              </div>
+              <User size={18} className="ml-auto flex-shrink-0" />
+            </div>
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            <SelectGroup>
+              <SelectLabel className="text-gray-700">{formataNome(dadosConta?.cliente.nome)}</SelectLabel>
+              <SelectItem value="perfil" className="cursor-pointer">Perfil</SelectItem>
+              <SelectItem value="Senha" className="cursor-pointer">Alterar Senha</SelectItem>
+              <SelectItem 
+                value="logout" 
+                className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 hover:bg-red-50"
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <LogOut size={16} className="flex-shrink-0" />
+                  <span>Terminar Sessão</span>
+                </div>
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+    )}
+    
+      {/* Terminar Sessão - Apenas Desktop */}
+      <div className="hidden md:block p-4">
+    <div className="flex items-center text-sm cursor-pointer " onClick={terminarSessao}>
+      <Link href={"#"}>
         <LogOut size={18} className="mr-2" />
       </Link>
       <div>

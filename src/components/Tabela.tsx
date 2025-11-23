@@ -40,7 +40,7 @@ export default  function App() {
     credtio: string;
   };
   const [transacoes, settransacoes] = useState<Dados[]>([]);
- 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
  
     useEffect(() => {
           function fetchPergunta() {
@@ -62,6 +62,17 @@ export default  function App() {
           }
       },[useConta.id])
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 375);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   
   const renderCell = React.useCallback((dados: Dados, columnKey: React.Key) => {
     const cellValue = dados[columnKey as keyof Dados];
@@ -71,7 +82,7 @@ export default  function App() {
         return (  
           <Avatar size="sm"
           classNames={{
-            base: "bg-[#AE8C46] w-8 h-8 sm:w-8 sm:h-8",
+            base: "bg-[#AE8C46] w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0",
             icon: "text-black/80 flex items-center",
             img: 'w-4 h-4 sm:w-4 sm:h-4'
           }}
@@ -80,9 +91,9 @@ export default  function App() {
         );
       case "Descricao":
         return (
-          <div className="flex flex-col min-w-0">
-            <p title={dados.Descricao} className="text-bold text-10 sm:text-12 capitalize text-default-700 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
-              {dados.Descricao.split(" ").slice(0, 5).join(" ")}
+          <div className="flex flex-col min-w-0 max-w-[100px] sm:max-w-[150px]">
+            <p title={dados.Descricao} className="text-bold text-[10px] sm:text-xs capitalize text-default-700 leading-tight overflow-hidden text-ellipsis break-words">
+              {dados.Descricao.split(" ").slice(0, isSmallScreen ? 3 : 5).join(" ")}
             </p>
           </div>
         );
@@ -97,8 +108,8 @@ export default  function App() {
         };
         
         return (
-          <div className="flex flex-col min-w-0">
-            <p className="text-bold text-10 sm:text-12 capitalize text-default-700 whitespace-nowrap">
+          <div className="flex flex-col min-w-0 max-w-[60px] sm:max-w-none">
+            <p className="text-bold text-[10px] sm:text-xs capitalize text-default-700 whitespace-nowrap">
               {formatDate(cellValue as string)}
             </p>
           </div>
@@ -117,12 +128,12 @@ const formattedValue = new Intl.NumberFormat("pt-AO", {
 }).format(valueNumber)
 
 return (
-  <div className="flex flex-col min-w-0">
-    <p className="text-bold text-10 sm:text-12 capitalize text-default-700">
+  <div className="flex flex-col min-w-0 max-w-[80px] sm:max-w-[120px]">
+    <p className="text-bold text-[10px] sm:text-xs capitalize text-default-700">
       {dados.debito == null || dados.debito === "" ? (
-        <span className="flex items-center gap-1"><ArrowUp className="w-4 h-4 sm:w-3 sm:h-3 text-green-500"/><span className="whitespace-nowrap">{formattedValue}</span></span>
+        <span className="flex items-center gap-0.5 sm:gap-1 flex-wrap"><ArrowUp className="w-3 h-3 sm:w-3 sm:h-3 text-green-500 flex-shrink-0"/><span className="break-all leading-tight">{formattedValue}</span></span>
       ) : (
-        <span className="flex items-center gap-1"><ArrowDown className="w-4 h-4 sm:w-3 sm:h-3 text-red-600"/><span className="whitespace-nowrap">{formattedValue}</span></span>
+        <span className="flex items-center gap-0.5 sm:gap-1 flex-wrap"><ArrowDown className="w-3 h-3 sm:w-3 sm:h-3 text-red-600 flex-shrink-0"/><span className="break-all leading-tight">{formattedValue}</span></span>
       )}
     </p>
   </div>
@@ -130,13 +141,13 @@ return (
       default:
         return cellValue;
     }
-  }, []);
+  }, [isSmallScreen]);
 
     const classNames = React.useMemo(
       () => ({
-        wrapper: ["max-h-[382px]", "max-w-3xl", "overflow-x-auto"],
+        wrapper: ["max-h-[382px]", "w-full", "overflow-x-auto", "overflow-y-auto"],
         th: ["bg-transparent", "text-default-500", "border-divider", "min-w-0"],
-        td: ["min-w-0", "px-2 sm:px-2", "py-2"],
+        td: ["min-w-0", "px-2 sm:px-3", "py-1.5 sm:py-2"],
       }),
       []
     )
@@ -153,7 +164,11 @@ return (
       <TableBody items={transacoes}>
         {(item) => (
           <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            {(columnKey) => (
+              <TableCell className={columnKey === "mov" ? "pl-2 sm:pl-3" : ""}>
+                {renderCell(item, columnKey)}
+              </TableCell>
+            )}
           </TableRow>
         )}
       </TableBody>

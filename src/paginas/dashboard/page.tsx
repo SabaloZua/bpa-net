@@ -80,9 +80,14 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
 
   return (
     <main className="grid md:grid-cols-5 h-screen">
-      <Sidebar  isOpen={isMobileMenuOpen} handleLinkClick={handleLinkClick} />
+      <Sidebar  
+        isOpen={isMobileMenuOpen} 
+        handleLinkClick={handleLinkClick}
+        setPage={setPage}
+        dadosConta={dadosConta}
+      />
 
-      <div className="md:col-span-4 flex flex-col overflow-hidden bg-white">
+      <div className={`md:col-span-4 flex flex-col ${page === "mapa" ? "overflow-hidden" : "overflow-hidden"} bg-white`}>
         {/* Header */}
         <header className="z-10">
           <div className="flex items-center justify-between p-4">
@@ -145,13 +150,19 @@ export default function Dashboard({ idConta, dadosConta }: DashboardProps) {
           <div className="px-4 py-2 border-t flex items-center"></div>
         </header>
 
-        <main className="flex-1 overflow-y-auto py-2 px-4 sm:px-6 lg:px-6 bg-white no-scrollbar xl:overflow-y-scroll">
+        <main className={`flex-1 overflow-y-auto bg-white no-scrollbar xl:overflow-y-scroll ${
+          page === "mapa" 
+            ? "p-0 overflow-hidden" 
+            : "py-2 px-4 sm:px-6 lg:px-6"
+        }`}>
           {page === "inicio" ? (
             <Home dadosConta={dadosConta} setDashboardPage={setPage} />
           ) : page === "transferencias" ? (
             <Transferencias dados={dadosConta} />
           ) : page === "mapa" ? (
-            <MapaComponent />
+            <div className="w-full h-full">
+              <MapaComponent />
+            </div>
           ) : page === "pagamentos" ? (
             <Pagamentos />
           ) : page === "levantamentos" ? (
