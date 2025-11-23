@@ -16,7 +16,7 @@ export default async function DashboardPage(){
           
         return(
             
-            <Dashboard idConta={1} dadosConta={dadosConta.data.dados}/>
+            <Dashboard idConta={session?.contaid} dadosConta={dadosConta.data.dados}/>
 
         )
  
