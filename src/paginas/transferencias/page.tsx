@@ -1,8 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { ArrowRight, CreditCard, User } from "lucide-react";
-import { RadioGroup, Radio } from "@nextui-org/react";
 import api from "@/utils/axios";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { TailSpin } from "react-loader-spinner";
@@ -158,20 +164,22 @@ export default function Transferencias({ dados }: Props) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tipo de Transferência
                 </label>
-                <RadioGroup
+                <Select
                   value={transferType}
-                  onChange={(e) => setTransferType(e.target.value)}
-                  className="mt-2"
+                  onValueChange={setTransferType}
                 >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                    <Radio value="intrabank" description="Dentro do mesmo Banco" className="text-sm sm:text-base">
-                      Intrabancária
-                    </Radio>
-                    <Radio value="interbank" description="Entre bancos diferentes" className="text-sm sm:text-base">
-                      Interbancária
-                    </Radio>
-                  </div>
-                </RadioGroup>
+                  <SelectTrigger className="w-full mt-2">
+                    <SelectValue placeholder="Selecione o tipo de transferência" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="intrabank">
+                      Intrabancária - Dentro do mesmo Banco
+                    </SelectItem>
+                    <SelectItem value="interbank">
+                      Interbancária - Entre bancos diferentes
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Form Fields */}
